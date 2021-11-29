@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+################################################
+# DO NOT EDIT - Auto generated code            #
+################################################
+
+module GOBL
+  module Tax
+    class Total < Dynamic::Struct
+      attribute :categories, Dynamic::Types::Array(GOBL::Tax::CategoryTotal).optional
+      attribute :sum, GOBL::Num::Amount
+
+      def self.properties_ref
+        @properties_ref ||= {
+          'categories' => GOBL::Tax::CategoryTotal,
+          'sum' => GOBL::Num::Amount
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,1124 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$ref": "#/definitions/bill.Invoice",
+  "definitions": {
+    "bill.Delivery": {
+      "properties": {
+        "receiver": {
+          "$ref": "#/definitions/org.Party",
+          "title": "Receiver",
+          "description": "The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Invoice": {
+      "required": [
+        "code",
+        "currency",
+        "issue_date",
+        "supplier",
+        "totals"
+      ],
+      "properties": {
+        "uuid": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Unique document ID. Not required"
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Sequential code used to identify this invoice in tax declarations."
+        },
+        "type_code": {
+          "type": "string",
+          "title": "Type Code",
+          "description": "Functional type of the invoice"
+        },
+        "currency": {
+          "type": "string",
+          "title": "Currency",
+          "description": "Currency for all invoice totals."
+        },
+        "rates": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/currency.ExchangeRate"
+          },
+          "type": "array",
+          "title": "Exchange Rates",
+          "description": "Exchange rates to be used when converting the invoices monetary values into other currencies."
+        },
+        "prices_include_tax": {
+          "type": "boolean",
+          "title": "Prices Include Tax",
+          "description": "When true"
+        },
+        "preceding": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/bill.Preceding",
+          "title": "Preceding Reference",
+          "description": "Key information regarding a previous invoice."
+        },
+        "issue_date": {
+          "$ref": "#/definitions/org.Date",
+          "title": "Issue Date",
+          "description": "When the invoice was created."
+        },
+        "op_date": {
+          "$ref": "#/definitions/org.Date",
+          "title": "Operation Date",
+          "description": "Date when the operation defined by the invoice became effective."
+        },
+        "value_date": {
+          "$ref": "#/definitions/org.Date",
+          "title": "Value Date",
+          "description": "When the taxes of this invoice become accountable"
+        },
+        "supplier": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Party",
+          "title": "Supplier",
+          "description": "The taxable entity supplying the goods or services."
+        },
+        "customer": {
+          "$ref": "#/definitions/org.Party",
+          "title": "Customer",
+          "description": "Legal entity who receives the goods or services. May be empty in certain circumstances such as simplified invoices."
+        },
+        "lines": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/bill.Line"
+          },
+          "type": "array",
+          "title": "Lines",
+          "description": "The items sold to the customer."
+        },
+        "outlays": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/bill.Outlay"
+          },
+          "type": "array",
+          "title": "Outlays",
+          "description": "Expenses paid for by the supplier but invoiced directly to the customer."
+        },
+        "totals": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/bill.Totals",
+          "title": "Totals"
+        },
+        "ordering": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/bill.Ordering",
+          "title": "Ordering Details"
+        },
+        "payment": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/bill.Payment",
+          "title": "Payment Details"
+        },
+        "delivery": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/bill.Delivery",
+          "title": "Delivery Details"
+        },
+        "notes": {
+          "type": "string",
+          "title": "Notes",
+          "description": "Unstructured information that is relevant to the invoice"
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Additional semi-structured data that doesn't fit into the body of the invoice."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Line": {
+      "required": [
+        "i",
+        "quantity",
+        "item",
+        "sum",
+        "total"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "i": {
+          "type": "integer",
+          "title": "Index",
+          "description": "Line number inside the invoice."
+        },
+        "quantity": {
+          "$ref": "#/definitions/num.Amount"
+        },
+        "item": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Item"
+        },
+        "sum": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Sum",
+          "description": "Result of quantity multiplied by item price"
+        },
+        "discount": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Discount",
+          "title": "Discount",
+          "description": "Discount applied to this line."
+        },
+        "taxes": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/tax.Rate"
+          },
+          "type": "array",
+          "title": "Taxes",
+          "description": "List of taxes to be applied to the line in the invoice totals."
+        },
+        "total": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Total",
+          "description": "Total line amount after applying discounts to the sum."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Ordering": {
+      "properties": {
+        "seller": {
+          "$ref": "#/definitions/org.Party",
+          "title": "Seller",
+          "description": "Party who is selling the goods and is not responsible for taxes."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Outlay": {
+      "required": [
+        "i",
+        "desc",
+        "paid"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string"
+        },
+        "i": {
+          "type": "integer",
+          "title": "Index",
+          "description": "Line number inside the invoice"
+        },
+        "ref": {
+          "type": "string",
+          "title": "Reference",
+          "description": "A code"
+        },
+        "desc": {
+          "type": "string",
+          "title": "Description",
+          "description": "Details on what the outlay was."
+        },
+        "paid": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Paid",
+          "description": "Amount paid by the supplier."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Payment": {
+      "properties": {
+        "terms": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/pay.Terms",
+          "title": "Terms",
+          "description": "Payment terms or conditions."
+        },
+        "methods": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/pay.Method"
+          },
+          "type": "array",
+          "title": "Methods",
+          "description": "Array of payment options that can be used to pay for this invoice."
+        },
+        "payer": {
+          "$ref": "#/definitions/org.Party",
+          "title": "Payer",
+          "description": "The party responsible for paying for the invoice"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Preceding": {
+      "required": [
+        "code",
+        "issue_date"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Preceding document's UUID if available can be useful for tracing."
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Identity code of the previous invoice."
+        },
+        "issue_date": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Date",
+          "title": "Issue Date",
+          "description": "When the preceding invoices was issued."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Additional semi-structured data that may be useful in specific regions."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "bill.Totals": {
+      "required": [
+        "sum",
+        "payable"
+      ],
+      "properties": {
+        "sum": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Sum",
+          "description": "Sum of all line item sums"
+        },
+        "discount": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Discount",
+          "description": "Sum of all discounts applied to each line."
+        },
+        "total": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Total",
+          "description": "Sum of all line sums minus the discounts."
+        },
+        "taxes": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/tax.Total",
+          "title": "Tax Totals",
+          "description": "Summary of all taxes with a final sum to add or deduct from the amount payable."
+        },
+        "outlays": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Outlay Totals",
+          "description": "Total paid in outlays that need to be reimbursed."
+        },
+        "payable": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Payable",
+          "description": "Total amount to be paid after applying taxes."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "currency.ExchangeRate": {
+      "required": [
+        "currency",
+        "value"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "value": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/num.Amount"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "i18n.String": {
+      "patternProperties": {
+        "^[a-z]{2}$": {
+          "type": "string",
+          "title": "Text in given language."
+        }
+      },
+      "type": "object",
+      "title": "Multi-language String",
+      "description": "Map of 2-Letter language codes to their translations."
+    },
+    "num.Amount": {
+      "pattern": "^\\-?[0-9]+(\\.[0-9]+)?$",
+      "type": "string",
+      "title": "Amount",
+      "description": "Quantity with optional decimal places that determine accuracy."
+    },
+    "num.Percentage": {
+      "pattern": "^\\-?[0-9]+(\\.[0-9]+)?%$",
+      "type": "string",
+      "title": "Percentage",
+      "description": "Similar to an Amount, but designed for percentages and includes % symbol in JSON output."
+    },
+    "org.Address": {
+      "required": [
+        "locality",
+        "region"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label",
+          "description": "Useful identifier"
+        },
+        "po_box": {
+          "type": "string",
+          "title": "Post Office Box",
+          "description": "Box number or code for the post office box located at the address."
+        },
+        "num": {
+          "type": "string",
+          "title": "Number",
+          "description": "House or building number in the street."
+        },
+        "floor": {
+          "type": "string",
+          "title": "Floor",
+          "description": "Floor number within the building."
+        },
+        "block": {
+          "type": "string",
+          "title": "Block",
+          "description": "Block number within the building."
+        },
+        "door": {
+          "type": "string",
+          "title": "Door",
+          "description": "Door number within the building."
+        },
+        "street": {
+          "type": "string",
+          "title": "Street",
+          "description": "Fist line of street."
+        },
+        "street_extra": {
+          "type": "string",
+          "title": "Extended Street",
+          "description": "Additional street address details."
+        },
+        "locality": {
+          "type": "string",
+          "title": "Locality",
+          "description": "The village"
+        },
+        "region": {
+          "type": "string",
+          "title": "Region",
+          "description": "Province"
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Post or ZIP code."
+        },
+        "country": {
+          "type": "string",
+          "title": "Country",
+          "description": "ISO country code."
+        },
+        "coords": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Coordinates",
+          "title": "Coordinates",
+          "description": "For when the postal address is not sufficient"
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Coordinates": {
+      "properties": {
+        "lat": {
+          "type": "number",
+          "title": "Latitude",
+          "description": "Decimal latitude coordinate."
+        },
+        "lon": {
+          "type": "number",
+          "title": "Longitude",
+          "description": "Decimal longitude coordinate."
+        },
+        "w3w": {
+          "type": "string",
+          "title": "What 3 Words",
+          "description": "Text coordinates compose of three words."
+        },
+        "geohash": {
+          "type": "string",
+          "title": "Geohash",
+          "description": "Single string coordinate based on geohash standard."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Date": {
+      "type": "string",
+      "title": "Date",
+      "description": "Civil date in simplified ISO format, like 2021-05-26",
+      "format": "date"
+    },
+    "org.Discount": {
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "rate": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/num.Percentage",
+          "title": "Rate"
+        },
+        "value": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Value",
+          "description": "How much to deduct"
+        },
+        "reason": {
+          "type": "string",
+          "title": "Reason",
+          "description": "Description as to why this discount was applied."
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Reason Code"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Email": {
+      "required": [
+        "addr"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label",
+          "description": "Identifier for the email."
+        },
+        "addr": {
+          "type": "string",
+          "title": "Address",
+          "description": "Electronic mailing address."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Additional fields."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Item": {
+      "required": [
+        "name",
+        "price"
+      ],
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "title": "UUID",
+          "description": "Unique identify of this item independent of the Supplier IDs"
+        },
+        "name": {
+          "type": "string"
+        },
+        "desc": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string",
+          "title": "Currency",
+          "description": "Only required if this line has a different currency from the rest."
+        },
+        "price": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Price",
+          "description": "Price of item being sold."
+        },
+        "unit": {
+          "type": "string",
+          "title": "Unit",
+          "description": "Code for unit of the item being sold"
+        },
+        "supplier_ids": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/org.ItemID"
+          },
+          "type": "array",
+          "title": "Supplier IDs"
+        },
+        "origin": {
+          "type": "string",
+          "title": "Country of Origin",
+          "description": "Country code of where this item was from originally."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.ItemID": {
+      "required": [
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Name": {
+      "required": [
+        "given",
+        "surname"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Unique identity code"
+        },
+        "alias": {
+          "type": "string",
+          "title": "Alias",
+          "description": "What the person would like to be called"
+        },
+        "prefix": {
+          "type": "string",
+          "title": "Prefix"
+        },
+        "given": {
+          "type": "string",
+          "title": "Given",
+          "description": "The person's given name"
+        },
+        "middle": {
+          "type": "string",
+          "title": "Middle",
+          "description": "Middle names or initials"
+        },
+        "surname": {
+          "type": "string",
+          "title": "Surname"
+        },
+        "surname2": {
+          "type": "string",
+          "title": "Second Surname"
+        },
+        "suffix": {
+          "type": "string",
+          "title": "Suffix"
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Party": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Unique identity code."
+        },
+        "tax_id": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.TaxID",
+          "title": "Tax Identity",
+          "description": "The entity's legal ID code used for tax purposes. They may have other numbers"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "Legal name or representation of the organization."
+        },
+        "alias": {
+          "type": "string",
+          "title": "Alias",
+          "description": "Alternate short name."
+        },
+        "people": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/org.Person"
+          },
+          "type": "array",
+          "title": "People",
+          "description": "Details of physical people who represent the party."
+        },
+        "addresses": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/org.Address"
+          },
+          "type": "array",
+          "title": "Postal Addresses",
+          "description": "Regular post addresses for where information should be sent if needed."
+        },
+        "emails": {
+          "items": {
+            "$ref": "#/definitions/org.Email"
+          },
+          "type": "array",
+          "title": "Email Addresses"
+        },
+        "telephones": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/org.Telephone"
+          },
+          "type": "array",
+          "title": "Telephone Numbers"
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Any additional non-structure information that does not fit into the rest of the document."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Person": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Unique identity code"
+        },
+        "name": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/org.Name",
+          "title": "Name",
+          "description": "Complete details on the name of the person"
+        },
+        "role": {
+          "type": "string",
+          "title": "Role",
+          "description": "What they do within an organization"
+        },
+        "emails": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/org.Email"
+          },
+          "type": "array",
+          "title": "Email Addresses",
+          "description": "Electronic mail addresses that belong to the person."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Data about the data."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.TaxID": {
+      "required": [
+        "country",
+        "code"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID",
+          "description": "Unique identity code"
+        },
+        "country": {
+          "type": "string",
+          "title": "Country",
+          "description": "ISO country code for Where the tax identity was issued."
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Identity code."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Additional details."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "org.Telephone": {
+      "required": [
+        "num"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID"
+        },
+        "label": {
+          "type": "string",
+          "title": "Label",
+          "description": "Identifier for this number."
+        },
+        "num": {
+          "type": "string",
+          "title": "Number",
+          "description": "The number to be dialed in ITU E.164 international format."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "pay.BankTransfer": {
+      "properties": {
+        "iban": {
+          "type": "string",
+          "title": "IBAN",
+          "description": "International Bank Account Number"
+        },
+        "bic": {
+          "type": "string",
+          "title": "BIC",
+          "description": "Bank Identifier Code used for international transfers."
+        },
+        "number": {
+          "type": "string",
+          "title": "Number",
+          "description": "Account number"
+        },
+        "name": {
+          "type": "string",
+          "title": "Name",
+          "description": "Name of the bank."
+        },
+        "branch": {
+          "$ref": "#/definitions/org.Address",
+          "title": "Branch",
+          "description": "Bank office branch address"
+        },
+        "notes": {
+          "$ref": "#/definitions/i18n.String",
+          "title": "Notes",
+          "description": "Any additional instructions that may be required to make the transfer."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Non-structured additional data that may be useful."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "pay.Method": {
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Code for the method type that can be used."
+        },
+        "bank_transfer": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/pay.BankTransfer",
+          "title": "Bank Transfer",
+          "description": "Details on how to pay using a bank transfer or wire."
+        },
+        "url": {
+          "$schema": "http://json-schema.org/draft-04/schema#",
+          "$ref": "#/definitions/pay.URL",
+          "title": "URL",
+          "description": "Web address that can be used for making the payment. Likely to be custom for each document."
+        },
+        "notes": {
+          "type": "string",
+          "title": "Notes",
+          "description": "Additional details related to this payment method."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Additional non-structure data."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "pay.Terms": {
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Type of terms to be applied."
+        },
+        "notes": {
+          "$ref": "#/definitions/i18n.String",
+          "title": "Notes",
+          "description": "Description of the conditions for payment."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "pay.URL": {
+      "required": [
+        "addr"
+      ],
+      "properties": {
+        "uuid": {
+          "$ref": "#/definitions/uuid.UUID",
+          "title": "UUID"
+        },
+        "addr": {
+          "type": "string",
+          "title": "Address",
+          "description": "Full URL to be used for payment."
+        },
+        "notes": {
+          "type": "string",
+          "title": "Notes",
+          "description": "Additional details which may be useful to the end-user."
+        },
+        "meta": {
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
+          },
+          "type": "object",
+          "title": "Meta",
+          "description": "Semi-structured additional data."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "tax.CategoryTotal": {
+      "required": [
+        "code",
+        "rates",
+        "base",
+        "value"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Code"
+        },
+        "retained": {
+          "type": "boolean",
+          "title": "Retained"
+        },
+        "rates": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/tax.RateTotal"
+          },
+          "type": "array",
+          "title": "Rates"
+        },
+        "base": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Base"
+        },
+        "value": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "tax.Rate": {
+      "required": [
+        "cat",
+        "code"
+      ],
+      "properties": {
+        "cat": {
+          "type": "string",
+          "title": "Category Code",
+          "description": "From the available options for the region."
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "As defined for the region and category."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "tax.RateTotal": {
+      "required": [
+        "code",
+        "base",
+        "percent",
+        "value"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "title": "Code"
+        },
+        "base": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Base"
+        },
+        "percent": {
+          "$ref": "#/definitions/num.Percentage",
+          "title": "Percent"
+        },
+        "value": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Value"
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "tax.Total": {
+      "required": [
+        "sum"
+      ],
+      "properties": {
+        "categories": {
+          "items": {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "$ref": "#/definitions/tax.CategoryTotal"
+          },
+          "type": "array",
+          "title": "Categories"
+        },
+        "sum": {
+          "$ref": "#/definitions/num.Amount",
+          "title": "Sum",
+          "description": "Total value of all the taxes to be added or retained."
+        }
+      },
+      "additionalProperties": false,
+      "type": "object"
+    },
+    "uuid.UUID": {
+      "type": "string",
+      "title": "UUID",
+      "description": "Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.",
+      "format": "uuid"
+    }
+  }
+}
