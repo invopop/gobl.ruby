@@ -1,0 +1,15 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.7
+  NewCops: enable
+
+Style/Documentation:
+  Exclude:
+    - 'lib/gobl/**/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/gobl/**/*.rb'
