@@ -1,0 +1,26 @@
+{
+  "name": "gobl.ruby",
+  "version": "0.1.0",
+  "description": "Minimalist ruby version of the GOBL library",
+  "scripts": {
+    "generate": "node bin/generate.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/invopop/gobl.ruby.git"
+  },
+  "keywords": [
+    "ruby",
+    "json-schema",
+    "gobl"
+  ],
+  "author": "David Lilue",
+  "bugs": {
+    "url": "https://github.com/invopop/gobl.ruby/issues"
+  },
+  "homepage": "https://github.com/invopop/gobl.ruby",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "quicktype-core": "^6.0.70"
+  }
+}

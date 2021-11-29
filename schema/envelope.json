@@ -1,0 +1,163 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$ref": "#/definitions/Envelope",
+    "definitions": {
+        "Envelope": {
+            "required": [
+                "head",
+                "doc",
+                "sigs"
+            ],
+            "properties": {
+                "head": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "$ref": "#/definitions/Header",
+                    "title": "Header",
+                    "description": "Details on what the contents are"
+                },
+                "doc": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "$ref": "#/definitions/Payload",
+                    "title": "Document",
+                    "description": "The data being enveloped"
+                },
+                "sigs": {
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "$ref": "#/definitions/dsig.Signature"
+                    },
+                    "type": "array",
+                    "title": "Signatures",
+                    "description": "JSON Web Signatures of the header"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "Header": {
+            "required": [
+                "uuid",
+                "typ",
+                "rgn",
+                "dig"
+            ],
+            "properties": {
+                "uuid": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "$ref": "#/definitions/uuid.UUID",
+                    "title": "UUID",
+                    "description": "Unique UUIDv1 identifier for the envelope."
+                },
+                "typ": {
+                    "type": "string",
+                    "title": "Type",
+                    "description": "Body type of the document contents."
+                },
+                "rgn": {
+                    "type": "string",
+                    "title": "Region",
+                    "description": "Code for the region the document should be validated with."
+                },
+                "dig": {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "$ref": "#/definitions/dsig.Digest",
+                    "title": "Digest",
+                    "description": "Digest of the canonical JSON body."
+                },
+                "stamps": {
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-04/schema#",
+                        "$ref": "#/definitions/Stamp"
+                    },
+                    "type": "array",
+                    "title": "Stamps",
+                    "description": "Seals of approval from other organisations."
+                },
+                "tags": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array",
+                    "title": "Tags",
+                    "description": "Set of labels that describe but have no influence on the data."
+                },
+                "meta": {
+                    "patternProperties": {
+                        ".*": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "title": "Meta",
+                    "description": "Additional semi-structured information about this envelope."
+                },
+                "notes": {
+                    "type": "string",
+                    "title": "Notes",
+                    "description": "Any information that may be relevant to other humans about this envelope."
+                },
+                "draft": {
+                    "type": "boolean",
+                    "title": "Draft",
+                    "description": "When true"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "Payload": {
+            "type": "object",
+            "title": "Payload",
+            "description": "Contents of the envelope"
+        },
+        "Stamp": {
+            "required": [
+                "prv",
+                "val"
+            ],
+            "properties": {
+                "prv": {
+                    "type": "string",
+                    "title": "Provider",
+                    "description": "Identity of the agency used to create the stamp"
+                },
+                "val": {
+                    "type": "string",
+                    "title": "Value",
+                    "description": "The serialized stamp value generated for or by the external agency"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "dsig.Digest": {
+            "required": [
+                "alg",
+                "val"
+            ],
+            "properties": {
+                "alg": {
+                    "type": "string",
+                    "title": "Algorithm"
+                },
+                "val": {
+                    "type": "string",
+                    "title": "Value"
+                }
+            },
+            "additionalProperties": false,
+            "type": "object"
+        },
+        "dsig.Signature": {
+            "type": "string",
+            "title": "Signature",
+            "description": "JSON Web Signature in compact form."
+        },
+        "uuid.UUID": {
+            "type": "string",
+            "title": "UUID",
+            "description": "Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.",
+            "format": "uuid"
+        }
+    }
+}
