@@ -50,34 +50,34 @@ module Dynamic
       return [definition, schema] if referenced_schema.nil?
 
       cp_schema = Marshal.load(Marshal.dump(referenced_schema.schema))
-      replace_props(cp_schema, parent_schema)
+      replace_props(parent_schema, cp_schema)
 
       [definition, cp_schema]
     end
 
     # Replaces the properties of the given schema with the referenced schema
     # if it's present. Returning a reference dictionary with each property.
-    def self.replace_props(schema, p_sch)
-      props = schema['properties']
+    def self.replace_props(parent_schema, schema = nil)
+      sub_schema = schema || json_schema
 
-      return {} if props.nil?
+      return {} unless sub_schema['properties']
 
-      tmp_refs = {}
-      new_props = {}
+      refs = {}
+      props = {}
 
-      props.each do |name, prop_schema|
-        tmp_refs[name], new_props[name] = ref_schema(name, prop_schema, p_sch)
+      sub_schema['properties'].each do |p_name, p_schema|
+        refs[p_name], props[p_name] = ref_schema(p_name, p_schema, parent_schema)
       end
 
-      schema['properties'] = new_props
+      sub_schema['properties'] = props
 
-      tmp_refs
+      refs
     end
 
     # Returns a reference dictionary of the class attributes. Expanding
     # those references with the corresponding JSON schema.
     def self.expand_references(parent_schema)
-      @properties_ref = replace_props(json_schema, parent_schema)
+      @properties_ref = replace_props(parent_schema)
     end
 
     # Returns the referenced schema definition.

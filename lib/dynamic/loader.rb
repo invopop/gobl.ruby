@@ -51,7 +51,7 @@ module Dynamic
 
       nc = namespace.const_get(class_name, false)
       nc.init_class(sub_schema)
-      nc.replace_props(nc.json_schema, parent_schema)
+      nc.replace_props(parent_schema)
     end
   end
 end
