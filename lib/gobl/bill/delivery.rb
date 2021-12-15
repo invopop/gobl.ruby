@@ -6,7 +6,7 @@
 
 module GOBL
   module Bill
-    class Delivery < Dynamic::Struct
+    class Delivery < Model::Struct
       attribute :receiver, GOBL::Org::Party.optional
 
       def self.properties_ref

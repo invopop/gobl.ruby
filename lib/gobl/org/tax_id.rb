@@ -6,11 +6,11 @@
 
 module GOBL
   module Org
-    class TaxID < Dynamic::Struct
+    class TaxID < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :country, Dynamic::Types::String
-      attribute :code, Dynamic::Types::String
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :country, Model::Types::String
+      attribute :code, Model::Types::String
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

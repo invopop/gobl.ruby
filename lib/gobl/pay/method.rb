@@ -6,12 +6,12 @@
 
 module GOBL
   module Pay
-    class Method < Dynamic::Struct
-      attribute :code, Dynamic::Types::String
+    class Method < Model::Struct
+      attribute :code, Model::Types::String
       attribute :bank_transfer, GOBL::Pay::BankTransfer.optional
       attribute :url, GOBL::Pay::URL.optional
-      attribute :notes, Dynamic::Types::String.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :notes, Model::Types::String.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

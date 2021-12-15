@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../lib/dynamic/generator'
+require_relative '../lib/generator'
 
-generator = Dynamic::Generator.new(schema_dir: 'schema', lang: 'ruby')
+generator = Generator.new(schema_dir: 'schema', lang: 'ruby')
 
 generator.inflect(
   'gobl' => 'GOBL',

@@ -6,11 +6,11 @@
 
 module GOBL
   module Org
-    class Discount < Dynamic::Struct
+    class Discount < Model::Struct
       attribute :rate, GOBL::Num::Percentage.optional
       attribute :value, GOBL::Num::Amount
-      attribute :reason, Dynamic::Types::String.optional
-      attribute :code, Dynamic::Types::String.optional
+      attribute :reason, Model::Types::String.optional
+      attribute :code, Model::Types::String.optional
 
       def self.properties_ref
         @properties_ref ||= {

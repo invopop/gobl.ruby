@@ -18,16 +18,22 @@ ones.
 All the auto-generated files are defined here. Nothing shouldn't be edited, or
 alter, manually.
 
-### `lib/dynamic`
+### `lib/catalog`
 
-This module defines all the structures to generate and load the gem, the `Dynamic::Generator` and `Dynamic::Loader` respectively. Also, basic structures
-to describe the core behaviour of GoBL objects, like `Dynamic::Types`,
-`Dynamic::Object` and `Dynamic::Struct`.
-
-#### `lib/dynamic/catalog`
-
-The `Dynamic::Catalog` is a useful structure to handle the schemas, names and
+The `Catalog` is a useful structure to handle the schemas, names and
 relations among the GoBL objects. It is used by the generator and loader.
+
+### `lib/generator`
+
+This class defines all the structures to generate the gem. The
+`Generator::Exporter` and `Generator::Renderer` are core structures to
+auto-generate, render and export Ruby object into files.
+
+### `lib/loader`
+
+This class defines all the structures to load the gem, using internally the gem
+`Zeitwerk`. Also, it uses the `Catalog` to patch the auto-generated classes
+with additional data of the original schema.
 
 ## `bin`
 

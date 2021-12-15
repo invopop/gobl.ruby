@@ -5,9 +5,9 @@
 ################################################
 
 module GOBL
-  class Stamp < Dynamic::Struct
-    attribute :prv, Dynamic::Types::String
-    attribute :val, Dynamic::Types::String
+  class Stamp < Model::Struct
+    attribute :prv, Model::Types::String
+    attribute :val, Model::Types::String
 
     def self.properties_ref
       @properties_ref ||= {

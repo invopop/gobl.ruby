@@ -6,10 +6,10 @@
 
 module GOBL
   module Tax
-    class CategoryTotal < Dynamic::Struct
-      attribute :code, Dynamic::Types::String
-      attribute :retained, Dynamic::Types::Bool.optional
-      attribute :rates, Dynamic::Types::Array(GOBL::Tax::RateTotal)
+    class CategoryTotal < Model::Struct
+      attribute :code, Model::Types::String
+      attribute :retained, Model::Types::Bool.optional
+      attribute :rates, Model::Types::Array(GOBL::Tax::RateTotal)
       attribute :base, GOBL::Num::Amount
       attribute :value, GOBL::Num::Amount
 

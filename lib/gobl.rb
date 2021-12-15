@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'dynamic/loader'
+require_relative 'loader'
 
 # GOBL - Main namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL
@@ -11,7 +11,7 @@ module GOBL
   end
 
   def self.create_loader
-    loader = Dynamic::Loader.new(
+    loader = Loader.new(
       schema_dir: 'schema',
       gem_file: __FILE__,
       gem_dir: __dir__

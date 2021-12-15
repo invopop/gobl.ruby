@@ -6,16 +6,16 @@
 
 module GOBL
   module Org
-    class Party < Dynamic::Struct
+    class Party < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
       attribute :tax_id, GOBL::Org::TaxID.optional
-      attribute :name, Dynamic::Types::String
-      attribute :alias, Dynamic::Types::String.optional
-      attribute :people, Dynamic::Types::Array(GOBL::Org::Person).optional
-      attribute :addresses, Dynamic::Types::Array(GOBL::Org::Address).optional
-      attribute :emails, Dynamic::Types::Array(GOBL::Org::Email).optional
-      attribute :telephones, Dynamic::Types::Array(GOBL::Org::Telephone).optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :name, Model::Types::String
+      attribute :alias, Model::Types::String.optional
+      attribute :people, Model::Types::Array(GOBL::Org::Person).optional
+      attribute :addresses, Model::Types::Array(GOBL::Org::Address).optional
+      attribute :emails, Model::Types::Array(GOBL::Org::Email).optional
+      attribute :telephones, Model::Types::Array(GOBL::Org::Telephone).optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

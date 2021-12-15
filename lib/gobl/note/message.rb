@@ -6,10 +6,10 @@
 
 module GOBL
   module Note
-    class Message < Dynamic::Struct
-      attribute :title, Dynamic::Types::String.optional
-      attribute :content, Dynamic::Types::String
-      attribute :meta, Dynamic::Types::Hash.optional
+    class Message < Model::Struct
+      attribute :title, Model::Types::String.optional
+      attribute :content, Model::Types::String
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

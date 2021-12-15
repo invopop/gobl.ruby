@@ -6,8 +6,8 @@
 
 module GOBL
   module Tax
-    class RateTotal < Dynamic::Struct
-      attribute :code, Dynamic::Types::String
+    class RateTotal < Model::Struct
+      attribute :code, Model::Types::String
       attribute :base, GOBL::Num::Amount
       attribute :percent, GOBL::Num::Percentage
       attribute :value, GOBL::Num::Amount

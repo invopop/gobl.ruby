@@ -6,11 +6,11 @@
 
 module GOBL
   module Org
-    class Coordinates < Dynamic::Struct
-      attribute :lat, Dynamic::Types::Double.optional
-      attribute :lon, Dynamic::Types::Double.optional
-      attribute :w3w, Dynamic::Types::String.optional
-      attribute :geohash, Dynamic::Types::String.optional
+    class Coordinates < Model::Struct
+      attribute :lat, Model::Types::Double.optional
+      attribute :lon, Model::Types::Double.optional
+      attribute :w3w, Model::Types::String.optional
+      attribute :geohash, Model::Types::String.optional
 
       def self.properties_ref
         @properties_ref ||= {

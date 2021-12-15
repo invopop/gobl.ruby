@@ -6,11 +6,11 @@
 
 module GOBL
   module Pay
-    class URL < Dynamic::Struct
+    class URL < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :addr, Dynamic::Types::String
-      attribute :notes, Dynamic::Types::String.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :addr, Model::Types::String
+      attribute :notes, Model::Types::String.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

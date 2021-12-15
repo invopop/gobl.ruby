@@ -6,9 +6,9 @@
 
 module GOBL
   module Bill
-    class Payment < Dynamic::Struct
+    class Payment < Model::Struct
       attribute :terms, GOBL::Pay::Terms.optional
-      attribute :methods, Dynamic::Types::Array(GOBL::Pay::Method).optional
+      attribute :methods, Model::Types::Array(GOBL::Pay::Method).optional
       attribute :payer, GOBL::Org::Party.optional
 
       def self.properties_ref

@@ -6,11 +6,11 @@
 
 module GOBL
   module Tax
-    class Def < Dynamic::Struct
-      attribute :code, Dynamic::Types::String
+    class Def < Model::Struct
+      attribute :code, Model::Types::String
       attribute :name, GOBL::I18n::String
       attribute :desc, GOBL::I18n::String.optional
-      attribute :values, Dynamic::Types::Array(GOBL::Tax::Value)
+      attribute :values, Model::Types::Array(GOBL::Tax::Value)
 
       def self.properties_ref
         @properties_ref ||= {

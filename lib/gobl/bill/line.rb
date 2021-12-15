@@ -6,14 +6,14 @@
 
 module GOBL
   module Bill
-    class Line < Dynamic::Struct
-      attribute :uuid, Dynamic::Types::String.optional
-      attribute :i, Dynamic::Types::Int
+    class Line < Model::Struct
+      attribute :uuid, Model::Types::String.optional
+      attribute :i, Model::Types::Int
       attribute :quantity, GOBL::Num::Amount
       attribute :item, GOBL::Org::Item
       attribute :sum, GOBL::Num::Amount
       attribute :discount, GOBL::Org::Discount.optional
-      attribute :taxes, Dynamic::Types::Array(GOBL::Tax::Rate).optional
+      attribute :taxes, Model::Types::Array(GOBL::Tax::Rate).optional
       attribute :total, GOBL::Num::Amount
 
       def self.properties_ref

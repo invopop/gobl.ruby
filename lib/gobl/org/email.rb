@@ -6,11 +6,11 @@
 
 module GOBL
   module Org
-    class Email < Dynamic::Struct
+    class Email < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :label, Dynamic::Types::String.optional
-      attribute :addr, Dynamic::Types::String
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :label, Model::Types::String.optional
+      attribute :addr, Model::Types::String
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

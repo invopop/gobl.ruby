@@ -6,9 +6,9 @@
 
 module GOBL
   module Tax
-    class Rate < Dynamic::Struct
-      attribute :cat, Dynamic::Types::String
-      attribute :code, Dynamic::Types::String
+    class Rate < Model::Struct
+      attribute :cat, Model::Types::String
+      attribute :code, Model::Types::String
 
       def self.properties_ref
         @properties_ref ||= {

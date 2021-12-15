@@ -6,16 +6,16 @@
 
 module GOBL
   module Org
-    class Item < Dynamic::Struct
-      attribute :uuid, Dynamic::Types::String.optional
-      attribute :name, Dynamic::Types::String
-      attribute :desc, Dynamic::Types::String.optional
-      attribute :currency, Dynamic::Types::String.optional
+    class Item < Model::Struct
+      attribute :uuid, Model::Types::String.optional
+      attribute :name, Model::Types::String
+      attribute :desc, Model::Types::String.optional
+      attribute :currency, Model::Types::String.optional
       attribute :price, GOBL::Num::Amount
-      attribute :unit, Dynamic::Types::String.optional
-      attribute :supplier_ids, Dynamic::Types::Array(GOBL::Org::ItemID).optional
-      attribute :origin, Dynamic::Types::String.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :unit, Model::Types::String.optional
+      attribute :supplier_ids, Model::Types::Array(GOBL::Org::ItemID).optional
+      attribute :origin, Model::Types::String.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

@@ -6,12 +6,12 @@
 
 module GOBL
   module Org
-    class Person < Dynamic::Struct
+    class Person < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
       attribute :name, GOBL::Org::Name
-      attribute :role, Dynamic::Types::String.optional
-      attribute :emails, Dynamic::Types::Array(GOBL::Org::Email).optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :role, Model::Types::String.optional
+      attribute :emails, Model::Types::Array(GOBL::Org::Email).optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

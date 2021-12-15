@@ -6,22 +6,22 @@
 
 module GOBL
   module Org
-    class Address < Dynamic::Struct
+    class Address < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :label, Dynamic::Types::String.optional
-      attribute :po_box, Dynamic::Types::String.optional
-      attribute :num, Dynamic::Types::String.optional
-      attribute :floor, Dynamic::Types::String.optional
-      attribute :block, Dynamic::Types::String.optional
-      attribute :door, Dynamic::Types::String.optional
-      attribute :street, Dynamic::Types::String.optional
-      attribute :street_extra, Dynamic::Types::String.optional
-      attribute :locality, Dynamic::Types::String
-      attribute :region, Dynamic::Types::String
-      attribute :code, Dynamic::Types::String.optional
-      attribute :country, Dynamic::Types::String.optional
+      attribute :label, Model::Types::String.optional
+      attribute :po_box, Model::Types::String.optional
+      attribute :num, Model::Types::String.optional
+      attribute :floor, Model::Types::String.optional
+      attribute :block, Model::Types::String.optional
+      attribute :door, Model::Types::String.optional
+      attribute :street, Model::Types::String.optional
+      attribute :street_extra, Model::Types::String.optional
+      attribute :locality, Model::Types::String
+      attribute :region, Model::Types::String
+      attribute :code, Model::Types::String.optional
+      attribute :country, Model::Types::String.optional
       attribute :coords, GOBL::Org::Coordinates.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

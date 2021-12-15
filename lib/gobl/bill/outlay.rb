@@ -6,11 +6,11 @@
 
 module GOBL
   module Bill
-    class Outlay < Dynamic::Struct
-      attribute :uuid, Dynamic::Types::String.optional
-      attribute :i, Dynamic::Types::Int
-      attribute :ref, Dynamic::Types::String.optional
-      attribute :desc, Dynamic::Types::String
+    class Outlay < Model::Struct
+      attribute :uuid, Model::Types::String.optional
+      attribute :i, Model::Types::Int
+      attribute :ref, Model::Types::String.optional
+      attribute :desc, Model::Types::String
       attribute :paid, GOBL::Num::Amount
 
       def self.properties_ref

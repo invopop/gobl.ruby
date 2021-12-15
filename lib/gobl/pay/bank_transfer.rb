@@ -6,14 +6,14 @@
 
 module GOBL
   module Pay
-    class BankTransfer < Dynamic::Struct
-      attribute :iban, Dynamic::Types::String.optional
-      attribute :bic, Dynamic::Types::String.optional
-      attribute :number, Dynamic::Types::String.optional
-      attribute :name, Dynamic::Types::String.optional
+    class BankTransfer < Model::Struct
+      attribute :iban, Model::Types::String.optional
+      attribute :bic, Model::Types::String.optional
+      attribute :number, Model::Types::String.optional
+      attribute :name, Model::Types::String.optional
       attribute :branch, GOBL::Org::Address.optional
       attribute :notes, GOBL::I18n::String.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

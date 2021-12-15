@@ -6,7 +6,7 @@
 
 module GOBL
   module Bill
-    class Totals < Dynamic::Struct
+    class Totals < Model::Struct
       attribute :sum, GOBL::Num::Amount
       attribute :discount, GOBL::Num::Amount.optional
       attribute :total, GOBL::Num::Amount.optional

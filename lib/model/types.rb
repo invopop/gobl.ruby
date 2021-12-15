@@ -2,7 +2,7 @@
 
 require 'dry-types'
 
-module Dynamic
+module Model
   # Types - Global set of types
   module Types
     include Dry.Types()

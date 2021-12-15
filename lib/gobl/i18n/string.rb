@@ -6,8 +6,8 @@
 
 module GOBL
   module I18n
-    class String < Dynamic::Struct
-      attribute :literal, Dynamic::Types::Any.optional
+    class String < Model::Struct
+      attribute :literal, Model::Types::Any.optional
 
       def self.from_literal!(literal_value)
         new(literal: literal_value)

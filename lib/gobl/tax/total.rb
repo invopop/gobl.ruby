@@ -6,8 +6,8 @@
 
 module GOBL
   module Tax
-    class Total < Dynamic::Struct
-      attribute :categories, Dynamic::Types::Array(GOBL::Tax::CategoryTotal).optional
+    class Total < Model::Struct
+      attribute :categories, Model::Types::Array(GOBL::Tax::CategoryTotal).optional
       attribute :sum, GOBL::Num::Amount
 
       def self.properties_ref

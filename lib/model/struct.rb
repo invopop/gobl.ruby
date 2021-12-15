@@ -3,13 +3,13 @@
 require 'json'
 require 'json-schema'
 
-require_relative 'object'
-require_relative 'utils'
+require_relative '../utils'
+require_relative 'struct_object'
 
-module Dynamic
+module Model
   # Struct - Abstract class that represents the common behaviour of a
   # dynamically defined GoBL class.
-  class Struct < Dynamic::Object
+  class Struct < StructObject
     extend Utils
 
     # Defines the setters and getters of the class based on the properties

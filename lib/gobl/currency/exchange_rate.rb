@@ -6,8 +6,8 @@
 
 module GOBL
   module Currency
-    class ExchangeRate < Dynamic::Struct
-      attribute :currency, Dynamic::Types::String
+    class ExchangeRate < Model::Struct
+      attribute :currency, Model::Types::String
       attribute :value, GOBL::Num::Amount
 
       def self.properties_ref

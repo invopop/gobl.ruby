@@ -5,16 +5,16 @@
 ################################################
 
 module GOBL
-  class Header < Dynamic::Struct
+  class Header < Model::Struct
     attribute :uuid, GOBL::UUID::UUID
-    attribute :typ, Dynamic::Types::String
-    attribute :rgn, Dynamic::Types::String
+    attribute :typ, Model::Types::String
+    attribute :rgn, Model::Types::String
     attribute :dig, GOBL::Dsig::Digest
-    attribute :stamps, Dynamic::Types::Array(GOBL::Stamp).optional
-    attribute :tags, Dynamic::Types::Array(Dynamic::Types::String).optional
-    attribute :meta, Dynamic::Types::Hash.optional
-    attribute :notes, Dynamic::Types::String.optional
-    attribute :draft, Dynamic::Types::Bool.optional
+    attribute :stamps, Model::Types::Array(GOBL::Stamp).optional
+    attribute :tags, Model::Types::Array(Model::Types::String).optional
+    attribute :meta, Model::Types::Hash.optional
+    attribute :notes, Model::Types::String.optional
+    attribute :draft, Model::Types::Bool.optional
 
     def self.properties_ref
       @properties_ref ||= {

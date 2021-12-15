@@ -6,8 +6,8 @@
 
 module GOBL
   module Pay
-    class Terms < Dynamic::Struct
-      attribute :code, Dynamic::Types::String
+    class Terms < Model::Struct
+      attribute :code, Model::Types::String
       attribute :notes, GOBL::I18n::String.optional
 
       def self.properties_ref

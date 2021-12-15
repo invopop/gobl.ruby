@@ -6,16 +6,16 @@
 
 module GOBL
   module Org
-    class Name < Dynamic::Struct
+    class Name < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :alias, Dynamic::Types::String.optional
-      attribute :prefix, Dynamic::Types::String.optional
-      attribute :given, Dynamic::Types::String
-      attribute :middle, Dynamic::Types::String.optional
-      attribute :surname, Dynamic::Types::String
-      attribute :surname2, Dynamic::Types::String.optional
-      attribute :suffix, Dynamic::Types::String.optional
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :alias, Model::Types::String.optional
+      attribute :prefix, Model::Types::String.optional
+      attribute :given, Model::Types::String
+      attribute :middle, Model::Types::String.optional
+      attribute :surname, Model::Types::String
+      attribute :surname2, Model::Types::String.optional
+      attribute :suffix, Model::Types::String.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

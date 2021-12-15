@@ -6,11 +6,11 @@
 
 module GOBL
   module Bill
-    class Preceding < Dynamic::Struct
+    class Preceding < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :code, Dynamic::Types::String
+      attribute :code, Model::Types::String
       attribute :issue_date, GOBL::Org::Date
-      attribute :meta, Dynamic::Types::Hash.optional
+      attribute :meta, Model::Types::Hash.optional
 
       def self.properties_ref
         @properties_ref ||= {

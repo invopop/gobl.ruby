@@ -6,8 +6,8 @@
 
 module GOBL
   module Org
-    class ItemID < Dynamic::Struct
-      attribute :value, Dynamic::Types::String
+    class ItemID < Model::Struct
+      attribute :value, Model::Types::String
 
       def self.properties_ref
         @properties_ref ||= {

@@ -6,10 +6,10 @@
 
 module GOBL
   module Tax
-    class Value < Dynamic::Struct
+    class Value < Model::Struct
       attribute :since, GOBL::Org::Date.optional
       attribute :percent, GOBL::Num::Percentage
-      attribute :disabled, Dynamic::Types::Bool.optional
+      attribute :disabled, Model::Types::Bool.optional
 
       def self.properties_ref
         @properties_ref ||= {

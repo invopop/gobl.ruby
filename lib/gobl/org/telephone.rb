@@ -6,10 +6,10 @@
 
 module GOBL
   module Org
-    class Telephone < Dynamic::Struct
+    class Telephone < Model::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
-      attribute :label, Dynamic::Types::String.optional
-      attribute :num, Dynamic::Types::String
+      attribute :label, Model::Types::String.optional
+      attribute :num, Model::Types::String
 
       def self.properties_ref
         @properties_ref ||= {

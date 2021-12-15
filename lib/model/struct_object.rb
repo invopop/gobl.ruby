@@ -4,11 +4,10 @@ require 'json'
 require 'json-schema'
 require 'dry-struct'
 
-require_relative 'types'
-
-module Dynamic
-  # Object - Abstract class that defines the core behaviour of a GoBL object.
-  class Object < Dry::Struct
+module Model
+  # StructObject - Abstract class that defines the core behaviour of a GoBL
+  # object.
+  class StructObject < Dry::Struct
     # Validates a data hash (JSON) with the class JSON schema.
     def self.validate!(data)
       JSON::Validator.validate!(json_schema, data.to_json)

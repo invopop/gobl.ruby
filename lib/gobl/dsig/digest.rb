@@ -6,9 +6,9 @@
 
 module GOBL
   module Dsig
-    class Digest < Dynamic::Struct
-      attribute :alg, Dynamic::Types::String
-      attribute :val, Dynamic::Types::String
+    class Digest < Model::Struct
+      attribute :alg, Model::Types::String
+      attribute :val, Model::Types::String
 
       def self.properties_ref
         @properties_ref ||= {

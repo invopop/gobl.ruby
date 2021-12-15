@@ -6,7 +6,7 @@
 
 module GOBL
   module Bill
-    class Ordering < Dynamic::Struct
+    class Ordering < Model::Struct
       attribute :seller, GOBL::Org::Party.optional
 
       def self.properties_ref

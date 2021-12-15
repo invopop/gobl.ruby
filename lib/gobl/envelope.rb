@@ -5,10 +5,10 @@
 ################################################
 
 module GOBL
-  class Envelope < Dynamic::Struct
+  class Envelope < Model::Struct
     attribute :head, GOBL::Header
     attribute :doc, GOBL::Payload
-    attribute :sigs, Dynamic::Types::Array(GOBL::Dsig::Signature)
+    attribute :sigs, Model::Types::Array(GOBL::Dsig::Signature)
 
     def self.properties_ref
       @properties_ref ||= {
