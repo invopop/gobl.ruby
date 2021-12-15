@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 require_relative 'model'
 require_relative 'catalog'
 
 # Generator - Helper class to export Ruby structures from a JSON schema.
 class Generator
+  extend Forwardable
+
+  def_delegators :@catalog, :inflect
+
   def initialize(schema_dir:, lang:)
     @catalog = Catalog.new(schema_dir)
     @exporter = Exporter.new(@catalog, lang)
-  end
-
-  def inflect(inflections)
-    catalog.inflect(inflections)
   end
 
   # Going through the schemas, each definition is turned into a class and
