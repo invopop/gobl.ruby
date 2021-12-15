@@ -16,20 +16,6 @@ module GOBL
       attribute :supplier_ids, Model::Types::Array(GOBL::Org::ItemID).optional
       attribute :origin, Model::Types::String.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => nil,
-          'name' => nil,
-          'desc' => nil,
-          'currency' => nil,
-          'price' => GOBL::Num::Amount,
-          'unit' => nil,
-          'supplier_ids' => GOBL::Org::ItemID,
-          'origin' => nil,
-          'meta' => nil
-        }
-      end
     end
   end
 end

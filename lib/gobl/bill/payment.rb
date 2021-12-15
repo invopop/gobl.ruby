@@ -10,14 +10,6 @@ module GOBL
       attribute :terms, GOBL::Pay::Terms.optional
       attribute :methods, Model::Types::Array(GOBL::Pay::Method).optional
       attribute :payer, GOBL::Org::Party.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'terms' => GOBL::Pay::Terms,
-          'methods' => GOBL::Pay::Method,
-          'payer' => GOBL::Org::Party
-        }
-      end
     end
   end
 end

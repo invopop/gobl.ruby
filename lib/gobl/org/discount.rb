@@ -11,15 +11,6 @@ module GOBL
       attribute :value, GOBL::Num::Amount
       attribute :reason, Model::Types::String.optional
       attribute :code, Model::Types::String.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'rate' => GOBL::Num::Percentage,
-          'value' => GOBL::Num::Amount,
-          'reason' => nil,
-          'code' => nil
-        }
-      end
     end
   end
 end

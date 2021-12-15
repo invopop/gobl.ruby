@@ -22,26 +22,6 @@ module GOBL
       attribute :country, Model::Types::String.optional
       attribute :coords, GOBL::Org::Coordinates.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => GOBL::UUID::UUID,
-          'label' => nil,
-          'po_box' => nil,
-          'num' => nil,
-          'floor' => nil,
-          'block' => nil,
-          'door' => nil,
-          'street' => nil,
-          'street_extra' => nil,
-          'locality' => nil,
-          'region' => nil,
-          'code' => nil,
-          'country' => nil,
-          'coords' => GOBL::Org::Coordinates,
-          'meta' => nil
-        }
-      end
     end
   end
 end

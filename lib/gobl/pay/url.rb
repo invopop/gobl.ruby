@@ -11,15 +11,6 @@ module GOBL
       attribute :addr, Model::Types::String
       attribute :notes, Model::Types::String.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => GOBL::UUID::UUID,
-          'addr' => nil,
-          'notes' => nil,
-          'meta' => nil
-        }
-      end
     end
   end
 end

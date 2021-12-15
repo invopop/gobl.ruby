@@ -16,20 +16,6 @@ module GOBL
       attribute :surname2, Model::Types::String.optional
       attribute :suffix, Model::Types::String.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => GOBL::UUID::UUID,
-          'alias' => nil,
-          'prefix' => nil,
-          'given' => nil,
-          'middle' => nil,
-          'surname' => nil,
-          'surname2' => nil,
-          'suffix' => nil,
-          'meta' => nil
-        }
-      end
     end
   end
 end

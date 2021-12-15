@@ -50,6 +50,7 @@ class Loader
 
     nc = namespace.const_get(class_name, false)
     nc.init_class(sub_schema)
-    nc.replace_props(parent_schema)
+    nc.expand_references(parent_schema)
+    nc.properties_ref.transform_values! { |ref| ref && fetch_object(ref) }
   end
 end

@@ -27,31 +27,6 @@ module GOBL
       attribute :delivery, GOBL::Bill::Delivery.optional
       attribute :notes, Model::Types::String.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => GOBL::UUID::UUID,
-          'code' => nil,
-          'type_code' => nil,
-          'currency' => nil,
-          'rates' => GOBL::Currency::ExchangeRate,
-          'prices_include_tax' => nil,
-          'preceding' => GOBL::Bill::Preceding,
-          'issue_date' => GOBL::Org::Date,
-          'op_date' => GOBL::Org::Date,
-          'value_date' => GOBL::Org::Date,
-          'supplier' => GOBL::Org::Party,
-          'customer' => GOBL::Org::Party,
-          'lines' => GOBL::Bill::Line,
-          'outlays' => GOBL::Bill::Outlay,
-          'totals' => GOBL::Bill::Totals,
-          'ordering' => GOBL::Bill::Ordering,
-          'payment' => GOBL::Bill::Payment,
-          'delivery' => GOBL::Bill::Delivery,
-          'notes' => nil,
-          'meta' => nil
-        }
-      end
     end
   end
 end

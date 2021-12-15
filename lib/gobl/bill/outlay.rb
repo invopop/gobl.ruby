@@ -12,16 +12,6 @@ module GOBL
       attribute :ref, Model::Types::String.optional
       attribute :desc, Model::Types::String
       attribute :paid, GOBL::Num::Amount
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => nil,
-          'i' => nil,
-          'ref' => nil,
-          'desc' => nil,
-          'paid' => GOBL::Num::Amount
-        }
-      end
     end
   end
 end

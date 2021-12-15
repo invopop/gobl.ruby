@@ -9,13 +9,6 @@ module GOBL
     class Total < Model::Struct
       attribute :categories, Model::Types::Array(GOBL::Tax::CategoryTotal).optional
       attribute :sum, GOBL::Num::Amount
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'categories' => GOBL::Tax::CategoryTotal,
-          'sum' => GOBL::Num::Amount
-        }
-      end
     end
   end
 end

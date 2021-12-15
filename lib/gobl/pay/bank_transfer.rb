@@ -14,18 +14,6 @@ module GOBL
       attribute :branch, GOBL::Org::Address.optional
       attribute :notes, GOBL::I18n::String.optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'iban' => nil,
-          'bic' => nil,
-          'number' => nil,
-          'name' => nil,
-          'branch' => GOBL::Org::Address,
-          'notes' => GOBL::I18n::String,
-          'meta' => nil
-        }
-      end
     end
   end
 end

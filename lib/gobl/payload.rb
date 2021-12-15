@@ -11,11 +11,5 @@ module GOBL
     def self.from_literal!(literal_value)
       new(literal: literal_value)
     end
-
-    def self.properties_ref
-      @properties_ref ||= {
-
-      }
-    end
   end
 end

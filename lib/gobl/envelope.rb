@@ -9,13 +9,5 @@ module GOBL
     attribute :head, GOBL::Header
     attribute :doc, GOBL::Payload
     attribute :sigs, Model::Types::Array(GOBL::Dsig::Signature)
-
-    def self.properties_ref
-      @properties_ref ||= {
-        'head' => GOBL::Header,
-        'doc' => GOBL::Payload,
-        'sigs' => GOBL::Dsig::Signature
-      }
-    end
   end
 end

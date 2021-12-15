@@ -15,19 +15,5 @@ module GOBL
     attribute :meta, Model::Types::Hash.optional
     attribute :notes, Model::Types::String.optional
     attribute :draft, Model::Types::Bool.optional
-
-    def self.properties_ref
-      @properties_ref ||= {
-        'uuid' => GOBL::UUID::UUID,
-        'typ' => nil,
-        'rgn' => nil,
-        'dig' => GOBL::Dsig::Digest,
-        'stamps' => GOBL::Stamp,
-        'tags' => nil,
-        'meta' => nil,
-        'notes' => nil,
-        'draft' => nil
-      }
-    end
   end
 end

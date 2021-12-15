@@ -14,12 +14,6 @@ class Generator
             #{attributes_string}
 
             #{from_literal_method}
-
-            def self.properties_ref
-              @properties_ref ||= {
-                #{properties_ref_string}
-              }
-            end
           end
         )
       end
@@ -72,19 +66,13 @@ class Generator
       end
 
       def from_literal_method
-        return unless properties_ref_string.empty?
+        return unless klass.properties_ref.to_a.empty?
 
         %(
           def self.from_literal!(literal_value)
             new(#{LITERAL_ATTRIBUTE}: literal_value)
           end
         )
-      end
-
-      def properties_ref_string
-        @properties_ref_string ||= klass.properties_ref.to_a.map do |t|
-          "#{t[0].inspect} => #{exporter.lookup(t[1]) || 'nil'},"
-        end.join("\n")
       end
     end
   end

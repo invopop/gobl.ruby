@@ -16,20 +16,6 @@ module GOBL
       attribute :emails, Model::Types::Array(GOBL::Org::Email).optional
       attribute :telephones, Model::Types::Array(GOBL::Org::Telephone).optional
       attribute :meta, Model::Types::Hash.optional
-
-      def self.properties_ref
-        @properties_ref ||= {
-          'uuid' => GOBL::UUID::UUID,
-          'tax_id' => GOBL::Org::TaxID,
-          'name' => nil,
-          'alias' => nil,
-          'people' => GOBL::Org::Person,
-          'addresses' => GOBL::Org::Address,
-          'emails' => GOBL::Org::Email,
-          'telephones' => GOBL::Org::Telephone,
-          'meta' => nil
-        }
-      end
     end
   end
 end
