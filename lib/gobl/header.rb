@@ -6,7 +6,7 @@
 
 module GOBL
   class Header < Model::Struct
-    attribute :uuid, GOBL::UUID::UUID
+    attribute :uuid, Model::Types::String
     attribute :typ, Model::Types::String
     attribute :rgn, Model::Types::String
     attribute :dig, GOBL::Dsig::Digest

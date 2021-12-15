@@ -8,8 +8,6 @@ class Generator
   class Renderer
     include Utils
 
-    LITERAL_ATTRIBUTE = 'literal'
-
     attr_reader :klass
 
     def initialize(klass, exporter)
@@ -19,6 +17,10 @@ class Generator
 
     def to_text
       raise NotImplementedError
+    end
+
+    def attributes
+      klass.properties_ref.keys
     end
 
     def self.renderer_map
@@ -41,12 +43,6 @@ class Generator
 
     def required_properties
       klass.original_json_schema['required'] || []
-    end
-
-    def attributes
-      props_keys = klass.properties_ref.keys
-
-      props_keys.empty? ? [LITERAL_ATTRIBUTE] : props_keys
     end
   end
 end

@@ -8,8 +8,8 @@ module GOBL
   module Tax
     class Category < Model::Struct
       attribute :code, Model::Types::String
-      attribute :name, GOBL::I18n::String
-      attribute :desc, GOBL::I18n::String.optional
+      attribute :name, Model::Types::Any
+      attribute :desc, Model::Types::Any.optional
       attribute :retained, Model::Types::Bool.optional
       attribute :defs, Model::Types::Array(GOBL::Tax::Def)
     end

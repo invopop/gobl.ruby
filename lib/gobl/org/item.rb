@@ -11,7 +11,7 @@ module GOBL
       attribute :name, Model::Types::String
       attribute :desc, Model::Types::String.optional
       attribute :currency, Model::Types::String.optional
-      attribute :price, GOBL::Num::Amount
+      attribute :price, Model::Types::String
       attribute :unit, Model::Types::String.optional
       attribute :supplier_ids, Model::Types::Array(GOBL::Org::ItemID).optional
       attribute :origin, Model::Types::String.optional

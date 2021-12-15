@@ -15,7 +15,7 @@ module Model
 
     # Returns a value depending on the kind of property. If the property
     # has an associate reference definition, an instance is created.
-    def self.to_dynamic(ref, value)
+    def self.to_struct(ref, value)
       if ref.nil?
         value
       elsif value.is_a? Array
@@ -35,9 +35,6 @@ module Model
     # object.
     def self.from_object!(data)
       return if data.nil?
-      return from_literal!(data) if respond_to?(:from_literal!)
-
-      # OR unless data.is_a?(Hash) && !properties_ref.empty?
 
       from_data!(data)
     end
@@ -47,7 +44,7 @@ module Model
 
       new(attribute_names.each_with_object({}) do |att, hs|
         att_value = data[att] || data[att.to_s]
-        hs[att] = to_dynamic(properties_ref[att.to_s], att_value)
+        hs[att] = to_struct(properties_ref[att.to_s], att_value)
       end)
     end
 

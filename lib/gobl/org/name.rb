@@ -7,7 +7,7 @@
 module GOBL
   module Org
     class Name < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :alias, Model::Types::String.optional
       attribute :prefix, Model::Types::String.optional
       attribute :given, Model::Types::String

@@ -7,7 +7,7 @@
 module GOBL
   module Org
     class Email < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :label, Model::Types::String.optional
       attribute :addr, Model::Types::String
       attribute :meta, Model::Types::Hash.optional

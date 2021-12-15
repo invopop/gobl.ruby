@@ -9,12 +9,12 @@ module GOBL
     class Line < Model::Struct
       attribute :uuid, Model::Types::String.optional
       attribute :i, Model::Types::Int
-      attribute :quantity, GOBL::Num::Amount
+      attribute :quantity, Model::Types::String
       attribute :item, GOBL::Org::Item
-      attribute :sum, GOBL::Num::Amount
+      attribute :sum, Model::Types::String
       attribute :discount, GOBL::Org::Discount.optional
       attribute :taxes, Model::Types::Array(GOBL::Tax::Rate).optional
-      attribute :total, GOBL::Num::Amount
+      attribute :total, Model::Types::String
     end
   end
 end

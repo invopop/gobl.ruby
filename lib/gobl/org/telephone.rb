@@ -7,7 +7,7 @@
 module GOBL
   module Org
     class Telephone < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :label, Model::Types::String.optional
       attribute :num, Model::Types::String
     end

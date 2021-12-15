@@ -24,7 +24,7 @@ class Loader
   def fetch_object(original_name)
     ns, kls = catalog.object_name(original_name)
 
-    ns.const_get(kls)
+    ns.const_get(kls) if ns.const_defined?(kls)
   end
 
   def setup

@@ -7,16 +7,16 @@
 module GOBL
   module Bill
     class Invoice < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :code, Model::Types::String
       attribute :type_code, Model::Types::String.optional
       attribute :currency, Model::Types::String
       attribute :rates, Model::Types::Array(GOBL::Currency::ExchangeRate).optional
       attribute :prices_include_tax, Model::Types::Bool.optional
       attribute :preceding, GOBL::Bill::Preceding.optional
-      attribute :issue_date, GOBL::Org::Date
-      attribute :op_date, GOBL::Org::Date.optional
-      attribute :value_date, GOBL::Org::Date.optional
+      attribute :issue_date, Model::Types::String
+      attribute :op_date, Model::Types::String.optional
+      attribute :value_date, Model::Types::String.optional
       attribute :supplier, GOBL::Org::Party
       attribute :customer, GOBL::Org::Party.optional
       attribute :lines, Model::Types::Array(GOBL::Bill::Line).optional

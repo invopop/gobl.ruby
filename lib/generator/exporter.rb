@@ -23,7 +23,9 @@ class Generator
     def export_all(root_dir)
       return unless root_dir
 
-      registry.each_value { |render| export(render, root_dir) }
+      registry.each_value do |renderer|
+        export(renderer, root_dir) unless renderer.attributes.empty?
+      end
     end
 
     private
@@ -39,21 +41,19 @@ class Generator
       end
     end
 
-    def save(render, path)
-      filepath = "#{path}.rb"
-
+    def save(renderer, filepath)
       f = File.new(filepath, 'w')
-      f.write(render.to_text)
+      f.write(renderer.to_text)
       f.close
     end
 
-    def export(render, root_dir)
-      filepath = render.klass.to_s.split('::').map do |segment|
+    def export(renderer, root_dir)
+      filepath = renderer.klass.to_s.split('::').map do |segment|
         catalog.path_name(segment)
       end
 
       dir = filepath.unshift(root_dir).join('/')
-      save(render, mkdir(dir))
+      save(renderer, "#{mkdir(dir)}.rb")
     end
   end
 end

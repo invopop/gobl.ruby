@@ -8,7 +8,7 @@ module GOBL
   module Pay
     class Terms < Model::Struct
       attribute :code, Model::Types::String
-      attribute :notes, GOBL::I18n::String.optional
+      attribute :notes, Model::Types::Any.optional
     end
   end
 end

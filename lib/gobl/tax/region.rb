@@ -8,7 +8,7 @@ module GOBL
   module Tax
     class Region < Model::Struct
       attribute :code, Model::Types::String
-      attribute :name, GOBL::I18n::String
+      attribute :name, Model::Types::Any
       attribute :categories, Model::Types::Array(GOBL::Tax::Category)
     end
   end

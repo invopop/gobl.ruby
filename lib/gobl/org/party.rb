@@ -7,7 +7,7 @@
 module GOBL
   module Org
     class Party < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :tax_id, GOBL::Org::TaxID.optional
       attribute :name, Model::Types::String
       attribute :alias, Model::Types::String.optional

@@ -12,8 +12,6 @@ class Generator
 
           class #{klass} < #{klass.ancestors[1]}
             #{attributes_string}
-
-            #{from_literal_method}
           end
         )
       end
@@ -37,17 +35,24 @@ class Generator
 
       def type_lookup(type, ref)
         if type.nil? && !ref.nil?
-          exporter.catalog.fetch_object(strip_definition(ref))
+          kls = exporter.catalog.fetch_object(strip_definition(ref))
+
+          if kls.properties_ref.empty?
+            attribute_type(kls.original_json_schema)
+          else
+            kls
+          end
         else
           "Model::Types::#{from_json_schema_type(type)}"
         end
       end
 
-      def attribute_type(props, att, items)
-        raw_type = props.dig(att, 'type')
-        pfx_type = type_lookup(raw_type, props.dig(att, '$ref'))
+      def attribute_type(props, att = nil, items = nil)
+        raw_type = att ? props.dig(att, 'type') : props['type']
+        raw_ref = att ? props.dig(att, '$ref') : props['$ref']
+        pfx_type = type_lookup(raw_type, raw_ref)
 
-        if raw_type.eql?('array')
+        if raw_type.eql?('array') && items
           sub_type = type_lookup(items['type'], items['$ref'])
 
           "#{pfx_type}(#{sub_type})"
@@ -63,16 +68,6 @@ class Generator
 
           "attribute :#{att}, #{type}#{optional}"
         end.join("\n")
-      end
-
-      def from_literal_method
-        return unless klass.properties_ref.to_a.empty?
-
-        %(
-          def self.from_literal!(literal_value)
-            new(#{LITERAL_ATTRIBUTE}: literal_value)
-          end
-        )
       end
     end
   end

@@ -11,7 +11,7 @@ module GOBL
       attribute :i, Model::Types::Int
       attribute :ref, Model::Types::String.optional
       attribute :desc, Model::Types::String
-      attribute :paid, GOBL::Num::Amount
+      attribute :paid, Model::Types::String
     end
   end
 end

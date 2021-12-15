@@ -7,8 +7,8 @@
 module GOBL
   module Tax
     class Value < Model::Struct
-      attribute :since, GOBL::Org::Date.optional
-      attribute :percent, GOBL::Num::Percentage
+      attribute :since, Model::Types::String.optional
+      attribute :percent, Model::Types::String
       attribute :disabled, Model::Types::Bool.optional
     end
   end

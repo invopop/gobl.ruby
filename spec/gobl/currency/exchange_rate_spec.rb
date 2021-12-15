@@ -7,6 +7,6 @@ RSpec.describe GOBL::Currency::ExchangeRate do
     obj = { 'currency' => 'EUR', 'value' => '100' }
     xchg = described_class.from_object!(obj)
 
-    expect(xchg.value.literal).to eq('100')
+    expect(xchg.value).to eq('100')
   end
 end

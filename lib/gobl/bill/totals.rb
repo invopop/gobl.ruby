@@ -7,12 +7,12 @@
 module GOBL
   module Bill
     class Totals < Model::Struct
-      attribute :sum, GOBL::Num::Amount
-      attribute :discount, GOBL::Num::Amount.optional
-      attribute :total, GOBL::Num::Amount.optional
+      attribute :sum, Model::Types::String
+      attribute :discount, Model::Types::String.optional
+      attribute :total, Model::Types::String.optional
       attribute :taxes, GOBL::Tax::Total.optional
-      attribute :outlays, GOBL::Num::Amount.optional
-      attribute :payable, GOBL::Num::Amount
+      attribute :outlays, Model::Types::String.optional
+      attribute :payable, Model::Types::String
     end
   end
 end

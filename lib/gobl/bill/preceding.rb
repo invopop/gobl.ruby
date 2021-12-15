@@ -7,9 +7,9 @@
 module GOBL
   module Bill
     class Preceding < Model::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute :uuid, Model::Types::String.optional
       attribute :code, Model::Types::String
-      attribute :issue_date, GOBL::Org::Date
+      attribute :issue_date, Model::Types::String
       attribute :meta, Model::Types::Hash.optional
     end
   end

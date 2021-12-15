@@ -7,8 +7,8 @@
 module GOBL
   module Org
     class Discount < Model::Struct
-      attribute :rate, GOBL::Num::Percentage.optional
-      attribute :value, GOBL::Num::Amount
+      attribute :rate, Model::Types::String.optional
+      attribute :value, Model::Types::String
       attribute :reason, Model::Types::String.optional
       attribute :code, Model::Types::String.optional
     end

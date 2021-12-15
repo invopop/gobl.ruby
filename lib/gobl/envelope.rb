@@ -7,7 +7,7 @@
 module GOBL
   class Envelope < Model::Struct
     attribute :head, GOBL::Header
-    attribute :doc, GOBL::Payload
-    attribute :sigs, Model::Types::Array(GOBL::Dsig::Signature)
+    attribute :doc, Model::Types::Hash
+    attribute :sigs, Model::Types::Array(Model::Types::String)
   end
 end

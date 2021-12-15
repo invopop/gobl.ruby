@@ -8,7 +8,7 @@ module GOBL
   module Tax
     class Total < Model::Struct
       attribute :categories, Model::Types::Array(GOBL::Tax::CategoryTotal).optional
-      attribute :sum, GOBL::Num::Amount
+      attribute :sum, Model::Types::String
     end
   end
 end
