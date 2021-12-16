@@ -12,7 +12,7 @@ module GOBL
       attribute :number, Model::Types::String.optional
       attribute :name, Model::Types::String.optional
       attribute :branch, GOBL::Org::Address.optional
-      attribute :notes, Model::Types::Any.optional
+      attribute :notes, (Model::Types::Hash | Model::Types::Nil).optional
       attribute :meta, Model::Types::Hash.optional
     end
   end

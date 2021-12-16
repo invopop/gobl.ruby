@@ -11,7 +11,7 @@ class Generator
           ################################################
 
           class #{klass} < #{klass.ancestors[1]}
-            #{attributes_string}
+            #{attributes_string.join("\n")}
           end
         )
       end
@@ -25,7 +25,8 @@ class Generator
           'integer' => 'Int',
           'boolean' => 'Bool',
           'object' => 'Hash',
-          'array' => 'Array'
+          'array' => 'Array',
+          'null' => 'Nil'
         }
       end
 
@@ -33,42 +34,59 @@ class Generator
         json_schema_type_map[type] || 'Any'
       end
 
-      def type_lookup(type, ref)
-        if type.nil? && !ref.nil?
-          kls = exporter.catalog.fetch_object(strip_definition(ref))
+      def attribute_type(att)
+        types_string = att.types.map { |t| type_to_s(t) }
+        optional_tag = att.optional? ? '.optional' : ''
 
-          if kls.properties_ref.empty?
-            attribute_type(kls.original_json_schema)
-          else
-            kls
-          end
+        if types_string.length > 1
+          any_null = att.null_type?
+          "(#{types_string.join(' | ')})#{any_null ? '' : optional_tag}"
         else
-          "Model::Types::#{from_json_schema_type(type)}"
+          "#{types_string.first}#{optional_tag}"
         end
       end
 
-      def attribute_type(props, att = nil, items = nil)
-        raw_type = att ? props.dig(att, 'type') : props['type']
-        raw_ref = att ? props.dig(att, '$ref') : props['$ref']
-        pfx_type = type_lookup(raw_type, raw_ref)
+      def resolve_references(att)
+        att.override_types do |obj|
+          kls = exporter.catalog.fetch_object(strip_definition(obj))
 
-        if raw_type.eql?('array') && items
-          sub_type = type_lookup(items['type'], items['$ref'])
+          if kls.properties_ref.empty?
+            inner_att = Attribute.new('__literal__', kls.original_json_schema)
+            attribute_type(inner_att)
+          else
+            kls
+          end
+        end
+      end
 
-          "#{pfx_type}(#{sub_type})"
+      def attribute_to_s(att)
+        "attribute :#{att.name}, #{attribute_type(att)}"
+      end
+
+      def type_to_s(type)
+        if type.is_name
+          if type.array?
+            "Model::Types::Array(#{attribute_type(type.items)})"
+          else
+            "Model::Types::#{from_json_schema_type(type.obj)}"
+          end
         else
-          pfx_type
+          type.obj.to_s
         end
       end
 
       def attributes_string
         attributes.map do |att|
-          optional = required_properties.include?(att) ? '' : '.optional'
-          type = attribute_type(properties, att, properties.dig(att, 'items'))
+          required = required_properties.include?(att)
+          attribute = Attribute.new(att, properties[att], required: required)
 
-          "attribute :#{att}, #{type}#{optional}"
-        end.join("\n")
+          resolve_references(attribute)
+          attribute_to_s(attribute)
+        end
       end
     end
   end
 end
+
+require_relative 'ruby/attribute'
+require_relative 'ruby/type'
