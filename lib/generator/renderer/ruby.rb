@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require_relative 'klass'
+
 class Generator
-  class Renderer
+  module Renderer
     # Ruby - Ruby programming language renderer.
-    class Ruby < Generator::Renderer
+    class Ruby < Generator::Renderer::Klass
       def to_text
         %(
           ################################################
@@ -14,6 +16,10 @@ class Generator
             #{attributes_string.join("\n")}
           end
         )
+      end
+
+      def self.lang
+        'ruby'
       end
 
       private
@@ -34,59 +40,55 @@ class Generator
         json_schema_type_map[type] || 'Any'
       end
 
-      def attribute_type(att)
-        types_string = att.types.map { |t| type_to_s(t) }
-        optional_tag = att.optional? ? '.optional' : ''
+      def property_as_type(property)
+        types_string = property_types_string(property)
+        optional_tag = property.optional? ? '.optional' : ''
 
         if types_string.length > 1
-          any_null = att.null_type?
-          "(#{types_string.join(' | ')})#{any_null ? '' : optional_tag}"
+          "(#{types_string.join(' | ')})#{property.null? ? '' : optional_tag}"
         else
           "#{types_string.first}#{optional_tag}"
         end
       end
 
-      def resolve_references(att)
-        att.override_types do |obj|
-          kls = exporter.catalog.fetch_object(strip_definition(obj))
+      def property_types_string(property)
+        property.types.map do |type|
+          if type.ref?
+            type.value.to_s
+          elsif type.array?
+            "Model::Types::Array(#{property_as_type(property.items)})"
+          else
+            "Model::Types::#{from_json_schema_type(type.value)}"
+          end
+        end
+      end
+
+      def resolve_references(property)
+        property.override do |value|
+          kls = exporter.catalog.fetch_object(strip_definition(value))
 
           if kls.properties_ref.empty?
-            inner_att = Attribute.new('__literal__', kls.original_json_schema)
-            attribute_type(inner_att)
+            inner_property = Schema::Property.new(kls.original_json_schema)
+            property_as_type(inner_property)
           else
             kls
           end
         end
       end
 
-      def attribute_to_s(att)
-        "attribute :#{att.name}, #{attribute_type(att)}"
-      end
-
-      def type_to_s(type)
-        if type.is_name
-          if type.array?
-            "Model::Types::Array(#{attribute_type(type.items)})"
-          else
-            "Model::Types::#{from_json_schema_type(type.obj)}"
-          end
-        else
-          type.obj.to_s
-        end
-      end
-
       def attributes_string
-        attributes.map do |att|
-          required = required_properties.include?(att)
-          attribute = Attribute.new(att, properties[att], required: required)
+        attributes.map do |name|
+          required = required_properties.include?(name)
+          property = Schema::Property.new(properties[name], required: required)
 
-          resolve_references(attribute)
-          attribute_to_s(attribute)
+          resolve_references(property)
+
+          %(
+            # #{property.description}
+            attribute :#{name}, #{property_as_type(property)}
+          )
         end
       end
     end
   end
 end
-
-require_relative 'ruby/attribute'
-require_relative 'ruby/type'

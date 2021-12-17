@@ -13,3 +13,7 @@ Style/Documentation:
 Metrics/MethodLength:
   Exclude:
     - 'lib/gobl/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'lib/gobl/**/*.rb'
