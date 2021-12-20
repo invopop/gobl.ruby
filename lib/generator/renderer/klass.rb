@@ -24,7 +24,8 @@ class Generator
         @renderer_map ||= {}
       end
 
-      def self.for(lang, *args)
+      def self.for(*args, **kwargs)
+        lang = kwargs[:lang]
         key = renderer_map.keys.find { |kls| kls.lang == lang }
         renderer_map[key]&.new(*args)
       end

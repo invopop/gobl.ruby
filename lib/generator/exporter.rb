@@ -13,7 +13,7 @@ class Generator
     end
 
     def register(name, klass)
-      registry[name] = Renderer::Klass.for(lang, klass, self)
+      registry[name] = Renderer::Klass.for(klass, self, lang: lang)
     end
 
     def lookup(name)
