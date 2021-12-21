@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Bill
@@ -27,6 +27,34 @@ module GOBL
 
       # Total line amount after applying discounts to the sum.
       attribute :total, Model::Types::String
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          i: gobl['i'],
+          quantity: gobl['quantity'],
+          item: gobl['item'],
+          sum: gobl['sum'],
+          discount: gobl['discount'],
+          taxes: gobl['taxes'],
+          total: gobl['total']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'i' => attributes[:i],
+          'quantity' => attributes[:quantity],
+          'item' => attributes[:item],
+          'sum' => attributes[:sum],
+          'discount' => attributes[:discount],
+          'taxes' => attributes[:taxes],
+          'total' => attributes[:total]
+        }
+      end
     end
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Pay
@@ -17,6 +17,26 @@ module GOBL
 
       # Semi-structured additional data.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          addr: gobl['addr'],
+          notes: gobl['notes'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'addr' => attributes[:addr],
+          'notes' => attributes[:notes],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

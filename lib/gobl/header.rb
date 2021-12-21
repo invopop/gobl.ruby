@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   class Header < Model::Struct
@@ -32,5 +32,35 @@ module GOBL
 
     # When true
     attribute :draft, Model::Types::Bool.optional
+
+    def self.from_gobl!(gobl)
+      gobl = Model::Types::Hash[gobl]
+
+      new(
+        uuid: gobl['uuid'],
+        typ: gobl['typ'],
+        rgn: gobl['rgn'],
+        dig: gobl['dig'],
+        stamps: gobl['stamps'],
+        tags: gobl['tags'],
+        meta: gobl['meta'],
+        notes: gobl['notes'],
+        draft: gobl['draft']
+      )
+    end
+
+    def to_gobl
+      {
+        'uuid' => attributes[:uuid],
+        'typ' => attributes[:typ],
+        'rgn' => attributes[:rgn],
+        'dig' => attributes[:dig],
+        'stamps' => attributes[:stamps],
+        'tags' => attributes[:tags],
+        'meta' => attributes[:meta],
+        'notes' => attributes[:notes],
+        'draft' => attributes[:draft]
+      }
+    end
   end
 end

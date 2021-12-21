@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Bill
@@ -15,6 +15,24 @@ module GOBL
 
       # The party responsible for paying for the invoice
       attribute :payer, GOBL::Org::Party.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          terms: gobl['terms'],
+          methods: gobl['methods'],
+          payer: gobl['payer']
+        )
+      end
+
+      def to_gobl
+        {
+          'terms' => attributes[:terms],
+          'methods' => attributes[:methods],
+          'payer' => attributes[:payer]
+        }
+      end
     end
   end
 end

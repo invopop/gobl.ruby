@@ -8,12 +8,16 @@ class Generator
     class Ruby < Generator::Renderer::Klass
       def to_text
         %(
-          ################################################
-          # DO NOT EDIT - Auto generated code            #
-          ################################################
+          ##
+          ## DO NOT EDIT - This file was generated automatically.
+          ##
 
           class #{klass} < #{klass.ancestors[1]}
             #{attributes_string.join("\n")}
+
+            #{from_gobl_method}
+
+            #{to_gobl_method}
           end
         )
       end
@@ -82,6 +86,8 @@ class Generator
           property = Schema::Property.new(properties[name], required: required)
 
           resolve_references(property)
+          from_gobl_method.properties[name] = property
+          to_gobl_method.properties[name] = property
 
           %(
             # #{property.description}
@@ -89,6 +95,17 @@ class Generator
           )
         end
       end
+
+      def from_gobl_method
+        @from_gobl_method ||= FromGoblMethod.new
+      end
+
+      def to_gobl_method
+        @to_gobl_method ||= ToGoblMethod.new
+      end
     end
   end
 end
+
+require_relative 'ruby/from_gobl_method'
+require_relative 'ruby/to_gobl_method'

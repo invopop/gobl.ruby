@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Bill
@@ -24,6 +24,30 @@ module GOBL
 
       # Total amount to be paid after applying taxes.
       attribute :payable, Model::Types::String
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          sum: gobl['sum'],
+          discount: gobl['discount'],
+          total: gobl['total'],
+          taxes: gobl['taxes'],
+          outlays: gobl['outlays'],
+          payable: gobl['payable']
+        )
+      end
+
+      def to_gobl
+        {
+          'sum' => attributes[:sum],
+          'discount' => attributes[:discount],
+          'total' => attributes[:total],
+          'taxes' => attributes[:taxes],
+          'outlays' => attributes[:outlays],
+          'payable' => attributes[:payable]
+        }
+      end
     end
   end
 end

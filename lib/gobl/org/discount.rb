@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -17,6 +17,26 @@ module GOBL
 
       # Reason Code
       attribute :code, Model::Types::String.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          rate: gobl['rate'],
+          value: gobl['value'],
+          reason: gobl['reason'],
+          code: gobl['code']
+        )
+      end
+
+      def to_gobl
+        {
+          'rate' => attributes[:rate],
+          'value' => attributes[:value],
+          'reason' => attributes[:reason],
+          'code' => attributes[:code]
+        }
+      end
     end
   end
 end

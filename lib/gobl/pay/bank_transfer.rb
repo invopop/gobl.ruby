@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Pay
@@ -27,6 +27,32 @@ module GOBL
 
       # Non-structured additional data that may be useful.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          iban: gobl['iban'],
+          bic: gobl['bic'],
+          number: gobl['number'],
+          name: gobl['name'],
+          branch: gobl['branch'],
+          notes: gobl['notes'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'iban' => attributes[:iban],
+          'bic' => attributes[:bic],
+          'number' => attributes[:number],
+          'name' => attributes[:name],
+          'branch' => attributes[:branch],
+          'notes' => attributes[:notes],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

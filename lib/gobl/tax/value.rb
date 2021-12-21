@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Tax
@@ -15,6 +15,24 @@ module GOBL
 
       # When true
       attribute :disabled, Model::Types::Bool.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          since: gobl['since'],
+          percent: gobl['percent'],
+          disabled: gobl['disabled']
+        )
+      end
+
+      def to_gobl
+        {
+          'since' => attributes[:since],
+          'percent' => attributes[:percent],
+          'disabled' => attributes[:disabled]
+        }
+      end
     end
   end
 end

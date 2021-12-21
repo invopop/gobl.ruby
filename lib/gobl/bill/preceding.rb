@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Bill
@@ -18,6 +18,26 @@ module GOBL
 
       # Additional semi-structured data that may be useful in specific regions.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          code: gobl['code'],
+          issue_date: gobl['issue_date'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'code' => attributes[:code],
+          'issue_date' => attributes[:issue_date],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

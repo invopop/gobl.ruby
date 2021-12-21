@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Tax
@@ -15,6 +15,26 @@ module GOBL
 
       # Set of values ordered by date that determine what rates to apply since when.
       attribute :values, Model::Types::Array(GOBL::Tax::Value)
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          code: gobl['code'],
+          name: gobl['name'],
+          desc: gobl['desc'],
+          values: gobl['values']
+        )
+      end
+
+      def to_gobl
+        {
+          'code' => attributes[:code],
+          'name' => attributes[:name],
+          'desc' => attributes[:desc],
+          'values' => attributes[:values]
+        }
+      end
     end
   end
 end

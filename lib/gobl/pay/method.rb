@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Pay
@@ -21,6 +21,28 @@ module GOBL
 
       # Additional non-structure data.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          code: gobl['code'],
+          bank_transfer: gobl['bank_transfer'],
+          url: gobl['url'],
+          notes: gobl['notes'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'code' => attributes[:code],
+          'bank_transfer' => attributes[:bank_transfer],
+          'url' => attributes[:url],
+          'notes' => attributes[:notes],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

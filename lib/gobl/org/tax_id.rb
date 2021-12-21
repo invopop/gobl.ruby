@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -18,6 +18,26 @@ module GOBL
 
       # Additional details.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          country: gobl['country'],
+          code: gobl['code'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'country' => attributes[:country],
+          'code' => attributes[:code],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

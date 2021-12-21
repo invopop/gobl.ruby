@@ -17,3 +17,7 @@ Metrics/MethodLength:
 Layout/LineLength:
   Exclude:
     - 'lib/gobl/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/gobl/**/*.rb'

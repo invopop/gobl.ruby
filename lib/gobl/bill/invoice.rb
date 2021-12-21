@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Bill
@@ -62,6 +62,58 @@ module GOBL
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          code: gobl['code'],
+          type_code: gobl['type_code'],
+          currency: gobl['currency'],
+          rates: gobl['rates'],
+          prices_include_tax: gobl['prices_include_tax'],
+          preceding: gobl['preceding'],
+          issue_date: gobl['issue_date'],
+          op_date: gobl['op_date'],
+          value_date: gobl['value_date'],
+          supplier: gobl['supplier'],
+          customer: gobl['customer'],
+          lines: gobl['lines'],
+          outlays: gobl['outlays'],
+          totals: gobl['totals'],
+          ordering: gobl['ordering'],
+          payment: gobl['payment'],
+          delivery: gobl['delivery'],
+          notes: gobl['notes'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'code' => attributes[:code],
+          'type_code' => attributes[:type_code],
+          'currency' => attributes[:currency],
+          'rates' => attributes[:rates],
+          'prices_include_tax' => attributes[:prices_include_tax],
+          'preceding' => attributes[:preceding],
+          'issue_date' => attributes[:issue_date],
+          'op_date' => attributes[:op_date],
+          'value_date' => attributes[:value_date],
+          'supplier' => attributes[:supplier],
+          'customer' => attributes[:customer],
+          'lines' => attributes[:lines],
+          'outlays' => attributes[:outlays],
+          'totals' => attributes[:totals],
+          'ordering' => attributes[:ordering],
+          'payment' => attributes[:payment],
+          'delivery' => attributes[:delivery],
+          'notes' => attributes[:notes],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

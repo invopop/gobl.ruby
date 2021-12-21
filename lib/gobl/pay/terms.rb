@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Pay
@@ -12,6 +12,22 @@ module GOBL
 
       # Description of the conditions for payment.
       attribute :notes, (Model::Types::Hash | Model::Types::Nil).optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          code: gobl['code'],
+          notes: gobl['notes']
+        )
+      end
+
+      def to_gobl
+        {
+          'code' => attributes[:code],
+          'notes' => attributes[:notes]
+        }
+      end
     end
   end
 end

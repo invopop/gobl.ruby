@@ -8,11 +8,6 @@ module Model
   # StructObject - Abstract class that defines the core behaviour of a GoBL
   # object.
   class StructObject < Dry::Struct
-    # Validates a data hash (JSON) with the class JSON schema.
-    def self.validate!(data)
-      JSON::Validator.validate!(json_schema, data.to_json)
-    end
-
     # Returns a value depending on the kind of property. If the property
     # has an associate reference definition, an instance is created.
     def self.to_struct(ref, value)
@@ -36,16 +31,11 @@ module Model
     def self.from_object!(data)
       return if data.nil?
 
-      from_data!(data)
+      from_gobl!(data)
     end
 
-    def self.from_data!(data)
-      validate!(data)
-
-      new(attribute_names.each_with_object({}) do |att, hs|
-        att_value = data[att] || data[att.to_s]
-        hs[att] = to_struct(properties_ref[att.to_s], att_value)
-      end)
+    def self.from_gobl!(_data)
+      raise NotImplementError
     end
 
     # Initialize class instance variables.
@@ -62,6 +52,14 @@ module Model
     # Properties reference dictionary.
     def self.properties_ref
       @properties_ref ||= {}
+    end
+
+    def self.to_gobl
+      raise NotImplementError
+    end
+
+    def to_json(options = nil)
+      JSON.generate(to_gobl, options)
     end
   end
 end

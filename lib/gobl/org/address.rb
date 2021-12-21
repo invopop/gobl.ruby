@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -49,6 +49,48 @@ module GOBL
       attribute :coords, GOBL::Org::Coordinates.optional
 
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          label: gobl['label'],
+          po_box: gobl['po_box'],
+          num: gobl['num'],
+          floor: gobl['floor'],
+          block: gobl['block'],
+          door: gobl['door'],
+          street: gobl['street'],
+          street_extra: gobl['street_extra'],
+          locality: gobl['locality'],
+          region: gobl['region'],
+          code: gobl['code'],
+          country: gobl['country'],
+          coords: gobl['coords'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'label' => attributes[:label],
+          'po_box' => attributes[:po_box],
+          'num' => attributes[:num],
+          'floor' => attributes[:floor],
+          'block' => attributes[:block],
+          'door' => attributes[:door],
+          'street' => attributes[:street],
+          'street_extra' => attributes[:street_extra],
+          'locality' => attributes[:locality],
+          'region' => attributes[:region],
+          'code' => attributes[:code],
+          'country' => attributes[:country],
+          'coords' => attributes[:coords],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

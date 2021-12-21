@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -31,6 +31,36 @@ module GOBL
 
       # Any additional non-structure information that does not fit into the rest of the document.
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          tax_id: gobl['tax_id'],
+          name: gobl['name'],
+          alias: gobl['alias'],
+          people: gobl['people'],
+          addresses: gobl['addresses'],
+          emails: gobl['emails'],
+          telephones: gobl['telephones'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'tax_id' => attributes[:tax_id],
+          'name' => attributes[:name],
+          'alias' => attributes[:alias],
+          'people' => attributes[:people],
+          'addresses' => attributes[:addresses],
+          'emails' => attributes[:emails],
+          'telephones' => attributes[:telephones],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end

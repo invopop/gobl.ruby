@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Tax
@@ -12,6 +12,24 @@ module GOBL
       attribute :name, (Model::Types::Hash | Model::Types::Nil)
 
       attribute :categories, Model::Types::Array(GOBL::Tax::Category)
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          code: gobl['code'],
+          name: gobl['name'],
+          categories: gobl['categories']
+        )
+      end
+
+      def to_gobl
+        {
+          'code' => attributes[:code],
+          'name' => attributes[:name],
+          'categories' => attributes[:categories]
+        }
+      end
     end
   end
 end

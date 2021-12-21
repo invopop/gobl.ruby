@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -14,6 +14,24 @@ module GOBL
 
       # The number to be dialed in ITU E.164 international format.
       attribute :num, Model::Types::String
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          label: gobl['label'],
+          num: gobl['num']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'label' => attributes[:label],
+          'num' => attributes[:num]
+        }
+      end
     end
   end
 end

@@ -11,11 +11,7 @@ module GOBL
   end
 
   def self.create_loader
-    loader = Loader.new(
-      schema_dir: 'schema',
-      gem_file: __FILE__,
-      gem_dir: __dir__
-    )
+    loader = Loader.new(gem_file: __FILE__, gem_dir: __dir__)
 
     loader.inflect(
       'gobl' => 'GOBL', 'uuid' => 'UUID', 'url' => 'URL',

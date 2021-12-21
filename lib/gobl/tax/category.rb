@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Tax
@@ -17,6 +17,28 @@ module GOBL
       attribute :retained, Model::Types::Bool.optional
 
       attribute :defs, Model::Types::Array(GOBL::Tax::Def)
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          code: gobl['code'],
+          name: gobl['name'],
+          desc: gobl['desc'],
+          retained: gobl['retained'],
+          defs: gobl['defs']
+        )
+      end
+
+      def to_gobl
+        {
+          'code' => attributes[:code],
+          'name' => attributes[:name],
+          'desc' => attributes[:desc],
+          'retained' => attributes[:retained],
+          'defs' => attributes[:defs]
+        }
+      end
     end
   end
 end

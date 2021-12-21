@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-################################################
-# DO NOT EDIT - Auto generated code            #
-################################################
+##
+## DO NOT EDIT - This file was generated automatically.
+##
 
 module GOBL
   module Org
@@ -29,6 +29,36 @@ module GOBL
       attribute :origin, Model::Types::String.optional
 
       attribute :meta, Model::Types::Hash.optional
+
+      def self.from_gobl!(gobl)
+        gobl = Model::Types::Hash[gobl]
+
+        new(
+          uuid: gobl['uuid'],
+          name: gobl['name'],
+          desc: gobl['desc'],
+          currency: gobl['currency'],
+          price: gobl['price'],
+          unit: gobl['unit'],
+          supplier_ids: gobl['supplier_ids'],
+          origin: gobl['origin'],
+          meta: gobl['meta']
+        )
+      end
+
+      def to_gobl
+        {
+          'uuid' => attributes[:uuid],
+          'name' => attributes[:name],
+          'desc' => attributes[:desc],
+          'currency' => attributes[:currency],
+          'price' => attributes[:price],
+          'unit' => attributes[:unit],
+          'supplier_ids' => attributes[:supplier_ids],
+          'origin' => attributes[:origin],
+          'meta' => attributes[:meta]
+        }
+      end
     end
   end
 end
