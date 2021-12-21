@@ -40,7 +40,7 @@ module GOBL
           currency: gobl['currency'],
           price: gobl['price'],
           unit: gobl['unit'],
-          supplier_ids: gobl['supplier_ids'],
+          supplier_ids: gobl['supplier_ids']&.map { |x| GOBL::Org::ItemID.from_gobl!(x) },
           origin: gobl['origin'],
           meta: gobl['meta']
         )

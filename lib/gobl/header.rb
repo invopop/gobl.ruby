@@ -40,9 +40,9 @@ module GOBL
         uuid: gobl['uuid'],
         typ: gobl['typ'],
         rgn: gobl['rgn'],
-        dig: gobl['dig'],
-        stamps: gobl['stamps'],
-        tags: gobl['tags'],
+        dig: GOBL::Dsig::Digest.from_gobl!(gobl['dig']),
+        stamps: gobl['stamps']&.map { |x| GOBL::Stamp.from_gobl!(x) },
+        tags: gobl['tags']&.map { |x| x },
         meta: gobl['meta'],
         notes: gobl['notes'],
         draft: gobl['draft']

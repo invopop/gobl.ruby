@@ -37,13 +37,13 @@ module GOBL
 
         new(
           uuid: gobl['uuid'],
-          tax_id: gobl['tax_id'],
+          tax_id: gobl['tax_id'] ? GOBL::Org::TaxID.from_gobl!(gobl['tax_id']) : nil,
           name: gobl['name'],
           alias: gobl['alias'],
-          people: gobl['people'],
-          addresses: gobl['addresses'],
-          emails: gobl['emails'],
-          telephones: gobl['telephones'],
+          people: gobl['people']&.map { |x| GOBL::Org::Person.from_gobl!(x) },
+          addresses: gobl['addresses']&.map { |x| GOBL::Org::Address.from_gobl!(x) },
+          emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
+          telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
           meta: gobl['meta']
         )
       end

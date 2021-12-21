@@ -27,9 +27,9 @@ module GOBL
 
         new(
           uuid: gobl['uuid'],
-          name: gobl['name'],
+          name: GOBL::Org::Name.from_gobl!(gobl['name']),
           role: gobl['role'],
-          emails: gobl['emails'],
+          emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
           meta: gobl['meta']
         )
       end

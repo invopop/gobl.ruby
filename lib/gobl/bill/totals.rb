@@ -32,7 +32,7 @@ module GOBL
           sum: gobl['sum'],
           discount: gobl['discount'],
           total: gobl['total'],
-          taxes: gobl['taxes'],
+          taxes: gobl['taxes'] ? GOBL::Tax::Total.from_gobl!(gobl['taxes']) : nil,
           outlays: gobl['outlays'],
           payable: gobl['payable']
         )

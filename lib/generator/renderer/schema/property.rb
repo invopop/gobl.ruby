@@ -10,6 +10,14 @@ class Generator
           @required = required
         end
 
+        def ref?
+          types.map(&:ref?).any?
+        end
+
+        def array?
+          types.map(&:array?).any?
+        end
+
         def null?
           types.map(&:null?).any?
         end

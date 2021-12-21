@@ -23,7 +23,7 @@ module GOBL
         new(
           code: gobl['code'],
           retained: gobl['retained'],
-          rates: gobl['rates'],
+          rates: gobl['rates']&.map { |x| GOBL::Tax::RateTotal.from_gobl!(x) },
           base: gobl['base'],
           value: gobl['value']
         )

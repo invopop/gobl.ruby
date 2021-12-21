@@ -35,7 +35,7 @@ module GOBL
       instance = from_object!(JSON.parse(json))
 
       kls = GOBL.loader.fetch_object(instance.head.typ)
-      instance.attributes[:doc] = kls.from_object!(instance.doc)
+      instance.attributes[:doc] = kls.from_gobl!(instance.doc)
 
       instance
     end

@@ -14,7 +14,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          receiver: gobl['receiver']
+          receiver: gobl['receiver'] ? GOBL::Org::Party.from_gobl!(gobl['receiver']) : nil
         )
       end
 

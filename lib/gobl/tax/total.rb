@@ -16,7 +16,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          categories: gobl['categories'],
+          categories: gobl['categories']&.map { |x| GOBL::Tax::CategoryTotal.from_gobl!(x) },
           sum: gobl['sum']
         )
       end

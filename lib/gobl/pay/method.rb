@@ -27,8 +27,8 @@ module GOBL
 
         new(
           code: gobl['code'],
-          bank_transfer: gobl['bank_transfer'],
-          url: gobl['url'],
+          bank_transfer: gobl['bank_transfer'] ? GOBL::Pay::BankTransfer.from_gobl!(gobl['bank_transfer']) : nil,
+          url: gobl['url'] ? GOBL::Pay::URL.from_gobl!(gobl['url']) : nil,
           notes: gobl['notes'],
           meta: gobl['meta']
         )

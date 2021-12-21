@@ -14,7 +14,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          seller: gobl['seller']
+          seller: gobl['seller'] ? GOBL::Org::Party.from_gobl!(gobl['seller']) : nil
         )
       end
 

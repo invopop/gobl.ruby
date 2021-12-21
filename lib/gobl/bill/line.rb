@@ -35,10 +35,10 @@ module GOBL
           uuid: gobl['uuid'],
           i: gobl['i'],
           quantity: gobl['quantity'],
-          item: gobl['item'],
+          item: GOBL::Org::Item.from_gobl!(gobl['item']),
           sum: gobl['sum'],
-          discount: gobl['discount'],
-          taxes: gobl['taxes'],
+          discount: gobl['discount'] ? GOBL::Org::Discount.from_gobl!(gobl['discount']) : nil,
+          taxes: gobl['taxes']&.map { |x| GOBL::Tax::Rate.from_gobl!(x) },
           total: gobl['total']
         )
       end

@@ -28,6 +28,12 @@ class Generator
 
       private
 
+      def fetch_object(ref)
+        return if ref.nil?
+
+        exporter.catalog.fetch_object(ref)
+      end
+
       def json_schema_type_map
         @json_schema_type_map ||= {
           'string' => 'String',
@@ -69,7 +75,7 @@ class Generator
 
       def resolve_references(property)
         property.override do |value|
-          kls = exporter.catalog.fetch_object(strip_definition(value))
+          kls = fetch_object(strip_definition(value))
 
           if kls.properties_ref.empty?
             inner_property = Schema::Property.new(kls.original_json_schema)
@@ -85,15 +91,22 @@ class Generator
           required = required_properties.include?(name)
           property = Schema::Property.new(properties[name], required: required)
 
+          setup_methods(name, property)
           resolve_references(property)
-          from_gobl_method.properties[name] = property
-          to_gobl_method.properties[name] = property
 
           %(
             # #{property.description}
             attribute :#{name}, #{property_as_type(property)}
           )
         end
+      end
+
+      def setup_methods(name, property)
+        from_gobl_method.properties[name] = property
+        to_gobl_method.properties[name] = property
+
+        kls = fetch_object(klass.properties_ref[name])
+        from_gobl_method.properties_ref[name] = kls unless kls&.properties_ref&.empty?
       end
 
       def from_gobl_method

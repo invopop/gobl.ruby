@@ -23,7 +23,7 @@ module GOBL
           code: gobl['code'],
           name: gobl['name'],
           desc: gobl['desc'],
-          values: gobl['values']
+          values: gobl['values']&.map { |x| GOBL::Tax::Value.from_gobl!(x) }
         )
       end
 

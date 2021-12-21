@@ -19,9 +19,9 @@ module GOBL
       gobl = Model::Types::Hash[gobl]
 
       new(
-        head: gobl['head'],
+        head: GOBL::Header.from_gobl!(gobl['head']),
         doc: gobl['doc'],
-        sigs: gobl['sigs']
+        sigs: gobl['sigs']&.map { |x| x }
       )
     end
 

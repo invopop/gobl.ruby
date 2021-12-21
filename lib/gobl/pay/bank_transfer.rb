@@ -36,7 +36,7 @@ module GOBL
           bic: gobl['bic'],
           number: gobl['number'],
           name: gobl['name'],
-          branch: gobl['branch'],
+          branch: gobl['branch'] ? GOBL::Org::Address.from_gobl!(gobl['branch']) : nil,
           notes: gobl['notes'],
           meta: gobl['meta']
         )

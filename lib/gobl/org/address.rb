@@ -67,7 +67,7 @@ module GOBL
           region: gobl['region'],
           code: gobl['code'],
           country: gobl['country'],
-          coords: gobl['coords'],
+          coords: gobl['coords'] ? GOBL::Org::Coordinates.from_gobl!(gobl['coords']) : nil,
           meta: gobl['meta']
         )
       end

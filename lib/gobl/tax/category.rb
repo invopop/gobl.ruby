@@ -26,7 +26,7 @@ module GOBL
           name: gobl['name'],
           desc: gobl['desc'],
           retained: gobl['retained'],
-          defs: gobl['defs']
+          defs: gobl['defs']&.map { |x| GOBL::Tax::Def.from_gobl!(x) }
         )
       end
 

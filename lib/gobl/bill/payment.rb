@@ -20,9 +20,9 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          terms: gobl['terms'],
-          methods: gobl['methods'],
-          payer: gobl['payer']
+          terms: gobl['terms'] ? GOBL::Pay::Terms.from_gobl!(gobl['terms']) : nil,
+          methods: gobl['methods']&.map { |x| GOBL::Pay::Method.from_gobl!(x) },
+          payer: gobl['payer'] ? GOBL::Org::Party.from_gobl!(gobl['payer']) : nil
         )
       end
 

@@ -19,7 +19,7 @@ module GOBL
         new(
           code: gobl['code'],
           name: gobl['name'],
-          categories: gobl['categories']
+          categories: gobl['categories']&.map { |x| GOBL::Tax::Category.from_gobl!(x) }
         )
       end
 
