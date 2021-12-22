@@ -1,25 +1,12 @@
 # frozen_string_literal: true
 
 require 'json'
-require 'json-schema'
 require 'dry-struct'
 
 module Model
   # StructObject - Abstract class that defines the core behaviour of a GoBL
   # object.
   class StructObject < Dry::Struct
-    # Returns a value depending on the kind of property. If the property
-    # has an associate reference definition, an instance is created.
-    def self.to_struct(ref, value)
-      if ref.nil?
-        value
-      elsif value.is_a? Array
-        value.map { |e| ref.from_object!(e) }
-      else
-        ref.from_object!(value)
-      end
-    end
-
     def self.from_json!(json)
       return if json.nil?
 
@@ -54,7 +41,7 @@ module Model
       @properties_ref ||= {}
     end
 
-    def self.to_gobl
+    def to_gobl
       raise NotImplementError
     end
 

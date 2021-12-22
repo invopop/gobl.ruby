@@ -23,9 +23,7 @@ class Generator
     def export_all(root_dir)
       return unless root_dir
 
-      registry.each_value do |renderer|
-        export(renderer, root_dir) unless renderer.attributes.empty?
-      end
+      registry.each_value { |renderer| export(renderer, root_dir) }
     end
 
     private

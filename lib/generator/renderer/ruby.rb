@@ -110,11 +110,11 @@ class Generator
       end
 
       def from_gobl_method
-        @from_gobl_method ||= FromGoblMethod.new
+        @from_gobl_method ||= FromGoblMethod.new(is_value: !attributes?)
       end
 
       def to_gobl_method
-        @to_gobl_method ||= ToGoblMethod.new
+        @to_gobl_method ||= ToGoblMethod.new(is_value: !attributes?)
       end
     end
   end

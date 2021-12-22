@@ -6,7 +6,15 @@ class Generator
       # FromGoblMethod - Defines the class method to convert a hash into a
       # struct.
       class FromGoblMethod
-        HASH_NAME = 'gobl'
+        PARAM_NAME = 'gobl'
+
+        def initialize(is_value: false)
+          @is_value = is_value
+        end
+
+        def value?
+          @is_value
+        end
 
         def properties
           @properties ||= {}
@@ -14,8 +22,8 @@ class Generator
 
         def to_s
           %(
-            def self.from_gobl!(#{HASH_NAME})
-              #{HASH_NAME} = Model::Types::Hash[#{HASH_NAME}]
+            def self.from_gobl!(#{PARAM_NAME})
+              #{variable_assigment}
 
               new(
                 #{properties_as_string.join("\n")}
@@ -44,9 +52,15 @@ class Generator
           end
         end
 
+        def variable_assigment
+          "#{PARAM_NAME} = Model::Types::Hash[#{PARAM_NAME}]" unless value?
+        end
+
         def properties_as_string
+          return ["value: #{PARAM_NAME}"] if value?
+
           properties.map do |name, prop|
-            base_fetch = "#{HASH_NAME}[#{name.inspect}]"
+            base_fetch = "#{PARAM_NAME}[#{name.inspect}]"
             kls = prop.ref_klass
 
             "#{name}: #{fetch(prop, kls, base_fetch, prop.optional?)},"

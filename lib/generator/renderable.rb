@@ -13,8 +13,12 @@ class Generator
       raise NotImplementedError
     end
 
+    def attributes?
+      !klass.properties_ref.keys.empty?
+    end
+
     def attributes
-      klass.properties_ref.keys
+      attributes? ? klass.properties_ref.keys : ['value']
     end
 
     private
@@ -22,7 +26,9 @@ class Generator
     attr_reader :exporter
 
     def properties
-      klass.original_json_schema['properties'] || {}
+      klass.original_json_schema['properties'] || {
+        'value' => klass.original_json_schema
+      }
     end
 
     def required_properties
