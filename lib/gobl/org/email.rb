@@ -7,7 +7,7 @@
 module GOBL
   module Org
     class Email < Model::Struct
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for the email.
       attribute :label, Model::Types::String.optional
@@ -22,7 +22,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           label: gobl['label'],
           addr: gobl['addr'],
           meta: gobl['meta']
@@ -31,7 +31,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'label' => attributes[:label],
           'addr' => attributes[:addr],
           'meta' => attributes[:meta]

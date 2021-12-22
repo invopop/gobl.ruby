@@ -8,13 +8,13 @@ module GOBL
   module Bill
     class Preceding < Model::Struct
       # Preceding document's UUID if available can be useful for tracing.
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Identity code of the previous invoice.
       attribute :code, Model::Types::String
 
       # When the preceding invoices was issued.
-      attribute :issue_date, Model::Types::String
+      attribute :issue_date, GOBL::Org::Date
 
       # Additional semi-structured data that may be useful in specific regions.
       attribute :meta, Model::Types::Hash.optional
@@ -23,18 +23,18 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           code: gobl['code'],
-          issue_date: gobl['issue_date'],
+          issue_date: GOBL::Org::Date.from_gobl!(gobl['issue_date']),
           meta: gobl['meta']
         )
       end
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'code' => attributes[:code],
-          'issue_date' => attributes[:issue_date],
+          'issue_date' => attributes[:issue_date]&.to_gobl,
           'meta' => attributes[:meta]
         }
       end

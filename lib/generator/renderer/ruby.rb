@@ -75,14 +75,7 @@ class Generator
 
       def resolve_references(property)
         property.override do |value|
-          kls = fetch_object(strip_definition(value))
-
-          if kls.properties_ref.empty?
-            inner_property = Schema::Property.new(kls.original_json_schema)
-            property_as_type(inner_property)
-          else
-            kls
-          end
+          fetch_object(strip_definition(value))
         end
       end
 
@@ -105,8 +98,7 @@ class Generator
         from_gobl_method.properties[name] = property
         to_gobl_method.properties[name] = property
 
-        kls = fetch_object(klass.properties_ref[name])
-        property.ref_klass = kls unless kls&.properties_ref&.empty?
+        property.ref_klass = fetch_object(klass.properties_ref[name])
       end
 
       def from_gobl_method

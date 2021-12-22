@@ -8,7 +8,7 @@ module GOBL
   module Org
     class Party < Model::Struct
       # Unique identity code.
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # The entity's legal ID code used for tax purposes. They may have other numbers
       attribute :tax_id, GOBL::Org::TaxID.optional
@@ -36,7 +36,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           tax_id: gobl['tax_id'] ? GOBL::Org::TaxID.from_gobl!(gobl['tax_id']) : nil,
           name: gobl['name'],
           alias: gobl['alias'],
@@ -50,7 +50,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'tax_id' => attributes[:tax_id]&.to_gobl,
           'name' => attributes[:name],
           'alias' => attributes[:alias],

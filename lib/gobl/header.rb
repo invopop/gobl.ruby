@@ -7,7 +7,7 @@
 module GOBL
   class Header < Model::Struct
     # Unique UUIDv1 identifier for the envelope.
-    attribute :uuid, Model::Types::String
+    attribute :uuid, GOBL::UUID::UUID
 
     # Body type of the document contents.
     attribute :typ, Model::Types::String
@@ -37,7 +37,7 @@ module GOBL
       gobl = Model::Types::Hash[gobl]
 
       new(
-        uuid: gobl['uuid'],
+        uuid: GOBL::UUID::UUID.from_gobl!(gobl['uuid']),
         typ: gobl['typ'],
         rgn: gobl['rgn'],
         dig: GOBL::Dsig::Digest.from_gobl!(gobl['dig']),
@@ -51,7 +51,7 @@ module GOBL
 
     def to_gobl
       {
-        'uuid' => attributes[:uuid],
+        'uuid' => attributes[:uuid]&.to_gobl,
         'typ' => attributes[:typ],
         'rgn' => attributes[:rgn],
         'dig' => attributes[:dig]&.to_gobl,

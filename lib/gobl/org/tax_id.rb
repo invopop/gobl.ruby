@@ -8,7 +8,7 @@ module GOBL
   module Org
     class TaxID < Model::Struct
       # Unique identity code
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # ISO country code for Where the tax identity was issued.
       attribute :country, Model::Types::String
@@ -23,7 +23,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           country: gobl['country'],
           code: gobl['code'],
           meta: gobl['meta']
@@ -32,7 +32,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'country' => attributes[:country],
           'code' => attributes[:code],
           'meta' => attributes[:meta]

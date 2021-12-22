@@ -23,7 +23,7 @@ module GOBL
       attribute :branch, GOBL::Org::Address.optional
 
       # Any additional instructions that may be required to make the transfer.
-      attribute :notes, (Model::Types::Hash | Model::Types::Nil).optional
+      attribute :notes, GOBL::I18n::String.optional
 
       # Non-structured additional data that may be useful.
       attribute :meta, Model::Types::Hash.optional
@@ -37,7 +37,7 @@ module GOBL
           number: gobl['number'],
           name: gobl['name'],
           branch: gobl['branch'] ? GOBL::Org::Address.from_gobl!(gobl['branch']) : nil,
-          notes: gobl['notes'],
+          notes: gobl['notes'] ? GOBL::I18n::String.from_gobl!(gobl['notes']) : nil,
           meta: gobl['meta']
         )
       end
@@ -49,7 +49,7 @@ module GOBL
           'number' => attributes[:number],
           'name' => attributes[:name],
           'branch' => attributes[:branch]&.to_gobl,
-          'notes' => attributes[:notes],
+          'notes' => attributes[:notes]&.to_gobl,
           'meta' => attributes[:meta]
         }
       end

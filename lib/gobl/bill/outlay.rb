@@ -19,7 +19,7 @@ module GOBL
       attribute :desc, Model::Types::String
 
       # Amount paid by the supplier.
-      attribute :paid, Model::Types::String
+      attribute :paid, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = Model::Types::Hash[gobl]
@@ -29,7 +29,7 @@ module GOBL
           i: gobl['i'],
           ref: gobl['ref'],
           desc: gobl['desc'],
-          paid: gobl['paid']
+          paid: GOBL::Num::Amount.from_gobl!(gobl['paid'])
         )
       end
 
@@ -39,7 +39,7 @@ module GOBL
           'i' => attributes[:i],
           'ref' => attributes[:ref],
           'desc' => attributes[:desc],
-          'paid' => attributes[:paid]
+          'paid' => attributes[:paid]&.to_gobl
         }
       end
     end

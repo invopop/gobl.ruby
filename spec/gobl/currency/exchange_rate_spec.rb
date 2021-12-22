@@ -7,7 +7,7 @@ RSpec.describe GOBL::Currency::ExchangeRate do
     obj = { 'currency' => 'EUR', 'value' => '100' }
     xchg = described_class.from_json!(obj.to_json)
 
-    expect(xchg.value).to eq('100')
+    expect(xchg.value.value).to eq('100')
   end
 
   it 'converts an exchange rate object into a JSON' do

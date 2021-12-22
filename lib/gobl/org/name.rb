@@ -8,7 +8,7 @@ module GOBL
   module Org
     class Name < Model::Struct
       # Unique identity code
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # What the person would like to be called
       attribute :alias, Model::Types::String.optional
@@ -33,7 +33,7 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           alias: gobl['alias'],
           prefix: gobl['prefix'],
           given: gobl['given'],
@@ -47,7 +47,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'alias' => attributes[:alias],
           'prefix' => attributes[:prefix],
           'given' => attributes[:given],

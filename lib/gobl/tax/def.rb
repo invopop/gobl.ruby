@@ -9,9 +9,9 @@ module GOBL
     class Def < Model::Struct
       attribute :code, Model::Types::String
 
-      attribute :name, (Model::Types::Hash | Model::Types::Nil)
+      attribute :name, GOBL::I18n::String
 
-      attribute :desc, (Model::Types::Hash | Model::Types::Nil).optional
+      attribute :desc, GOBL::I18n::String.optional
 
       # Set of values ordered by date that determine what rates to apply since when.
       attribute :values, Model::Types::Array(GOBL::Tax::Value)
@@ -21,8 +21,8 @@ module GOBL
 
         new(
           code: gobl['code'],
-          name: gobl['name'],
-          desc: gobl['desc'],
+          name: GOBL::I18n::String.from_gobl!(gobl['name']),
+          desc: gobl['desc'] ? GOBL::I18n::String.from_gobl!(gobl['desc']) : nil,
           values: gobl['values']&.map { |x| GOBL::Tax::Value.from_gobl!(x) }
         )
       end
@@ -30,8 +30,8 @@ module GOBL
       def to_gobl
         {
           'code' => attributes[:code],
-          'name' => attributes[:name],
-          'desc' => attributes[:desc],
+          'name' => attributes[:name]&.to_gobl,
+          'desc' => attributes[:desc]&.to_gobl,
           'values' => attributes[:values]&.map { |x| x&.to_gobl }
         }
       end

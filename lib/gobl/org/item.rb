@@ -18,7 +18,7 @@ module GOBL
       attribute :currency, Model::Types::String.optional
 
       # Price of item being sold.
-      attribute :price, Model::Types::String
+      attribute :price, GOBL::Num::Amount
 
       # Code for unit of the item being sold
       attribute :unit, Model::Types::String.optional
@@ -38,7 +38,7 @@ module GOBL
           name: gobl['name'],
           desc: gobl['desc'],
           currency: gobl['currency'],
-          price: gobl['price'],
+          price: GOBL::Num::Amount.from_gobl!(gobl['price']),
           unit: gobl['unit'],
           supplier_ids: gobl['supplier_ids']&.map { |x| GOBL::Org::ItemID.from_gobl!(x) },
           origin: gobl['origin'],
@@ -52,7 +52,7 @@ module GOBL
           'name' => attributes[:name],
           'desc' => attributes[:desc],
           'currency' => attributes[:currency],
-          'price' => attributes[:price],
+          'price' => attributes[:price]&.to_gobl,
           'unit' => attributes[:unit],
           'supplier_ids' => attributes[:supplier_ids]&.map { |x| x&.to_gobl },
           'origin' => attributes[:origin],

@@ -13,9 +13,9 @@ module GOBL
 
       attribute :rates, Model::Types::Array(GOBL::Tax::RateTotal)
 
-      attribute :base, Model::Types::String
+      attribute :base, GOBL::Num::Amount
 
-      attribute :value, Model::Types::String
+      attribute :value, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = Model::Types::Hash[gobl]
@@ -24,8 +24,8 @@ module GOBL
           code: gobl['code'],
           retained: gobl['retained'],
           rates: gobl['rates']&.map { |x| GOBL::Tax::RateTotal.from_gobl!(x) },
-          base: gobl['base'],
-          value: gobl['value']
+          base: GOBL::Num::Amount.from_gobl!(gobl['base']),
+          value: GOBL::Num::Amount.from_gobl!(gobl['value'])
         )
       end
 
@@ -34,8 +34,8 @@ module GOBL
           'code' => attributes[:code],
           'retained' => attributes[:retained],
           'rates' => attributes[:rates]&.map { |x| x&.to_gobl },
-          'base' => attributes[:base],
-          'value' => attributes[:value]
+          'base' => attributes[:base]&.to_gobl,
+          'value' => attributes[:value]&.to_gobl
         }
       end
     end

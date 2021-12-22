@@ -8,10 +8,10 @@ module GOBL
   module Tax
     class Value < Model::Struct
       # Date from which this value should be applied.
-      attribute :since, Model::Types::String.optional
+      attribute :since, GOBL::Org::Date.optional
 
       # Rate that should be applied.
-      attribute :percent, Model::Types::String
+      attribute :percent, GOBL::Num::Percentage
 
       # When true
       attribute :disabled, Model::Types::Bool.optional
@@ -20,16 +20,16 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          since: gobl['since'],
-          percent: gobl['percent'],
+          since: gobl['since'] ? GOBL::Org::Date.from_gobl!(gobl['since']) : nil,
+          percent: GOBL::Num::Percentage.from_gobl!(gobl['percent']),
           disabled: gobl['disabled']
         )
       end
 
       def to_gobl
         {
-          'since' => attributes[:since],
-          'percent' => attributes[:percent],
+          'since' => attributes[:since]&.to_gobl,
+          'percent' => attributes[:percent]&.to_gobl,
           'disabled' => attributes[:disabled]
         }
       end

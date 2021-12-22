@@ -10,21 +10,21 @@ module GOBL
       attribute :categories, Model::Types::Array(GOBL::Tax::CategoryTotal).optional
 
       # Total value of all the taxes to be added or retained.
-      attribute :sum, Model::Types::String
+      attribute :sum, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = Model::Types::Hash[gobl]
 
         new(
           categories: gobl['categories']&.map { |x| GOBL::Tax::CategoryTotal.from_gobl!(x) },
-          sum: gobl['sum']
+          sum: GOBL::Num::Amount.from_gobl!(gobl['sum'])
         )
       end
 
       def to_gobl
         {
           'categories' => attributes[:categories]&.map { |x| x&.to_gobl },
-          'sum' => attributes[:sum]
+          'sum' => attributes[:sum]&.to_gobl
         }
       end
     end

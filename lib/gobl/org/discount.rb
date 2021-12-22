@@ -7,10 +7,10 @@
 module GOBL
   module Org
     class Discount < Model::Struct
-      attribute :rate, Model::Types::String.optional
+      attribute :rate, GOBL::Num::Percentage.optional
 
       # How much to deduct
-      attribute :value, Model::Types::String
+      attribute :value, GOBL::Num::Amount
 
       # Description as to why this discount was applied.
       attribute :reason, Model::Types::String.optional
@@ -22,8 +22,8 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          rate: gobl['rate'],
-          value: gobl['value'],
+          rate: gobl['rate'] ? GOBL::Num::Percentage.from_gobl!(gobl['rate']) : nil,
+          value: GOBL::Num::Amount.from_gobl!(gobl['value']),
           reason: gobl['reason'],
           code: gobl['code']
         )
@@ -31,8 +31,8 @@ module GOBL
 
       def to_gobl
         {
-          'rate' => attributes[:rate],
-          'value' => attributes[:value],
+          'rate' => attributes[:rate]&.to_gobl,
+          'value' => attributes[:value]&.to_gobl,
           'reason' => attributes[:reason],
           'code' => attributes[:code]
         }

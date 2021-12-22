@@ -9,7 +9,7 @@ module GOBL
     class Region < Model::Struct
       attribute :code, Model::Types::String
 
-      attribute :name, (Model::Types::Hash | Model::Types::Nil)
+      attribute :name, GOBL::I18n::String
 
       attribute :categories, Model::Types::Array(GOBL::Tax::Category)
 
@@ -18,7 +18,7 @@ module GOBL
 
         new(
           code: gobl['code'],
-          name: gobl['name'],
+          name: GOBL::I18n::String.from_gobl!(gobl['name']),
           categories: gobl['categories']&.map { |x| GOBL::Tax::Category.from_gobl!(x) }
         )
       end
@@ -26,7 +26,7 @@ module GOBL
       def to_gobl
         {
           'code' => attributes[:code],
-          'name' => attributes[:name],
+          'name' => attributes[:name]&.to_gobl,
           'categories' => attributes[:categories]&.map { |x| x&.to_gobl }
         }
       end

@@ -8,7 +8,7 @@ module GOBL
   module Bill
     class Invoice < Model::Struct
       # Unique document ID. Not required
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Sequential code used to identify this invoice in tax declarations.
       attribute :code, Model::Types::String
@@ -29,13 +29,13 @@ module GOBL
       attribute :preceding, GOBL::Bill::Preceding.optional
 
       # When the invoice was created.
-      attribute :issue_date, Model::Types::String
+      attribute :issue_date, GOBL::Org::Date
 
       # Date when the operation defined by the invoice became effective.
-      attribute :op_date, Model::Types::String.optional
+      attribute :op_date, GOBL::Org::Date.optional
 
       # When the taxes of this invoice become accountable
-      attribute :value_date, Model::Types::String.optional
+      attribute :value_date, GOBL::Org::Date.optional
 
       # The taxable entity supplying the goods or services.
       attribute :supplier, GOBL::Org::Party
@@ -67,16 +67,16 @@ module GOBL
         gobl = Model::Types::Hash[gobl]
 
         new(
-          uuid: gobl['uuid'],
+          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           code: gobl['code'],
           type_code: gobl['type_code'],
           currency: gobl['currency'],
           rates: gobl['rates']&.map { |x| GOBL::Currency::ExchangeRate.from_gobl!(x) },
           prices_include_tax: gobl['prices_include_tax'],
           preceding: gobl['preceding'] ? GOBL::Bill::Preceding.from_gobl!(gobl['preceding']) : nil,
-          issue_date: gobl['issue_date'],
-          op_date: gobl['op_date'],
-          value_date: gobl['value_date'],
+          issue_date: GOBL::Org::Date.from_gobl!(gobl['issue_date']),
+          op_date: gobl['op_date'] ? GOBL::Org::Date.from_gobl!(gobl['op_date']) : nil,
+          value_date: gobl['value_date'] ? GOBL::Org::Date.from_gobl!(gobl['value_date']) : nil,
           supplier: GOBL::Org::Party.from_gobl!(gobl['supplier']),
           customer: gobl['customer'] ? GOBL::Org::Party.from_gobl!(gobl['customer']) : nil,
           lines: gobl['lines']&.map { |x| GOBL::Bill::Line.from_gobl!(x) },
@@ -92,16 +92,16 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'code' => attributes[:code],
           'type_code' => attributes[:type_code],
           'currency' => attributes[:currency],
           'rates' => attributes[:rates]&.map { |x| x&.to_gobl },
           'prices_include_tax' => attributes[:prices_include_tax],
           'preceding' => attributes[:preceding]&.to_gobl,
-          'issue_date' => attributes[:issue_date],
-          'op_date' => attributes[:op_date],
-          'value_date' => attributes[:value_date],
+          'issue_date' => attributes[:issue_date]&.to_gobl,
+          'op_date' => attributes[:op_date]&.to_gobl,
+          'value_date' => attributes[:value_date]&.to_gobl,
           'supplier' => attributes[:supplier]&.to_gobl,
           'customer' => attributes[:customer]&.to_gobl,
           'lines' => attributes[:lines]&.map { |x| x&.to_gobl },

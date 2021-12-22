@@ -9,29 +9,29 @@ module GOBL
     class RateTotal < Model::Struct
       attribute :code, Model::Types::String
 
-      attribute :base, Model::Types::String
+      attribute :base, GOBL::Num::Amount
 
-      attribute :percent, Model::Types::String
+      attribute :percent, GOBL::Num::Percentage
 
-      attribute :value, Model::Types::String
+      attribute :value, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = Model::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
-          base: gobl['base'],
-          percent: gobl['percent'],
-          value: gobl['value']
+          base: GOBL::Num::Amount.from_gobl!(gobl['base']),
+          percent: GOBL::Num::Percentage.from_gobl!(gobl['percent']),
+          value: GOBL::Num::Amount.from_gobl!(gobl['value'])
         )
       end
 
       def to_gobl
         {
           'code' => attributes[:code],
-          'base' => attributes[:base],
-          'percent' => attributes[:percent],
-          'value' => attributes[:value]
+          'base' => attributes[:base]&.to_gobl,
+          'percent' => attributes[:percent]&.to_gobl,
+          'value' => attributes[:value]&.to_gobl
         }
       end
     end

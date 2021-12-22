@@ -12,12 +12,12 @@ module GOBL
       # Line number inside the invoice.
       attribute :i, Model::Types::Int
 
-      attribute :quantity, Model::Types::String
+      attribute :quantity, GOBL::Num::Amount
 
       attribute :item, GOBL::Org::Item
 
       # Result of quantity multiplied by item price
-      attribute :sum, Model::Types::String
+      attribute :sum, GOBL::Num::Amount
 
       # Discount applied to this line.
       attribute :discount, GOBL::Org::Discount.optional
@@ -26,7 +26,7 @@ module GOBL
       attribute :taxes, Model::Types::Array(GOBL::Tax::Rate).optional
 
       # Total line amount after applying discounts to the sum.
-      attribute :total, Model::Types::String
+      attribute :total, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = Model::Types::Hash[gobl]
@@ -34,12 +34,12 @@ module GOBL
         new(
           uuid: gobl['uuid'],
           i: gobl['i'],
-          quantity: gobl['quantity'],
+          quantity: GOBL::Num::Amount.from_gobl!(gobl['quantity']),
           item: GOBL::Org::Item.from_gobl!(gobl['item']),
-          sum: gobl['sum'],
+          sum: GOBL::Num::Amount.from_gobl!(gobl['sum']),
           discount: gobl['discount'] ? GOBL::Org::Discount.from_gobl!(gobl['discount']) : nil,
           taxes: gobl['taxes']&.map { |x| GOBL::Tax::Rate.from_gobl!(x) },
-          total: gobl['total']
+          total: GOBL::Num::Amount.from_gobl!(gobl['total'])
         )
       end
 
@@ -47,12 +47,12 @@ module GOBL
         {
           'uuid' => attributes[:uuid],
           'i' => attributes[:i],
-          'quantity' => attributes[:quantity],
+          'quantity' => attributes[:quantity]&.to_gobl,
           'item' => attributes[:item]&.to_gobl,
-          'sum' => attributes[:sum],
+          'sum' => attributes[:sum]&.to_gobl,
           'discount' => attributes[:discount]&.to_gobl,
           'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
-          'total' => attributes[:total]
+          'total' => attributes[:total]&.to_gobl
         }
       end
     end

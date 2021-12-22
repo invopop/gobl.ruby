@@ -9,9 +9,9 @@ module GOBL
     class Category < Model::Struct
       attribute :code, Model::Types::String
 
-      attribute :name, (Model::Types::Hash | Model::Types::Nil)
+      attribute :name, GOBL::I18n::String
 
-      attribute :desc, (Model::Types::Hash | Model::Types::Nil).optional
+      attribute :desc, GOBL::I18n::String.optional
 
       # This tax should be retained
       attribute :retained, Model::Types::Bool.optional
@@ -23,8 +23,8 @@ module GOBL
 
         new(
           code: gobl['code'],
-          name: gobl['name'],
-          desc: gobl['desc'],
+          name: GOBL::I18n::String.from_gobl!(gobl['name']),
+          desc: gobl['desc'] ? GOBL::I18n::String.from_gobl!(gobl['desc']) : nil,
           retained: gobl['retained'],
           defs: gobl['defs']&.map { |x| GOBL::Tax::Def.from_gobl!(x) }
         )
@@ -33,8 +33,8 @@ module GOBL
       def to_gobl
         {
           'code' => attributes[:code],
-          'name' => attributes[:name],
-          'desc' => attributes[:desc],
+          'name' => attributes[:name]&.to_gobl,
+          'desc' => attributes[:desc]&.to_gobl,
           'retained' => attributes[:retained],
           'defs' => attributes[:defs]&.map { |x| x&.to_gobl }
         }
