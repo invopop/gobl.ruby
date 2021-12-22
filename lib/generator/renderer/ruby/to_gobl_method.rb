@@ -10,12 +10,6 @@ class Generator
           @properties ||= {}
         end
 
-        def properties_as_string
-          properties.keys.map do |name|
-            "#{name.inspect} => attributes[:#{name}],"
-          end
-        end
-
         def to_s
           %(
             def to_gobl
@@ -24,6 +18,14 @@ class Generator
               }
             end
           )
+        end
+
+        private
+
+        def properties_as_string
+          properties.keys.map do |name|
+            "#{name.inspect} => attributes[:#{name}],"
+          end
         end
       end
     end

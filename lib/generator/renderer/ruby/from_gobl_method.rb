@@ -6,6 +6,8 @@ class Generator
       # FromGoblMethod - Defines the class method to convert a hash into a
       # struct.
       class FromGoblMethod
+        HASH_NAME = 'gobl'
+
         def properties
           @properties ||= {}
         end
@@ -14,19 +16,10 @@ class Generator
           @properties_ref ||= {}
         end
 
-        def properties_as_string
-          properties.map do |name, prop|
-            base_fetch = "gobl[#{name.inspect}]"
-            ref_kls = properties_ref[name]
-
-            "#{name}: #{getter(prop, ref_kls, base_fetch, prop.optional?)},"
-          end
-        end
-
         def to_s
           %(
-            def self.from_gobl!(gobl)
-              gobl = Model::Types::Hash[gobl]
+            def self.from_gobl!(#{HASH_NAME})
+              #{HASH_NAME} = Model::Types::Hash[#{HASH_NAME}]
 
               new(
                 #{properties_as_string.join("\n")}
@@ -37,21 +30,30 @@ class Generator
 
         private
 
-        def ref_getter(fetch, kls, optional)
+        def ref_fetch(base_case, kls, optional)
           if optional
-            "#{fetch} ? #{kls}.from_gobl!(#{fetch}) : nil"
+            "#{base_case} ? #{kls}.from_gobl!(#{base_case}) : nil"
           else
-            "#{kls}.from_gobl!(#{fetch})"
+            "#{kls}.from_gobl!(#{base_case})"
           end
         end
 
-        def getter(prop, kls, fetch, optional)
+        def fetch(prop, kls, base_case, optional)
           if prop.ref? && kls
-            ref_getter(fetch, kls, optional)
+            ref_fetch(base_case, kls, optional)
           elsif prop.array?
-            "#{fetch}&.map { |x| #{getter(prop.items, kls, 'x', false)} }"
+            "#{base_case}&.map { |x| #{fetch(prop.items, kls, 'x', false)} }"
           else
-            fetch
+            base_case
+          end
+        end
+
+        def properties_as_string
+          properties.map do |name, prop|
+            base_fetch = "#{HASH_NAME}[#{name.inspect}]"
+            ref_kls = properties_ref[name]
+
+            "#{name}: #{fetch(prop, ref_kls, base_fetch, prop.optional?)},"
           end
         end
       end
