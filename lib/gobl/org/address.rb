@@ -87,7 +87,7 @@ module GOBL
           'region' => attributes[:region],
           'code' => attributes[:code],
           'country' => attributes[:country],
-          'coords' => attributes[:coords],
+          'coords' => attributes[:coords]&.to_gobl,
           'meta' => attributes[:meta]
         }
       end

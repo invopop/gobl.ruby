@@ -43,7 +43,7 @@ module GOBL
           'sum' => attributes[:sum],
           'discount' => attributes[:discount],
           'total' => attributes[:total],
-          'taxes' => attributes[:taxes],
+          'taxes' => attributes[:taxes]&.to_gobl,
           'outlays' => attributes[:outlays],
           'payable' => attributes[:payable]
         }

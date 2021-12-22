@@ -37,8 +37,8 @@ module GOBL
       def to_gobl
         {
           'code' => attributes[:code],
-          'bank_transfer' => attributes[:bank_transfer],
-          'url' => attributes[:url],
+          'bank_transfer' => attributes[:bank_transfer]&.to_gobl,
+          'url' => attributes[:url]&.to_gobl,
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }

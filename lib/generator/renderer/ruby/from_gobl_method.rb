@@ -12,10 +12,6 @@ class Generator
           @properties ||= {}
         end
 
-        def properties_ref
-          @properties_ref ||= {}
-        end
-
         def to_s
           %(
             def self.from_gobl!(#{HASH_NAME})
@@ -51,9 +47,9 @@ class Generator
         def properties_as_string
           properties.map do |name, prop|
             base_fetch = "#{HASH_NAME}[#{name.inspect}]"
-            ref_kls = properties_ref[name]
+            kls = prop.ref_klass
 
-            "#{name}: #{fetch(prop, ref_kls, base_fetch, prop.optional?)},"
+            "#{name}: #{fetch(prop, kls, base_fetch, prop.optional?)},"
           end
         end
       end

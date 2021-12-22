@@ -54,9 +54,9 @@ module GOBL
         'uuid' => attributes[:uuid],
         'typ' => attributes[:typ],
         'rgn' => attributes[:rgn],
-        'dig' => attributes[:dig],
-        'stamps' => attributes[:stamps],
-        'tags' => attributes[:tags],
+        'dig' => attributes[:dig]&.to_gobl,
+        'stamps' => attributes[:stamps]&.map { |x| x&.to_gobl },
+        'tags' => attributes[:tags]&.map { |x| x },
         'meta' => attributes[:meta],
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]

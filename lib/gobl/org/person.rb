@@ -37,9 +37,9 @@ module GOBL
       def to_gobl
         {
           'uuid' => attributes[:uuid],
-          'name' => attributes[:name],
+          'name' => attributes[:name]&.to_gobl,
           'role' => attributes[:role],
-          'emails' => attributes[:emails],
+          'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
           'meta' => attributes[:meta]
         }
       end

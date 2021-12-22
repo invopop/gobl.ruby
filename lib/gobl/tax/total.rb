@@ -23,7 +23,7 @@ module GOBL
 
       def to_gobl
         {
-          'categories' => attributes[:categories],
+          'categories' => attributes[:categories]&.map { |x| x&.to_gobl },
           'sum' => attributes[:sum]
         }
       end

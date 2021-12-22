@@ -28,9 +28,9 @@ module GOBL
 
       def to_gobl
         {
-          'terms' => attributes[:terms],
-          'methods' => attributes[:methods],
-          'payer' => attributes[:payer]
+          'terms' => attributes[:terms]&.to_gobl,
+          'methods' => attributes[:methods]&.map { |x| x&.to_gobl },
+          'payer' => attributes[:payer]&.to_gobl
         }
       end
     end

@@ -33,7 +33,7 @@ module GOBL
         {
           'code' => attributes[:code],
           'retained' => attributes[:retained],
-          'rates' => attributes[:rates],
+          'rates' => attributes[:rates]&.map { |x| x&.to_gobl },
           'base' => attributes[:base],
           'value' => attributes[:value]
         }

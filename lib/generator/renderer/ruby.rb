@@ -106,7 +106,7 @@ class Generator
         to_gobl_method.properties[name] = property
 
         kls = fetch_object(klass.properties_ref[name])
-        from_gobl_method.properties_ref[name] = kls unless kls&.properties_ref&.empty?
+        property.ref_klass = kls unless kls&.properties_ref&.empty?
       end
 
       def from_gobl_method

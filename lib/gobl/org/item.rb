@@ -54,7 +54,7 @@ module GOBL
           'currency' => attributes[:currency],
           'price' => attributes[:price],
           'unit' => attributes[:unit],
-          'supplier_ids' => attributes[:supplier_ids],
+          'supplier_ids' => attributes[:supplier_ids]&.map { |x| x&.to_gobl },
           'origin' => attributes[:origin],
           'meta' => attributes[:meta]
         }

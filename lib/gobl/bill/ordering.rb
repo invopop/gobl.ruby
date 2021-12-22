@@ -20,7 +20,7 @@ module GOBL
 
       def to_gobl
         {
-          'seller' => attributes[:seller]
+          'seller' => attributes[:seller]&.to_gobl
         }
       end
     end

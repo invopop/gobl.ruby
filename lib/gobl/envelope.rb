@@ -27,9 +27,9 @@ module GOBL
 
     def to_gobl
       {
-        'head' => attributes[:head],
+        'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc],
-        'sigs' => attributes[:sigs]
+        'sigs' => attributes[:sigs]&.map { |x| x }
       }
     end
   end

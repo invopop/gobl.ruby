@@ -32,7 +32,7 @@ module GOBL
           'code' => attributes[:code],
           'name' => attributes[:name],
           'desc' => attributes[:desc],
-          'values' => attributes[:values]
+          'values' => attributes[:values]&.map { |x| x&.to_gobl }
         }
       end
     end

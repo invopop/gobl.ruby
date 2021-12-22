@@ -48,10 +48,10 @@ module GOBL
           'uuid' => attributes[:uuid],
           'i' => attributes[:i],
           'quantity' => attributes[:quantity],
-          'item' => attributes[:item],
+          'item' => attributes[:item]&.to_gobl,
           'sum' => attributes[:sum],
-          'discount' => attributes[:discount],
-          'taxes' => attributes[:taxes],
+          'discount' => attributes[:discount]&.to_gobl,
+          'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
           'total' => attributes[:total]
         }
       end

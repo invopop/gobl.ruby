@@ -36,7 +36,7 @@ module GOBL
           'name' => attributes[:name],
           'desc' => attributes[:desc],
           'retained' => attributes[:retained],
-          'defs' => attributes[:defs]
+          'defs' => attributes[:defs]&.map { |x| x&.to_gobl }
         }
       end
     end

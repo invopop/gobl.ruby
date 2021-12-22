@@ -48,7 +48,7 @@ module GOBL
           'bic' => attributes[:bic],
           'number' => attributes[:number],
           'name' => attributes[:name],
-          'branch' => attributes[:branch],
+          'branch' => attributes[:branch]&.to_gobl,
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }

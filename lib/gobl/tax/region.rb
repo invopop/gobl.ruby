@@ -27,7 +27,7 @@ module GOBL
         {
           'code' => attributes[:code],
           'name' => attributes[:name],
-          'categories' => attributes[:categories]
+          'categories' => attributes[:categories]&.map { |x| x&.to_gobl }
         }
       end
     end

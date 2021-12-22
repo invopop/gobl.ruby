@@ -51,13 +51,13 @@ module GOBL
       def to_gobl
         {
           'uuid' => attributes[:uuid],
-          'tax_id' => attributes[:tax_id],
+          'tax_id' => attributes[:tax_id]&.to_gobl,
           'name' => attributes[:name],
           'alias' => attributes[:alias],
-          'people' => attributes[:people],
-          'addresses' => attributes[:addresses],
-          'emails' => attributes[:emails],
-          'telephones' => attributes[:telephones],
+          'people' => attributes[:people]&.map { |x| x&.to_gobl },
+          'addresses' => attributes[:addresses]&.map { |x| x&.to_gobl },
+          'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
+          'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
           'meta' => attributes[:meta]
         }
       end

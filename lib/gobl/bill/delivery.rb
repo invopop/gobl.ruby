@@ -20,7 +20,7 @@ module GOBL
 
       def to_gobl
         {
-          'receiver' => attributes[:receiver]
+          'receiver' => attributes[:receiver]&.to_gobl
         }
       end
     end

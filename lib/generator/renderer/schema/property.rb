@@ -5,6 +5,8 @@ class Generator
     module Schema
       # Property
       class Property
+        attr_accessor :ref_klass
+
         def initialize(schema, required: true)
           @schema = schema
           @required = required
