@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Dsig
-    class Signature < GOBL::Struct
+    class Signature < Dry::Struct
       # JSON Web Signature in compact form.
       attribute :value, GOBL::Types::String.optional
 

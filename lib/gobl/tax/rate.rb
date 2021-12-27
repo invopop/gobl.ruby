@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class Rate < GOBL::Struct
+    class Rate < Dry::Struct
       # From the available options for the region.
       attribute :cat, GOBL::Types::String
 

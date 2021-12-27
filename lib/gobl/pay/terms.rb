@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Pay
-    class Terms < GOBL::Struct
+    class Terms < Dry::Struct
       # Type of terms to be applied.
       attribute :code, GOBL::Types::String
 

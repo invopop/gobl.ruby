@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Currency
-    class ExchangeRate < GOBL::Struct
+    class ExchangeRate < Dry::Struct
       attribute :currency, GOBL::Types::String
 
       attribute :value, GOBL::Num::Amount

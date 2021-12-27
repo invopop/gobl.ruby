@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Item < GOBL::Struct
+    class Item < Dry::Struct
       # Unique identify of this item independent of the Supplier IDs
       attribute :uuid, GOBL::Types::String.optional
 

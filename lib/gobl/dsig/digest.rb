@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Dsig
-    class Digest < GOBL::Struct
+    class Digest < Dry::Struct
       attribute :alg, GOBL::Types::String
 
       attribute :val, GOBL::Types::String

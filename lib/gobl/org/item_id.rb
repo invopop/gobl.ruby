@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class ItemID < GOBL::Struct
+    class ItemID < Dry::Struct
       attribute :value, GOBL::Types::String
 
       def self.from_gobl!(gobl)

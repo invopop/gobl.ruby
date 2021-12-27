@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Discount < GOBL::Struct
+    class Discount < Dry::Struct
       attribute :rate, GOBL::Num::Percentage.optional
 
       # How much to deduct

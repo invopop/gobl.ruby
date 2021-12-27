@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Line < GOBL::Struct
+    class Line < Dry::Struct
       attribute :uuid, GOBL::Types::String.optional
 
       # Line number inside the invoice.

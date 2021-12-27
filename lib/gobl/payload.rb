@@ -4,8 +4,10 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
-  class Payload < GOBL::Struct
+  class Payload < Dry::Struct
     # Contents of the envelope
     attribute :value, GOBL::Types::Hash.optional
 

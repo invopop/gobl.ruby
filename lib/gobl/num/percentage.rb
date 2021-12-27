@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Num
-    class Percentage < GOBL::Struct
+    class Percentage < Dry::Struct
       # Similar to an Amount, but designed for percentages and includes % symbol in JSON output.
       attribute :value, GOBL::Types::String.optional
 

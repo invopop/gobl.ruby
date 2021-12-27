@@ -4,8 +4,10 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
-  class Envelope < GOBL::Struct
+  class Envelope < Dry::Struct
     # Details on what the contents are
     attribute :head, GOBL::Header
 

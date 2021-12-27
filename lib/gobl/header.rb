@@ -4,8 +4,10 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
-  class Header < GOBL::Struct
+  class Header < Dry::Struct
     # Unique UUIDv1 identifier for the envelope.
     attribute :uuid, GOBL::UUID::UUID
 

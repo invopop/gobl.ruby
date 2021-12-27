@@ -12,6 +12,8 @@ class Generator
           ## DO NOT EDIT - This file was generated automatically.
           ##
 
+          require 'dry-struct'
+
           class #{klass} < #{ancestor_class}
             #{attributes_string.join("\n")}
 
@@ -30,7 +32,7 @@ class Generator
       private
 
       def ancestor_class
-        'GOBL::Struct'
+        'Dry::Struct'
       end
 
       def fetch_object(ref)

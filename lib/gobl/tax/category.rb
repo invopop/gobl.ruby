@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class Category < GOBL::Struct
+    class Category < Dry::Struct
       attribute :code, GOBL::Types::String
 
       attribute :name, GOBL::I18n::String

@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class RateTotal < GOBL::Struct
+    class RateTotal < Dry::Struct
       attribute :code, GOBL::Types::String
 
       attribute :base, GOBL::Num::Amount

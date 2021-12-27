@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Invoice < GOBL::Struct
+    class Invoice < Dry::Struct
       # Unique document ID. Not required
       attribute :uuid, GOBL::UUID::UUID.optional
 

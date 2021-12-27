@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Num
-    class Amount < GOBL::Struct
+    class Amount < Dry::Struct
       # Quantity with optional decimal places that determine accuracy.
       attribute :value, GOBL::Types::String.optional
 

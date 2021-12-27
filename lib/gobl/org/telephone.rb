@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Telephone < GOBL::Struct
+    class Telephone < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for this number.

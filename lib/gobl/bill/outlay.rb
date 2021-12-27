@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Outlay < GOBL::Struct
+    class Outlay < Dry::Struct
       attribute :uuid, GOBL::Types::String.optional
 
       # Line number inside the invoice

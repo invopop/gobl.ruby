@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Ordering < GOBL::Struct
+    class Ordering < Dry::Struct
       # Party who is selling the goods and is not responsible for taxes.
       attribute :seller, GOBL::Org::Party.optional
 

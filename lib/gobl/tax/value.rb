@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class Value < GOBL::Struct
+    class Value < Dry::Struct
       # Date from which this value should be applied.
       attribute :since, GOBL::Org::Date.optional
 

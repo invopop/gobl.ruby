@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Pay
-    class URL < GOBL::Struct
+    class URL < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Full URL to be used for payment.

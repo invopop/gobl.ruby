@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Address < GOBL::Struct
+    class Address < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Useful identifier

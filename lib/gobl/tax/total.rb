@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class Total < GOBL::Struct
+    class Total < Dry::Struct
       attribute :categories, GOBL::Types::Array(GOBL::Tax::CategoryTotal).optional
 
       # Total value of all the taxes to be added or retained.

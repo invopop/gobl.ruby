@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Date < GOBL::Struct
+    class Date < Dry::Struct
       # Civil date in simplified ISO format, like 2021-05-26
       attribute :value, GOBL::Types::String.optional
 

@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Person < GOBL::Struct
+    class Person < Dry::Struct
       # Unique identity code
       attribute :uuid, GOBL::UUID::UUID.optional
 

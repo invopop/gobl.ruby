@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Preceding < GOBL::Struct
+    class Preceding < Dry::Struct
       # Preceding document's UUID if available can be useful for tracing.
       attribute :uuid, GOBL::UUID::UUID.optional
 

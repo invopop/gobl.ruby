@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Tax
-    class CategoryTotal < GOBL::Struct
+    class CategoryTotal < Dry::Struct
       attribute :code, GOBL::Types::String
 
       attribute :retained, GOBL::Types::Bool.optional

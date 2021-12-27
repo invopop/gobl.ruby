@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Totals < GOBL::Struct
+    class Totals < Dry::Struct
       # Sum of all line item sums
       attribute :sum, GOBL::Num::Amount
 

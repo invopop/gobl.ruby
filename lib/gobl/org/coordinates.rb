@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Org
-    class Coordinates < GOBL::Struct
+    class Coordinates < Dry::Struct
       # Decimal latitude coordinate.
       attribute :lat, GOBL::Types::Double.optional
 

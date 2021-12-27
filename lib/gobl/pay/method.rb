@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Pay
-    class Method < GOBL::Struct
+    class Method < Dry::Struct
       # Code for the method type that can be used.
       attribute :code, GOBL::Types::String
 

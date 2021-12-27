@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Note
-    class Message < GOBL::Struct
+    class Message < Dry::Struct
       # Summary of the message content.
       attribute :title, GOBL::Types::String.optional
 

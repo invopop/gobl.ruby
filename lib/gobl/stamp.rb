@@ -4,8 +4,10 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
-  class Stamp < GOBL::Struct
+  class Stamp < Dry::Struct
     # Identity of the agency used to create the stamp
     attribute :prv, GOBL::Types::String
 

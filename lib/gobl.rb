@@ -32,7 +32,9 @@ module GOBL
   # take into account the envelope type.
   class Envelope
     def self.from_json!(json)
-      instance = from_object!(JSON.parse(json))
+      return if json.nil?
+
+      instance = from_gobl!(JSON.parse(json))
 
       kls = GOBL.loader.fetch_object(instance.head.typ)
       instance.attributes[:doc] = kls.from_gobl!(instance.doc.value)

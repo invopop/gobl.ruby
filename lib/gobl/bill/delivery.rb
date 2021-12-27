@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Delivery < GOBL::Struct
+    class Delivery < Dry::Struct
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
       attribute :receiver, GOBL::Org::Party.optional
 

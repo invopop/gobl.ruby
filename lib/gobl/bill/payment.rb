@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Bill
-    class Payment < GOBL::Struct
+    class Payment < Dry::Struct
       # Payment terms or conditions.
       attribute :terms, GOBL::Pay::Terms.optional
 

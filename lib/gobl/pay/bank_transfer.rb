@@ -4,9 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'dry-struct'
+
 module GOBL
   module Pay
-    class BankTransfer < GOBL::Struct
+    class BankTransfer < Dry::Struct
       # International Bank Account Number
       attribute :iban, GOBL::Types::String.optional
 
