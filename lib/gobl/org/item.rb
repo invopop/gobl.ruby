@@ -6,32 +6,32 @@
 
 module GOBL
   module Org
-    class Item < Model::Struct
+    class Item < GOBL::Struct
       # Unique identify of this item independent of the Supplier IDs
-      attribute :uuid, Model::Types::String.optional
+      attribute :uuid, GOBL::Types::String.optional
 
-      attribute :name, Model::Types::String
+      attribute :name, GOBL::Types::String
 
-      attribute :desc, Model::Types::String.optional
+      attribute :desc, GOBL::Types::String.optional
 
       # Only required if this line has a different currency from the rest.
-      attribute :currency, Model::Types::String.optional
+      attribute :currency, GOBL::Types::String.optional
 
       # Price of item being sold.
       attribute :price, GOBL::Num::Amount
 
       # Code for unit of the item being sold
-      attribute :unit, Model::Types::String.optional
+      attribute :unit, GOBL::Types::String.optional
 
-      attribute :supplier_ids, Model::Types::Array(GOBL::Org::ItemID).optional
+      attribute :supplier_ids, GOBL::Types::Array(GOBL::Org::ItemID).optional
 
       # Country code of where this item was from originally.
-      attribute :origin, Model::Types::String.optional
+      attribute :origin, GOBL::Types::String.optional
 
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'],
@@ -46,6 +46,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid],
@@ -58,6 +62,10 @@ module GOBL
           'origin' => attributes[:origin],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

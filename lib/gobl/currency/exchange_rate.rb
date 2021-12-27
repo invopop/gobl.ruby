@@ -6,13 +6,13 @@
 
 module GOBL
   module Currency
-    class ExchangeRate < Model::Struct
-      attribute :currency, Model::Types::String
+    class ExchangeRate < GOBL::Struct
+      attribute :currency, GOBL::Types::String
 
       attribute :value, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           currency: gobl['currency'],
@@ -20,11 +20,19 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'currency' => attributes[:currency],
           'value' => attributes[:value]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

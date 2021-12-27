@@ -6,18 +6,18 @@
 
 module GOBL
   module Pay
-    class BankTransfer < Model::Struct
+    class BankTransfer < GOBL::Struct
       # International Bank Account Number
-      attribute :iban, Model::Types::String.optional
+      attribute :iban, GOBL::Types::String.optional
 
       # Bank Identifier Code used for international transfers.
-      attribute :bic, Model::Types::String.optional
+      attribute :bic, GOBL::Types::String.optional
 
       # Account number
-      attribute :number, Model::Types::String.optional
+      attribute :number, GOBL::Types::String.optional
 
       # Name of the bank.
-      attribute :name, Model::Types::String.optional
+      attribute :name, GOBL::Types::String.optional
 
       # Bank office branch address
       attribute :branch, GOBL::Org::Address.optional
@@ -26,10 +26,10 @@ module GOBL
       attribute :notes, GOBL::I18n::String.optional
 
       # Non-structured additional data that may be useful.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           iban: gobl['iban'],
@@ -42,6 +42,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'iban' => attributes[:iban],
@@ -52,6 +56,10 @@ module GOBL
           'notes' => attributes[:notes]&.to_gobl,
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

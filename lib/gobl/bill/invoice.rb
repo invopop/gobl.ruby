@@ -6,24 +6,24 @@
 
 module GOBL
   module Bill
-    class Invoice < Model::Struct
+    class Invoice < GOBL::Struct
       # Unique document ID. Not required
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Sequential code used to identify this invoice in tax declarations.
-      attribute :code, Model::Types::String
+      attribute :code, GOBL::Types::String
 
       # Functional type of the invoice
-      attribute :type_code, Model::Types::String.optional
+      attribute :type_code, GOBL::Types::String.optional
 
       # Currency for all invoice totals.
-      attribute :currency, Model::Types::String
+      attribute :currency, GOBL::Types::String
 
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      attribute :rates, Model::Types::Array(GOBL::Currency::ExchangeRate).optional
+      attribute :rates, GOBL::Types::Array(GOBL::Currency::ExchangeRate).optional
 
       # When true
-      attribute :prices_include_tax, Model::Types::Bool.optional
+      attribute :prices_include_tax, GOBL::Types::Bool.optional
 
       # Key information regarding a previous invoice.
       attribute :preceding, GOBL::Bill::Preceding.optional
@@ -44,10 +44,10 @@ module GOBL
       attribute :customer, GOBL::Org::Party.optional
 
       # The items sold to the customer.
-      attribute :lines, Model::Types::Array(GOBL::Bill::Line).optional
+      attribute :lines, GOBL::Types::Array(GOBL::Bill::Line).optional
 
       # Expenses paid for by the supplier but invoiced directly to the customer.
-      attribute :outlays, Model::Types::Array(GOBL::Bill::Outlay).optional
+      attribute :outlays, GOBL::Types::Array(GOBL::Bill::Outlay).optional
 
       attribute :totals, GOBL::Bill::Totals
 
@@ -58,13 +58,13 @@ module GOBL
       attribute :delivery, GOBL::Bill::Delivery.optional
 
       # Unstructured information that is relevant to the invoice
-      attribute :notes, Model::Types::String.optional
+      attribute :notes, GOBL::Types::String.optional
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -90,6 +90,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -113,6 +117,10 @@ module GOBL
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

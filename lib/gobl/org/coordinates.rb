@@ -6,21 +6,21 @@
 
 module GOBL
   module Org
-    class Coordinates < Model::Struct
+    class Coordinates < GOBL::Struct
       # Decimal latitude coordinate.
-      attribute :lat, Model::Types::Double.optional
+      attribute :lat, GOBL::Types::Double.optional
 
       # Decimal longitude coordinate.
-      attribute :lon, Model::Types::Double.optional
+      attribute :lon, GOBL::Types::Double.optional
 
       # Text coordinates compose of three words.
-      attribute :w3w, Model::Types::String.optional
+      attribute :w3w, GOBL::Types::String.optional
 
       # Single string coordinate based on geohash standard.
-      attribute :geohash, Model::Types::String.optional
+      attribute :geohash, GOBL::Types::String.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           lat: gobl['lat'],
@@ -30,6 +30,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'lat' => attributes[:lat],
@@ -37,6 +41,10 @@ module GOBL
           'w3w' => attributes[:w3w],
           'geohash' => attributes[:geohash]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

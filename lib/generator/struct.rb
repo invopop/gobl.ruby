@@ -6,9 +6,9 @@ require 'json-schema'
 require_relative '../utils'
 require_relative 'struct_object'
 
-module Model
+class Generator
   # Struct - Abstract class that represents the common behaviour of a
-  # dynamically defined GoBL class.
+  # dynamically defined class.
   class Struct < StructObject
     extend Utils
 

@@ -12,12 +12,13 @@ class Generator
           ## DO NOT EDIT - This file was generated automatically.
           ##
 
-          class #{klass} < #{klass.ancestors[1]}
+          class #{klass} < #{ancestor_class}
             #{attributes_string.join("\n")}
 
             #{from_gobl_method}
-
+            #{from_json_method}
             #{to_gobl_method}
+            #{to_json_method}
           end
         )
       end
@@ -27,6 +28,10 @@ class Generator
       end
 
       private
+
+      def ancestor_class
+        'GOBL::Struct'
+      end
 
       def fetch_object(ref)
         return if ref.nil?
@@ -66,9 +71,9 @@ class Generator
           if type.ref?
             type.value.to_s
           elsif type.array?
-            "Model::Types::Array(#{property_as_type(property.items)})"
+            "GOBL::Types::Array(#{property_as_type(property.items)})"
           else
-            "Model::Types::#{from_json_schema_type(type.value)}"
+            "GOBL::Types::#{from_json_schema_type(type.value)}"
           end
         end
       end
@@ -107,6 +112,22 @@ class Generator
 
       def to_gobl_method
         @to_gobl_method ||= ToGoblMethod.new(is_value: !attributes?)
+      end
+
+      def from_json_method
+        %(
+          def self.from_json!(json)
+            from_gobl!(JSON.parse(json))
+          end
+        )
+      end
+
+      def to_json_method
+        %(
+          def to_json(options = nil)
+            JSON.generate(to_gobl, options)
+          end
+        )
       end
     end
   end

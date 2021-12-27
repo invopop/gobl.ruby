@@ -6,23 +6,23 @@
 
 module GOBL
   module Bill
-    class Outlay < Model::Struct
-      attribute :uuid, Model::Types::String.optional
+    class Outlay < GOBL::Struct
+      attribute :uuid, GOBL::Types::String.optional
 
       # Line number inside the invoice
-      attribute :i, Model::Types::Int
+      attribute :i, GOBL::Types::Int
 
       # A code
-      attribute :ref, Model::Types::String.optional
+      attribute :ref, GOBL::Types::String.optional
 
       # Details on what the outlay was.
-      attribute :desc, Model::Types::String
+      attribute :desc, GOBL::Types::String
 
       # Amount paid by the supplier.
       attribute :paid, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'],
@@ -33,6 +33,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid],
@@ -41,6 +45,10 @@ module GOBL
           'desc' => attributes[:desc],
           'paid' => attributes[:paid]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

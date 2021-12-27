@@ -6,20 +6,20 @@
 
 module GOBL
   module Tax
-    class Category < Model::Struct
-      attribute :code, Model::Types::String
+    class Category < GOBL::Struct
+      attribute :code, GOBL::Types::String
 
       attribute :name, GOBL::I18n::String
 
       attribute :desc, GOBL::I18n::String.optional
 
       # This tax should be retained
-      attribute :retained, Model::Types::Bool.optional
+      attribute :retained, GOBL::Types::Bool.optional
 
-      attribute :defs, Model::Types::Array(GOBL::Tax::Def)
+      attribute :defs, GOBL::Types::Array(GOBL::Tax::Def)
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -30,6 +30,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
@@ -38,6 +42,10 @@ module GOBL
           'retained' => attributes[:retained],
           'defs' => attributes[:defs]&.map { |x| x&.to_gobl }
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,20 +6,20 @@
 
 module GOBL
   module Pay
-    class URL < Model::Struct
+    class URL < GOBL::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Full URL to be used for payment.
-      attribute :addr, Model::Types::String
+      attribute :addr, GOBL::Types::String
 
       # Additional details which may be useful to the end-user.
-      attribute :notes, Model::Types::String.optional
+      attribute :notes, GOBL::Types::String.optional
 
       # Semi-structured additional data.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -29,6 +29,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -36,6 +40,10 @@ module GOBL
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

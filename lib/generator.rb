@@ -2,7 +2,6 @@
 
 require 'forwardable'
 
-require_relative 'model'
 require_relative 'catalog'
 
 # Generator - Helper class to export Ruby structures from a JSON schema.
@@ -40,7 +39,7 @@ class Generator
     namespace, class_name = catalog.object_name(name)
     return if namespace.const_defined?(class_name, false)
 
-    nc = Class.new(Model::Struct) do
+    nc = Class.new(Generator::Struct) do
       init_class(sub_schema)
       define_props
       expand_references(parent_schema)
@@ -51,3 +50,4 @@ class Generator
 end
 
 require_relative 'generator/exporter'
+require_relative 'generator/struct'

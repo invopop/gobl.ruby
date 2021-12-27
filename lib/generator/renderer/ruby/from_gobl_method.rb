@@ -53,7 +53,7 @@ class Generator
         end
 
         def variable_assigment
-          "#{PARAM_NAME} = Model::Types::Hash[#{PARAM_NAME}]" unless value?
+          "#{PARAM_NAME} = GOBL::Types::Hash[#{PARAM_NAME}]" unless value?
         end
 
         def properties_as_string

@@ -6,11 +6,11 @@
 
 module GOBL
   module Bill
-    class Line < Model::Struct
-      attribute :uuid, Model::Types::String.optional
+    class Line < GOBL::Struct
+      attribute :uuid, GOBL::Types::String.optional
 
       # Line number inside the invoice.
-      attribute :i, Model::Types::Int
+      attribute :i, GOBL::Types::Int
 
       attribute :quantity, GOBL::Num::Amount
 
@@ -23,13 +23,13 @@ module GOBL
       attribute :discount, GOBL::Org::Discount.optional
 
       # List of taxes to be applied to the line in the invoice totals.
-      attribute :taxes, Model::Types::Array(GOBL::Tax::Rate).optional
+      attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
 
       # Total line amount after applying discounts to the sum.
       attribute :total, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'],
@@ -43,6 +43,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid],
@@ -54,6 +58,10 @@ module GOBL
           'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
           'total' => attributes[:total]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

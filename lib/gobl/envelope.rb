@@ -5,7 +5,7 @@
 ##
 
 module GOBL
-  class Envelope < Model::Struct
+  class Envelope < GOBL::Struct
     # Details on what the contents are
     attribute :head, GOBL::Header
 
@@ -13,10 +13,10 @@ module GOBL
     attribute :doc, GOBL::Payload
 
     # JSON Web Signatures of the header
-    attribute :sigs, Model::Types::Array(GOBL::Dsig::Signature)
+    attribute :sigs, GOBL::Types::Array(GOBL::Dsig::Signature)
 
     def self.from_gobl!(gobl)
-      gobl = Model::Types::Hash[gobl]
+      gobl = GOBL::Types::Hash[gobl]
 
       new(
         head: GOBL::Header.from_gobl!(gobl['head']),
@@ -25,12 +25,20 @@ module GOBL
       )
     end
 
+    def self.from_json!(json)
+      from_gobl!(JSON.parse(json))
+    end
+
     def to_gobl
       {
         'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc]&.to_gobl,
         'sigs' => attributes[:sigs]&.map { |x| x&.to_gobl }
       }
+    end
+
+    def to_json(options = nil)
+      JSON.generate(to_gobl, options)
     end
   end
 end

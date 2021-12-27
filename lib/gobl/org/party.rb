@@ -6,7 +6,7 @@
 
 module GOBL
   module Org
-    class Party < Model::Struct
+    class Party < GOBL::Struct
       # Unique identity code.
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -14,26 +14,26 @@ module GOBL
       attribute :tax_id, GOBL::Org::TaxID.optional
 
       # Legal name or representation of the organization.
-      attribute :name, Model::Types::String
+      attribute :name, GOBL::Types::String
 
       # Alternate short name.
-      attribute :alias, Model::Types::String.optional
+      attribute :alias, GOBL::Types::String.optional
 
       # Details of physical people who represent the party.
-      attribute :people, Model::Types::Array(GOBL::Org::Person).optional
+      attribute :people, GOBL::Types::Array(GOBL::Org::Person).optional
 
       # Regular post addresses for where information should be sent if needed.
-      attribute :addresses, Model::Types::Array(GOBL::Org::Address).optional
+      attribute :addresses, GOBL::Types::Array(GOBL::Org::Address).optional
 
-      attribute :emails, Model::Types::Array(GOBL::Org::Email).optional
+      attribute :emails, GOBL::Types::Array(GOBL::Org::Email).optional
 
-      attribute :telephones, Model::Types::Array(GOBL::Org::Telephone).optional
+      attribute :telephones, GOBL::Types::Array(GOBL::Org::Telephone).optional
 
       # Any additional non-structure information that does not fit into the rest of the document.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -48,6 +48,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -60,6 +64,10 @@ module GOBL
           'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

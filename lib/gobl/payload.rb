@@ -5,9 +5,9 @@
 ##
 
 module GOBL
-  class Payload < Model::Struct
+  class Payload < GOBL::Struct
     # Contents of the envelope
-    attribute :value, Model::Types::Hash.optional
+    attribute :value, GOBL::Types::Hash.optional
 
     def self.from_gobl!(gobl)
       new(
@@ -15,8 +15,16 @@ module GOBL
       )
     end
 
+    def self.from_json!(json)
+      from_gobl!(JSON.parse(json))
+    end
+
     def to_gobl
       value
+    end
+
+    def to_json(options = nil)
+      JSON.generate(to_gobl, options)
     end
   end
 end

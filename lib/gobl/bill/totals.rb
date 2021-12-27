@@ -6,7 +6,7 @@
 
 module GOBL
   module Bill
-    class Totals < Model::Struct
+    class Totals < GOBL::Struct
       # Sum of all line item sums
       attribute :sum, GOBL::Num::Amount
 
@@ -26,7 +26,7 @@ module GOBL
       attribute :payable, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           sum: GOBL::Num::Amount.from_gobl!(gobl['sum']),
@@ -38,6 +38,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'sum' => attributes[:sum]&.to_gobl,
@@ -47,6 +51,10 @@ module GOBL
           'outlays' => attributes[:outlays]&.to_gobl,
           'payable' => attributes[:payable]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

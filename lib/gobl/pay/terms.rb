@@ -6,15 +6,15 @@
 
 module GOBL
   module Pay
-    class Terms < Model::Struct
+    class Terms < GOBL::Struct
       # Type of terms to be applied.
-      attribute :code, Model::Types::String
+      attribute :code, GOBL::Types::String
 
       # Description of the conditions for payment.
       attribute :notes, GOBL::I18n::String.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -22,11 +22,19 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
           'notes' => attributes[:notes]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

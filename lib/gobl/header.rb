@@ -5,36 +5,36 @@
 ##
 
 module GOBL
-  class Header < Model::Struct
+  class Header < GOBL::Struct
     # Unique UUIDv1 identifier for the envelope.
     attribute :uuid, GOBL::UUID::UUID
 
     # Body type of the document contents.
-    attribute :typ, Model::Types::String
+    attribute :typ, GOBL::Types::String
 
     # Code for the region the document should be validated with.
-    attribute :rgn, Model::Types::String
+    attribute :rgn, GOBL::Types::String
 
     # Digest of the canonical JSON body.
     attribute :dig, GOBL::Dsig::Digest
 
     # Seals of approval from other organisations.
-    attribute :stamps, Model::Types::Array(GOBL::Stamp).optional
+    attribute :stamps, GOBL::Types::Array(GOBL::Stamp).optional
 
     # Set of labels that describe but have no influence on the data.
-    attribute :tags, Model::Types::Array(Model::Types::String).optional
+    attribute :tags, GOBL::Types::Array(GOBL::Types::String).optional
 
     # Additional semi-structured information about this envelope.
-    attribute :meta, Model::Types::Hash.optional
+    attribute :meta, GOBL::Types::Hash.optional
 
     # Any information that may be relevant to other humans about this envelope.
-    attribute :notes, Model::Types::String.optional
+    attribute :notes, GOBL::Types::String.optional
 
     # When true
-    attribute :draft, Model::Types::Bool.optional
+    attribute :draft, GOBL::Types::Bool.optional
 
     def self.from_gobl!(gobl)
-      gobl = Model::Types::Hash[gobl]
+      gobl = GOBL::Types::Hash[gobl]
 
       new(
         uuid: GOBL::UUID::UUID.from_gobl!(gobl['uuid']),
@@ -49,6 +49,10 @@ module GOBL
       )
     end
 
+    def self.from_json!(json)
+      from_gobl!(JSON.parse(json))
+    end
+
     def to_gobl
       {
         'uuid' => attributes[:uuid]&.to_gobl,
@@ -61,6 +65,10 @@ module GOBL
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]
       }
+    end
+
+    def to_json(options = nil)
+      JSON.generate(to_gobl, options)
     end
   end
 end

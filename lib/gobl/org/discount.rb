@@ -6,20 +6,20 @@
 
 module GOBL
   module Org
-    class Discount < Model::Struct
+    class Discount < GOBL::Struct
       attribute :rate, GOBL::Num::Percentage.optional
 
       # How much to deduct
       attribute :value, GOBL::Num::Amount
 
       # Description as to why this discount was applied.
-      attribute :reason, Model::Types::String.optional
+      attribute :reason, GOBL::Types::String.optional
 
       # Reason Code
-      attribute :code, Model::Types::String.optional
+      attribute :code, GOBL::Types::String.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           rate: gobl['rate'] ? GOBL::Num::Percentage.from_gobl!(gobl['rate']) : nil,
@@ -29,6 +29,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'rate' => attributes[:rate]&.to_gobl,
@@ -36,6 +40,10 @@ module GOBL
           'reason' => attributes[:reason],
           'code' => attributes[:code]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

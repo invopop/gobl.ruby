@@ -2,7 +2,7 @@
 
 require 'dry-types'
 
-module Model
+module GOBL
   # Types - Global set of types
   module Types
     include Dry.Types()

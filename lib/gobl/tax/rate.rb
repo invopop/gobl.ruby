@@ -6,15 +6,15 @@
 
 module GOBL
   module Tax
-    class Rate < Model::Struct
+    class Rate < GOBL::Struct
       # From the available options for the region.
-      attribute :cat, Model::Types::String
+      attribute :cat, GOBL::Types::String
 
       # As defined for the region and category.
-      attribute :code, Model::Types::String
+      attribute :code, GOBL::Types::String
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           cat: gobl['cat'],
@@ -22,11 +22,19 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'cat' => attributes[:cat],
           'code' => attributes[:code]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

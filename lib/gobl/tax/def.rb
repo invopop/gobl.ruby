@@ -6,18 +6,18 @@
 
 module GOBL
   module Tax
-    class Def < Model::Struct
-      attribute :code, Model::Types::String
+    class Def < GOBL::Struct
+      attribute :code, GOBL::Types::String
 
       attribute :name, GOBL::I18n::String
 
       attribute :desc, GOBL::I18n::String.optional
 
       # Set of values ordered by date that determine what rates to apply since when.
-      attribute :values, Model::Types::Array(GOBL::Tax::Value)
+      attribute :values, GOBL::Types::Array(GOBL::Tax::Value)
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -27,6 +27,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
@@ -34,6 +38,10 @@ module GOBL
           'desc' => attributes[:desc]&.to_gobl,
           'values' => attributes[:values]&.map { |x| x&.to_gobl }
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,52 +6,52 @@
 
 module GOBL
   module Org
-    class Address < Model::Struct
+    class Address < GOBL::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Useful identifier
-      attribute :label, Model::Types::String.optional
+      attribute :label, GOBL::Types::String.optional
 
       # Box number or code for the post office box located at the address.
-      attribute :po_box, Model::Types::String.optional
+      attribute :po_box, GOBL::Types::String.optional
 
       # House or building number in the street.
-      attribute :num, Model::Types::String.optional
+      attribute :num, GOBL::Types::String.optional
 
       # Floor number within the building.
-      attribute :floor, Model::Types::String.optional
+      attribute :floor, GOBL::Types::String.optional
 
       # Block number within the building.
-      attribute :block, Model::Types::String.optional
+      attribute :block, GOBL::Types::String.optional
 
       # Door number within the building.
-      attribute :door, Model::Types::String.optional
+      attribute :door, GOBL::Types::String.optional
 
       # Fist line of street.
-      attribute :street, Model::Types::String.optional
+      attribute :street, GOBL::Types::String.optional
 
       # Additional street address details.
-      attribute :street_extra, Model::Types::String.optional
+      attribute :street_extra, GOBL::Types::String.optional
 
       # The village
-      attribute :locality, Model::Types::String
+      attribute :locality, GOBL::Types::String
 
       # Province
-      attribute :region, Model::Types::String
+      attribute :region, GOBL::Types::String
 
       # Post or ZIP code.
-      attribute :code, Model::Types::String.optional
+      attribute :code, GOBL::Types::String.optional
 
       # ISO country code.
-      attribute :country, Model::Types::String.optional
+      attribute :country, GOBL::Types::String.optional
 
       # For when the postal address is not sufficient
       attribute :coords, GOBL::Org::Coordinates.optional
 
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -72,6 +72,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -90,6 +94,10 @@ module GOBL
           'coords' => attributes[:coords]&.to_gobl,
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

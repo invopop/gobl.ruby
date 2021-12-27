@@ -6,9 +6,9 @@
 
 module GOBL
   module Num
-    class Percentage < Model::Struct
+    class Percentage < GOBL::Struct
       # Similar to an Amount, but designed for percentages and includes % symbol in JSON output.
-      attribute :value, Model::Types::String.optional
+      attribute :value, GOBL::Types::String.optional
 
       def self.from_gobl!(gobl)
         new(
@@ -16,8 +16,16 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         value
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

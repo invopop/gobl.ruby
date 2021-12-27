@@ -6,7 +6,7 @@
 
 module GOBL
   module Tax
-    class Value < Model::Struct
+    class Value < GOBL::Struct
       # Date from which this value should be applied.
       attribute :since, GOBL::Org::Date.optional
 
@@ -14,10 +14,10 @@ module GOBL
       attribute :percent, GOBL::Num::Percentage
 
       # When true
-      attribute :disabled, Model::Types::Bool.optional
+      attribute :disabled, GOBL::Types::Bool.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           since: gobl['since'] ? GOBL::Org::Date.from_gobl!(gobl['since']) : nil,
@@ -26,12 +26,20 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'since' => attributes[:since]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
           'disabled' => attributes[:disabled]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

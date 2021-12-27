@@ -6,20 +6,20 @@
 
 module GOBL
   module Org
-    class Email < Model::Struct
+    class Email < GOBL::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for the email.
-      attribute :label, Model::Types::String.optional
+      attribute :label, GOBL::Types::String.optional
 
       # Electronic mailing address.
-      attribute :addr, Model::Types::String
+      attribute :addr, GOBL::Types::String
 
       # Additional fields.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -29,6 +29,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -36,6 +40,10 @@ module GOBL
           'addr' => attributes[:addr],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

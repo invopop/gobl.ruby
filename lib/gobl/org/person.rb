@@ -6,7 +6,7 @@
 
 module GOBL
   module Org
-    class Person < Model::Struct
+    class Person < GOBL::Struct
       # Unique identity code
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -14,16 +14,16 @@ module GOBL
       attribute :name, GOBL::Org::Name
 
       # What they do within an organization
-      attribute :role, Model::Types::String.optional
+      attribute :role, GOBL::Types::String.optional
 
       # Electronic mail addresses that belong to the person.
-      attribute :emails, Model::Types::Array(GOBL::Org::Email).optional
+      attribute :emails, GOBL::Types::Array(GOBL::Org::Email).optional
 
       # Data about the data.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -34,6 +34,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -42,6 +46,10 @@ module GOBL
           'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

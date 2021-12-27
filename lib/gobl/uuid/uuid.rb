@@ -6,9 +6,9 @@
 
 module GOBL
   module UUID
-    class UUID < Model::Struct
+    class UUID < GOBL::Struct
       # Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.
-      attribute :value, Model::Types::String.optional
+      attribute :value, GOBL::Types::String.optional
 
       def self.from_gobl!(gobl)
         new(
@@ -16,8 +16,16 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         value
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

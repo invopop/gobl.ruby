@@ -6,31 +6,31 @@
 
 module GOBL
   module Org
-    class Name < Model::Struct
+    class Name < GOBL::Struct
       # Unique identity code
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # What the person would like to be called
-      attribute :alias, Model::Types::String.optional
+      attribute :alias, GOBL::Types::String.optional
 
-      attribute :prefix, Model::Types::String.optional
+      attribute :prefix, GOBL::Types::String.optional
 
       # The person's given name
-      attribute :given, Model::Types::String
+      attribute :given, GOBL::Types::String
 
       # Middle names or initials
-      attribute :middle, Model::Types::String.optional
+      attribute :middle, GOBL::Types::String.optional
 
-      attribute :surname, Model::Types::String
+      attribute :surname, GOBL::Types::String
 
-      attribute :surname2, Model::Types::String.optional
+      attribute :surname2, GOBL::Types::String.optional
 
-      attribute :suffix, Model::Types::String.optional
+      attribute :suffix, GOBL::Types::String.optional
 
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
@@ -45,6 +45,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -57,6 +61,10 @@ module GOBL
           'suffix' => attributes[:suffix],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,15 +6,15 @@
 
 module GOBL
   module Tax
-    class Region < Model::Struct
-      attribute :code, Model::Types::String
+    class Region < GOBL::Struct
+      attribute :code, GOBL::Types::String
 
       attribute :name, GOBL::I18n::String
 
-      attribute :categories, Model::Types::Array(GOBL::Tax::Category)
+      attribute :categories, GOBL::Types::Array(GOBL::Tax::Category)
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -23,12 +23,20 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
           'name' => attributes[:name]&.to_gobl,
           'categories' => attributes[:categories]&.map { |x| x&.to_gobl }
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

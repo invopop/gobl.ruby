@@ -6,13 +6,13 @@
 
 module GOBL
   module Dsig
-    class Digest < Model::Struct
-      attribute :alg, Model::Types::String
+    class Digest < GOBL::Struct
+      attribute :alg, GOBL::Types::String
 
-      attribute :val, Model::Types::String
+      attribute :val, GOBL::Types::String
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           alg: gobl['alg'],
@@ -20,11 +20,19 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'alg' => attributes[:alg],
           'val' => attributes[:val]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

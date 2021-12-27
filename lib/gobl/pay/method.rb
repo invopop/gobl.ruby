@@ -6,9 +6,9 @@
 
 module GOBL
   module Pay
-    class Method < Model::Struct
+    class Method < GOBL::Struct
       # Code for the method type that can be used.
-      attribute :code, Model::Types::String
+      attribute :code, GOBL::Types::String
 
       # Details on how to pay using a bank transfer or wire.
       attribute :bank_transfer, GOBL::Pay::BankTransfer.optional
@@ -17,13 +17,13 @@ module GOBL
       attribute :url, GOBL::Pay::URL.optional
 
       # Additional details related to this payment method.
-      attribute :notes, Model::Types::String.optional
+      attribute :notes, GOBL::Types::String.optional
 
       # Additional non-structure data.
-      attribute :meta, Model::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -34,6 +34,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
@@ -42,6 +46,10 @@ module GOBL
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

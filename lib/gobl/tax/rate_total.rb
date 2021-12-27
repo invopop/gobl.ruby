@@ -6,8 +6,8 @@
 
 module GOBL
   module Tax
-    class RateTotal < Model::Struct
-      attribute :code, Model::Types::String
+    class RateTotal < GOBL::Struct
+      attribute :code, GOBL::Types::String
 
       attribute :base, GOBL::Num::Amount
 
@@ -16,7 +16,7 @@ module GOBL
       attribute :value, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
-        gobl = Model::Types::Hash[gobl]
+        gobl = GOBL::Types::Hash[gobl]
 
         new(
           code: gobl['code'],
@@ -26,6 +26,10 @@ module GOBL
         )
       end
 
+      def self.from_json!(json)
+        from_gobl!(JSON.parse(json))
+      end
+
       def to_gobl
         {
           'code' => attributes[:code],
@@ -33,6 +37,10 @@ module GOBL
           'percent' => attributes[:percent]&.to_gobl,
           'value' => attributes[:value]&.to_gobl
         }
+      end
+
+      def to_json(options = nil)
+        JSON.generate(to_gobl, options)
       end
     end
   end

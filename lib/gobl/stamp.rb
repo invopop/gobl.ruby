@@ -5,15 +5,15 @@
 ##
 
 module GOBL
-  class Stamp < Model::Struct
+  class Stamp < GOBL::Struct
     # Identity of the agency used to create the stamp
-    attribute :prv, Model::Types::String
+    attribute :prv, GOBL::Types::String
 
     # The serialized stamp value generated for or by the external agency
-    attribute :val, Model::Types::String
+    attribute :val, GOBL::Types::String
 
     def self.from_gobl!(gobl)
-      gobl = Model::Types::Hash[gobl]
+      gobl = GOBL::Types::Hash[gobl]
 
       new(
         prv: gobl['prv'],
@@ -21,11 +21,19 @@ module GOBL
       )
     end
 
+    def self.from_json!(json)
+      from_gobl!(JSON.parse(json))
+    end
+
     def to_gobl
       {
         'prv' => attributes[:prv],
         'val' => attributes[:val]
       }
+    end
+
+    def to_json(options = nil)
+      JSON.generate(to_gobl, options)
     end
   end
 end
