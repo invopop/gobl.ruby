@@ -10,26 +10,25 @@ schema definition.
 
 ## `lib`
 
-Gem's core structures are defined in this directory, also the auto-generated
-ones.
+Gem auto-generated and other structures are defined in this directory.
 
 ### `lib/gobl`
 
 All the auto-generated files are defined here. Nothing shouldn't be edited, or
 alter, manually.
 
-### `lib/catalog`
+### `app/catalog`
 
 The `Catalog` is a useful structure to handle the schemas, names and
 relations among the GoBL objects. It is used by the generator and loader.
 
-### `lib/generator`
+### `app/generator`
 
 This class defines all the structures to generate the gem. The
 `Generator::Exporter` and `Generator::Renderer` are core structures to
 auto-generate, render and export Ruby object into files.
 
-### `lib/loader`
+### `app/loader`
 
 This class defines all the structures to load the gem, using internally the gem
 `Zeitwerk`. Also, it uses the `Catalog` to patch the auto-generated classes
