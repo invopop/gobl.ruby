@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'loader'
+require_relative '../app/loader'
 
 # GOBL - Main namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL

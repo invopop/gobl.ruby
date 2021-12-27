@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../lib/generator'
+require_relative '../app/generator'
 
 generator = Generator.new(schema_dir: 'schema', lang: 'ruby')
 
