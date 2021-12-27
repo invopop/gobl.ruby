@@ -9,6 +9,9 @@ require 'dry-struct'
 module GOBL
   module Org
     class Party < Dry::Struct
+      # Internal ID used to identify the party inside a document.
+      attribute :id, GOBL::Types::String.optional
+
       # Unique identity code.
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -31,13 +34,17 @@ module GOBL
 
       attribute :telephones, GOBL::Types::Array(GOBL::Org::Telephone).optional
 
-      # Any additional non-structure information that does not fit into the rest of the document.
+      # Additional registration details about the company that may need to be included in a document.
+      attribute :registration, GOBL::Org::Registration.optional
+
+      # Any additional semi-structured information that does not fit into the rest of the party.
       attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
 
         new(
+          id: gobl['id'],
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           tax_id: gobl['tax_id'] ? GOBL::Org::TaxID.from_gobl!(gobl['tax_id']) : nil,
           name: gobl['name'],
@@ -46,6 +53,7 @@ module GOBL
           addresses: gobl['addresses']&.map { |x| GOBL::Org::Address.from_gobl!(x) },
           emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
           telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
+          registration: gobl['registration'] ? GOBL::Org::Registration.from_gobl!(gobl['registration']) : nil,
           meta: gobl['meta']
         )
       end
@@ -56,6 +64,7 @@ module GOBL
 
       def to_gobl
         {
+          'id' => attributes[:id],
           'uuid' => attributes[:uuid]&.to_gobl,
           'tax_id' => attributes[:tax_id]&.to_gobl,
           'name' => attributes[:name],
@@ -64,6 +73,7 @@ module GOBL
           'addresses' => attributes[:addresses]&.map { |x| x&.to_gobl },
           'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
+          'registration' => attributes[:registration]&.to_gobl,
           'meta' => attributes[:meta]
         }
       end

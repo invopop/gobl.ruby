@@ -9,6 +9,7 @@ require 'dry-struct'
 module GOBL
   module Tax
     class Def < Dry::Struct
+      # Code identifies this rate within the system
       attribute :code, GOBL::Types::String
 
       attribute :name, GOBL::I18n::String

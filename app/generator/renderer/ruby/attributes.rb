@@ -12,7 +12,7 @@ class Generator
         def to_s
           properties.to_a.map do |name, property|
             %(
-              # #{property.description}
+              # #{property.description&.split&.join(' ')}
               attribute :#{name}, #{property_as_type(property)}
             )
           end.join("\n")

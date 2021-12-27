@@ -10,7 +10,7 @@ module GOBL
   module I18n
     class String < Dry::Struct
       # Map of 2-Letter language codes to their translations.
-      attribute :value, (GOBL::Types::Hash | GOBL::Types::Nil)
+      attribute :value, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         new(

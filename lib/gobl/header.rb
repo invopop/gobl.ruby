@@ -29,10 +29,10 @@ module GOBL
     # Additional semi-structured information about this envelope.
     attribute :meta, GOBL::Types::Hash.optional
 
-    # Any information that may be relevant to other humans about this envelope.
+    # Any information that may be relevant to other humans about this envelope
     attribute :notes, GOBL::Types::String.optional
 
-    # When true
+    # When true, implies that this document should not be considered final. Digital signatures are optional.
     attribute :draft, GOBL::Types::Bool.optional
 
     def self.from_gobl!(gobl)

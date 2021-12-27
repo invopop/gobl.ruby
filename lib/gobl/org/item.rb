@@ -12,6 +12,9 @@ module GOBL
       # Unique identify of this item independent of the Supplier IDs
       attribute :uuid, GOBL::Types::String.optional
 
+      # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
+      attribute :ref, GOBL::Types::String.optional
+
       attribute :name, GOBL::Types::String
 
       attribute :desc, GOBL::Types::String.optional
@@ -25,7 +28,8 @@ module GOBL
       # Code for unit of the item being sold
       attribute :unit, GOBL::Types::String.optional
 
-      attribute :supplier_ids, GOBL::Types::Array(GOBL::Org::ItemID).optional
+      # List of additional codes
+      attribute :codes, GOBL::Types::Array(GOBL::Org::ItemCode).optional
 
       # Country code of where this item was from originally.
       attribute :origin, GOBL::Types::String.optional
@@ -37,12 +41,13 @@ module GOBL
 
         new(
           uuid: gobl['uuid'],
+          ref: gobl['ref'],
           name: gobl['name'],
           desc: gobl['desc'],
           currency: gobl['currency'],
           price: GOBL::Num::Amount.from_gobl!(gobl['price']),
           unit: gobl['unit'],
-          supplier_ids: gobl['supplier_ids']&.map { |x| GOBL::Org::ItemID.from_gobl!(x) },
+          codes: gobl['codes']&.map { |x| GOBL::Org::ItemCode.from_gobl!(x) },
           origin: gobl['origin'],
           meta: gobl['meta']
         )
@@ -55,12 +60,13 @@ module GOBL
       def to_gobl
         {
           'uuid' => attributes[:uuid],
+          'ref' => attributes[:ref],
           'name' => attributes[:name],
           'desc' => attributes[:desc],
           'currency' => attributes[:currency],
           'price' => attributes[:price]&.to_gobl,
           'unit' => attributes[:unit],
-          'supplier_ids' => attributes[:supplier_ids]&.map { |x| x&.to_gobl },
+          'codes' => attributes[:codes]&.map { |x| x&.to_gobl },
           'origin' => attributes[:origin],
           'meta' => attributes[:meta]
         }

@@ -18,6 +18,7 @@ module GOBL
       # This tax should be retained
       attribute :retained, GOBL::Types::Bool.optional
 
+      # Rates array
       attribute :defs, GOBL::Types::Array(GOBL::Tax::Def)
 
       def self.from_gobl!(gobl)

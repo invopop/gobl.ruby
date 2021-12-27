@@ -9,13 +9,13 @@ require 'dry-struct'
 module GOBL
   module Bill
     class Invoice < Dry::Struct
-      # Unique document ID. Not required
+      # Unique document ID. Not required, but always recommended in addition to the Code.
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Sequential code used to identify this invoice in tax declarations.
       attribute :code, GOBL::Types::String
 
-      # Functional type of the invoice
+      # Functional type of the invoice, default is always 'commercial'.
       attribute :type_code, GOBL::Types::String.optional
 
       # Currency for all invoice totals.
@@ -24,7 +24,7 @@ module GOBL
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
       attribute :rates, GOBL::Types::Array(GOBL::Currency::ExchangeRate).optional
 
-      # When true
+      # When true, implies that all item prices already include non-retained taxes. This is especially useful for retailers where prices are often displayed including tax.
       attribute :prices_include_tax, GOBL::Types::Bool.optional
 
       # Key information regarding a previous invoice.
@@ -36,21 +36,22 @@ module GOBL
       # Date when the operation defined by the invoice became effective.
       attribute :op_date, GOBL::Org::Date.optional
 
-      # When the taxes of this invoice become accountable
+      # When the taxes of this invoice become accountable, if none set, the issue date is used.
       attribute :value_date, GOBL::Org::Date.optional
 
       # The taxable entity supplying the goods or services.
       attribute :supplier, GOBL::Org::Party
 
-      # Legal entity who receives the goods or services. May be empty in certain circumstances such as simplified invoices.
+      # Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices.
       attribute :customer, GOBL::Org::Party.optional
 
-      # The items sold to the customer.
+      # List of invoice lines representing each of the items sold to the customer.
       attribute :lines, GOBL::Types::Array(GOBL::Bill::Line).optional
 
       # Expenses paid for by the supplier but invoiced directly to the customer.
       attribute :outlays, GOBL::Types::Array(GOBL::Bill::Outlay).optional
 
+      # Summary of all the invoice totals, including taxes.
       attribute :totals, GOBL::Bill::Totals
 
       attribute :ordering, GOBL::Bill::Ordering.optional
@@ -59,7 +60,7 @@ module GOBL
 
       attribute :delivery, GOBL::Bill::Delivery.optional
 
-      # Unstructured information that is relevant to the invoice
+      # Unstructured information that is relevant to the invoice, such as correction details.
       attribute :notes, GOBL::Types::String.optional
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.

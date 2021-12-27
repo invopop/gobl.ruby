@@ -9,7 +9,7 @@ require 'dry-struct'
 module GOBL
   module Bill
     class Ordering < Dry::Struct
-      # Party who is selling the goods and is not responsible for taxes.
+      # Party who is selling the goods and is not responsible for taxes
       attribute :seller, GOBL::Org::Party.optional
 
       def self.from_gobl!(gobl)

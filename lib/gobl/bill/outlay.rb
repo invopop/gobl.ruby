@@ -9,12 +9,13 @@ require 'dry-struct'
 module GOBL
   module Bill
     class Outlay < Dry::Struct
+      # Unique identity for this outlay.
       attribute :uuid, GOBL::Types::String.optional
 
-      # Line number inside the invoice
+      # Outlay number index inside the invoice for ordering.
       attribute :i, GOBL::Types::Int
 
-      # A code
+      # A code, invoice number, or other reference detail used to identify the outlay.
       attribute :ref, GOBL::Types::String.optional
 
       # Details on what the outlay was.

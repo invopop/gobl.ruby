@@ -9,25 +9,28 @@ require 'dry-struct'
 module GOBL
   module Bill
     class Line < Dry::Struct
+      # Unique identifier for this line
       attribute :uuid, GOBL::Types::String.optional
 
-      # Line number inside the invoice.
+      # Line number inside the parent
       attribute :i, GOBL::Types::Int
 
+      # Number of items
       attribute :quantity, GOBL::Num::Amount
 
+      # Details about what is being sold
       attribute :item, GOBL::Org::Item
 
-      # Result of quantity multiplied by item price
+      # Result of quantity multiplied by the item's price
       attribute :sum, GOBL::Num::Amount
 
-      # Discount applied to this line.
+      # Discount applied to this line
       attribute :discount, GOBL::Org::Discount.optional
 
-      # List of taxes to be applied to the line in the invoice totals.
+      # List of taxes to be applied and used in the invoice totals
       attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
 
-      # Total line amount after applying discounts to the sum.
+      # Total line amount after applying discounts to the sum
       attribute :total, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)

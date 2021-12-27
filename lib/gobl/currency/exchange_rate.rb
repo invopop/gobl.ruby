@@ -9,8 +9,10 @@ require 'dry-struct'
 module GOBL
   module Currency
     class ExchangeRate < Dry::Struct
+      # ISO currency code this rate represents.
       attribute :currency, GOBL::Types::String
 
+      # Rate to apply when converting the document's currency to this one.
       attribute :value, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)

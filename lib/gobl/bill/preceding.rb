@@ -12,13 +12,13 @@ module GOBL
       # Preceding document's UUID if available can be useful for tracing.
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Identity code of the previous invoice.
+      # Identity code fo the previous invoice.
       attribute :code, GOBL::Types::String
 
-      # When the preceding invoices was issued.
+      # When the preceding invoice was issued.
       attribute :issue_date, GOBL::Org::Date
 
-      # Additional semi-structured data that may be useful in specific regions.
+      # Additional semi-structured data that may be useful in specific regions
       attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
