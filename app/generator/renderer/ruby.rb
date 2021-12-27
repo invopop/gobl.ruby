@@ -26,11 +26,11 @@ class Generator
           require 'dry-struct'
 
           class #{klass} < #{ancestor_class}
-            #{attributes.to_s}
+            #{attributes}
 
-            #{from_gobl_method.to_s}
+            #{from_gobl_method}
             #{from_json_method}
-            #{to_gobl_method.to_s}
+            #{to_gobl_method}
             #{to_json_method}
           end
         )
