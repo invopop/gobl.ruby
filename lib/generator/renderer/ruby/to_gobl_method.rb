@@ -6,16 +6,13 @@ class Generator
       # ToGoblMethod - Defines the instance method to convert a struct into a
       # hash.
       class ToGoblMethod
-        def initialize(is_value: false)
+        def initialize(properties, is_value: false)
+          @properties = properties
           @is_value = is_value
         end
 
         def value?
           @is_value
-        end
-
-        def properties
-          @properties ||= {}
         end
 
         def to_s
@@ -27,6 +24,8 @@ class Generator
         end
 
         private
+
+        attr_reader :properties
 
         def export(prop, kls, base_case)
           if prop.ref? && kls

@@ -8,16 +8,13 @@ class Generator
       class FromGoblMethod
         PARAM_NAME = 'gobl'
 
-        def initialize(is_value: false)
+        def initialize(properties, is_value: false)
+          @properties = properties
           @is_value = is_value
         end
 
         def value?
           @is_value
-        end
-
-        def properties
-          @properties ||= {}
         end
 
         def to_s
@@ -33,6 +30,8 @@ class Generator
         end
 
         private
+
+        attr_reader :properties
 
         def ref_fetch(base_case, kls, optional)
           if optional

@@ -13,12 +13,12 @@ class Generator
       raise NotImplementedError
     end
 
-    def attributes?
+    def properties_name?
       !klass.properties_ref.keys.empty?
     end
 
-    def attributes
-      attributes? ? klass.properties_ref.keys : ['value']
+    def properties_name
+      properties_name? ? klass.properties_ref.keys : ['value']
     end
 
     private

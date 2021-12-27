@@ -7,6 +7,17 @@ class Generator
     # Ruby - Ruby programming language renderer.
     class Ruby < Generator::Renderer::Klass
       def to_text
+        setup
+        klass_as_text
+      end
+
+      def self.lang
+        'ruby'
+      end
+
+      private
+
+      def klass_as_text
         %(
           ##
           ## DO NOT EDIT - This file was generated automatically.
@@ -15,21 +26,15 @@ class Generator
           require 'dry-struct'
 
           class #{klass} < #{ancestor_class}
-            #{attributes_string.join("\n")}
+            #{attributes.to_s}
 
-            #{from_gobl_method}
+            #{from_gobl_method.to_s}
             #{from_json_method}
-            #{to_gobl_method}
+            #{to_gobl_method.to_s}
             #{to_json_method}
           end
         )
       end
-
-      def self.lang
-        'ruby'
-      end
-
-      private
 
       def ancestor_class
         'Dry::Struct'
@@ -41,79 +46,38 @@ class Generator
         exporter.catalog.fetch_object(ref)
       end
 
-      def json_schema_type_map
-        @json_schema_type_map ||= {
-          'string' => 'String',
-          'number' => 'Double',
-          'integer' => 'Int',
-          'boolean' => 'Bool',
-          'object' => 'Hash',
-          'array' => 'Array',
-          'null' => 'Nil'
-        }
-      end
-
-      def from_json_schema_type(type)
-        json_schema_type_map[type] || 'Any'
-      end
-
-      def property_as_type(property)
-        types_string = property_types_string(property)
-        optional_tag = property.optional? ? '.optional' : ''
-
-        if types_string.length > 1
-          "(#{types_string.join(' | ')})#{property.null? ? '' : optional_tag}"
-        else
-          "#{types_string.first}#{optional_tag}"
-        end
-      end
-
-      def property_types_string(property)
-        property.types.map do |type|
-          if type.ref?
-            type.value.to_s
-          elsif type.array?
-            "GOBL::Types::Array(#{property_as_type(property.items)})"
-          else
-            "GOBL::Types::#{from_json_schema_type(type.value)}"
-          end
-        end
-      end
-
       def resolve_references(property)
         property.override do |value|
           fetch_object(strip_definition(value))
         end
       end
 
-      def attributes_string
-        attributes.map do |name|
+      def setup
+        properties_name.each do |name|
           required = required_properties.include?(name)
           property = Schema::Property.new(properties[name], required: required)
+          property.ref_klass = fetch_object(klass.properties_ref[name])
 
-          setup_methods(name, property)
           resolve_references(property)
 
-          %(
-            # #{property.description}
-            attribute :#{name}, #{property_as_type(property)}
-          )
+          properties_map[name] = property
         end
       end
 
-      def setup_methods(name, property)
-        from_gobl_method.properties[name] = property
-        to_gobl_method.properties[name] = property
+      def properties_map
+        @properties_map ||= {}
+      end
 
-        property.ref_klass = fetch_object(klass.properties_ref[name])
+      def attributes
+        @attributes ||= Attributes.new(properties_map)
       end
 
       def from_gobl_method
-        @from_gobl_method ||= FromGoblMethod.new(is_value: !attributes?)
+        @from_gobl_method ||= FromGoblMethod.new(properties_map, is_value: !properties_name?)
       end
 
       def to_gobl_method
-        @to_gobl_method ||= ToGoblMethod.new(is_value: !attributes?)
+        @to_gobl_method ||= ToGoblMethod.new(properties_map, is_value: !properties_name?)
       end
 
       def from_json_method
@@ -135,5 +99,6 @@ class Generator
   end
 end
 
+require_relative 'ruby/attributes'
 require_relative 'ruby/from_gobl_method'
 require_relative 'ruby/to_gobl_method'
