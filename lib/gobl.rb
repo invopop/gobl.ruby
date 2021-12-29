@@ -2,8 +2,6 @@
 
 require 'zeitwerk'
 
-require_relative '../app/catalog'
-
 # GOBL - Main namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL
 # objects, based on the GoBL JSON schema.
@@ -25,21 +23,16 @@ module GOBL
     loader
   end
 
-  def self.catalog
-    @catalog ||= create_catalog
-  end
-
-  def self.create_catalog
-    catalog = Catalog.new('schema')
-    catalog.inflect(inflections)
-    catalog
-  end
-
   # Returns a Ruby class for a given JSON schema definition name.
-  def self.fetch_object(original_name)
-    ns, kls = catalog.object_name(original_name)
-
-    ns.const_get(kls) if ns.const_defined?(kls)
+  def self.fetch_object(type)
+    case type
+    when 'bill.Invoice'
+      GOBL::Bill::Invoice
+    when 'note.Message'
+      GOBL::Note::Message
+    else
+      raise 'envelope type not recognized'
+    end
   end
 end
 
