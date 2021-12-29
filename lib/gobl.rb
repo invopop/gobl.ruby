@@ -1,27 +1,45 @@
 # frozen_string_literal: true
 
-require_relative '../app/loader'
+require 'zeitwerk'
+
+require_relative '../app/catalog'
 
 # GOBL - Main namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL
 # objects, based on the GoBL JSON schema.
 module GOBL
+  def self.inflections
+    {
+      'gobl' => 'GOBL', 'uuid' => 'UUID', 'url' => 'URL',
+      'item_id' => 'ItemID', 'tax_id' => 'TaxID'
+    }
+  end
+
   def self.loader
     @loader ||= create_loader
   end
 
   def self.create_loader
-    loader = Loader.new(
-      schema_dir: 'schema',
-      gem_file: __FILE__,
-      gem_dir: __dir__
-    )
-
-    loader.inflect(
-      'gobl' => 'GOBL', 'uuid' => 'UUID', 'url' => 'URL',
-      'item_id' => 'ItemID', 'tax_id' => 'TaxID'
-    )
+    loader = Zeitwerk::Loader.for_gem
+    loader.inflector.inflect(inflections)
     loader
+  end
+
+  def self.catalog
+    @catalog ||= create_catalog
+  end
+
+  def self.create_catalog
+    catalog = Catalog.new('schema')
+    catalog.inflect(inflections)
+    catalog
+  end
+
+  # Returns a Ruby class for a given JSON schema definition name.
+  def self.fetch_object(original_name)
+    ns, kls = catalog.object_name(original_name)
+
+    ns.const_get(kls) if ns.const_defined?(kls)
   end
 end
 
@@ -36,7 +54,7 @@ module GOBL
 
       instance = from_gobl!(JSON.parse(json))
 
-      kls = GOBL.loader.fetch_object(instance.head.typ)
+      kls = GOBL.fetch_object(instance.head.typ)
       instance.attributes[:doc] = kls.from_gobl!(instance.doc.value)
 
       instance
