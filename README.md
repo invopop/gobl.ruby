@@ -15,7 +15,7 @@ Gem auto-generated and other structures are defined in this directory.
 ### `lib/gobl`
 
 All the auto-generated files are defined here. Nothing shouldn't be edited, or
-alter, manually.
+alter, manually. Under the hood, the gem uses `Zeitwerk` to load.
 
 ### `app/catalog`
 
@@ -28,11 +28,6 @@ This class defines all the structures to generate the gem. The
 `Generator::Exporter` and `Generator::Renderer` are core structures to
 auto-generate, render and export Ruby object into files.
 
-### `app/loader`
-
-This class defines all the structures to load the gem, using internally the gem
-`Zeitwerk`. Also, it uses the `Catalog` to patch the auto-generated classes
-with additional data of the original schema.
 
 ## `bin`
 
