@@ -29,7 +29,7 @@ module GOBL
 
       attribute :suffix, GOBL::Types::String.optional
 
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :name_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -43,7 +43,7 @@ module GOBL
           surname: gobl['surname'],
           surname2: gobl['surname2'],
           suffix: gobl['suffix'],
-          meta: gobl['meta']
+          name_meta: gobl['meta']
         )
       end
 
@@ -61,7 +61,7 @@ module GOBL
           'surname' => attributes[:surname],
           'surname2' => attributes[:surname2],
           'suffix' => attributes[:suffix],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:name_meta]
         }
       end
 

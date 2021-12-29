@@ -34,7 +34,7 @@ module GOBL
       # Country code of where this item was from originally.
       attribute :origin, GOBL::Types::String.optional
 
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :item_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -49,7 +49,7 @@ module GOBL
           unit: gobl['unit'],
           codes: gobl['codes']&.map { |x| GOBL::Org::ItemCode.from_gobl!(x) },
           origin: gobl['origin'],
-          meta: gobl['meta']
+          item_meta: gobl['meta']
         )
       end
 
@@ -68,7 +68,7 @@ module GOBL
           'unit' => attributes[:unit],
           'codes' => attributes[:codes]&.map { |x| x&.to_gobl },
           'origin' => attributes[:origin],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:item_meta]
         }
       end
 

@@ -19,7 +19,7 @@ module GOBL
       attribute :issue_date, GOBL::Org::Date
 
       # Additional semi-structured data that may be useful in specific regions
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :preceding_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -28,7 +28,7 @@ module GOBL
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           code: gobl['code'],
           issue_date: GOBL::Org::Date.from_gobl!(gobl['issue_date']),
-          meta: gobl['meta']
+          preceding_meta: gobl['meta']
         )
       end
 
@@ -41,7 +41,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'code' => attributes[:code],
           'issue_date' => attributes[:issue_date]&.to_gobl,
-          'meta' => attributes[:meta]
+          'meta' => attributes[:preceding_meta]
         }
       end
 

@@ -8,7 +8,8 @@ class Generator
       class FromGoblMethod
         PARAM_NAME = 'gobl'
 
-        def initialize(properties, is_value: false)
+        def initialize(class_name, properties, is_value: false)
+          @class_name = class_name
           @properties = properties
           @is_value = is_value
         end
@@ -31,7 +32,7 @@ class Generator
 
         private
 
-        attr_reader :properties
+        attr_reader :class_name, :properties
 
         def ref_fetch(base_case, kls, optional)
           if optional
@@ -60,9 +61,10 @@ class Generator
 
           properties.map do |name, prop|
             base_fetch = "#{PARAM_NAME}[#{name.inspect}]"
+            att = name.eql?('meta') ? "#{class_name}_#{name}" : name
             kls = prop.ref_klass
 
-            "#{name}: #{fetch(prop, kls, base_fetch, prop.optional?)},"
+            "#{att}: #{fetch(prop, kls, base_fetch, prop.optional?)},"
           end
         end
       end

@@ -64,7 +64,7 @@ module GOBL
       attribute :notes, GOBL::Types::String.optional
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :invoice_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -89,7 +89,7 @@ module GOBL
           payment: gobl['payment'] ? GOBL::Bill::Payment.from_gobl!(gobl['payment']) : nil,
           delivery: gobl['delivery'] ? GOBL::Bill::Delivery.from_gobl!(gobl['delivery']) : nil,
           notes: gobl['notes'],
-          meta: gobl['meta']
+          invoice_meta: gobl['meta']
         )
       end
 
@@ -118,7 +118,7 @@ module GOBL
           'payment' => attributes[:payment]&.to_gobl,
           'delivery' => attributes[:delivery]&.to_gobl,
           'notes' => attributes[:notes],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:invoice_meta]
         }
       end
 

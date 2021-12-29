@@ -18,7 +18,7 @@ module GOBL
       attribute :addr, GOBL::Types::String
 
       # Additional fields.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :email_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -27,7 +27,7 @@ module GOBL
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           label: gobl['label'],
           addr: gobl['addr'],
-          meta: gobl['meta']
+          email_meta: gobl['meta']
         )
       end
 
@@ -40,7 +40,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'label' => attributes[:label],
           'addr' => attributes[:addr],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:email_meta]
         }
       end
 

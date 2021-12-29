@@ -5,22 +5,24 @@ class Generator
     class Ruby
       # Attributes - Defines the instance attrbutes.
       class Attributes
-        def initialize(properties)
+        def initialize(class_name, properties)
+          @class_name = class_name
           @properties = properties
         end
 
         def to_s
           properties.to_a.map do |name, property|
+            att = name.eql?('meta') ? "#{class_name}_#{name}" : name
             %(
               # #{property.description&.split&.join(' ')}
-              attribute :#{name}, #{property_as_type(property)}
+              attribute :#{att}, #{property_as_type(property)}
             )
           end.join("\n")
         end
 
         private
 
-        attr_reader :properties
+        attr_reader :class_name, :properties
 
         def json_schema_type_map
           @json_schema_type_map ||= {

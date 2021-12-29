@@ -19,7 +19,7 @@ module GOBL
       attribute :code, GOBL::Types::String
 
       # Additional details.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :taxid_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -28,7 +28,7 @@ module GOBL
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           country: gobl['country'],
           code: gobl['code'],
-          meta: gobl['meta']
+          taxid_meta: gobl['meta']
         )
       end
 
@@ -41,7 +41,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'country' => attributes[:country],
           'code' => attributes[:code],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:taxid_meta]
         }
       end
 

@@ -68,16 +68,20 @@ class Generator
         @properties_map ||= {}
       end
 
+      def name
+        @name ||= klass.to_s.split('::').last.downcase
+      end
+
       def attributes
-        @attributes ||= Attributes.new(properties_map)
+        @attributes ||= Attributes.new(name, properties_map)
       end
 
       def from_gobl_method
-        @from_gobl_method ||= FromGoblMethod.new(properties_map, is_value: !properties_name?)
+        @from_gobl_method ||= FromGoblMethod.new(name, properties_map, is_value: !properties_name?)
       end
 
       def to_gobl_method
-        @to_gobl_method ||= ToGoblMethod.new(properties_map, is_value: !properties_name?)
+        @to_gobl_method ||= ToGoblMethod.new(name, properties_map, is_value: !properties_name?)
       end
 
       def from_json_method

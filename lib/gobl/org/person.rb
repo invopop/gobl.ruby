@@ -27,7 +27,7 @@ module GOBL
       attribute :telephones, GOBL::Types::Array(GOBL::Org::Telephone).optional
 
       # Data about the data.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :person_meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -39,7 +39,7 @@ module GOBL
           role: gobl['role'],
           emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
           telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
-          meta: gobl['meta']
+          person_meta: gobl['meta']
         )
       end
 
@@ -55,7 +55,7 @@ module GOBL
           'role' => attributes[:role],
           'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
-          'meta' => attributes[:meta]
+          'meta' => attributes[:person_meta]
         }
       end
 
