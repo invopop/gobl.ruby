@@ -50,7 +50,7 @@ module GOBL
       # For when the postal address is not sufficient
       attribute :coords, GOBL::Org::Coordinates.optional
 
-      attribute :address_meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -70,7 +70,7 @@ module GOBL
           code: gobl['code'],
           country: gobl['country'],
           coords: gobl['coords'] ? GOBL::Org::Coordinates.from_gobl!(gobl['coords']) : nil,
-          address_meta: gobl['meta']
+          meta: gobl['meta']
         )
       end
 
@@ -94,7 +94,7 @@ module GOBL
           'code' => attributes[:code],
           'country' => attributes[:country],
           'coords' => attributes[:coords]&.to_gobl,
-          'meta' => attributes[:address_meta]
+          'meta' => attributes[:meta]
         }
       end
 

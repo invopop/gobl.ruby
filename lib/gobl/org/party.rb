@@ -38,7 +38,7 @@ module GOBL
       attribute :registration, GOBL::Org::Registration.optional
 
       # Any additional semi-structured information that does not fit into the rest of the party.
-      attribute :party_meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -54,7 +54,7 @@ module GOBL
           emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
           telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
           registration: gobl['registration'] ? GOBL::Org::Registration.from_gobl!(gobl['registration']) : nil,
-          party_meta: gobl['meta']
+          meta: gobl['meta']
         )
       end
 
@@ -74,7 +74,7 @@ module GOBL
           'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
           'registration' => attributes[:registration]&.to_gobl,
-          'meta' => attributes[:party_meta]
+          'meta' => attributes[:meta]
         }
       end
 

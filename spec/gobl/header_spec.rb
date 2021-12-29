@@ -7,6 +7,6 @@ RSpec.describe GOBL::Header do
     gobl = File.read('spec/example/basic_header.json')
     header = described_class.from_json!(gobl)
 
-    expect(header.header_meta['meta_tag_a']).to eq('a')
+    expect(header.meta['meta_tag_a']).to eq('a')
   end
 end

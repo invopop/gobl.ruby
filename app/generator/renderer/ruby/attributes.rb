@@ -12,10 +12,9 @@ class Generator
 
         def to_s
           properties.to_a.map do |name, property|
-            att = name.eql?('meta') ? "#{class_name}_#{name}" : name
             %(
               # #{property.description&.split&.join(' ')}
-              attribute :#{att}, #{property_as_type(property)}
+              attribute :#{name}, #{property_as_type(property)}
             )
           end.join("\n")
         end

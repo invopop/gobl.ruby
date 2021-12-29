@@ -27,7 +27,7 @@ module GOBL
     attribute :tags, GOBL::Types::Array(GOBL::Types::String).optional
 
     # Additional semi-structured information about this envelope.
-    attribute :header_meta, GOBL::Types::Hash.optional
+    attribute :meta, GOBL::Types::Hash.optional
 
     # Any information that may be relevant to other humans about this envelope
     attribute :notes, GOBL::Types::String.optional
@@ -45,7 +45,7 @@ module GOBL
         dig: GOBL::Dsig::Digest.from_gobl!(gobl['dig']),
         stamps: gobl['stamps']&.map { |x| GOBL::Stamp.from_gobl!(x) },
         tags: gobl['tags']&.map { |x| x },
-        header_meta: gobl['meta'],
+        meta: gobl['meta'],
         notes: gobl['notes'],
         draft: gobl['draft']
       )
@@ -63,7 +63,7 @@ module GOBL
         'dig' => attributes[:dig]&.to_gobl,
         'stamps' => attributes[:stamps]&.map { |x| x&.to_gobl },
         'tags' => attributes[:tags]&.map { |x| x },
-        'meta' => attributes[:header_meta],
+        'meta' => attributes[:meta],
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]
       }

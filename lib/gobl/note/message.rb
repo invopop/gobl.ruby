@@ -16,7 +16,7 @@ module GOBL
       attribute :content, GOBL::Types::String
 
       # Any additional semi-structured data that might be useful.
-      attribute :message_meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -24,7 +24,7 @@ module GOBL
         new(
           title: gobl['title'],
           content: gobl['content'],
-          message_meta: gobl['meta']
+          meta: gobl['meta']
         )
       end
 
@@ -36,7 +36,7 @@ module GOBL
         {
           'title' => attributes[:title],
           'content' => attributes[:content],
-          'meta' => attributes[:message_meta]
+          'meta' => attributes[:meta]
         }
       end
 

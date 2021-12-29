@@ -40,8 +40,7 @@ class Generator
 
         def properties_as_string
           properties.map do |name, prop|
-            att = name.eql?('meta') ? "#{class_name}_#{name}" : name
-            base_case = "attributes[:#{att}]"
+            base_case = "attributes[:#{name}]"
             kls = prop.ref_klass
 
             "#{name.inspect} => #{export(prop, kls, base_case)},"

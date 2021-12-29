@@ -34,7 +34,7 @@ module GOBL
       attribute :notes, GOBL::Types::String.optional
 
       # Non-structured additional data that may be useful.
-      attribute :instructions_meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -48,7 +48,7 @@ module GOBL
           direct_debit: gobl['direct_debit'] ? GOBL::Pay::DirectDebit.from_gobl!(gobl['direct_debit']) : nil,
           online: gobl['online']&.map { |x| GOBL::Pay::Online.from_gobl!(x) },
           notes: gobl['notes'],
-          instructions_meta: gobl['meta']
+          meta: gobl['meta']
         )
       end
 
@@ -66,7 +66,7 @@ module GOBL
           'direct_debit' => attributes[:direct_debit]&.to_gobl,
           'online' => attributes[:online]&.map { |x| x&.to_gobl },
           'notes' => attributes[:notes],
-          'meta' => attributes[:instructions_meta]
+          'meta' => attributes[:meta]
         }
       end
 
