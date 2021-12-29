@@ -1,0 +1,17 @@
+{
+  "head": {
+    "uuid": "5fb3f60f-d4a8-43e9-be3a-f275226dbac0",
+    "typ": "note.Message",
+    "rgn": "ES",
+    "dig": {
+      "alg": "sha256",
+      "val": "699919f78817bb336ccb582154d42d42e07447fa1ec489ee8312ebebef637d30"
+    }
+  },
+  "doc": {
+    "content": "Testing Message"
+  },
+  "sigs": [
+    "eyJhbGciOiJIUzI1NiJ9.e30.csXAdXuJ5Idpe3CkitwT93v9H0ELttyl8O25_1_fjxM"
+  ]
+}
