@@ -1,6 +1,12 @@
 # gobl.ruby
 Minimalist ruby version of the GOBL library.
 
+# Gem installation
+
+```
+gem 'gobl', git: 'https://github.com/invopop/gobl.ruby', branch: 'main'
+```
+
 # Gem structure
 
 ## `schema`
@@ -17,12 +23,12 @@ Gem auto-generated and other structures are defined in this directory.
 All the auto-generated files are defined here. Nothing shouldn't be edited, or
 alter, manually. Under the hood, the gem uses `Zeitwerk` to load.
 
-### `app/catalog`
+## `app/catalog`
 
 The `Catalog` is a useful structure to handle the schemas, names and
 relations among the GoBL objects. It is used by the generator and loader.
 
-### `app/generator`
+## `app/generator`
 
 This class defines all the structures to generate the gem. The
 `Generator::Exporter` and `Generator::Renderer` are core structures to
@@ -33,11 +39,13 @@ auto-generate, render and export Ruby object into files.
 
 Basic gem usage commands are defined in here.
 
-# Installation
+# Development
+
+## Installation
 
 The command `mage install` gets the required dependencies to use the gem.
 
-# Compilation
+## Compilation
 
 The command `mage generate` generates the Ruby files from the JSON Schema. If
 the schema is updated, the command will update the Ruby files.
