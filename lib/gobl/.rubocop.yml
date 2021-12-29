@@ -1,0 +1,12 @@
+inherit_from: ../../.rubocop.yml
+
+AllCops:
+  Exclude: []
+
+Style/Documentation:
+  Exclude:
+    - './**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - './**/*.rb'
