@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 Gem::Specification.new do |spec|
-  spec.name = 'gobl.ruby'
+  spec.name = 'gobl'
   spec.version = '0.1.0'
   spec.platform = Gem::Platform::RUBY
   spec.summary = 'Minimalist ruby version of the GOBL library'
   spec.files =
     Dir.glob('lib/**/*') +
     %w[Gemfile] +
-    ['gobl.ruby.gemspec']
+    ['gobl.gemspec']
   spec.require_path = 'lib'
   spec.required_ruby_version = '>= 2.7'
   spec.required_rubygems_version = '>= 3.1.4'
