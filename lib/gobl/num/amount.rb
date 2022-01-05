@@ -4,11 +4,17 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'forwardable'
+
 require 'dry-struct'
 
 module GOBL
   module Num
     class Amount < Dry::Struct
+      extend Forwardable
+
+      def_delegators :value, :to_s
+
       # Quantity with optional decimal places that determine accuracy.
       attribute :value, GOBL::Types::String.optional
 

@@ -23,9 +23,13 @@ class Generator
           ## DO NOT EDIT - This file was generated automatically.
           ##
 
+          #{properties_name? ? '' : "require 'forwardable'"}
+
           require 'dry-struct'
 
           class #{klass} < #{ancestor_class}
+            #{properties_name? ? '' : forwardable_methods}
+
             #{attributes}
 
             #{from_gobl_method}
@@ -97,6 +101,15 @@ class Generator
           def to_json(options = nil)
             JSON.generate(to_gobl, options)
           end
+        )
+      end
+
+      def forwardable_methods
+        %(
+          extend Forwardable
+
+          def_delegators :value, :to_s
+          #{attributes.indexable_value? ? 'def_delegators :value, :[]' : ''}
         )
       end
     end

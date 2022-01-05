@@ -4,10 +4,17 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
+require 'forwardable'
+
 require 'dry-struct'
 
 module GOBL
   class Payload < Dry::Struct
+    extend Forwardable
+
+    def_delegators :value, :to_s
+    def_delegators :value, :[]
+
     # Contents of the envelope
     attribute :value, GOBL::Types::Hash.optional
 

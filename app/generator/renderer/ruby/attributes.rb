@@ -3,11 +3,15 @@
 class Generator
   module Renderer
     class Ruby
-      # Attributes - Defines the instance attrbutes.
+      # Attributes - Defines the instance attributes.
       class Attributes
         def initialize(class_name, properties)
           @class_name = class_name
           @properties = properties
+        end
+
+        def indexable_value?
+          properties.values.map(&:indexable?).any?
         end
 
         def to_s

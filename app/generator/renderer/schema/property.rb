@@ -24,6 +24,10 @@ class Generator
           types.map(&:null?).any?
         end
 
+        def indexable?
+          types.map(&:indexable?).any?
+        end
+
         def required?
           @required
         end
