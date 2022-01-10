@@ -4,17 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
-require 'forwardable'
-
 require 'dry-struct'
 
 module GOBL
   module Dsig
     class Signature < Dry::Struct
-      extend Forwardable
-
-      def_delegators :value, :to_s
-
       # JSON Web Signature in compact form.
       attribute :value, GOBL::Types::String.optional
 
@@ -34,6 +28,10 @@ module GOBL
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
+      end
+
+      def to_s
+        value.to_s
       end
     end
   end

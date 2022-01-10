@@ -4,17 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
-require 'forwardable'
-
 require 'dry-struct'
 
 module GOBL
   module Org
     class Date < Dry::Struct
-      extend Forwardable
-
-      def_delegators :value, :to_s
-
       # Civil date in simplified ISO format, like 2021-05-26
       attribute :value, GOBL::Types::String.optional
 
@@ -34,6 +28,10 @@ module GOBL
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
+      end
+
+      def to_s
+        value.to_s
       end
     end
   end

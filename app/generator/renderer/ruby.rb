@@ -23,19 +23,16 @@ class Generator
           ## DO NOT EDIT - This file was generated automatically.
           ##
 
-          #{properties_name? ? '' : "require 'forwardable'"}
-
           require 'dry-struct'
 
           class #{klass} < #{ancestor_class}
-            #{properties_name? ? '' : forwardable_methods}
-
             #{attributes}
 
             #{from_gobl_method}
             #{from_json_method}
             #{to_gobl_method}
             #{to_json_method}
+            #{properties_name? ? '' : forwardable_methods}
           end
         )
       end
@@ -106,10 +103,19 @@ class Generator
 
       def forwardable_methods
         %(
-          extend Forwardable
+          def to_s
+            #{STRUCT_VALUE_NAME}.to_s
+          end
 
-          def_delegators :value, :to_s
-          #{attributes.indexable_value? ? 'def_delegators :value, :[]' : ''}
+          #{attributes.indexable_value? ? indexable_method : ''}
+        )
+      end
+
+      def indexable_method
+        %(
+          def [](key)
+            #{STRUCT_VALUE_NAME}[key]
+          end
         )
       end
     end

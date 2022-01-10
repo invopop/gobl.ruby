@@ -4,18 +4,11 @@
 ## DO NOT EDIT - This file was generated automatically.
 ##
 
-require 'forwardable'
-
 require 'dry-struct'
 
 module GOBL
   module I18n
     class String < Dry::Struct
-      extend Forwardable
-
-      def_delegators :value, :to_s
-      def_delegators :value, :[]
-
       # Map of 2-Letter language codes to their translations.
       attribute :value, GOBL::Types::Hash.optional
 
@@ -35,6 +28,14 @@ module GOBL
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
+      end
+
+      def to_s
+        value.to_s
+      end
+
+      def [](key)
+        value[key]
       end
     end
   end
