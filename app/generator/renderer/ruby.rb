@@ -32,7 +32,7 @@ class Generator
             #{from_json_method}
             #{to_gobl_method}
             #{to_json_method}
-            #{properties_name? ? '' : forwardable_methods}
+            #{to_s_method}
           end
         )
       end
@@ -101,20 +101,12 @@ class Generator
         )
       end
 
-      def forwardable_methods
+      def to_s_method
+        return '' if properties_name? || attributes.indexable_value?
+
         %(
           def to_s
             #{STRUCT_VALUE_NAME}.to_s
-          end
-
-          #{attributes.indexable_value? ? indexable_method : ''}
-        )
-      end
-
-      def indexable_method
-        %(
-          def [](key)
-            #{STRUCT_VALUE_NAME}[key]
           end
         )
       end
