@@ -31,17 +31,7 @@ module GOBL
   # Envelope 'from_json!' method overrides the auto generated definition to
   # take into account the envelope type.
   class Envelope
-    # Returns a GoBL object for a given envelope type.
-    def self.fetch_object(type)
-      case type
-      when 'bill.Invoice'
-        GOBL::Bill::Invoice
-      when 'note.Message'
-        GOBL::Note::Message
-      else
-        raise 'envelope type not recognized'
-      end
-    end
+    extend GOBL::Extensions::Envelope::HeaderTypeHelper
 
     def self.from_json!(json)
       return if json.nil?
@@ -54,19 +44,8 @@ module GOBL
       instance
     end
   end
+end
 
-  module I18n
-    # String 'method_missing' method override to map inner hash keys as
-    # instance methods.
-    class String
-      def method_missing(method_name, *args, &block)
-        value_has_key = value.key?(method_name) || value.key?(method_name.to_s)
-        value_has_key ? (value[method_name] || value[method_name.to_s]) : super
-      end
-
-      def respond_to_missing?(method_name, *)
-        value.key?(method_name) || value.key?(method_name.to_s) || super
-      end
-    end
-  end
+GOBL::I18n::String.class_eval do
+  include GOBL::Extensions::I18n::ValueKeysHelper
 end
