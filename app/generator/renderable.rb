@@ -7,6 +7,8 @@ class Generator
   module Renderable
     include Utils
 
+    STRUCT_VALUE_NAME = 'value'
+
     attr_reader :klass
 
     def to_text
@@ -18,7 +20,7 @@ class Generator
     end
 
     def properties_name
-      properties_name? ? klass.properties_ref.keys : ['value']
+      properties_name? ? klass.properties_ref.keys : [STRUCT_VALUE_NAME]
     end
 
     private
@@ -27,7 +29,7 @@ class Generator
 
     def properties
       klass.original_json_schema['properties'] || {
-        'value' => klass.original_json_schema
+        STRUCT_VALUE_NAME => klass.original_json_schema
       }
     end
 

@@ -31,17 +31,7 @@ module GOBL
   # Envelope 'from_json!' method overrides the auto generated definition to
   # take into account the envelope type.
   class Envelope
-    # Returns a GoBL object for a given envelope type.
-    def self.fetch_object(type)
-      case type
-      when 'bill.Invoice'
-        GOBL::Bill::Invoice
-      when 'note.Message'
-        GOBL::Note::Message
-      else
-        raise 'envelope type not recognized'
-      end
-    end
+    extend GOBL::Extensions::Envelope::HeaderTypeHelper
 
     def self.from_json!(json)
       return if json.nil?
@@ -54,4 +44,8 @@ module GOBL
       instance
     end
   end
+end
+
+GOBL::I18n::String.class_eval do
+  include GOBL::Extensions::I18n::ValueKeysHelper
 end

@@ -23,6 +23,14 @@ class Generator
         def array?
           !ref? && value.eql?('array')
         end
+
+        def hash?
+          !ref? && value.eql?('object')
+        end
+
+        def indexable?
+          array? || hash?
+        end
       end
     end
   end

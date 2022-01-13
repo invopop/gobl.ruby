@@ -32,6 +32,7 @@ class Generator
             #{from_json_method}
             #{to_gobl_method}
             #{to_json_method}
+            #{to_s_method}
           end
         )
       end
@@ -96,6 +97,16 @@ class Generator
         %(
           def to_json(options = nil)
             JSON.generate(to_gobl, options)
+          end
+        )
+      end
+
+      def to_s_method
+        return '' if properties_name? || attributes.indexable_value?
+
+        %(
+          def to_s
+            #{STRUCT_VALUE_NAME}.to_s
           end
         )
       end
