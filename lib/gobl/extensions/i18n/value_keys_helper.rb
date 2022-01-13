@@ -5,8 +5,11 @@ module GOBL
     module I18n
       module ValueKeysHelper
         def method_missing(method_name, *args, &block)
-          value_has_key = value.key?(method_name) || value.key?(method_name.to_s)
-          value_has_key ? (value[method_name] || value[method_name.to_s]) : super
+          if value.key?(method_name) || value.key?(method_name.to_s)
+            value[method_name] || value[method_name.to_s]
+          else
+            super
+          end
         end
 
         def respond_to_missing?(method_name, *)
