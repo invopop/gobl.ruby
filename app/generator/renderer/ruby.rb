@@ -11,6 +11,10 @@ class Generator
         klass_as_text
       end
 
+      def klass_name_segements
+        @klass_name_segements ||= source_klass.to_s.split('::')
+      end
+
       def self.lang
         'ruby'
       end
@@ -25,7 +29,7 @@ class Generator
 
           require 'dry-struct'
 
-          class #{klass} < #{ancestor_class}
+          class #{source_klass} < #{ancestor_class}
             #{attributes}
 
             #{from_gobl_method}
@@ -44,7 +48,7 @@ class Generator
       def fetch_object(ref)
         return if ref.nil?
 
-        exporter.catalog.fetch_object(ref)
+        generator.catalog.fetch_object(ref)
       end
 
       def resolve_references(property)
@@ -57,7 +61,7 @@ class Generator
         properties_name.each do |name|
           required = required_properties.include?(name)
           property = Schema::Property.new(properties[name], required: required)
-          property.ref_klass = fetch_object(klass.properties_ref[name])
+          property.ref_klass = fetch_object(source_klass.properties_ref[name])
 
           resolve_references(property)
 
@@ -70,7 +74,7 @@ class Generator
       end
 
       def name
-        @name ||= klass.to_s.split('::').last.downcase
+        @name ||= klass_name_segements.last.downcase
       end
 
       def attributes

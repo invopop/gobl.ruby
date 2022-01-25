@@ -8,30 +8,68 @@ require_relative 'catalog'
 class Generator
   extend Forwardable
 
+  attr_reader :catalog
+
   def_delegators :@catalog, :inflect
 
   def initialize(schema_dir:, lang:)
     @catalog = Catalog.new(schema_dir)
-    @exporter = Exporter.new(@catalog, lang)
+    @lang = lang
   end
 
   # Going through the schemas, each definition is turned into a class and
   # registered in the exporter object. Finally exporting all the files.
   def export_to(export_path)
+    return unless export_path
+
     catalog.each_schema do |schema|
       schema.definitions.each do |name, sub_schema|
         nc = generate_class(name, sub_schema, schema.json_schema)
 
-        exporter.register(name, nc) if nc
+        register(name, nc) if nc
       end
     end
 
-    exporter.export_all(export_path)
+    registry.each_value { |renderer| export(renderer, export_path) }
   end
 
   private
 
-  attr_reader :catalog, :exporter
+  attr_reader :lang
+
+  def registry
+    @registry ||= {}
+  end
+
+  def register(name, source_klass)
+    registry[name] = Renderer::Klass.for(source_klass, self, lang: lang)
+  end
+
+  def lookup(name)
+    registry[name]&.source_klass
+  end
+
+  def mkdir(dir)
+    dir.split('/').inject do |filepath, path|
+      Dir.mkdir(filepath) unless File.exist?(filepath)
+      [filepath, path].join('/')
+    end
+  end
+
+  def save_file(renderer, filepath)
+    f = File.new(filepath, 'w')
+    f.write(renderer.to_text)
+    f.close
+  end
+
+  def export(renderer, root_dir)
+    filepath = renderer.klass_name_segements.map do |segment|
+      catalog.path_name(segment)
+    end
+
+    dir = filepath.unshift(root_dir).join('/')
+    save_file(renderer, "#{mkdir(dir)}.rb")
+  end
 
   # Defines a new class based on the given name and schema, uses the
   # parent schema to expand the references.
@@ -49,5 +87,5 @@ class Generator
   end
 end
 
-require_relative 'generator/exporter'
+require_relative 'generator/renderer'
 require_relative 'generator/struct'

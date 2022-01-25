@@ -10,9 +10,9 @@ class Generator
     class Klass
       include Renderable
 
-      def initialize(klass, exporter)
-        @klass = klass
-        @exporter = exporter
+      def initialize(source_klass, generator)
+        @source_klass = source_klass
+        @generator = generator
       end
 
       def self.inherited(subclass)
