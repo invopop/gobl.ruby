@@ -12,15 +12,15 @@ module GOBL
       # ISO currency code this rate represents.
       attribute :currency, GOBL::Types::String
 
-      # Rate to apply when converting the document's currency to this one.
-      attribute :value, GOBL::Num::Amount
+      # How much is 1.00 of this currency worth in the documents currency.
+      attribute :amount, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
 
         new(
           currency: gobl['currency'],
-          value: GOBL::Num::Amount.from_gobl!(gobl['value'])
+          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
         )
       end
 
@@ -31,7 +31,7 @@ module GOBL
       def to_gobl
         {
           'currency' => attributes[:currency],
-          'value' => attributes[:value]&.to_gobl
+          'amount' => attributes[:amount]&.to_gobl
         }
       end
 

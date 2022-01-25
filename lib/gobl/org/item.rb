@@ -15,25 +15,28 @@ module GOBL
       # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
       attribute :ref, GOBL::Types::String.optional
 
+      # Brief name of the item
       attribute :name, GOBL::Types::String
 
+      # Detailed description
       attribute :desc, GOBL::Types::String.optional
 
-      # Only required if this line has a different currency from the rest.
+      # Currency used for the item's price.
       attribute :currency, GOBL::Types::String.optional
 
-      # Price of item being sold.
+      # Base price of a single unit to be sold.
       attribute :price, GOBL::Num::Amount
 
       # Code for unit of the item being sold
       attribute :unit, GOBL::Types::String.optional
 
-      # List of additional codes
+      # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
       attribute :codes, GOBL::Types::Array(GOBL::Org::ItemCode).optional
 
       # Country code of where this item was from originally.
       attribute :origin, GOBL::Types::String.optional
 
+      # Additional meta information that may be useful
       attribute :meta, GOBL::Types::Hash.optional
 
       def self.from_gobl!(gobl)

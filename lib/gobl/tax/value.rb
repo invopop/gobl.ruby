@@ -12,10 +12,10 @@ module GOBL
       # Date from which this value should be applied.
       attribute :since, GOBL::Org::Date.optional
 
-      # Rate that should be applied.
+      # Rate that should be applied
       attribute :percent, GOBL::Num::Percentage
 
-      # When true
+      # When true, this value should no longer be used.
       attribute :disabled, GOBL::Types::Bool.optional
 
       def self.from_gobl!(gobl)

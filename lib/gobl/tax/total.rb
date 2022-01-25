@@ -9,9 +9,10 @@ require 'dry-struct'
 module GOBL
   module Tax
     class Total < Dry::Struct
+      # Grouping of all the taxes by their category
       attribute :categories, GOBL::Types::Array(GOBL::Tax::CategoryTotal).optional
 
-      # Total value of all the taxes to be added or retained.
+      # Total value of all the taxes applied.
       attribute :sum, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)

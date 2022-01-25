@@ -15,7 +15,7 @@ module GOBL
 
       attribute :percent, GOBL::Num::Percentage
 
-      attribute :value, GOBL::Num::Amount
+      attribute :amount, GOBL::Num::Amount
 
       def self.from_gobl!(gobl)
         gobl = GOBL::Types::Hash[gobl]
@@ -24,7 +24,7 @@ module GOBL
           code: gobl['code'],
           base: GOBL::Num::Amount.from_gobl!(gobl['base']),
           percent: GOBL::Num::Percentage.from_gobl!(gobl['percent']),
-          value: GOBL::Num::Amount.from_gobl!(gobl['value'])
+          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
         )
       end
 
@@ -37,7 +37,7 @@ module GOBL
           'code' => attributes[:code],
           'base' => attributes[:base]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
-          'value' => attributes[:value]&.to_gobl
+          'amount' => attributes[:amount]&.to_gobl
         }
       end
 

@@ -9,13 +9,13 @@ require 'dry-struct'
 module GOBL
   module Org
     class TaxID < Dry::Struct
-      # Unique identity code
+      # Unique universal identity code
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # ISO country code for Where the tax identity was issued.
+      # ISO country code for Where the tax identity was issued
       attribute :country, GOBL::Types::String
 
-      # Identity code.
+      # Identity Code
       attribute :code, GOBL::Types::String
 
       # Additional details.

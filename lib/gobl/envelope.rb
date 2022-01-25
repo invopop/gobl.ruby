@@ -8,10 +8,13 @@ require 'dry-struct'
 
 module GOBL
   class Envelope < Dry::Struct
+    # The GOBL document version used to generate the envelope
+    attribute :ver, GOBL::Types::String
+
     # Details on what the contents are
     attribute :head, GOBL::Header
 
-    # The data being enveloped
+    # The data inside the envelope
     attribute :doc, GOBL::Payload
 
     # JSON Web Signatures of the header
@@ -21,6 +24,7 @@ module GOBL
       gobl = GOBL::Types::Hash[gobl]
 
       new(
+        ver: gobl['ver'],
         head: GOBL::Header.from_gobl!(gobl['head']),
         doc: GOBL::Payload.from_gobl!(gobl['doc']),
         sigs: gobl['sigs']&.map { |x| GOBL::Dsig::Signature.from_gobl!(x) }
@@ -33,6 +37,7 @@ module GOBL
 
     def to_gobl
       {
+        'ver' => attributes[:ver],
         'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc]&.to_gobl,
         'sigs' => attributes[:sigs]&.map { |x| x&.to_gobl }

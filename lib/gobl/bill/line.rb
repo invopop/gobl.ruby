@@ -24,8 +24,11 @@ module GOBL
       # Result of quantity multiplied by the item's price
       attribute :sum, GOBL::Num::Amount
 
-      # Discount applied to this line
-      attribute :discount, GOBL::Org::Discount.optional
+      # Discounts applied to this line
+      attribute :discounts, GOBL::Types::Array(GOBL::Bill::LineDiscount).optional
+
+      # Charges applied to this line
+      attribute :charges, GOBL::Types::Array(GOBL::Bill::LineCharge).optional
 
       # List of taxes to be applied and used in the invoice totals
       attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
@@ -42,7 +45,8 @@ module GOBL
           quantity: GOBL::Num::Amount.from_gobl!(gobl['quantity']),
           item: GOBL::Org::Item.from_gobl!(gobl['item']),
           sum: GOBL::Num::Amount.from_gobl!(gobl['sum']),
-          discount: gobl['discount'] ? GOBL::Org::Discount.from_gobl!(gobl['discount']) : nil,
+          discounts: gobl['discounts']&.map { |x| GOBL::Bill::LineDiscount.from_gobl!(x) },
+          charges: gobl['charges']&.map { |x| GOBL::Bill::LineCharge.from_gobl!(x) },
           taxes: gobl['taxes']&.map { |x| GOBL::Tax::Rate.from_gobl!(x) },
           total: GOBL::Num::Amount.from_gobl!(gobl['total'])
         )
@@ -59,7 +63,8 @@ module GOBL
           'quantity' => attributes[:quantity]&.to_gobl,
           'item' => attributes[:item]&.to_gobl,
           'sum' => attributes[:sum]&.to_gobl,
-          'discount' => attributes[:discount]&.to_gobl,
+          'discounts' => attributes[:discounts]&.map { |x| x&.to_gobl },
+          'charges' => attributes[:charges]&.map { |x| x&.to_gobl },
           'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
           'total' => attributes[:total]&.to_gobl
         }

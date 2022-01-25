@@ -15,6 +15,9 @@ module GOBL
       # Identity code fo the previous invoice.
       attribute :code, GOBL::Types::String
 
+      # Additional identification details
+      attribute :series, GOBL::Types::String.optional
+
       # When the preceding invoice was issued.
       attribute :issue_date, GOBL::Org::Date
 
@@ -27,6 +30,7 @@ module GOBL
         new(
           uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
           code: gobl['code'],
+          series: gobl['series'],
           issue_date: GOBL::Org::Date.from_gobl!(gobl['issue_date']),
           meta: gobl['meta']
         )
@@ -40,6 +44,7 @@ module GOBL
         {
           'uuid' => attributes[:uuid]&.to_gobl,
           'code' => attributes[:code],
+          'series' => attributes[:series],
           'issue_date' => attributes[:issue_date]&.to_gobl,
           'meta' => attributes[:meta]
         }
