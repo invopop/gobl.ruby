@@ -17,16 +17,16 @@ module GOBL
       attribute :desc, GOBL::I18n::String.optional
 
       # Set of values ordered by date that determine what rates to apply since when.
-      attribute :values, GOBL::Types::Array(GOBL::Tax::Value)
+      attribute :values, GOBL::Types::Array(Value)
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          name: GOBL::I18n::String.from_gobl!(gobl['name']),
-          desc: gobl['desc'] ? GOBL::I18n::String.from_gobl!(gobl['desc']) : nil,
-          values: gobl['values']&.map { |x| GOBL::Tax::Value.from_gobl!(x) }
+          code: data['code'],
+          name: GOBL::I18n::String.from_gobl!(data['name']),
+          desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
+          values: data['values']&.map { |item| Value.from_gobl!(item) }
         )
       end
 
@@ -39,7 +39,7 @@ module GOBL
           'code' => attributes[:code],
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
-          'values' => attributes[:values]&.map { |x| x&.to_gobl }
+          'values' => attributes[:values]&.map { |item| item&.to_gobl }
         }
       end
 

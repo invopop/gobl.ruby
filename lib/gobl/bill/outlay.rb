@@ -33,18 +33,18 @@ module GOBL
       # Amount paid by the supplier.
       attribute :amount, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'],
-          i: gobl['i'],
-          date: gobl['date'] ? GOBL::Org::Date.from_gobl!(gobl['date']) : nil,
-          code: gobl['code'],
-          series: gobl['series'],
-          desc: gobl['desc'],
-          supplier: gobl['supplier'] ? GOBL::Org::Party.from_gobl!(gobl['supplier']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
+          uuid: data['uuid'],
+          i: data['i'],
+          date: data['date'] ? GOBL::Org::Date.from_gobl!(data['date']) : nil,
+          code: data['code'],
+          series: data['series'],
+          desc: data['desc'],
+          supplier: data['supplier'] ? GOBL::Org::Party.from_gobl!(data['supplier']) : nil,
+          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
         )
       end
 

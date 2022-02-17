@@ -25,10 +25,10 @@ module GOBL
       attribute :sum, GOBL::Num::Amount
 
       # Discounts applied to this line
-      attribute :discounts, GOBL::Types::Array(GOBL::Bill::LineDiscount).optional
+      attribute :discounts, GOBL::Types::Array(LineDiscount).optional
 
       # Charges applied to this line
-      attribute :charges, GOBL::Types::Array(GOBL::Bill::LineCharge).optional
+      attribute :charges, GOBL::Types::Array(LineCharge).optional
 
       # List of taxes to be applied and used in the invoice totals
       attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
@@ -36,19 +36,19 @@ module GOBL
       # Total line amount after applying discounts to the sum
       attribute :total, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'],
-          i: gobl['i'],
-          quantity: GOBL::Num::Amount.from_gobl!(gobl['quantity']),
-          item: GOBL::Org::Item.from_gobl!(gobl['item']),
-          sum: GOBL::Num::Amount.from_gobl!(gobl['sum']),
-          discounts: gobl['discounts']&.map { |x| GOBL::Bill::LineDiscount.from_gobl!(x) },
-          charges: gobl['charges']&.map { |x| GOBL::Bill::LineCharge.from_gobl!(x) },
-          taxes: gobl['taxes']&.map { |x| GOBL::Tax::Rate.from_gobl!(x) },
-          total: GOBL::Num::Amount.from_gobl!(gobl['total'])
+          uuid: data['uuid'],
+          i: data['i'],
+          quantity: GOBL::Num::Amount.from_gobl!(data['quantity']),
+          item: GOBL::Org::Item.from_gobl!(data['item']),
+          sum: GOBL::Num::Amount.from_gobl!(data['sum']),
+          discounts: data['discounts']&.map { |item| LineDiscount.from_gobl!(item) },
+          charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
+          taxes: data['taxes']&.map { |item| GOBL::Tax::Rate.from_gobl!(item) },
+          total: GOBL::Num::Amount.from_gobl!(data['total'])
         )
       end
 
@@ -63,9 +63,9 @@ module GOBL
           'quantity' => attributes[:quantity]&.to_gobl,
           'item' => attributes[:item]&.to_gobl,
           'sum' => attributes[:sum]&.to_gobl,
-          'discounts' => attributes[:discounts]&.map { |x| x&.to_gobl },
-          'charges' => attributes[:charges]&.map { |x| x&.to_gobl },
-          'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
+          'discounts' => attributes[:discounts]&.map { |item| item&.to_gobl },
+          'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
+          'taxes' => attributes[:taxes]&.map { |item| item&.to_gobl },
           'total' => attributes[:total]&.to_gobl
         }
       end

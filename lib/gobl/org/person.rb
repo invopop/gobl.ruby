@@ -29,17 +29,17 @@ module GOBL
       # Data about the data.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          id: gobl['id'],
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          name: GOBL::Org::Name.from_gobl!(gobl['name']),
-          role: gobl['role'],
-          emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
-          telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
-          meta: gobl['meta']
+          id: data['id'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          name: GOBL::Org::Name.from_gobl!(data['name']),
+          role: data['role'],
+          emails: data['emails']&.map { |item| GOBL::Org::Email.from_gobl!(item) },
+          telephones: data['telephones']&.map { |item| GOBL::Org::Telephone.from_gobl!(item) },
+          meta: data['meta']
         )
       end
 
@@ -53,8 +53,8 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'name' => attributes[:name]&.to_gobl,
           'role' => attributes[:role],
-          'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
-          'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
+          'emails' => attributes[:emails]&.map { |item| item&.to_gobl },
+          'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'meta' => attributes[:meta]
         }
       end

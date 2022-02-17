@@ -15,12 +15,12 @@ module GOBL
       # As defined for the region and category.
       attribute :code, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          cat: gobl['cat'],
-          code: gobl['code']
+          cat: data['cat'],
+          code: data['code']
         )
       end
 

@@ -19,6 +19,10 @@ func Install() error {
 
 // Generate uses the schema to generate the ruby structures
 func Generate() error {
+	return dockerRunCmd(name, "", "rake", "generate")
+}
+
+func Compile() error {
 	return dockerRunCmd(name, "", "rake", "compile")
 }
 

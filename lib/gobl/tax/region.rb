@@ -13,15 +13,15 @@ module GOBL
 
       attribute :name, GOBL::I18n::String
 
-      attribute :categories, GOBL::Types::Array(GOBL::Tax::Category)
+      attribute :categories, GOBL::Types::Array(Category)
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          name: GOBL::I18n::String.from_gobl!(gobl['name']),
-          categories: gobl['categories']&.map { |x| GOBL::Tax::Category.from_gobl!(x) }
+          code: data['code'],
+          name: GOBL::I18n::String.from_gobl!(data['name']),
+          categories: data['categories']&.map { |item| Category.from_gobl!(item) }
         )
       end
 
@@ -33,7 +33,7 @@ module GOBL
         {
           'code' => attributes[:code],
           'name' => attributes[:name]&.to_gobl,
-          'categories' => attributes[:categories]&.map { |x| x&.to_gobl }
+          'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
         }
       end
 

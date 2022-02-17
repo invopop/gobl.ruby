@@ -42,21 +42,21 @@ module GOBL
       # How much actually needs to be paid now.
       attribute :due, GOBL::Num::Amount.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          sum: GOBL::Num::Amount.from_gobl!(gobl['sum']),
-          discount: gobl['discount'] ? GOBL::Num::Amount.from_gobl!(gobl['discount']) : nil,
-          charge: gobl['charge'] ? GOBL::Num::Amount.from_gobl!(gobl['charge']) : nil,
-          tax_included: gobl['tax_included'] ? GOBL::Num::Amount.from_gobl!(gobl['tax_included']) : nil,
-          total: GOBL::Num::Amount.from_gobl!(gobl['total']),
-          taxes: gobl['taxes'] ? GOBL::Tax::Total.from_gobl!(gobl['taxes']) : nil,
-          total_with_tax: GOBL::Num::Amount.from_gobl!(gobl['total_with_tax']),
-          outlays: gobl['outlays'] ? GOBL::Num::Amount.from_gobl!(gobl['outlays']) : nil,
-          payable: GOBL::Num::Amount.from_gobl!(gobl['payable']),
-          advance: gobl['advance'] ? GOBL::Num::Amount.from_gobl!(gobl['advance']) : nil,
-          due: gobl['due'] ? GOBL::Num::Amount.from_gobl!(gobl['due']) : nil
+          sum: GOBL::Num::Amount.from_gobl!(data['sum']),
+          discount: data['discount'] ? GOBL::Num::Amount.from_gobl!(data['discount']) : nil,
+          charge: data['charge'] ? GOBL::Num::Amount.from_gobl!(data['charge']) : nil,
+          tax_included: data['tax_included'] ? GOBL::Num::Amount.from_gobl!(data['tax_included']) : nil,
+          total: GOBL::Num::Amount.from_gobl!(data['total']),
+          taxes: data['taxes'] ? GOBL::Tax::Total.from_gobl!(data['taxes']) : nil,
+          total_with_tax: GOBL::Num::Amount.from_gobl!(data['total_with_tax']),
+          outlays: data['outlays'] ? GOBL::Num::Amount.from_gobl!(data['outlays']) : nil,
+          payable: GOBL::Num::Amount.from_gobl!(data['payable']),
+          advance: data['advance'] ? GOBL::Num::Amount.from_gobl!(data['advance']) : nil,
+          due: data['due'] ? GOBL::Num::Amount.from_gobl!(data['due']) : nil
         )
       end
 

@@ -12,10 +12,8 @@ module GOBL
       # Civil date in simplified ISO format, like 2021-05-26
       attribute :value, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        new(
-          value: gobl
-        )
+      def self.from_gobl!(data)
+        new(value: data)
       end
 
       def self.from_json!(json)

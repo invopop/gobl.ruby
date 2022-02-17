@@ -21,14 +21,14 @@ module GOBL
       # Text description as to why the discount was applied
       attribute :reason, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          rate: gobl['rate'] ? GOBL::Num::Percentage.from_gobl!(gobl['rate']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount']),
-          code: gobl['code'],
-          reason: gobl['reason']
+          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          code: data['code'],
+          reason: data['reason']
         )
       end
 

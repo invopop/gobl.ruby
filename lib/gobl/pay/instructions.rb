@@ -19,16 +19,16 @@ module GOBL
       attribute :ref, GOBL::Types::String.optional
 
       # Instructions for sending payment via a bank transfer.
-      attribute :credit_transfer, GOBL::Types::Array(GOBL::Pay::CreditTransfer).optional
+      attribute :credit_transfer, GOBL::Types::Array(CreditTransfer).optional
 
       # Details of the payment that will be made via a credit or debit card.
-      attribute :card, GOBL::Pay::Card.optional
+      attribute :card, Card.optional
 
       # A group of terms that can be used by the customer or payer to consolidate direct debit payments.
-      attribute :direct_debit, GOBL::Pay::DirectDebit.optional
+      attribute :direct_debit, DirectDebit.optional
 
       # Array of online payment options.
-      attribute :online, GOBL::Types::Array(GOBL::Pay::Online).optional
+      attribute :online, GOBL::Types::Array(Online).optional
 
       # Any additional instructions that may be required to make the payment.
       attribute :notes, GOBL::Types::String.optional
@@ -36,19 +36,19 @@ module GOBL
       # Non-structured additional data that may be useful.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          detail: gobl['detail'],
-          ref: gobl['ref'],
-          credit_transfer: gobl['credit_transfer']&.map { |x| GOBL::Pay::CreditTransfer.from_gobl!(x) },
-          card: gobl['card'] ? GOBL::Pay::Card.from_gobl!(gobl['card']) : nil,
-          direct_debit: gobl['direct_debit'] ? GOBL::Pay::DirectDebit.from_gobl!(gobl['direct_debit']) : nil,
-          online: gobl['online']&.map { |x| GOBL::Pay::Online.from_gobl!(x) },
-          notes: gobl['notes'],
-          meta: gobl['meta']
+          code: data['code'],
+          detail: data['detail'],
+          ref: data['ref'],
+          credit_transfer: data['credit_transfer']&.map { |item| CreditTransfer.from_gobl!(item) },
+          card: data['card'] ? Card.from_gobl!(data['card']) : nil,
+          direct_debit: data['direct_debit'] ? DirectDebit.from_gobl!(data['direct_debit']) : nil,
+          online: data['online']&.map { |item| Online.from_gobl!(item) },
+          notes: data['notes'],
+          meta: data['meta']
         )
       end
 
@@ -61,10 +61,10 @@ module GOBL
           'code' => attributes[:code],
           'detail' => attributes[:detail],
           'ref' => attributes[:ref],
-          'credit_transfer' => attributes[:credit_transfer]&.map { |x| x&.to_gobl },
+          'credit_transfer' => attributes[:credit_transfer]&.map { |item| item&.to_gobl },
           'card' => attributes[:card]&.to_gobl,
           'direct_debit' => attributes[:direct_debit]&.to_gobl,
-          'online' => attributes[:online]&.map { |x| x&.to_gobl },
+          'online' => attributes[:online]&.map { |item| item&.to_gobl },
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]
         }

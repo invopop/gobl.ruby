@@ -10,17 +10,17 @@ module GOBL
   module Tax
     class Total < Dry::Struct
       # Grouping of all the taxes by their category
-      attribute :categories, GOBL::Types::Array(GOBL::Tax::CategoryTotal).optional
+      attribute :categories, GOBL::Types::Array(CategoryTotal).optional
 
       # Total value of all the taxes applied.
       attribute :sum, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          categories: gobl['categories']&.map { |x| GOBL::Tax::CategoryTotal.from_gobl!(x) },
-          sum: GOBL::Num::Amount.from_gobl!(gobl['sum'])
+          categories: data['categories']&.map { |item| CategoryTotal.from_gobl!(item) },
+          sum: GOBL::Num::Amount.from_gobl!(data['sum'])
         )
       end
 
@@ -30,7 +30,7 @@ module GOBL
 
       def to_gobl
         {
-          'categories' => attributes[:categories]&.map { |x| x&.to_gobl },
+          'categories' => attributes[:categories]&.map { |item| item&.to_gobl },
           'sum' => attributes[:sum]&.to_gobl
         }
       end

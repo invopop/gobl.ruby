@@ -21,14 +21,14 @@ module GOBL
       # Details on how payment should be made.
       attribute :instructions, GOBL::Pay::Instructions.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          payer: gobl['payer'] ? GOBL::Org::Party.from_gobl!(gobl['payer']) : nil,
-          terms: gobl['terms'] ? GOBL::Pay::Terms.from_gobl!(gobl['terms']) : nil,
-          advances: gobl['advances']&.map { |x| GOBL::Pay::Advance.from_gobl!(x) },
-          instructions: gobl['instructions'] ? GOBL::Pay::Instructions.from_gobl!(gobl['instructions']) : nil
+          payer: data['payer'] ? GOBL::Org::Party.from_gobl!(data['payer']) : nil,
+          terms: data['terms'] ? GOBL::Pay::Terms.from_gobl!(data['terms']) : nil,
+          advances: data['advances']&.map { |item| GOBL::Pay::Advance.from_gobl!(item) },
+          instructions: data['instructions'] ? GOBL::Pay::Instructions.from_gobl!(data['instructions']) : nil
         )
       end
 
@@ -40,7 +40,7 @@ module GOBL
         {
           'payer' => attributes[:payer]&.to_gobl,
           'terms' => attributes[:terms]&.to_gobl,
-          'advances' => attributes[:advances]&.map { |x| x&.to_gobl },
+          'advances' => attributes[:advances]&.map { |item| item&.to_gobl },
           'instructions' => attributes[:instructions]&.to_gobl
         }
       end

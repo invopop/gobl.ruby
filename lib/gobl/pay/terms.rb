@@ -16,19 +16,19 @@ module GOBL
       attribute :detail, GOBL::Types::String.optional
 
       # Set of dates for agreed payments.
-      attribute :due_dates, GOBL::Types::Array(GOBL::Pay::DueDate).optional
+      attribute :due_dates, GOBL::Types::Array(DueDate).optional
 
       # Description of the conditions for payment.
       attribute :notes, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          detail: gobl['detail'],
-          due_dates: gobl['due_dates']&.map { |x| GOBL::Pay::DueDate.from_gobl!(x) },
-          notes: gobl['notes']
+          code: data['code'],
+          detail: data['detail'],
+          due_dates: data['due_dates']&.map { |item| DueDate.from_gobl!(item) },
+          notes: data['notes']
         )
       end
 
@@ -40,7 +40,7 @@ module GOBL
         {
           'code' => attributes[:code],
           'detail' => attributes[:detail],
-          'due_dates' => attributes[:due_dates]&.map { |x| x&.to_gobl },
+          'due_dates' => attributes[:due_dates]&.map { |item| item&.to_gobl },
           'notes' => attributes[:notes]
         }
       end

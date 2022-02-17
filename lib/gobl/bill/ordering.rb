@@ -12,11 +12,11 @@ module GOBL
       # Party who is selling the goods and is not responsible for taxes
       attribute :seller, GOBL::Org::Party.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          seller: gobl['seller'] ? GOBL::Org::Party.from_gobl!(gobl['seller']) : nil
+          seller: data['seller'] ? GOBL::Org::Party.from_gobl!(data['seller']) : nil
         )
       end
 

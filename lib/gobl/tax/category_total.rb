@@ -13,21 +13,21 @@ module GOBL
 
       attribute :retained, GOBL::Types::Bool.optional
 
-      attribute :rates, GOBL::Types::Array(GOBL::Tax::RateTotal)
+      attribute :rates, GOBL::Types::Array(RateTotal)
 
       attribute :base, GOBL::Num::Amount
 
       attribute :amount, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          retained: gobl['retained'],
-          rates: gobl['rates']&.map { |x| GOBL::Tax::RateTotal.from_gobl!(x) },
-          base: GOBL::Num::Amount.from_gobl!(gobl['base']),
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
+          code: data['code'],
+          retained: data['retained'],
+          rates: data['rates']&.map { |item| RateTotal.from_gobl!(item) },
+          base: GOBL::Num::Amount.from_gobl!(data['base']),
+          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
         )
       end
 
@@ -39,7 +39,7 @@ module GOBL
         {
           'code' => attributes[:code],
           'retained' => attributes[:retained],
-          'rates' => attributes[:rates]&.map { |x| x&.to_gobl },
+          'rates' => attributes[:rates]&.map { |item| item&.to_gobl },
           'base' => attributes[:base]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl
         }

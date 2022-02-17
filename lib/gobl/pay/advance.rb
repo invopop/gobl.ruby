@@ -33,18 +33,18 @@ module GOBL
       # If different from the parent document's base currency.
       attribute :currency, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          date: gobl['date'] ? GOBL::Org::Date.from_gobl!(gobl['date']) : nil,
-          ref: gobl['ref'],
-          grant: gobl['grant'],
-          desc: gobl['desc'],
-          rate: gobl['rate'] ? GOBL::Num::Percentage.from_gobl!(gobl['rate']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount']),
-          currency: gobl['currency']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          date: data['date'] ? GOBL::Org::Date.from_gobl!(data['date']) : nil,
+          ref: data['ref'],
+          grant: data['grant'],
+          desc: data['desc'],
+          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          currency: data['currency']
         )
       end
 

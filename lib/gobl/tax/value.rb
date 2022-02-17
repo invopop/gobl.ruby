@@ -18,13 +18,13 @@ module GOBL
       # When true, this value should no longer be used.
       attribute :disabled, GOBL::Types::Bool.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          since: gobl['since'] ? GOBL::Org::Date.from_gobl!(gobl['since']) : nil,
-          percent: GOBL::Num::Percentage.from_gobl!(gobl['percent']),
-          disabled: gobl['disabled']
+          since: data['since'] ? GOBL::Org::Date.from_gobl!(data['since']) : nil,
+          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
+          disabled: data['disabled']
         )
       end
 

@@ -20,7 +20,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency('json', '~> 2.6.1')
   spec.add_dependency('zeitwerk', '~> 2.5.1')
 
+  spec.add_development_dependency('activesupport', '~> 6.1')
   spec.add_development_dependency('json-schema', '~> 2.8.1')
+  spec.add_development_dependency('multi_json', '~> 1.15')
   spec.add_development_dependency('rspec', '~> 3.10')
   spec.add_development_dependency('rubocop', '~> 1.20')
   spec.add_development_dependency('rubocop-performance', '~> 1.11.5')

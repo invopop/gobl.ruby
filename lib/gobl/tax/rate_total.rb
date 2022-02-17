@@ -17,14 +17,14 @@ module GOBL
 
       attribute :amount, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          base: GOBL::Num::Amount.from_gobl!(gobl['base']),
-          percent: GOBL::Num::Percentage.from_gobl!(gobl['percent']),
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
+          code: data['code'],
+          base: GOBL::Num::Amount.from_gobl!(data['base']),
+          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
+          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
         )
       end
 

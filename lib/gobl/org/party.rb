@@ -16,7 +16,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # The entity's legal ID code used for tax purposes. They may have other numbers
-      attribute :tax_id, GOBL::Org::TaxID.optional
+      attribute :tax_id, GOBL::Org::Tax-id.optional
 
       # Legal name or representation of the organization.
       attribute :name, GOBL::Types::String
@@ -40,21 +40,21 @@ module GOBL
       # Any additional semi-structured information that does not fit into the rest of the party.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          id: gobl['id'],
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          tax_id: gobl['tax_id'] ? GOBL::Org::TaxID.from_gobl!(gobl['tax_id']) : nil,
-          name: gobl['name'],
-          alias: gobl['alias'],
-          people: gobl['people']&.map { |x| GOBL::Org::Person.from_gobl!(x) },
-          addresses: gobl['addresses']&.map { |x| GOBL::Org::Address.from_gobl!(x) },
-          emails: gobl['emails']&.map { |x| GOBL::Org::Email.from_gobl!(x) },
-          telephones: gobl['telephones']&.map { |x| GOBL::Org::Telephone.from_gobl!(x) },
-          registration: gobl['registration'] ? GOBL::Org::Registration.from_gobl!(gobl['registration']) : nil,
-          meta: gobl['meta']
+          id: data['id'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          tax_id: data['tax_id'] ? GOBL::Org::Tax-id.from_gobl!(data['tax_id']) : nil,
+          name: data['name'],
+          alias: data['alias'],
+          people: data['people']&.map { |item| GOBL::Org::Person.from_gobl!(item) },
+          addresses: data['addresses']&.map { |item| GOBL::Org::Address.from_gobl!(item) },
+          emails: data['emails']&.map { |item| GOBL::Org::Email.from_gobl!(item) },
+          telephones: data['telephones']&.map { |item| GOBL::Org::Telephone.from_gobl!(item) },
+          registration: data['registration'] ? GOBL::Org::Registration.from_gobl!(data['registration']) : nil,
+          meta: data['meta']
         )
       end
 
@@ -69,10 +69,10 @@ module GOBL
           'tax_id' => attributes[:tax_id]&.to_gobl,
           'name' => attributes[:name],
           'alias' => attributes[:alias],
-          'people' => attributes[:people]&.map { |x| x&.to_gobl },
-          'addresses' => attributes[:addresses]&.map { |x| x&.to_gobl },
-          'emails' => attributes[:emails]&.map { |x| x&.to_gobl },
-          'telephones' => attributes[:telephones]&.map { |x| x&.to_gobl },
+          'people' => attributes[:people]&.map { |item| item&.to_gobl },
+          'addresses' => attributes[:addresses]&.map { |item| item&.to_gobl },
+          'emails' => attributes[:emails]&.map { |item| item&.to_gobl },
+          'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'registration' => attributes[:registration]&.to_gobl,
           'meta' => attributes[:meta]
         }

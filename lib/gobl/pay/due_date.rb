@@ -24,15 +24,15 @@ module GOBL
       # If different from the parent document's base currency.
       attribute :currency, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          date: GOBL::Org::Date.from_gobl!(gobl['date']),
-          notes: gobl['notes'],
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount']),
-          percent: gobl['percent'] ? GOBL::Num::Percentage.from_gobl!(gobl['percent']) : nil,
-          currency: gobl['currency']
+          date: GOBL::Org::Date.from_gobl!(data['date']),
+          notes: data['notes'],
+          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
+          currency: data['currency']
         )
       end
 
