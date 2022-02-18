@@ -1,10 +1,11 @@
-module Parser
-  # ID is used to simplify URL parsing. The JSON Schema `$id` field must always be a
-  # fully qualified URL. This class adds special support for parsing GOBL URLs.
-  # TODO: reuse the GOBL::ID.
+require 'uri'
+
+module GOBL
+  # Provide a wrapper around Schema IDs (URLs) so that it's easy
+  # to extract the type of document we're dealing with.
   class ID
-    def initialize(id)
-      @id = URI.parse(id)
+    def initialize(val)
+      @id = URI.parse(val)
     end
 
     def gobl?
@@ -27,12 +28,16 @@ module Parser
       @id.path.split('/').last
     end
 
-    # Provides the module component of the path, which may be empty. The
+    # Provides the module components of the path, which may be empty. The
     # last element of the path is always considered the name of the current schema,
     # and not the module.
+    def modules
+      @id.path.split('/')[2..-2]
+    end
+
     # Multiple modules will be sperated by "/".
     def module
-      @id.path.split('/')[2..-2].join('/')
+      modules.join('/')
     end
 
     def to_s

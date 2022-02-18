@@ -41,7 +41,7 @@ module Generators
       end
 
       def property_key_value_pair(key, property)
-        attr = "attributes[:#{key}]"
+        attr = "attributes[:#{safe_property_name(key)}]"
         "'#{key}' => #{property_value(attr, property)}"
       end
 

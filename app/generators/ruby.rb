@@ -13,6 +13,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym 'GOBL'
   inflect.acronym 'UUID'
   inflect.acronym 'URL'
+  inflect.acronym 'DSig'
+  inflect.acronym 'ID' # Go always uses ID
 end
 
 module Generators

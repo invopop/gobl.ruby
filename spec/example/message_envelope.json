@@ -1,18 +1,18 @@
 {
-  "ver": "0.1",
-  "head": {
-    "uuid": "5fb3f60f-d4a8-43e9-be3a-f275226dbac0",
-    "typ": "note.Message",
-    "rgn": "ES",
-    "dig": {
-      "alg": "sha256",
-      "val": "699919f78817bb336ccb582154d42d42e07447fa1ec489ee8312ebebef637d30"
-    }
-  },
-  "doc": {
-    "content": "Testing Message"
-  },
-  "sigs": [
-    "eyJhbGciOiJIUzI1NiJ9.e30.csXAdXuJ5Idpe3CkitwT93v9H0ELttyl8O25_1_fjxM"
-  ]
+	"$schema": "https://gobl.org/draft-0/envelope",
+	"head": {
+		"uuid": "e045e62a-90ad-11ec-b8f7-3e7e00ce5635",
+		"dig": {
+			"alg": "sha256",
+			"val": "9dd4470e0e2d7987ffe26287693650c29d821be44d5e6fb2c53a5d859c97a337"
+		}
+	},
+	"doc": {
+		"$schema": "https://gobl.org/draft-0/note/message",
+		"title": "Invopop CLI Message",
+		"content": "This is a test message with some random *markdown* contents."
+	},
+	"sigs": [
+		"eyJhbGciOiJFUzI1NiIsImtpZCI6ImE2YzM5MjBkLThlMzMtNDE1OS1iMzM3LTllNzQ2MTcxNmRmMSJ9.eyJ1dWlkIjoiZTA0NWU2MmEtOTBhZC0xMWVjLWI4ZjctM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjlkZDQ0NzBlMGUyZDc5ODdmZmUyNjI4NzY5MzY1MGMyOWQ4MjFiZTQ0ZDVlNmZiMmM1M2E1ZDg1OWM5N2EzMzcifX0.5UHOhau-9bxcc6mDvT-85f4VQIE8lMi781CHcliGBuUtzzQ04bXHoOm1H7vhRWzyaRMV_Dy8lWnIFjTCoETVFw"
+	]
 }

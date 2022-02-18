@@ -7,7 +7,7 @@
 require 'dry-struct'
 
 module GOBL
-  module Dsig
+  module DSig
     class Digest < Dry::Struct
       # Algorithm stores the algorithm key that was used to generate the value.
       attribute :alg, GOBL::Types::String

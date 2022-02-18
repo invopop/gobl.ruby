@@ -28,7 +28,7 @@ module GOBL
       attribute :currency, GOBL::Types::String
 
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      attribute :rates, GOBL::Types::Array(GOBL::Currency::Exchange-rate).optional
+      attribute :rates, GOBL::Types::Array(GOBL::Currency::ExchangeRate).optional
 
       # Implies that all item prices already include the specified tax, especially useful for retailers or B2C companies where prices are often displayed including tax. We only only one tax category to be defined as it is overly complex to work-out what the base price should be from multiple rates.
       attribute :prices_include_tax, GOBL::Types::String.optional
@@ -88,7 +88,7 @@ module GOBL
           series: data['series'],
           type_code: data['type_code'],
           currency: data['currency'],
-          rates: data['rates']&.map { |item| GOBL::Currency::Exchange-rate.from_gobl!(item) },
+          rates: data['rates']&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) },
           prices_include_tax: data['prices_include_tax'],
           preceding: data['preceding'] ? Preceding.from_gobl!(data['preceding']) : nil,
           issue_date: GOBL::Org::Date.from_gobl!(data['issue_date']),

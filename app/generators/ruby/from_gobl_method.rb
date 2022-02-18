@@ -27,7 +27,7 @@ module Generators
           out << "  #{variable_assigment}\n"
           out << "\n"
           out << "  new(\n    "
-          out << property_key_value_strings.join(",\n    ")
+          out << property_key_value_pairs.join(",\n    ")
           out << "\n"
           out << "  )\n"
         end
@@ -39,16 +39,17 @@ module Generators
 
       attr_reader :schema, :properties
 
-      def property_key_value_strings
+      def property_key_value_pairs
         properties.map do |name, prop|
-          property_key_value_string(name, prop)
+          property_key_value_pair(name, prop)
         end
       end
 
-      def property_key_value_string(name, property)
+      def property_key_value_pair(name, property)
         var = "#{PARAM_NAME}['#{name}']"
         txt = property_value_string(property, var, !schema.required?(name))
-        "#{name}: #{txt}"
+        # explicitely define symbol so we avoid errors with `$schema` or `$id`
+        "#{safe_property_name(name)}: #{txt}"
       end
 
       def property_value_string(property, var, optional)

@@ -13,6 +13,12 @@ module Generators
         }
       end
 
+      # Provide a safe property symbol from the name, as Ruby and specifically
+      # Dry::Struct doesn't play nice with `$` in symbols
+      def safe_property_name(name)
+        name.gsub(/^\$/, '')
+      end
+
       def gobl_type_from_json_schema(type)
         json_schema_type_map[type] || 'Any'
       end
@@ -43,9 +49,9 @@ module Generators
         mods = ['GOBL']
         if ref.module.present?
           ref.module.split('/').each do |m|
-            mods << m.camelize
+            mods << m.underscore.camelize
           end
-          mods << ref.name.camelize
+          mods << ref.name.underscore.camelize
         end
         mods.join('::')
       end

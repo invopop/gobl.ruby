@@ -3,5 +3,9 @@
 GOBL::I18n::String.class_eval do
   include GOBLExtensions::I18n::ValueKeysHelper
 end
-
-GOBL::Envelope.extend(GOBLExtensions::DocumentHelper)
+GOBL::Document.class_eval do
+  include GOBLExtensions::DocumentHelper
+end
+GOBL::Envelope.class_eval do
+  include GOBLExtensions::EnvelopeHelper
+end

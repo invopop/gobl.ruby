@@ -22,8 +22,8 @@ func Generate() error {
 	return dockerRunCmd(name, "", "rake", "generate")
 }
 
-func Compile() error {
-	return dockerRunCmd(name, "", "rake", "compile")
+func Spec() error {
+	return dockerRunCmd(name, "", "rake", "spec")
 }
 
 func dockerRunCmd(name, publicPort string, cmd ...string) error {

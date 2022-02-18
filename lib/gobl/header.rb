@@ -12,7 +12,7 @@ module GOBL
     attribute :uuid, GOBL::UUID::UUID
 
     # Digest of the canonical JSON body.
-    attribute :dig, GOBL::Dsig::Digest
+    attribute :dig, GOBL::DSig::Digest
 
     # Seals of approval from other organisations.
     attribute :stamps, GOBL::Types::Array(Stamp).optional
@@ -34,7 +34,7 @@ module GOBL
 
       new(
         uuid: GOBL::UUID::UUID.from_gobl!(data['uuid']),
-        dig: GOBL::Dsig::Digest.from_gobl!(data['dig']),
+        dig: GOBL::DSig::Digest.from_gobl!(data['dig']),
         stamps: data['stamps']&.map { |item| Stamp.from_gobl!(item) },
         tags: data['tags']&.map { |item| item },
         meta: data['meta'],

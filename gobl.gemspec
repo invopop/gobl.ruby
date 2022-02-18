@@ -15,12 +15,12 @@ Gem::Specification.new do |spec|
 
   spec.authors = ['David Lilue', 'Sam Lown', 'Juanjo Molinero']
 
+  spec.add_dependency('activesupport', '~> 6.1')
   spec.add_dependency('dry-struct', '~> 1.4.0')
   spec.add_dependency('dry-types', '~> 1.5.1')
   spec.add_dependency('json', '~> 2.6.1')
   spec.add_dependency('zeitwerk', '~> 2.5.1')
 
-  spec.add_development_dependency('activesupport', '~> 6.1')
   spec.add_development_dependency('json-schema', '~> 2.8.1')
   spec.add_development_dependency('multi_json', '~> 1.15')
   spec.add_development_dependency('rspec', '~> 3.10')
