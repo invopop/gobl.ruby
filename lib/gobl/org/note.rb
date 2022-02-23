@@ -15,12 +15,12 @@ module GOBL
       # The contents of the note
       attribute :text, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          text: gobl['text']
+          code: data['code'],
+          text: data['text']
         )
       end
 

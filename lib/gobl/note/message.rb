@@ -9,22 +9,22 @@ require 'dry-struct'
 module GOBL
   module Note
     class Message < Dry::Struct
-      # Summary of the message content.
+      # Summary of the message content
       attribute :title, GOBL::Types::String.optional
 
-      # Details of what exactly this message wants to communicate.
+      # Details of what exactly this message wants to communicate
       attribute :content, GOBL::Types::String
 
       # Any additional semi-structured data that might be useful.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          title: gobl['title'],
-          content: gobl['content'],
-          meta: gobl['meta']
+          title: data['title'],
+          content: data['content'],
+          meta: data['meta']
         )
       end
 

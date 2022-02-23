@@ -15,12 +15,12 @@ module GOBL
       # How much is 1.00 of this currency worth in the documents currency.
       attribute :amount, GOBL::Num::Amount
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          currency: gobl['currency'],
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount'])
+          currency: data['currency'],
+          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
         )
       end
 

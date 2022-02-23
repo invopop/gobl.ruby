@@ -21,14 +21,14 @@ module GOBL
       # Single string coordinate based on geohash standard.
       attribute :geohash, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          lat: gobl['lat'],
-          lon: gobl['lon'],
-          w3w: gobl['w3w'],
-          geohash: gobl['geohash']
+          lat: data['lat'],
+          lon: data['lon'],
+          w3w: data['w3w'],
+          geohash: data['geohash']
         )
       end
 

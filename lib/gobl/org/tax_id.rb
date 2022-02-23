@@ -21,14 +21,14 @@ module GOBL
       # Additional details.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          country: gobl['country'],
-          code: gobl['code'],
-          meta: gobl['meta']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          country: data['country'],
+          code: data['code'],
+          meta: data['meta']
         )
       end
 

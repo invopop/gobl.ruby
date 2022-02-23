@@ -31,7 +31,7 @@ module GOBL
       attribute :unit, GOBL::Types::String.optional
 
       # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
-      attribute :codes, GOBL::Types::Array(GOBL::Org::ItemCode).optional
+      attribute :codes, GOBL::Types::Array(ItemCode).optional
 
       # Country code of where this item was from originally.
       attribute :origin, GOBL::Types::String.optional
@@ -39,20 +39,20 @@ module GOBL
       # Additional meta information that may be useful
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'],
-          ref: gobl['ref'],
-          name: gobl['name'],
-          desc: gobl['desc'],
-          currency: gobl['currency'],
-          price: GOBL::Num::Amount.from_gobl!(gobl['price']),
-          unit: gobl['unit'],
-          codes: gobl['codes']&.map { |x| GOBL::Org::ItemCode.from_gobl!(x) },
-          origin: gobl['origin'],
-          meta: gobl['meta']
+          uuid: data['uuid'],
+          ref: data['ref'],
+          name: data['name'],
+          desc: data['desc'],
+          currency: data['currency'],
+          price: GOBL::Num::Amount.from_gobl!(data['price']),
+          unit: data['unit'],
+          codes: data['codes']&.map { |item| ItemCode.from_gobl!(item) },
+          origin: data['origin'],
+          meta: data['meta']
         )
       end
 
@@ -69,7 +69,7 @@ module GOBL
           'currency' => attributes[:currency],
           'price' => attributes[:price]&.to_gobl,
           'unit' => attributes[:unit],
-          'codes' => attributes[:codes]&.map { |x| x&.to_gobl },
+          'codes' => attributes[:codes]&.map { |item| item&.to_gobl },
           'origin' => attributes[:origin],
           'meta' => attributes[:meta]
         }

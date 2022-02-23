@@ -2,15 +2,22 @@
 
 require 'json'
 require 'zeitwerk'
+require 'dry-types'
+require 'active_support/core_ext/string/inflections'
 
-# GOBL - Main namespace which has the differents structures to generate and
+# Main GOBL namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL
 # objects, based on the GoBL JSON schema.
 module GOBL
   def self.inflections
     {
-      'gobl' => 'GOBL', 'uuid' => 'UUID', 'url' => 'URL',
-      'item_id' => 'ItemID', 'tax_id' => 'TaxID'
+      'gobl' => 'GOBL',
+      'gobl_extensions' => 'GOBLExtensions',
+      'uuid' => 'UUID',
+      'url' => 'URL',
+      'item_id' => 'ItemID',
+      'tax_id' => 'TaxID',
+      'dsig' => 'DSig'
     }
   end
 
@@ -25,27 +32,18 @@ module GOBL
   end
 end
 
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.acronym 'GOBL'
+  inflect.acronym 'UUID'
+  inflect.acronym 'URL'
+  inflect.acronym 'DSig'
+  # inflect.acronym 'ItemID'
+  # inflect.acronym 'TaxID'
+end
+
+require_relative 'types'
+require_relative 'id'
+
 GOBL.loader.setup
 
-module GOBL
-  # Envelope 'from_json!' method overrides the auto generated definition to
-  # take into account the envelope type.
-  class Envelope
-    extend GOBL::Extensions::Envelope::HeaderTypeHelper
-
-    def self.from_json!(json)
-      return if json.nil?
-
-      instance = from_gobl!(JSON.parse(json))
-
-      kls = fetch_object(instance.head.typ)
-      instance.attributes[:doc] = kls.from_gobl!(instance.doc.value)
-
-      instance
-    end
-  end
-end
-
-GOBL::I18n::String.class_eval do
-  include GOBL::Extensions::I18n::ValueKeysHelper
-end
+require_relative 'extensions'

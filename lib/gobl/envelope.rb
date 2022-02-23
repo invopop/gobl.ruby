@@ -8,26 +8,26 @@ require 'dry-struct'
 
 module GOBL
   class Envelope < Dry::Struct
-    # The GOBL document version used to generate the envelope
-    attribute :ver, GOBL::Types::String
+    # Schema identifies the schema that should be used to understand this document
+    attribute :schema, GOBL::Types::String
 
     # Details on what the contents are
-    attribute :head, GOBL::Header
+    attribute :head, Header
 
     # The data inside the envelope
-    attribute :doc, GOBL::Payload
+    attribute :doc, Document
 
     # JSON Web Signatures of the header
-    attribute :sigs, GOBL::Types::Array(GOBL::Dsig::Signature)
+    attribute :sigs, GOBL::Types::Array(GOBL::DSig::Signature)
 
-    def self.from_gobl!(gobl)
-      gobl = GOBL::Types::Hash[gobl]
+    def self.from_gobl!(data)
+      data = GOBL::Types::Hash[data]
 
       new(
-        ver: gobl['ver'],
-        head: GOBL::Header.from_gobl!(gobl['head']),
-        doc: GOBL::Payload.from_gobl!(gobl['doc']),
-        sigs: gobl['sigs']&.map { |x| GOBL::Dsig::Signature.from_gobl!(x) }
+        schema: data['$schema'],
+        head: Header.from_gobl!(data['head']),
+        doc: Document.from_gobl!(data['doc']),
+        sigs: data['sigs']&.map { |item| GOBL::DSig::Signature.from_gobl!(item) }
       )
     end
 
@@ -37,10 +37,10 @@ module GOBL
 
     def to_gobl
       {
-        'ver' => attributes[:ver],
+        '$schema' => attributes[:schema],
         'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc]&.to_gobl,
-        'sigs' => attributes[:sigs]&.map { |x| x&.to_gobl }
+        'sigs' => attributes[:sigs]&.map { |item| item&.to_gobl }
       }
     end
 

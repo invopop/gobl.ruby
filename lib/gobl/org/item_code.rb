@@ -13,12 +13,12 @@ module GOBL
 
       attribute :val, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          typ: gobl['typ'],
-          val: gobl['val']
+          typ: data['typ'],
+          val: data['val']
         )
       end
 

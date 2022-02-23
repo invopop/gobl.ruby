@@ -19,17 +19,17 @@ module GOBL
       attribute :retained, GOBL::Types::Bool.optional
 
       # Specific tax definitions inside this category.
-      attribute :defs, GOBL::Types::Array(GOBL::Tax::Def)
+      attribute :defs, GOBL::Types::Array(Def)
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          code: gobl['code'],
-          name: GOBL::I18n::String.from_gobl!(gobl['name']),
-          desc: gobl['desc'] ? GOBL::I18n::String.from_gobl!(gobl['desc']) : nil,
-          retained: gobl['retained'],
-          defs: gobl['defs']&.map { |x| GOBL::Tax::Def.from_gobl!(x) }
+          code: data['code'],
+          name: GOBL::I18n::String.from_gobl!(data['name']),
+          desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
+          retained: data['retained'],
+          defs: data['defs']&.map { |item| Def.from_gobl!(item) }
         )
       end
 
@@ -43,7 +43,7 @@ module GOBL
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
           'retained' => attributes[:retained],
-          'defs' => attributes[:defs]&.map { |x| x&.to_gobl }
+          'defs' => attributes[:defs]&.map { |item| item&.to_gobl }
         }
       end
 

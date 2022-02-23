@@ -15,12 +15,12 @@ module GOBL
       # Full URL to be used for payment.
       attribute :addr, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          name: gobl['name'],
-          addr: gobl['addr']
+          name: data['name'],
+          addr: data['addr']
         )
       end
 

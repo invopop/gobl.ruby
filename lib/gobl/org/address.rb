@@ -52,25 +52,25 @@ module GOBL
 
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          label: gobl['label'],
-          po_box: gobl['po_box'],
-          num: gobl['num'],
-          floor: gobl['floor'],
-          block: gobl['block'],
-          door: gobl['door'],
-          street: gobl['street'],
-          street_extra: gobl['street_extra'],
-          locality: gobl['locality'],
-          region: gobl['region'],
-          code: gobl['code'],
-          country: gobl['country'],
-          coords: gobl['coords'] ? GOBL::Org::Coordinates.from_gobl!(gobl['coords']) : nil,
-          meta: gobl['meta']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          label: data['label'],
+          po_box: data['po_box'],
+          num: data['num'],
+          floor: data['floor'],
+          block: data['block'],
+          door: data['door'],
+          street: data['street'],
+          street_extra: data['street_extra'],
+          locality: data['locality'],
+          region: data['region'],
+          code: data['code'],
+          country: data['country'],
+          coords: data['coords'] ? GOBL::Org::Coordinates.from_gobl!(data['coords']) : nil,
+          meta: data['meta']
         )
       end
 

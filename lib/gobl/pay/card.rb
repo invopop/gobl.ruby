@@ -15,12 +15,12 @@ module GOBL
       # Name of the person whom the card belongs to.
       attribute :holder, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          last4: gobl['last4'],
-          holder: gobl['holder']
+          last4: data['last4'],
+          holder: data['holder']
         )
       end
 

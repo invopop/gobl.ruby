@@ -17,13 +17,13 @@ module GOBL
       # The number to be dialed in ITU E.164 international format.
       attribute :num, GOBL::Types::String
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          label: gobl['label'],
-          num: gobl['num']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          label: data['label'],
+          num: data['num']
         )
       end
 

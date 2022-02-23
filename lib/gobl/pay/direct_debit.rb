@@ -18,13 +18,13 @@ module GOBL
       # Account identifier to be debited by the direct debit.
       attribute :account, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          ref: gobl['ref'],
-          creditor: gobl['creditor'],
-          account: gobl['account']
+          ref: data['ref'],
+          creditor: data['creditor'],
+          account: data['account']
         )
       end
 

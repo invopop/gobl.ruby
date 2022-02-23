@@ -14,12 +14,12 @@ module GOBL
     # The serialized stamp value generated for or by the external agency
     attribute :val, GOBL::Types::String
 
-    def self.from_gobl!(gobl)
-      gobl = GOBL::Types::Hash[gobl]
+    def self.from_gobl!(data)
+      data = GOBL::Types::Hash[data]
 
       new(
-        prv: gobl['prv'],
-        val: gobl['val']
+        prv: data['prv'],
+        val: data['val']
       )
     end
 

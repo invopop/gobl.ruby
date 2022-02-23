@@ -39,20 +39,20 @@ module GOBL
       # Additional semi-structured information.
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'],
-          i: gobl['i'],
-          ref: gobl['ref'],
-          base: gobl['base'] ? GOBL::Num::Amount.from_gobl!(gobl['base']) : nil,
-          rate: gobl['rate'] ? GOBL::Num::Percentage.from_gobl!(gobl['rate']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(gobl['amount']),
-          taxes: gobl['taxes']&.map { |x| GOBL::Tax::Rate.from_gobl!(x) },
-          code: gobl['code'],
-          reason: gobl['reason'],
-          meta: gobl['meta']
+          uuid: data['uuid'],
+          i: data['i'],
+          ref: data['ref'],
+          base: data['base'] ? GOBL::Num::Amount.from_gobl!(data['base']) : nil,
+          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          taxes: data['taxes']&.map { |item| GOBL::Tax::Rate.from_gobl!(item) },
+          code: data['code'],
+          reason: data['reason'],
+          meta: data['meta']
         )
       end
 
@@ -68,7 +68,7 @@ module GOBL
           'base' => attributes[:base]&.to_gobl,
           'rate' => attributes[:rate]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
-          'taxes' => attributes[:taxes]&.map { |x| x&.to_gobl },
+          'taxes' => attributes[:taxes]&.map { |item| item&.to_gobl },
           'code' => attributes[:code],
           'reason' => attributes[:reason],
           'meta' => attributes[:meta]

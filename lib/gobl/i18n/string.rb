@@ -12,10 +12,8 @@ module GOBL
       # Map of 2-Letter language codes to their translations.
       attribute :value, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        new(
-          value: gobl
-        )
+      def self.from_gobl!(data)
+        new(value: data)
       end
 
       def self.from_json!(json)

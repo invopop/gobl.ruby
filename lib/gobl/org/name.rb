@@ -31,19 +31,19 @@ module GOBL
 
       attribute :meta, GOBL::Types::Hash.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          alias: gobl['alias'],
-          prefix: gobl['prefix'],
-          given: gobl['given'],
-          middle: gobl['middle'],
-          surname: gobl['surname'],
-          surname2: gobl['surname2'],
-          suffix: gobl['suffix'],
-          meta: gobl['meta']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          alias: data['alias'],
+          prefix: data['prefix'],
+          given: data['given'],
+          middle: data['middle'],
+          surname: data['surname'],
+          surname2: data['surname2'],
+          suffix: data['suffix'],
+          meta: data['meta']
         )
       end
 

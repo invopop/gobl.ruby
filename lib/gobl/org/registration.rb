@@ -26,18 +26,18 @@ module GOBL
 
       attribute :entry, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          uuid: gobl['uuid'] ? GOBL::UUID::UUID.from_gobl!(gobl['uuid']) : nil,
-          office: gobl['office'],
-          book: gobl['book'],
-          volume: gobl['volume'],
-          sheet: gobl['sheet'],
-          section: gobl['section'],
-          page: gobl['page'],
-          entry: gobl['entry']
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
+          office: data['office'],
+          book: data['book'],
+          volume: data['volume'],
+          sheet: data['sheet'],
+          section: data['section'],
+          page: data['page'],
+          entry: data['entry']
         )
       end
 

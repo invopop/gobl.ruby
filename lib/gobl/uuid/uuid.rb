@@ -12,10 +12,8 @@ module GOBL
       # Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.
       attribute :value, GOBL::Types::String.optional
 
-      def self.from_gobl!(gobl)
-        new(
-          value: gobl
-        )
+      def self.from_gobl!(data)
+        new(value: data)
       end
 
       def self.from_json!(json)

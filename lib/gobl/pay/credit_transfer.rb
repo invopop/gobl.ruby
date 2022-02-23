@@ -24,15 +24,15 @@ module GOBL
       # Bank office branch address
       attribute :branch, GOBL::Org::Address.optional
 
-      def self.from_gobl!(gobl)
-        gobl = GOBL::Types::Hash[gobl]
+      def self.from_gobl!(data)
+        data = GOBL::Types::Hash[data]
 
         new(
-          iban: gobl['iban'],
-          bic: gobl['bic'],
-          number: gobl['number'],
-          name: gobl['name'],
-          branch: gobl['branch'] ? GOBL::Org::Address.from_gobl!(gobl['branch']) : nil
+          iban: data['iban'],
+          bic: data['bic'],
+          number: data['number'],
+          name: data['name'],
+          branch: data['branch'] ? GOBL::Org::Address.from_gobl!(data['branch']) : nil
         )
       end
 
