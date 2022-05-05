@@ -8,23 +8,23 @@ require 'dry-struct'
 
 module GOBL
   module Tax
-    class RateTotal < Dry::Struct
-      attribute :key, GOBL::Types::String
+    class RateValue < Dry::Struct
+      # Date from which this value should be applied.
+      attribute :since, GOBL::Cal::Date.optional
 
-      attribute :base, GOBL::Num::Amount
-
+      # Rate that should be applied
       attribute :percent, GOBL::Num::Percentage
 
-      attribute :amount, GOBL::Num::Amount
+      # When true, this value should no longer be used.
+      attribute :disabled, GOBL::Types::Bool.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          key: data['key'],
-          base: GOBL::Num::Amount.from_gobl!(data['base']),
+          since: data['since'] ? GOBL::Cal::Date.from_gobl!(data['since']) : nil,
           percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
-          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
+          disabled: data['disabled']
         )
       end
 
@@ -34,10 +34,9 @@ module GOBL
 
       def to_gobl
         {
-          'key' => attributes[:key],
-          'base' => attributes[:base]&.to_gobl,
+          'since' => attributes[:since]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
-          'amount' => attributes[:amount]&.to_gobl
+          'disabled' => attributes[:disabled]
         }
       end
 

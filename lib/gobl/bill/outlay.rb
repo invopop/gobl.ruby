@@ -16,7 +16,7 @@ module GOBL
       attribute :i, GOBL::Types::Int
 
       # When was the outlay made.
-      attribute :date, GOBL::Org::Date.optional
+      attribute :date, GOBL::Cal::Date.optional
 
       # Invoice number or other reference detail used to identify the outlay.
       attribute :code, GOBL::Types::String.optional
@@ -39,7 +39,7 @@ module GOBL
         new(
           uuid: data['uuid'],
           i: data['i'],
-          date: data['date'] ? GOBL::Org::Date.from_gobl!(data['date']) : nil,
+          date: data['date'] ? GOBL::Cal::Date.from_gobl!(data['date']) : nil,
           code: data['code'],
           series: data['series'],
           desc: data['desc'],

@@ -29,7 +29,6 @@
           "title": "Amount"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "code",
@@ -41,9 +40,9 @@
     },
     "RateTotal": {
       "properties": {
-        "code": {
+        "key": {
           "type": "string",
-          "title": "Code"
+          "title": "Key"
         },
         "base": {
           "$ref": "https://gobl.org/draft-0/num/amount",
@@ -58,10 +57,9 @@
           "title": "Amount"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
-        "code",
+        "key",
         "base",
         "percent",
         "amount"
@@ -84,12 +82,12 @@
           "description": "Total value of all the taxes applied."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "sum"
       ],
       "description": "Total contains a set of Category Totals which in turn contain all the accumulated taxes contained in the document."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

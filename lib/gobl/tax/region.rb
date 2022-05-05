@@ -9,18 +9,33 @@ require 'dry-struct'
 module GOBL
   module Tax
     class Region < Dry::Struct
-      attribute :code, GOBL::Types::String
-
+      # Name of the region
       attribute :name, GOBL::I18n::String
 
+      # Country code for the region
+      attribute :country, GOBL::Types::String
+
+      # Locality, city, region, or similar code inside the country, if needed.
+      attribute :locality, GOBL::Types::String.optional
+
+      # Currency used by the region for tax purposes.
+      attribute :currency, GOBL::Types::String
+
+      # Set of specific scheme definitions inside the region.
+      attribute :schemes, GOBL::Types::Array(Scheme).optional
+
+      # List of tax categories.
       attribute :categories, GOBL::Types::Array(Category)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          code: data['code'],
           name: GOBL::I18n::String.from_gobl!(data['name']),
+          country: data['country'],
+          locality: data['locality'],
+          currency: data['currency'],
+          schemes: data['schemes']&.map { |item| Scheme.from_gobl!(item) },
           categories: data['categories']&.map { |item| Category.from_gobl!(item) }
         )
       end
@@ -31,8 +46,11 @@ module GOBL
 
       def to_gobl
         {
-          'code' => attributes[:code],
           'name' => attributes[:name]&.to_gobl,
+          'country' => attributes[:country],
+          'locality' => attributes[:locality],
+          'currency' => attributes[:currency],
+          'schemes' => attributes[:schemes]&.map { |item| item&.to_gobl },
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
         }
       end

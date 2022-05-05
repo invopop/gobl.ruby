@@ -9,7 +9,7 @@ require 'dry-struct'
 module GOBL
   module Bill
     class Payment < Dry::Struct
-      # The party responsible for paying for the invoice
+      # The party responsible for paying for the invoice, if not the customer.
       attribute :payer, GOBL::Org::Party.optional
 
       # Payment terms or conditions.

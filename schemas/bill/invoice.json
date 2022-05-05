@@ -36,10 +36,12 @@
           "description": "Amount to apply"
         },
         "taxes": {
-          "items": {
-            "$ref": "https://gobl.org/draft-0/tax/rate"
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
           },
-          "type": "array",
+          "type": "object",
           "title": "Taxes",
           "description": "List of taxes to apply to the charge"
         },
@@ -54,17 +56,11 @@
           "description": "Text description as to why the charge was applied"
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional semi-structured information."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "i",
@@ -80,22 +76,21 @@
           "description": "The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes."
         },
         "date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Date",
           "description": "When the goods should be expected"
         },
         "start_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Start Date",
           "description": "Start of a n invoicing or delivery period"
         },
         "end_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "End Date",
           "description": "End of a n invoicing or delivery period"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "description": "Delivery covers the details of the destination for the products described in the invoice body."
     },
@@ -132,10 +127,12 @@
           "description": "Amount to apply"
         },
         "taxes": {
-          "items": {
-            "$ref": "https://gobl.org/draft-0/tax/rate"
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
           },
-          "type": "array",
+          "type": "object",
           "title": "Taxes",
           "description": "List of taxes to apply to the discount"
         },
@@ -150,17 +147,11 @@
           "description": "Text description as to why the discount was applied"
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional semi-structured information."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "i",
@@ -175,11 +166,6 @@
           "title": "UUID",
           "description": "Unique document ID. Not required, but always recommended in addition to the Code."
         },
-        "region": {
-          "type": "string",
-          "title": "Region",
-          "description": "Code for the region the invoice should be validated with."
-        },
         "code": {
           "type": "string",
           "title": "Code",
@@ -190,9 +176,9 @@
           "title": "Series",
           "description": "Used in addition to the Code in some regions."
         },
-        "type_code": {
+        "type_key": {
           "type": "string",
-          "title": "Type Code",
+          "title": "Type Key",
           "description": "Functional type of the invoice, default is always 'commercial'."
         },
         "currency": {
@@ -200,7 +186,7 @@
           "title": "Currency",
           "description": "Currency for all invoice totals."
         },
-        "rates": {
+        "exchange_rates": {
           "items": {
             "$ref": "https://gobl.org/draft-0/currency/exchange-rate"
           },
@@ -208,10 +194,10 @@
           "title": "Exchange Rates",
           "description": "Exchange rates to be used when converting the invoices monetary values into other currencies."
         },
-        "prices_include_tax": {
-          "type": "string",
-          "title": "Prices Include Tax",
-          "description": "Implies that all item prices already include the specified tax, especially\nuseful for retailers or B2C companies where prices are often displayed including tax.\n\nWe only only one tax category to be defined as it is overly complex to work-out what the base\nprice should be from multiple rates."
+        "tax": {
+          "$ref": "#/$defs/Tax",
+          "title": "Tax",
+          "description": "Special tax configuration for billing."
         },
         "preceding": {
           "$ref": "#/$defs/Preceding",
@@ -219,17 +205,17 @@
           "description": "Key information regarding a previous invoice and potentially details as to why it\nwas corrected."
         },
         "issue_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Issue Date",
           "description": "When the invoice was created."
         },
         "op_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Operation Date",
           "description": "Date when the operation defined by the invoice became effective."
         },
         "value_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Value Date",
           "description": "When the taxes of this invoice become accountable, if none set, the issue date is used."
         },
@@ -275,11 +261,6 @@
           "title": "Outlays",
           "description": "Expenses paid for by the supplier but invoiced directly to the customer."
         },
-        "totals": {
-          "$ref": "#/$defs/Totals",
-          "title": "Totals",
-          "description": "Summary of all the invoice totals, including taxes."
-        },
         "ordering": {
           "$ref": "#/$defs/Ordering",
           "title": "Ordering Details"
@@ -292,6 +273,11 @@
           "$ref": "#/$defs/Delivery",
           "title": "Delivery Details"
         },
+        "totals": {
+          "$ref": "#/$defs/Totals",
+          "title": "Totals",
+          "description": "Summary of all the invoice totals, including taxes."
+        },
         "notes": {
           "items": {
             "$ref": "https://gobl.org/draft-0/org/note"
@@ -301,20 +287,13 @@
           "description": "Unstructured information that is relevant to the invoice, such as correction or additional\nlegal details."
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional semi-structured data that doesn't fit into the body of the invoice."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
-        "region",
         "code",
         "currency",
         "issue_date",
@@ -367,20 +346,29 @@
           "description": "Charges applied to this line"
         },
         "taxes": {
-          "items": {
-            "$ref": "https://gobl.org/draft-0/tax/rate"
+          "patternProperties": {
+            ".*": {
+              "type": "string"
+            }
           },
-          "type": "array",
+          "type": "object",
           "title": "Taxes",
-          "description": "List of taxes to be applied and used in the invoice totals"
+          "description": "Map of taxes to be applied and used in the invoice totals"
         },
         "total": {
           "$ref": "https://gobl.org/draft-0/num/amount",
           "title": "Total",
-          "description": "Total line amount after applying discounts to the sum"
+          "description": "Total line amount after applying discounts to the sum."
+        },
+        "notes": {
+          "items": {
+            "$ref": "https://gobl.org/draft-0/org/note"
+          },
+          "type": "array",
+          "title": "Notes",
+          "description": "Set of specific notes for this line that may be required for\nclarification."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "i",
@@ -414,7 +402,6 @@
           "description": "Text description as to why the charge was applied"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "amount"
@@ -444,7 +431,6 @@
           "description": "Text description as to why the discount was applied"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "amount"
@@ -459,7 +445,6 @@
           "description": "Party who is selling the goods and is not responsible for taxes"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "description": "Ordering allows additional order details to be appended"
     },
@@ -476,7 +461,7 @@
           "description": "Outlay number index inside the invoice for ordering."
         },
         "date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Date",
           "description": "When was the outlay made."
         },
@@ -506,7 +491,6 @@
           "description": "Amount paid by the supplier."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "i",
@@ -520,7 +504,7 @@
         "payer": {
           "$ref": "https://gobl.org/draft-0/org/party",
           "title": "Payer",
-          "description": "The party responsible for paying for the invoice"
+          "description": "The party responsible for paying for the invoice, if not the customer."
         },
         "terms": {
           "$ref": "https://gobl.org/draft-0/pay/terms",
@@ -541,7 +525,6 @@
           "description": "Details on how payment should be made."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "description": "Payment contains details as to how the invoice should be paid."
     },
@@ -563,12 +546,12 @@
           "description": "Additional identification details"
         },
         "issue_date": {
-          "$ref": "https://gobl.org/draft-0/org/date",
+          "$ref": "https://gobl.org/draft-0/cal/date",
           "title": "Issue Date",
           "description": "When the preceding invoice was issued."
         },
         "period": {
-          "$ref": "https://gobl.org/draft-0/org/period",
+          "$ref": "https://gobl.org/draft-0/cal/period",
           "title": "Period",
           "description": "Tax period in which the previous invoice has an effect."
         },
@@ -591,23 +574,41 @@
           "description": "Additional details regarding preceding invoice"
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional semi-structured data that may be useful in specific regions"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "code",
         "issue_date"
       ],
       "description": "Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from."
+    },
+    "Tax": {
+      "properties": {
+        "prices_include": {
+          "type": "string",
+          "title": "Prices Include",
+          "description": "Category of the tax already included in the line item prices, especially\nuseful for B2C retailers with customers who prefer final prices inclusive of\ntax."
+        },
+        "schemes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "title": "Schemes",
+          "description": "Special tax schemes that apply to this invoice according to local requirements."
+        },
+        "meta": {
+          "type": "object",
+          "title": "Meta",
+          "description": "Any additional data that may be required for processing, but should never\nbe relied upon by recipients."
+        }
+      },
+      "type": "object",
+      "description": "Tax defines a summary of the taxes which may be applied to an invoice."
     },
     "Totals": {
       "properties": {
@@ -639,7 +640,12 @@
         "taxes": {
           "$ref": "https://gobl.org/draft-0/tax/total",
           "title": "Tax Totals",
-          "description": "Summary of all the taxes with a final sum to add or deduct from the amount payable."
+          "description": "Summary of all the taxes included in the invoice."
+        },
+        "tax": {
+          "$ref": "https://gobl.org/draft-0/num/amount",
+          "title": "Tax",
+          "description": "Total amount of tax to apply to the invoice."
         },
         "total_with_tax": {
           "$ref": "https://gobl.org/draft-0/num/amount",
@@ -667,7 +673,6 @@
           "description": "How much actually needs to be paid now."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "sum",
@@ -677,5 +682,6 @@
       ],
       "description": "Totals contains the summaries of all calculations for the invoice."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

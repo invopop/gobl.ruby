@@ -28,7 +28,7 @@ module GOBL
       attribute :amount, GOBL::Num::Amount
 
       # List of taxes to apply to the discount
-      attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
+      attribute :taxes, GOBL::Types::Hash.optional
 
       # Code for the reason this discount applied
       attribute :code, GOBL::Types::String.optional
@@ -49,7 +49,7 @@ module GOBL
           base: data['base'] ? GOBL::Num::Amount.from_gobl!(data['base']) : nil,
           rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
-          taxes: data['taxes']&.map { |item| GOBL::Tax::Rate.from_gobl!(item) },
+          taxes: data['taxes'],
           code: data['code'],
           reason: data['reason'],
           meta: data['meta']
@@ -68,7 +68,7 @@ module GOBL
           'base' => attributes[:base]&.to_gobl,
           'rate' => attributes[:rate]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
-          'taxes' => attributes[:taxes]&.map { |item| item&.to_gobl },
+          'taxes' => attributes[:taxes],
           'code' => attributes[:code],
           'reason' => attributes[:reason],
           'meta' => attributes[:meta]

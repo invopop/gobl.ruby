@@ -9,18 +9,24 @@ require 'dry-struct'
 module GOBL
   module Tax
     class Rate < Dry::Struct
-      # From the available options for the region.
-      attribute :cat, GOBL::Types::String
+      # Key identifies this rate within the system
+      attribute :key, GOBL::Types::String
 
-      # As defined for the region and category.
-      attribute :code, GOBL::Types::String
+      attribute :name, GOBL::I18n::String
+
+      attribute :desc, GOBL::I18n::String.optional
+
+      # Values contains a list of Value objects that contain the current and historical percentage values for the rate; order is important, newer values should come before older values.
+      attribute :values, GOBL::Types::Array(RateValue)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          cat: data['cat'],
-          code: data['code']
+          key: data['key'],
+          name: GOBL::I18n::String.from_gobl!(data['name']),
+          desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
+          values: data['values']&.map { |item| RateValue.from_gobl!(item) }
         )
       end
 
@@ -30,8 +36,10 @@ module GOBL
 
       def to_gobl
         {
-          'cat' => attributes[:cat],
-          'code' => attributes[:code]
+          'key' => attributes[:key],
+          'name' => attributes[:name]&.to_gobl,
+          'desc' => attributes[:desc]&.to_gobl,
+          'values' => attributes[:values]&.map { |item| item&.to_gobl }
         }
       end
 

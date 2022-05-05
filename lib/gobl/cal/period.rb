@@ -7,20 +7,18 @@
 require 'dry-struct'
 
 module GOBL
-  module Org
-    class ItemCode < Dry::Struct
-      # Local or human reference for the type of code the value represents.
-      attribute :label, GOBL::Types::String.optional
+  module Cal
+    class Period < Dry::Struct
+      attribute :start, GOBL::Cal::Date
 
-      # The item code's value.
-      attribute :value, GOBL::Types::String
+      attribute :end, GOBL::Cal::Date
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          label: data['label'],
-          value: data['value']
+          start: GOBL::Cal::Date.from_gobl!(data['start']),
+          end: GOBL::Cal::Date.from_gobl!(data['end'])
         )
       end
 
@@ -30,8 +28,8 @@ module GOBL
 
       def to_gobl
         {
-          'label' => attributes[:label],
-          'value' => attributes[:value]
+          'start' => attributes[:start]&.to_gobl,
+          'end' => attributes[:end]&.to_gobl
         }
       end
 

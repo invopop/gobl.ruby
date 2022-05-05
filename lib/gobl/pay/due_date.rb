@@ -10,7 +10,7 @@ module GOBL
   module Pay
     class DueDate < Dry::Struct
       # When the payment is due.
-      attribute :date, GOBL::Org::Date
+      attribute :date, GOBL::Cal::Date
 
       # Other details to take into account for the due date.
       attribute :notes, GOBL::Types::String.optional
@@ -28,7 +28,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          date: GOBL::Org::Date.from_gobl!(data['date']),
+          date: GOBL::Cal::Date.from_gobl!(data['date']),
           notes: data['notes'],
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
           percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,

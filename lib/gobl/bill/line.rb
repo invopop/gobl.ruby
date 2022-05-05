@@ -30,11 +30,14 @@ module GOBL
       # Charges applied to this line
       attribute :charges, GOBL::Types::Array(LineCharge).optional
 
-      # List of taxes to be applied and used in the invoice totals
-      attribute :taxes, GOBL::Types::Array(GOBL::Tax::Rate).optional
+      # Map of taxes to be applied and used in the invoice totals
+      attribute :taxes, GOBL::Types::Hash.optional
 
-      # Total line amount after applying discounts to the sum
+      # Total line amount after applying discounts to the sum.
       attribute :total, GOBL::Num::Amount
+
+      # Set of specific notes for this line that may be required for clarification.
+      attribute :notes, GOBL::Types::Array(GOBL::Org::Note).optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -47,8 +50,9 @@ module GOBL
           sum: GOBL::Num::Amount.from_gobl!(data['sum']),
           discounts: data['discounts']&.map { |item| LineDiscount.from_gobl!(item) },
           charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
-          taxes: data['taxes']&.map { |item| GOBL::Tax::Rate.from_gobl!(item) },
-          total: GOBL::Num::Amount.from_gobl!(data['total'])
+          taxes: data['taxes'],
+          total: GOBL::Num::Amount.from_gobl!(data['total']),
+          notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) }
         )
       end
 
@@ -65,8 +69,9 @@ module GOBL
           'sum' => attributes[:sum]&.to_gobl,
           'discounts' => attributes[:discounts]&.map { |item| item&.to_gobl },
           'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
-          'taxes' => attributes[:taxes]&.map { |item| item&.to_gobl },
-          'total' => attributes[:total]&.to_gobl
+          'taxes' => attributes[:taxes],
+          'total' => attributes[:total]&.to_gobl,
+          'notes' => attributes[:notes]&.map { |item| item&.to_gobl }
         }
       end
 

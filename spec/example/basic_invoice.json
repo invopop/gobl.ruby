@@ -1,24 +1,23 @@
 {
 	"$schema": "https://gobl.org/draft-0/envelope",
 	"head": {
-		"uuid": "809e8be5-90b9-11ec-b1a4-3e7e00ce5635",
+		"uuid": "ba3f39b9-cc89-11ec-a21d-3e7e00ce5635",
 		"dig": {
 			"alg": "sha256",
-			"val": "d7aa00a3b11768ac32cd617b80f9f46b82bc1f50f31e95825cbd491a6e3ae754"
+			"val": "7e9e836b3e095e6f8a80dae333573ed4541cb6e7ce66b13b77b6d49327afd0b1"
 		}
 	},
 	"doc": {
 		"$schema": "https://gobl.org/draft-0/bill/invoice",
-		"region": "ES",
-		"code": "FAKE20220001",
+		"code": "SAMPLE-001",
 		"currency": "EUR",
 		"issue_date": "2022-02-01",
 		"supplier": {
 			"tax_id": {
 				"country": "ES",
-				"code": "B28774008"
+				"code": "B98602642"
 			},
-			"name": "Biz España S.L.",
+			"name": "Provide One S.L.",
 			"addresses": [
 				{
 					"num": "42",
@@ -31,87 +30,79 @@
 			],
 			"emails": [
 				{
-					"addr": "billing@bizspain.es"
+					"addr": "billing@example.com"
 				}
 			]
 		},
 		"customer": {
 			"tax_id": {
 				"country": "ES",
-				"code": "B33105842"
+				"code": "54387763P"
 			},
-			"name": "Customer Spain S.L.",
-			"addresses": [
-				{
-					"num": "10",
-					"street": "Calle Mayor",
-					"locality": "Madrid",
-					"region": "Madrid",
-					"code": "28003",
-					"country": "ES"
-				}
-			],
-			"emails": [
-				{
-					"addr": "sam@customer.com"
-				}
-			]
+			"name": "Sample Consumer"
 		},
 		"lines": [
 			{
 				"i": 1,
-				"quantity": "100",
+				"quantity": "20",
 				"item": {
-					"name": "Promotional mug",
-					"price": "16.00"
+					"name": "Development services",
+					"price": "90.00",
+					"unit": "h"
 				},
-				"sum": "1600.00",
-				"taxes": [
-					{
-						"cat": "VAT",
-						"code": "STD"
-					}
-				],
-				"total": "1600.00"
+				"sum": "1800.00",
+				"taxes": {
+					"VAT": "standard"
+				},
+				"total": "1800.00"
+			},
+			{
+				"i": 2,
+				"quantity": "1",
+				"item": {
+					"name": "Financial service",
+					"price": "10.00"
+				},
+				"sum": "10.00",
+				"taxes": {
+					"VAT": "zero"
+				},
+				"total": "10.00"
 			}
 		],
 		"totals": {
-			"sum": "1600.00",
-			"total": "1600.00",
+			"sum": "1810.00",
+			"total": "1810.00",
 			"taxes": {
 				"categories": [
 					{
 						"code": "VAT",
 						"rates": [
 							{
-								"code": "STD",
-								"base": "1600.00",
+								"key": "standard",
+								"base": "1800.00",
 								"percent": "21.0%",
-								"amount": "336.00"
+								"amount": "378.00"
+							},
+							{
+								"key": "zero",
+								"base": "10.00",
+								"percent": "0.0%",
+								"amount": "0.00"
 							}
 						],
-						"base": "1600.00",
-						"amount": "336.00"
+						"base": "1810.00",
+						"amount": "378.00"
 					}
 				],
-				"sum": "336.00"
+				"sum": "378.00"
 			},
-			"total_with_tax": "1936.00",
-			"payable": "1936.00"
-		},
-		"payment": {
-			"instructions": {
-				"code": "credit_transfer",
-				"credit_transfer": [
-					{
-						"iban": "ES31 0240 4036 4573 9340 5564",
-						"name": "RANDOM"
-					}
-				]
-			}
+			"tax": "378.00",
+			"total_with_tax": "2188.00",
+			"payable": "2188.00"
 		}
 	},
 	"sigs": [
-		"eyJhbGciOiJFUzI1NiIsImtpZCI6ImE2YzM5MjBkLThlMzMtNDE1OS1iMzM3LTllNzQ2MTcxNmRmMSJ9.eyJ1dWlkIjoiODA5ZThiZTUtOTBiOS0xMWVjLWIxYTQtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6ImQ3YWEwMGEzYjExNzY4YWMzMmNkNjE3YjgwZjlmNDZiODJiYzFmNTBmMzFlOTU4MjVjYmQ0OTFhNmUzYWU3NTQifX0.ScAOqcP0tSF9NpCkrBsilFpCNMBpzA63jv7YIZ1J15uvH6hBQ6_Es4x73jP_-B1954Mbw7KKg3yZT7HBYQ1XQQ"
+		"eyJhbGciOiJFUzI1NiIsImtpZCI6IjhkYTlmNjExLTcxNGUtNGUyMi1iMzM3LWNiNzhmZWRlM2YzNyJ9.eyJ1dWlkIjoiYmEzZjM5YjktY2M4OS0xMWVjLWEyMWQtM2U3ZTAwY2U1NjM1IiwiZGlnIjp7ImFsZyI6InNoYTI1NiIsInZhbCI6IjdlOWU4MzZiM2UwOTVlNmY4YTgwZGFlMzMzNTczZWQ0NTQxY2I2ZTdjZTY2YjEzYjc3YjZkNDkzMjdhZmQwYjEifX0.9_PcLDsfPrF1GvvBn6gihajCtB-HKA96KZp6QUJZGCM7jzPFOTL8LAyRQHhfCHSLAVP6e3mdZ0sZfENcsDySJA"
 	]
 }

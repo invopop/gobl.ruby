@@ -8,5 +8,6 @@
       "title": "Signature",
       "description": "JSON Web Signature in compact form."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

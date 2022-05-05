@@ -8,7 +8,7 @@ require 'dry-struct'
 
 module GOBL
   class Document < Dry::Struct
-    # Contents of the envelope
+    # Contents of the envelope that must contain a $schema.
     attribute :value, GOBL::Types::Hash.optional
 
     def self.from_gobl!(data)

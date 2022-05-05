@@ -19,10 +19,10 @@ module GOBL
       attribute :series, GOBL::Types::String.optional
 
       # When the preceding invoice was issued.
-      attribute :issue_date, GOBL::Org::Date
+      attribute :issue_date, GOBL::Cal::Date
 
       # Tax period in which the previous invoice has an effect.
-      attribute :period, GOBL::Org::Period.optional
+      attribute :period, GOBL::Cal::Period.optional
 
       # Specific codes for the corrections made.
       attribute :corrections, GOBL::Types::Array(GOBL::Types::String).optional
@@ -43,8 +43,8 @@ module GOBL
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           code: data['code'],
           series: data['series'],
-          issue_date: GOBL::Org::Date.from_gobl!(data['issue_date']),
-          period: data['period'] ? GOBL::Org::Period.from_gobl!(data['period']) : nil,
+          issue_date: GOBL::Cal::Date.from_gobl!(data['issue_date']),
+          period: data['period'] ? GOBL::Cal::Period.from_gobl!(data['period']) : nil,
           corrections: data['corrections']&.map { |item| item },
           correction_method: data['correction_method'],
           notes: data['notes'],

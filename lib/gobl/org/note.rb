@@ -9,8 +9,14 @@ require 'dry-struct'
 module GOBL
   module Org
     class Note < Dry::Struct
-      # Code specifying subject of the text
+      # Key specifying subject of the text
+      attribute :key, GOBL::Types::String.optional
+
+      # Code used for additional data that may be required to identify the note.
       attribute :code, GOBL::Types::String.optional
+
+      # Source of this note, especially useful when auto-generated.
+      attribute :src, GOBL::Types::String.optional
 
       # The contents of the note
       attribute :text, GOBL::Types::String
@@ -19,7 +25,9 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
+          key: data['key'],
           code: data['code'],
+          src: data['src'],
           text: data['text']
         )
       end
@@ -30,7 +38,9 @@ module GOBL
 
       def to_gobl
         {
+          'key' => attributes[:key],
           'code' => attributes[:code],
+          'src' => attributes[:src],
           'text' => attributes[:text]
         }
       end

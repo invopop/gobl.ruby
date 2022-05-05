@@ -24,8 +24,11 @@ module GOBL
       # Sum of all line sums minus the discounts, plus the charges, without tax.
       attribute :total, GOBL::Num::Amount
 
-      # Summary of all the taxes with a final sum to add or deduct from the amount payable.
+      # Summary of all the taxes included in the invoice.
       attribute :taxes, GOBL::Tax::Total.optional
+
+      # Total amount of tax to apply to the invoice.
+      attribute :tax, GOBL::Num::Amount.optional
 
       # Grand total after all taxes have been applied.
       attribute :total_with_tax, GOBL::Num::Amount
@@ -52,6 +55,7 @@ module GOBL
           tax_included: data['tax_included'] ? GOBL::Num::Amount.from_gobl!(data['tax_included']) : nil,
           total: GOBL::Num::Amount.from_gobl!(data['total']),
           taxes: data['taxes'] ? GOBL::Tax::Total.from_gobl!(data['taxes']) : nil,
+          tax: data['tax'] ? GOBL::Num::Amount.from_gobl!(data['tax']) : nil,
           total_with_tax: GOBL::Num::Amount.from_gobl!(data['total_with_tax']),
           outlays: data['outlays'] ? GOBL::Num::Amount.from_gobl!(data['outlays']) : nil,
           payable: GOBL::Num::Amount.from_gobl!(data['payable']),
@@ -72,6 +76,7 @@ module GOBL
           'tax_included' => attributes[:tax_included]&.to_gobl,
           'total' => attributes[:total]&.to_gobl,
           'taxes' => attributes[:taxes]&.to_gobl,
+          'tax' => attributes[:tax]&.to_gobl,
           'total_with_tax' => attributes[:total_with_tax]&.to_gobl,
           'outlays' => attributes[:outlays]&.to_gobl,
           'payable' => attributes[:payable]&.to_gobl,

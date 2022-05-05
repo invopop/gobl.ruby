@@ -19,7 +19,7 @@ module GOBL
       attribute :retained, GOBL::Types::Bool.optional
 
       # Specific tax definitions inside this category.
-      attribute :defs, GOBL::Types::Array(Def)
+      attribute :rates, GOBL::Types::Array(Rate)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -29,7 +29,7 @@ module GOBL
           name: GOBL::I18n::String.from_gobl!(data['name']),
           desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
           retained: data['retained'],
-          defs: data['defs']&.map { |item| Def.from_gobl!(item) }
+          rates: data['rates']&.map { |item| Rate.from_gobl!(item) }
         )
       end
 
@@ -43,7 +43,7 @@ module GOBL
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
           'retained' => attributes[:retained],
-          'defs' => attributes[:defs]&.map { |item| item&.to_gobl }
+          'rates' => attributes[:rates]&.map { |item| item&.to_gobl }
         }
       end
 

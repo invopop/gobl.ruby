@@ -26,9 +26,9 @@
           "description": "Single string coordinate based on geohash standard."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "description": "Coordinates describes an exact geographical location in the world."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

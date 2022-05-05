@@ -16,7 +16,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # The entity's legal ID code used for tax purposes. They may have other numbers
-      attribute :tax_id, GOBL::Org::TaxID.optional
+      attribute :tax_id, GOBL::Org::TaxIdentity.optional
 
       # Legal name or representation of the organization.
       attribute :name, GOBL::Types::String
@@ -46,7 +46,7 @@ module GOBL
         new(
           id: data['id'],
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
-          tax_id: data['tax_id'] ? GOBL::Org::TaxID.from_gobl!(data['tax_id']) : nil,
+          tax_id: data['tax_id'] ? GOBL::Org::TaxIdentity.from_gobl!(data['tax_id']) : nil,
           name: data['name'],
           alias: data['alias'],
           people: data['people']&.map { |item| GOBL::Org::Person.from_gobl!(item) },

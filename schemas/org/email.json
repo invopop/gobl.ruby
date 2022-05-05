@@ -19,22 +19,17 @@
           "description": "Electronic mailing address."
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional fields."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "addr"
       ],
       "description": "Email describes the electronic mailing details."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

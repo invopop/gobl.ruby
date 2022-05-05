@@ -6,7 +6,7 @@
     "Document": {
       "type": "object",
       "title": "Document",
-      "description": "Contents of the envelope"
+      "description": "Contents of the envelope that must contain a $schema."
     },
     "Envelope": {
       "properties": {
@@ -34,7 +34,6 @@
           "description": "JSON Web Signatures of the header"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "$schema",
@@ -73,11 +72,6 @@
           "description": "Set of labels that describe but have no influence on the data."
         },
         "meta": {
-          "patternProperties": {
-            ".*": {
-              "type": "string"
-            }
-          },
           "type": "object",
           "title": "Meta",
           "description": "Additional semi-structured information about this envelope."
@@ -93,7 +87,6 @@
           "description": "When true, implies that this document should not be considered final. Digital signatures are optional."
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "uuid",
@@ -114,7 +107,6 @@
           "description": "The serialized stamp value generated for or by the external agency"
         }
       },
-      "additionalProperties": false,
       "type": "object",
       "required": [
         "prv",
@@ -122,5 +114,6 @@
       ],
       "description": "Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }

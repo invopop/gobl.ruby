@@ -13,22 +13,22 @@ module GOBL
       attribute :receiver, GOBL::Org::Party.optional
 
       # When the goods should be expected
-      attribute :date, GOBL::Org::Date.optional
+      attribute :date, GOBL::Cal::Date.optional
 
       # Start of a n invoicing or delivery period
-      attribute :start_date, GOBL::Org::Date.optional
+      attribute :start_date, GOBL::Cal::Date.optional
 
       # End of a n invoicing or delivery period
-      attribute :end_date, GOBL::Org::Date.optional
+      attribute :end_date, GOBL::Cal::Date.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           receiver: data['receiver'] ? GOBL::Org::Party.from_gobl!(data['receiver']) : nil,
-          date: data['date'] ? GOBL::Org::Date.from_gobl!(data['date']) : nil,
-          start_date: data['start_date'] ? GOBL::Org::Date.from_gobl!(data['start_date']) : nil,
-          end_date: data['end_date'] ? GOBL::Org::Date.from_gobl!(data['end_date']) : nil
+          date: data['date'] ? GOBL::Cal::Date.from_gobl!(data['date']) : nil,
+          start_date: data['start_date'] ? GOBL::Cal::Date.from_gobl!(data['start_date']) : nil,
+          end_date: data['end_date'] ? GOBL::Cal::Date.from_gobl!(data['end_date']) : nil
         )
       end
 

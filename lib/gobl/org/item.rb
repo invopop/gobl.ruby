@@ -27,7 +27,7 @@ module GOBL
       # Base price of a single unit to be sold.
       attribute :price, GOBL::Num::Amount
 
-      # Code for unit of the item being sold
+      # Free-text unit of measure.
       attribute :unit, GOBL::Types::String.optional
 
       # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.

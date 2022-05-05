@@ -13,7 +13,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # When the advance was made.
-      attribute :date, GOBL::Org::Date.optional
+      attribute :date, GOBL::Cal::Date.optional
 
       # ID or reference for the advance.
       attribute :ref, GOBL::Types::String.optional
@@ -38,7 +38,7 @@ module GOBL
 
         new(
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
-          date: data['date'] ? GOBL::Org::Date.from_gobl!(data['date']) : nil,
+          date: data['date'] ? GOBL::Cal::Date.from_gobl!(data['date']) : nil,
           ref: data['ref'],
           grant: data['grant'],
           desc: data['desc'],

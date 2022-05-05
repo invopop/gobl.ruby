@@ -10,7 +10,7 @@ RSpec.describe GOBL::Envelope do
     # puts "ENVELOPE: #{envelope.doc.inspect}"
     invoice = envelope.extract
 
-    expect(invoice.code).to eq('FAKE20220001')
+    expect(invoice.code).to eq('SAMPLE-001')
   end
 
   it 'creates a new message envelope from a JSON' do

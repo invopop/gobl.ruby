@@ -14,5 +14,6 @@
       "title": "Multi-language String",
       "description": "Map of 2-Letter language codes to their translations."
     }
-  }
+  },
+  "$comment": "Generated with GOBL v0.20.0"
 }
