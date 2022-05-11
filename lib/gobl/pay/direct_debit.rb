@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # DirectDebit defines the data that will be used to make the direct debit.
     class DirectDebit < Dry::Struct
       # Unique identifier assigned by the payee for referencing the direct debit.
       attribute :ref, GOBL::Types::String.optional
@@ -46,3 +47,4 @@ module GOBL
     end
   end
 end
+

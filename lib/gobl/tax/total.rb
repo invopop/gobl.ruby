@@ -8,9 +8,10 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # Total contains a set of Category Totals which in turn contain all the accumulated taxes contained in the document.
     class Total < Dry::Struct
       # Grouping of all the taxes by their category
-      attribute :categories, GOBL::Types::Array(CategoryTotal).optional
+      attribute :categories, GOBL::Types::Array.of(CategoryTotal).optional
 
       # Total value of all the taxes applied.
       attribute :sum, GOBL::Num::Amount
@@ -41,3 +42,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # RateValue contains a percentage rate or fixed amount for a given date range.
     class RateValue < Dry::Struct
       # Date from which this value should be applied.
       attribute :since, GOBL::Cal::Date.optional
@@ -46,3 +47,4 @@ module GOBL
     end
   end
 end
+

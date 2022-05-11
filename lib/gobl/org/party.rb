@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Party represents a person or business entity.
     class Party < Dry::Struct
       # Internal ID used to identify the party inside a document.
       attribute :id, GOBL::Types::String.optional
@@ -25,20 +26,20 @@ module GOBL
       attribute :alias, GOBL::Types::String.optional
 
       # Details of physical people who represent the party.
-      attribute :people, GOBL::Types::Array(GOBL::Org::Person).optional
+      attribute :people, GOBL::Types::Array.of(GOBL::Org::Person).optional
 
       # Regular post addresses for where information should be sent if needed.
-      attribute :addresses, GOBL::Types::Array(GOBL::Org::Address).optional
+      attribute :addresses, GOBL::Types::Array.of(GOBL::Org::Address).optional
 
-      attribute :emails, GOBL::Types::Array(GOBL::Org::Email).optional
+      attribute :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
 
-      attribute :telephones, GOBL::Types::Array(GOBL::Org::Telephone).optional
+      attribute :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
 
       # Additional registration details about the company that may need to be included in a document.
       attribute :registration, GOBL::Org::Registration.optional
 
       # Any additional semi-structured information that does not fit into the rest of the party.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -54,7 +55,7 @@ module GOBL
           emails: data['emails']&.map { |item| GOBL::Org::Email.from_gobl!(item) },
           telephones: data['telephones']&.map { |item| GOBL::Org::Telephone.from_gobl!(item) },
           registration: data['registration'] ? GOBL::Org::Registration.from_gobl!(data['registration']) : nil,
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -74,7 +75,7 @@ module GOBL
           'emails' => attributes[:emails]&.map { |item| item&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'registration' => attributes[:registration]&.to_gobl,
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -84,3 +85,4 @@ module GOBL
     end
   end
 end
+

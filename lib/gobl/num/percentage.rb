@@ -8,9 +8,9 @@ require 'dry-struct'
 
 module GOBL
   module Num
+    # Similar to an Amount, but designed for percentages and includes % symbol in JSON output.
     class Percentage < Dry::Struct
-      # Similar to an Amount, but designed for percentages and includes % symbol in JSON output.
-      attribute :value, GOBL::Types::String.optional
+      attribute :value, GOBL::Types::String
 
       def self.from_gobl!(data)
         new(value: data)
@@ -34,3 +34,4 @@ module GOBL
     end
   end
 end
+

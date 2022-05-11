@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # DueDate contains an amount that should be paid by the given date.
     class DueDate < Dry::Struct
       # When the payment is due.
       attribute :date, GOBL::Cal::Date
@@ -56,3 +57,4 @@ module GOBL
     end
   end
 end
+

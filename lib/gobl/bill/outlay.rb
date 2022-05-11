@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
     class Outlay < Dry::Struct
       # Unique identity for this outlay.
       attribute :uuid, GOBL::Types::String.optional
@@ -71,3 +72,4 @@ module GOBL
     end
   end
 end
+

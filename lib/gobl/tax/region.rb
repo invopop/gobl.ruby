@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # Region defines the holding structure for a regions categories and subsequent Rates and Values.
     class Region < Dry::Struct
       # Name of the region
       attribute :name, GOBL::I18n::String
@@ -22,10 +23,10 @@ module GOBL
       attribute :currency, GOBL::Types::String
 
       # Set of specific scheme definitions inside the region.
-      attribute :schemes, GOBL::Types::Array(Scheme).optional
+      attribute :schemes, Schemes.optional
 
       # List of tax categories.
-      attribute :categories, GOBL::Types::Array(Category)
+      attribute :categories, GOBL::Types::Array.of(Category)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -35,7 +36,7 @@ module GOBL
           country: data['country'],
           locality: data['locality'],
           currency: data['currency'],
-          schemes: data['schemes']&.map { |item| Scheme.from_gobl!(item) },
+          schemes: data['schemes'] ? Schemes.from_gobl!(data['schemes']) : nil,
           categories: data['categories']&.map { |item| Category.from_gobl!(item) }
         )
       end
@@ -50,7 +51,7 @@ module GOBL
           'country' => attributes[:country],
           'locality' => attributes[:locality],
           'currency' => attributes[:currency],
-          'schemes' => attributes[:schemes]&.map { |item| item&.to_gobl },
+          'schemes' => attributes[:schemes]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
         }
       end
@@ -61,3 +62,4 @@ module GOBL
     end
   end
 end
+

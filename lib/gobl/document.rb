@@ -7,9 +7,14 @@
 require 'dry-struct'
 
 module GOBL
+  # Contents of the envelope that must contain a $schema.
   class Document < Dry::Struct
-    # Contents of the envelope that must contain a $schema.
-    attribute :value, GOBL::Types::Hash.optional
+    extend Forwardable
+    include Enumerable
+
+    attribute :value, GOBL::Types::Hash
+
+    def_delegators :value, :[], :each, :empty?
 
     def self.from_gobl!(data)
       new(value: data)
@@ -28,3 +33,4 @@ module GOBL
     end
   end
 end
+

@@ -7,18 +7,21 @@
 require 'dry-struct'
 
 module GOBL
-  module Org
-    class Period < Dry::Struct
-      attribute :start, GOBL::Org::Date
+  module Tax
+    # Combo represents the tax combination of a category code and rate key.
+    class Combo < Dry::Struct
+      # Tax category code from those available inside a region.
+      attribute :cat, GOBL::Types::String
 
-      attribute :end, GOBL::Org::Date
+      # Rate within a category to apply.
+      attribute :rate, GOBL::Types::String
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          start: GOBL::Org::Date.from_gobl!(data['start']),
-          end: GOBL::Org::Date.from_gobl!(data['end'])
+          cat: data['cat'],
+          rate: data['rate']
         )
       end
 
@@ -28,8 +31,8 @@ module GOBL
 
       def to_gobl
         {
-          'start' => attributes[:start]&.to_gobl,
-          'end' => attributes[:end]&.to_gobl
+          'cat' => attributes[:cat],
+          'rate' => attributes[:rate]
         }
       end
 
@@ -39,3 +42,4 @@ module GOBL
     end
   end
 end
+

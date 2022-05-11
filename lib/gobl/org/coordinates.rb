@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Coordinates describes an exact geographical location in the world.
     class Coordinates < Dry::Struct
       # Decimal latitude coordinate.
       attribute :lat, GOBL::Types::Double.optional
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

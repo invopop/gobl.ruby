@@ -14,7 +14,7 @@ module Parser
       @val.eql?('array')
     end
 
-    def hash?
+    def object?
       @val.eql?('object')
     end
 
@@ -24,10 +24,6 @@ module Parser
 
     def number?
       @val.eql?('number')
-    end
-
-    def indexable?
-      array? || hash?
     end
 
     def to_s

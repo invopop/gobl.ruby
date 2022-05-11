@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Delivery covers the details of the destination for the products described in the invoice body.
     class Delivery < Dry::Struct
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
       attribute :receiver, GOBL::Org::Party.optional
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

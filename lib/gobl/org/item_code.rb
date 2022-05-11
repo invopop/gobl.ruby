@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # ItemCode contains a value and optional label property that means additional codes can be added to an item.
     class ItemCode < Dry::Struct
       # Local or human reference for the type of code the value represents.
       attribute :label, GOBL::Types::String.optional
@@ -41,3 +42,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # Category contains the definition of a general type of tax inside a region.
     class Category < Dry::Struct
       attribute :code, GOBL::Types::String
 
@@ -19,7 +20,7 @@ module GOBL
       attribute :retained, GOBL::Types::Bool.optional
 
       # Specific tax definitions inside this category.
-      attribute :rates, GOBL::Types::Array(Rate)
+      attribute :rates, GOBL::Types::Array.of(Rate)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -53,3 +54,4 @@ module GOBL
     end
   end
 end
+

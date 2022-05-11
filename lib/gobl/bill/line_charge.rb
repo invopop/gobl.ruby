@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # LineCharge represents an amount added to the line, and will be applied before taxes.
     class LineCharge < Dry::Struct
       # Percentage rate if fixed amount not applied
       attribute :rate, GOBL::Num::Percentage.optional
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

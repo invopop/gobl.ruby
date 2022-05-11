@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Ordering allows additional order details to be appended
     class Ordering < Dry::Struct
       # Party who is selling the goods and is not responsible for taxes
       attribute :seller, GOBL::Org::Party.optional
@@ -36,3 +37,4 @@ module GOBL
     end
   end
 end
+

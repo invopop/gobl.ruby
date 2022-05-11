@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
     class Invoice < Dry::Struct
       # Unique document ID. Not required, but always recommended in addition to the Code.
       attribute :uuid, GOBL::UUID::UUID.optional
@@ -25,7 +26,7 @@ module GOBL
       attribute :currency, GOBL::Types::String
 
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      attribute :exchange_rates, GOBL::Types::Array(GOBL::Currency::ExchangeRate).optional
+      attribute :exchange_rates, ExchangeRates.optional
 
       # Special tax configuration for billing.
       attribute :tax, Tax.optional
@@ -49,16 +50,16 @@ module GOBL
       attribute :customer, GOBL::Org::Party.optional
 
       # List of invoice lines representing each of the items sold to the customer.
-      attribute :lines, GOBL::Types::Array(Line).optional
+      attribute :lines, Lines.optional
 
       # Discounts or allowances applied to the complete invoice
-      attribute :discounts, GOBL::Types::Array(Discount).optional
+      attribute :discounts, Discounts.optional
 
       # Charges or surcharges applied to the complete invoice
-      attribute :charges, GOBL::Types::Array(Charge).optional
+      attribute :charges, Charges.optional
 
       # Expenses paid for by the supplier but invoiced directly to the customer.
-      attribute :outlays, GOBL::Types::Array(Outlay).optional
+      attribute :outlays, Outlays.optional
 
       attribute :ordering, Ordering.optional
 
@@ -70,10 +71,10 @@ module GOBL
       attribute :totals, Totals
 
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
-      attribute :notes, GOBL::Types::Array(GOBL::Org::Note).optional
+      attribute :notes, GOBL::Org::Notes.optional
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -84,7 +85,7 @@ module GOBL
           series: data['series'],
           type_key: data['type_key'],
           currency: data['currency'],
-          exchange_rates: data['exchange_rates']&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) },
+          exchange_rates: data['exchange_rates'] ? ExchangeRates.from_gobl!(data['exchange_rates']) : nil,
           tax: data['tax'] ? Tax.from_gobl!(data['tax']) : nil,
           preceding: data['preceding'] ? Preceding.from_gobl!(data['preceding']) : nil,
           issue_date: GOBL::Cal::Date.from_gobl!(data['issue_date']),
@@ -92,16 +93,16 @@ module GOBL
           value_date: data['value_date'] ? GOBL::Cal::Date.from_gobl!(data['value_date']) : nil,
           supplier: GOBL::Org::Party.from_gobl!(data['supplier']),
           customer: data['customer'] ? GOBL::Org::Party.from_gobl!(data['customer']) : nil,
-          lines: data['lines']&.map { |item| Line.from_gobl!(item) },
-          discounts: data['discounts']&.map { |item| Discount.from_gobl!(item) },
-          charges: data['charges']&.map { |item| Charge.from_gobl!(item) },
-          outlays: data['outlays']&.map { |item| Outlay.from_gobl!(item) },
+          lines: data['lines'] ? Lines.from_gobl!(data['lines']) : nil,
+          discounts: data['discounts'] ? Discounts.from_gobl!(data['discounts']) : nil,
+          charges: data['charges'] ? Charges.from_gobl!(data['charges']) : nil,
+          outlays: data['outlays'] ? Outlays.from_gobl!(data['outlays']) : nil,
           ordering: data['ordering'] ? Ordering.from_gobl!(data['ordering']) : nil,
           payment: data['payment'] ? Payment.from_gobl!(data['payment']) : nil,
           delivery: data['delivery'] ? Delivery.from_gobl!(data['delivery']) : nil,
           totals: Totals.from_gobl!(data['totals']),
-          notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) },
-          meta: data['meta']
+          notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil,
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -116,7 +117,7 @@ module GOBL
           'series' => attributes[:series],
           'type_key' => attributes[:type_key],
           'currency' => attributes[:currency],
-          'exchange_rates' => attributes[:exchange_rates]&.map { |item| item&.to_gobl },
+          'exchange_rates' => attributes[:exchange_rates]&.to_gobl,
           'tax' => attributes[:tax]&.to_gobl,
           'preceding' => attributes[:preceding]&.to_gobl,
           'issue_date' => attributes[:issue_date]&.to_gobl,
@@ -124,16 +125,16 @@ module GOBL
           'value_date' => attributes[:value_date]&.to_gobl,
           'supplier' => attributes[:supplier]&.to_gobl,
           'customer' => attributes[:customer]&.to_gobl,
-          'lines' => attributes[:lines]&.map { |item| item&.to_gobl },
-          'discounts' => attributes[:discounts]&.map { |item| item&.to_gobl },
-          'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
-          'outlays' => attributes[:outlays]&.map { |item| item&.to_gobl },
+          'lines' => attributes[:lines]&.to_gobl,
+          'discounts' => attributes[:discounts]&.to_gobl,
+          'charges' => attributes[:charges]&.to_gobl,
+          'outlays' => attributes[:outlays]&.to_gobl,
           'ordering' => attributes[:ordering]&.to_gobl,
           'payment' => attributes[:payment]&.to_gobl,
           'delivery' => attributes[:delivery]&.to_gobl,
           'totals' => attributes[:totals]&.to_gobl,
-          'notes' => attributes[:notes]&.map { |item| item&.to_gobl },
-          'meta' => attributes[:meta]
+          'notes' => attributes[:notes]&.to_gobl,
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -143,3 +144,4 @@ module GOBL
     end
   end
 end
+

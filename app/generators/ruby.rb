@@ -3,10 +3,14 @@
 require 'active_support/inflector'
 
 require_relative 'ruby/type_helpers'
+require_relative 'ruby/base'
 require_relative 'ruby/struct'
-require_relative 'ruby/attributes'
-require_relative 'ruby/from_gobl_method'
-require_relative 'ruby/to_gobl_method'
+require_relative 'ruby/array'
+require_relative 'ruby/map'
+require_relative 'ruby/object_from_gobl'
+require_relative 'ruby/object_to_gobl'
+require_relative 'ruby/object'
+require_relative 'ruby/string'
 
 # Define our custom inflections for Ruby conversion here
 ActiveSupport::Inflector.inflections do |inflect|
@@ -30,7 +34,7 @@ module Generators
       path += "/#{schema.id.module}" if schema.id.module.present?
       schema.definitions.each do |name, sub_schema|
         mods = "gobl/#{schema.id.module}".split('/')
-        data = Struct.new(mods, name, sub_schema).to_text
+        data = schema_to_ruby(mods, name, sub_schema).to_s
         FileUtils.mkdir_p(path)
         dest = "#{path}/#{name.underscore}.rb"
         save_file(dest, data)
@@ -38,6 +42,22 @@ module Generators
     end
 
     protected
+
+    def schema_to_ruby(mods, name, schema)
+      if schema.type.object?
+        if schema.properties.empty?
+          Map.new(mods, name, schema)
+        else
+          Object.new(mods, name, schema)
+        end
+      elsif schema.type.array?
+        Array.new(mods, name, schema)
+      elsif schema.type.string?
+        String.new(mods, name, schema)
+      else
+        raise 'undefined json schema type'
+      end
+    end
 
     def save_file(path, data)
       f = File.new(path, 'w')

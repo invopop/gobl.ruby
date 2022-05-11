@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
     class Scheme < Dry::Struct
       # Key used to identify this scheme
       attribute :key, GOBL::Types::String
@@ -19,10 +20,10 @@ module GOBL
       attribute :description, GOBL::I18n::String.optional
 
       # List of tax category codes that can be used when this scheme is applied.
-      attribute :categories, GOBL::Types::Array(GOBL::Types::String).optional
+      attribute :categories, GOBL::Types::Array.of(GOBL::Types::String).optional
 
       # Notes defines messages that should be added to a document when this scheme is used.
-      attribute :note, GOBL::Org::Note.optional
+      attribute :note, Note.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -32,7 +33,7 @@ module GOBL
           name: GOBL::I18n::String.from_gobl!(data['name']),
           description: data['description'] ? GOBL::I18n::String.from_gobl!(data['description']) : nil,
           categories: data['categories']&.map { |item| item },
-          note: data['note'] ? GOBL::Org::Note.from_gobl!(data['note']) : nil
+          note: data['note'] ? Note.from_gobl!(data['note']) : nil
         )
       end
 
@@ -56,3 +57,4 @@ module GOBL
     end
   end
 end
+

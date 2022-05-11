@@ -8,12 +8,13 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # CategoryTotal groups together all rates inside a given category.
     class CategoryTotal < Dry::Struct
       attribute :code, GOBL::Types::String
 
       attribute :retained, GOBL::Types::Bool.optional
 
-      attribute :rates, GOBL::Types::Array(RateTotal)
+      attribute :rates, GOBL::Types::Array.of(RateTotal)
 
       attribute :base, GOBL::Num::Amount
 
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

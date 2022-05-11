@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # Instructions holds a set of instructions that determine how the payment has or should be made.
     class Instructions < Dry::Struct
       # How payment is expected or has been arranged to be collected.
       attribute :code, GOBL::Types::String
@@ -19,7 +20,7 @@ module GOBL
       attribute :ref, GOBL::Types::String.optional
 
       # Instructions for sending payment via a bank transfer.
-      attribute :credit_transfer, GOBL::Types::Array(CreditTransfer).optional
+      attribute :credit_transfer, GOBL::Types::Array.of(CreditTransfer).optional
 
       # Details of the payment that will be made via a credit or debit card.
       attribute :card, Card.optional
@@ -28,7 +29,7 @@ module GOBL
       attribute :direct_debit, DirectDebit.optional
 
       # Array of online payment options.
-      attribute :online, GOBL::Types::Array(Online).optional
+      attribute :online, GOBL::Types::Array.of(Online).optional
 
       # Any additional instructions that may be required to make the payment.
       attribute :notes, GOBL::Types::String.optional
@@ -76,3 +77,4 @@ module GOBL
     end
   end
 end
+

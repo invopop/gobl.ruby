@@ -7,13 +7,18 @@
 require 'dry-struct'
 
 module GOBL
-  module Org
-    class Date < Dry::Struct
-      # Civil date in simplified ISO format, like 2021-05-26
-      attribute :value, GOBL::Types::String.optional
+  module Bill
+    # Advances contains an array of advance objects.
+    class Advances < Dry::Struct
+      extend Forwardable
+      include Enumerable
+
+      attribute :ary, GOBL::Types::Array.of(GOBL::Pay::Advance)
+
+      def_delegators :ary, :[], :each, :empty?
 
       def self.from_gobl!(data)
-        new(value: data)
+        new(ary: data&.map { |item| GOBL::Pay::Advance.from_gobl!(item) } )
       end
 
       def self.from_json!(json)
@@ -21,16 +26,13 @@ module GOBL
       end
 
       def to_gobl
-        value
+        ary
       end
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
       end
-
-      def to_s
-        value.to_s
-      end
     end
   end
 end
+

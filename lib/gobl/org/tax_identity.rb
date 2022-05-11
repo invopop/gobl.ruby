@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # TaxIdentity stores the details required to identify an entity for tax purposes.
     class TaxIdentity < Dry::Struct
       # Unique universal identity code.
       attribute :uuid, GOBL::UUID::UUID.optional
@@ -25,7 +26,7 @@ module GOBL
       attribute :code, GOBL::Types::String.optional
 
       # Additional details that may be required.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -36,7 +37,7 @@ module GOBL
           locality: data['locality'],
           document: data['document'],
           code: data['code'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -51,7 +52,7 @@ module GOBL
           'locality' => attributes[:locality],
           'document' => attributes[:document],
           'code' => attributes[:code],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -61,3 +62,4 @@ module GOBL
     end
   end
 end
+

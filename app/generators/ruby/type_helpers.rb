@@ -23,11 +23,11 @@ module Generators
         json_schema_type_map[type] || 'Any'
       end
 
-      def gobl_type_string(name, property)
+      def gobl_type_string(property)
         if property.ref.present?
           gobl_type_from_reference(property.ref)
         elsif property.type.array?
-          "GOBL::Types::Array(#{gobl_type_string(name, property.items)})"
+          "GOBL::Types::Array.of(#{gobl_type_string(property.items)})"
         else
           "GOBL::Types::#{gobl_type_from_json_schema(property.type.to_s)}"
         end

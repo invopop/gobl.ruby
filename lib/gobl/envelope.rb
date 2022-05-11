@@ -7,6 +7,7 @@
 require 'dry-struct'
 
 module GOBL
+  # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
   class Envelope < Dry::Struct
     # Schema identifies the schema that should be used to understand this document
     attribute :schema, GOBL::Types::String
@@ -18,7 +19,7 @@ module GOBL
     attribute :doc, Document
 
     # JSON Web Signatures of the header
-    attribute :sigs, GOBL::Types::Array(GOBL::DSig::Signature)
+    attribute :sigs, GOBL::Types::Array.of(GOBL::DSig::Signature)
 
     def self.from_gobl!(data)
       data = GOBL::Types::Hash[data]
@@ -49,3 +50,4 @@ module GOBL
     end
   end
 end
+

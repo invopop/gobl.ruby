@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Line is a single row in an invoice.
     class Line < Dry::Struct
       # Unique identifier for this line
       attribute :uuid, GOBL::Types::String.optional
@@ -25,19 +26,19 @@ module GOBL
       attribute :sum, GOBL::Num::Amount
 
       # Discounts applied to this line
-      attribute :discounts, GOBL::Types::Array(LineDiscount).optional
+      attribute :discounts, GOBL::Types::Array.of(LineDiscount).optional
 
       # Charges applied to this line
-      attribute :charges, GOBL::Types::Array(LineCharge).optional
+      attribute :charges, GOBL::Types::Array.of(LineCharge).optional
 
       # Map of taxes to be applied and used in the invoice totals
-      attribute :taxes, GOBL::Types::Hash.optional
+      attribute :taxes, GOBL::Tax::Set.optional
 
       # Total line amount after applying discounts to the sum.
       attribute :total, GOBL::Num::Amount
 
       # Set of specific notes for this line that may be required for clarification.
-      attribute :notes, GOBL::Types::Array(GOBL::Org::Note).optional
+      attribute :notes, GOBL::Org::Notes.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -50,9 +51,9 @@ module GOBL
           sum: GOBL::Num::Amount.from_gobl!(data['sum']),
           discounts: data['discounts']&.map { |item| LineDiscount.from_gobl!(item) },
           charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
-          taxes: data['taxes'],
+          taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           total: GOBL::Num::Amount.from_gobl!(data['total']),
-          notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) }
+          notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil
         )
       end
 
@@ -69,9 +70,9 @@ module GOBL
           'sum' => attributes[:sum]&.to_gobl,
           'discounts' => attributes[:discounts]&.map { |item| item&.to_gobl },
           'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
-          'taxes' => attributes[:taxes],
+          'taxes' => attributes[:taxes]&.to_gobl,
           'total' => attributes[:total]&.to_gobl,
-          'notes' => attributes[:notes]&.map { |item| item&.to_gobl }
+          'notes' => attributes[:notes]&.to_gobl
         }
       end
 
@@ -81,3 +82,4 @@ module GOBL
     end
   end
 end
+

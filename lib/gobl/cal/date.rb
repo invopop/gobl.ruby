@@ -8,9 +8,9 @@ require 'dry-struct'
 
 module GOBL
   module Cal
+    # Civil date in simplified ISO format, like 2021-05-26
     class Date < Dry::Struct
-      # Civil date in simplified ISO format, like 2021-05-26
-      attribute :value, GOBL::Types::String.optional
+      attribute :value, GOBL::Types::String
 
       def self.from_gobl!(data)
         new(value: data)
@@ -34,3 +34,4 @@ module GOBL
     end
   end
 end
+

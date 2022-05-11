@@ -3,36 +3,27 @@
 module Generators
   class Ruby
     # Render a `to_gobl` method used to represent an object as hash.
-    class ToGoblMethod
+    class ObjectToGobl
       include TypeHelpers
 
       def initialize(schema)
         @schema = schema
         @properties = @schema.properties
-        @is_value = @schema.properties.empty?
-      end
-
-      def value?
-        @is_value
       end
 
       def to_s
-        out = "\n"
-        out << "def to_gobl\n"
-        if value?
-          out << "  #{STRUCT_VALUE_NAME}\n"
-        else
-          out << "  {\n    "
-          out << property_key_value_pairs.join(",\n    ")
-          out << "\n  }\n"
-        end
-        out << "end\n"
-        out
+        <<~EOFS
+          def to_gobl
+            {
+              #{property_key_value_pairs.join(",\n    ")}
+            }
+          end
+        EOFS
       end
 
       private
 
-      attr_reader :class_name, :properties
+      attr_reader :properties
 
       def property_key_value_pairs
         properties.map do |key, property|
