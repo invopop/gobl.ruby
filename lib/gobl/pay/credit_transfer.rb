@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
     class CreditTransfer < Dry::Struct
       # International Bank Account Number
       attribute :iban, GOBL::Types::String.optional
@@ -56,3 +57,4 @@ module GOBL
     end
   end
 end
+

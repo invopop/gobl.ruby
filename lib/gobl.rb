@@ -4,6 +4,7 @@ require 'json'
 require 'zeitwerk'
 require 'dry-types'
 require 'active_support/core_ext/string/inflections'
+require 'forwardable'
 
 # Main GOBL namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL

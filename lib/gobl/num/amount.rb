@@ -8,9 +8,9 @@ require 'dry-struct'
 
 module GOBL
   module Num
+    # Quantity with optional decimal places that determine accuracy.
     class Amount < Dry::Struct
-      # Quantity with optional decimal places that determine accuracy.
-      attribute :value, GOBL::Types::String.optional
+      attribute :value, GOBL::Types::String
 
       def self.from_gobl!(data)
         new(value: data)
@@ -34,3 +34,4 @@ module GOBL
     end
   end
 end
+

@@ -8,9 +8,9 @@ require 'dry-struct'
 
 module GOBL
   module UUID
+    # Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.
     class UUID < Dry::Struct
-      # Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.
-      attribute :value, GOBL::Types::String.optional
+      attribute :value, GOBL::Types::String
 
       def self.from_gobl!(data)
         new(value: data)
@@ -34,3 +34,4 @@ module GOBL
     end
   end
 end
+

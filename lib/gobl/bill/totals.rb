@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Totals contains the summaries of all calculations for the invoice.
     class Totals < Dry::Struct
       # Sum of all line item sums
       attribute :sum, GOBL::Num::Amount
@@ -91,3 +92,4 @@ module GOBL
     end
   end
 end
+

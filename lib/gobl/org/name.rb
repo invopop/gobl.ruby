@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Name represents what a human is called.
     class Name < Dry::Struct
       # Unique identity code
       attribute :uuid, GOBL::UUID::UUID.optional
@@ -29,7 +30,7 @@ module GOBL
 
       attribute :suffix, GOBL::Types::String.optional
 
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -43,7 +44,7 @@ module GOBL
           surname: data['surname'],
           surname2: data['surname2'],
           suffix: data['suffix'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -61,7 +62,7 @@ module GOBL
           'surname' => attributes[:surname],
           'surname2' => attributes[:surname2],
           'suffix' => attributes[:suffix],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -71,3 +72,4 @@ module GOBL
     end
   end
 end
+

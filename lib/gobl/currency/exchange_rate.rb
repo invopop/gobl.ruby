@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Currency
+    # ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.
     class ExchangeRate < Dry::Struct
       # ISO currency code this rate represents.
       attribute :currency, GOBL::Types::String
@@ -41,3 +42,4 @@ module GOBL
     end
   end
 end
+

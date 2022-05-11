@@ -11,6 +11,9 @@ RSpec.describe GOBL::Envelope do
     invoice = envelope.extract
 
     expect(invoice.code).to eq('SAMPLE-001')
+    expect(invoice.lines).not_to be_empty
+    l1 = invoice.lines[0]
+    expect(l1.item.meta['test']).to eq('foo')
   end
 
   it 'creates a new message envelope from a JSON' do

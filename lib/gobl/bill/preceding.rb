@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.
     class Preceding < Dry::Struct
       # Preceding document's UUID if available can be useful for tracing.
       attribute :uuid, GOBL::UUID::UUID.optional
@@ -25,7 +26,7 @@ module GOBL
       attribute :period, GOBL::Cal::Period.optional
 
       # Specific codes for the corrections made.
-      attribute :corrections, GOBL::Types::Array(GOBL::Types::String).optional
+      attribute :corrections, GOBL::Types::Array.of(GOBL::Types::String).optional
 
       # How has the previous invoice been corrected?
       attribute :correction_method, GOBL::Types::String.optional
@@ -34,7 +35,7 @@ module GOBL
       attribute :notes, GOBL::Types::String.optional
 
       # Additional semi-structured data that may be useful in specific regions
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -48,7 +49,7 @@ module GOBL
           corrections: data['corrections']&.map { |item| item },
           correction_method: data['correction_method'],
           notes: data['notes'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -66,7 +67,7 @@ module GOBL
           'corrections' => attributes[:corrections]&.map { |item| item },
           'correction_method' => attributes[:correction_method],
           'notes' => attributes[:notes],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -76,3 +77,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Note
+    # Message represents the minimum possible contents for a GoBL document type.
     class Message < Dry::Struct
       # Summary of the message content
       attribute :title, GOBL::Types::String.optional
@@ -16,7 +17,7 @@ module GOBL
       attribute :content, GOBL::Types::String
 
       # Any additional semi-structured data that might be useful.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -24,7 +25,7 @@ module GOBL
         new(
           title: data['title'],
           content: data['content'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -36,7 +37,7 @@ module GOBL
         {
           'title' => attributes[:title],
           'content' => attributes[:content],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -46,3 +47,4 @@ module GOBL
     end
   end
 end
+

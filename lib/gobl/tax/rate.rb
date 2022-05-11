@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # Rate defines a single rate inside a category
     class Rate < Dry::Struct
       # Key identifies this rate within the system
       attribute :key, GOBL::Types::String
@@ -17,7 +18,7 @@ module GOBL
       attribute :desc, GOBL::I18n::String.optional
 
       # Values contains a list of Value objects that contain the current and historical percentage values for the rate; order is important, newer values should come before older values.
-      attribute :values, GOBL::Types::Array(RateValue)
+      attribute :values, GOBL::Types::Array.of(RateValue)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -49,3 +50,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Person represents a human, and how to contact them electronically.
     class Person < Dry::Struct
       # Internal ID used to identify the person inside a document.
       attribute :id, GOBL::Types::String.optional
@@ -22,12 +23,12 @@ module GOBL
       attribute :role, GOBL::Types::String.optional
 
       # Electronic mail addresses that belong to the person.
-      attribute :emails, GOBL::Types::Array(GOBL::Org::Email).optional
+      attribute :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
 
-      attribute :telephones, GOBL::Types::Array(GOBL::Org::Telephone).optional
+      attribute :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
 
       # Data about the data.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -39,7 +40,7 @@ module GOBL
           role: data['role'],
           emails: data['emails']&.map { |item| GOBL::Org::Email.from_gobl!(item) },
           telephones: data['telephones']&.map { |item| GOBL::Org::Telephone.from_gobl!(item) },
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -55,7 +56,7 @@ module GOBL
           'role' => attributes[:role],
           'emails' => attributes[:emails]&.map { |item| item&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -65,3 +66,4 @@ module GOBL
     end
   end
 end
+

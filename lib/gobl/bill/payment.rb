@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Payment contains details as to how the invoice should be paid.
     class Payment < Dry::Struct
       # The party responsible for paying for the invoice, if not the customer.
       attribute :payer, GOBL::Org::Party.optional
@@ -16,7 +17,7 @@ module GOBL
       attribute :terms, GOBL::Pay::Terms.optional
 
       # Any amounts that have been paid in advance and should be deducted from the amount due.
-      attribute :advances, GOBL::Types::Array(GOBL::Pay::Advance).optional
+      attribute :advances, Advances.optional
 
       # Details on how payment should be made.
       attribute :instructions, GOBL::Pay::Instructions.optional
@@ -27,7 +28,7 @@ module GOBL
         new(
           payer: data['payer'] ? GOBL::Org::Party.from_gobl!(data['payer']) : nil,
           terms: data['terms'] ? GOBL::Pay::Terms.from_gobl!(data['terms']) : nil,
-          advances: data['advances']&.map { |item| GOBL::Pay::Advance.from_gobl!(item) },
+          advances: data['advances'] ? Advances.from_gobl!(data['advances']) : nil,
           instructions: data['instructions'] ? GOBL::Pay::Instructions.from_gobl!(data['instructions']) : nil
         )
       end
@@ -40,7 +41,7 @@ module GOBL
         {
           'payer' => attributes[:payer]&.to_gobl,
           'terms' => attributes[:terms]&.to_gobl,
-          'advances' => attributes[:advances]&.map { |item| item&.to_gobl },
+          'advances' => attributes[:advances]&.to_gobl,
           'instructions' => attributes[:instructions]&.to_gobl
         }
       end
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

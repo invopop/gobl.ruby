@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # Card contains simplified card holder data as a reference for the customer.
     class Card < Dry::Struct
       # Last 4 digits of the card's Primary Account Number (PAN).
       attribute :last4, GOBL::Types::String
@@ -41,3 +42,4 @@ module GOBL
     end
   end
 end
+

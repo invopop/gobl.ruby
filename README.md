@@ -55,6 +55,10 @@ The command `mage install` gets the required dependencies to use the gem.
 The command `mage generate` generates the Ruby files from the JSON Schema. If
 the schema is updated, the command will update the Ruby files.
 
+## Tests
+
+Run `mage spec` to ensure the basics are working.
+
 ## Example
 
 Example class instantiation from data object

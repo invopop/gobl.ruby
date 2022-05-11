@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Bill
+    # Discount represents an allowance applied to the complete document independent from the individual lines.
     class Discount < Dry::Struct
       # Unique identifying for the discount entry
       attribute :uuid, GOBL::Types::String.optional
@@ -28,7 +29,7 @@ module GOBL
       attribute :amount, GOBL::Num::Amount
 
       # List of taxes to apply to the discount
-      attribute :taxes, GOBL::Types::Hash.optional
+      attribute :taxes, GOBL::Tax::Set.optional
 
       # Code for the reason this discount applied
       attribute :code, GOBL::Types::String.optional
@@ -37,7 +38,7 @@ module GOBL
       attribute :reason, GOBL::Types::String.optional
 
       # Additional semi-structured information.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -49,10 +50,10 @@ module GOBL
           base: data['base'] ? GOBL::Num::Amount.from_gobl!(data['base']) : nil,
           rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
-          taxes: data['taxes'],
+          taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           code: data['code'],
           reason: data['reason'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -68,10 +69,10 @@ module GOBL
           'base' => attributes[:base]&.to_gobl,
           'rate' => attributes[:rate]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
-          'taxes' => attributes[:taxes],
+          'taxes' => attributes[:taxes]&.to_gobl,
           'code' => attributes[:code],
           'reason' => attributes[:reason],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -81,3 +82,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # Online provides the details required to make a payment online using a website
     class Online < Dry::Struct
       # Descriptive name given to the online provider.
       attribute :name, GOBL::Types::String.optional
@@ -41,3 +42,4 @@ module GOBL
     end
   end
 end
+

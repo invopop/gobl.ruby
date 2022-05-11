@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Note represents a free text of additional information that may be added to a document.
     class Note < Dry::Struct
       # Key specifying subject of the text
       attribute :key, GOBL::Types::String.optional
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

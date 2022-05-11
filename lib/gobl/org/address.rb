@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
     class Address < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -50,7 +51,7 @@ module GOBL
       # For when the postal address is not sufficient
       attribute :coords, GOBL::Org::Coordinates.optional
 
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -70,7 +71,7 @@ module GOBL
           code: data['code'],
           country: data['country'],
           coords: data['coords'] ? GOBL::Org::Coordinates.from_gobl!(data['coords']) : nil,
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -94,7 +95,7 @@ module GOBL
           'code' => attributes[:code],
           'country' => attributes[:country],
           'coords' => attributes[:coords]&.to_gobl,
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -104,3 +105,4 @@ module GOBL
     end
   end
 end
+

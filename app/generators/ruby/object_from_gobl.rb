@@ -2,8 +2,8 @@
 
 module Generators
   class Ruby
-    # Render a `from_gobl!` class method.
-    class FromGoblMethod
+    # Render a `from_gobl!` object's class method.
+    class ObjectFromGobl
       include TypeHelpers
 
       PARAM_NAME = 'data'
@@ -11,28 +11,18 @@ module Generators
       def initialize(schema)
         @schema = schema
         @properties = @schema.properties
-        @is_value = @schema.properties.empty?
-      end
-
-      def value?
-        @is_value
       end
 
       def to_s
-        out = "\n"
-        out << "def self.from_gobl!(#{PARAM_NAME})\n"
-        if value?
-          out << "  new(value: #{PARAM_NAME})\n"
-        else
-          out << "  #{variable_assigment}\n"
-          out << "\n"
-          out << "  new(\n    "
-          out << property_key_value_pairs.join(",\n    ")
-          out << "\n"
-          out << "  )\n"
-        end
-        out << 'end'
-        out
+        <<~EOFS
+          def self.from_gobl!(#{PARAM_NAME})
+            #{variable_assigment}
+
+            new(
+              #{property_key_value_pairs.join(",\n    ")}
+            )
+          end
+        EOFS
       end
 
       private

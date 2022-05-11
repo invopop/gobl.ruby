@@ -8,9 +8,14 @@ require 'dry-struct'
 
 module GOBL
   module I18n
+    # Map of 2-Letter language codes to their translations.
     class String < Dry::Struct
-      # Map of 2-Letter language codes to their translations.
-      attribute :value, GOBL::Types::Hash.optional
+      extend Forwardable
+      include Enumerable
+
+      attribute :value, GOBL::Types::Hash
+
+      def_delegators :value, :[], :each, :empty?
 
       def self.from_gobl!(data)
         new(value: data)
@@ -30,3 +35,4 @@ module GOBL
     end
   end
 end
+

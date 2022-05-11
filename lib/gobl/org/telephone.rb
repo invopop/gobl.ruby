@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Telephone describes what is expected for a telephone number.
     class Telephone < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -45,3 +46,4 @@ module GOBL
     end
   end
 end
+

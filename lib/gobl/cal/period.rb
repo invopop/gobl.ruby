@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Cal
+    # Period represents two dates with a start and finish.
     class Period < Dry::Struct
       attribute :start, GOBL::Cal::Date
 
@@ -39,3 +40,4 @@ module GOBL
     end
   end
 end
+

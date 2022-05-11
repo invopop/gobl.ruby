@@ -7,6 +7,7 @@
 require 'dry-struct'
 
 module GOBL
+  # Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
   class Stamp < Dry::Struct
     # Identity of the agency used to create the stamp
     attribute :prv, GOBL::Types::String
@@ -39,3 +40,4 @@ module GOBL
     end
   end
 end
+

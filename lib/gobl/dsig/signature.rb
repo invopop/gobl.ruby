@@ -8,9 +8,9 @@ require 'dry-struct'
 
 module GOBL
   module DSig
+    # JSON Web Signature in compact form.
     class Signature < Dry::Struct
-      # JSON Web Signature in compact form.
-      attribute :value, GOBL::Types::String.optional
+      attribute :value, GOBL::Types::String
 
       def self.from_gobl!(data)
         new(value: data)
@@ -34,3 +34,4 @@ module GOBL
     end
   end
 end
+

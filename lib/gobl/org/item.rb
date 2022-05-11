@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Item is used to describe a single product or service.
     class Item < Dry::Struct
       # Unique identify of this item independent of the Supplier IDs
       attribute :uuid, GOBL::Types::String.optional
@@ -31,13 +32,13 @@ module GOBL
       attribute :unit, GOBL::Types::String.optional
 
       # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
-      attribute :codes, GOBL::Types::Array(ItemCode).optional
+      attribute :codes, GOBL::Types::Array.of(ItemCode).optional
 
       # Country code of where this item was from originally.
       attribute :origin, GOBL::Types::String.optional
 
       # Additional meta information that may be useful
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -52,7 +53,7 @@ module GOBL
           unit: data['unit'],
           codes: data['codes']&.map { |item| ItemCode.from_gobl!(item) },
           origin: data['origin'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -71,7 +72,7 @@ module GOBL
           'unit' => attributes[:unit],
           'codes' => attributes[:codes]&.map { |item| item&.to_gobl },
           'origin' => attributes[:origin],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -81,3 +82,4 @@ module GOBL
     end
   end
 end
+

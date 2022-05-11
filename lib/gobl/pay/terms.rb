@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
     class Terms < Dry::Struct
       # Type of terms to be applied.
       attribute :code, GOBL::Types::String
@@ -16,7 +17,7 @@ module GOBL
       attribute :detail, GOBL::Types::String.optional
 
       # Set of dates for agreed payments.
-      attribute :due_dates, GOBL::Types::Array(DueDate).optional
+      attribute :due_dates, GOBL::Types::Array.of(DueDate).optional
 
       # Description of the conditions for payment.
       attribute :notes, GOBL::Types::String.optional
@@ -51,3 +52,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Pay
+    # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
     class Advance < Dry::Struct
       # Unique identifier for this advance.
       attribute :uuid, GOBL::UUID::UUID.optional
@@ -71,3 +72,4 @@ module GOBL
     end
   end
 end
+

@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Org
+    # Email describes the electronic mailing details.
     class Email < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -18,7 +19,7 @@ module GOBL
       attribute :addr, GOBL::Types::String
 
       # Additional fields.
-      attribute :meta, GOBL::Types::Hash.optional
+      attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -27,7 +28,7 @@ module GOBL
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           label: data['label'],
           addr: data['addr'],
-          meta: data['meta']
+          meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
 
@@ -40,7 +41,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'label' => attributes[:label],
           'addr' => attributes[:addr],
-          'meta' => attributes[:meta]
+          'meta' => attributes[:meta]&.to_gobl
         }
       end
 
@@ -50,3 +51,4 @@ module GOBL
     end
   end
 end
+

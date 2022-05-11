@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# Extensions are all defined here so they are auto-loaded by Zeitwerk.
+
 GOBL::I18n::String.class_eval do
   include GOBLExtensions::I18n::ValueKeysHelper
 end

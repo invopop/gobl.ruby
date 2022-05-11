@@ -8,6 +8,7 @@ require 'dry-struct'
 
 module GOBL
   module Tax
+    # RateTotal contains a sum of all the tax rates in the document with a matching category and definition.
     class RateTotal < Dry::Struct
       attribute :key, GOBL::Types::String
 
@@ -47,3 +48,4 @@ module GOBL
     end
   end
 end
+
