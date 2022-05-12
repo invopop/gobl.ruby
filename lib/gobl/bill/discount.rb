@@ -19,11 +19,11 @@ module GOBL
       # Reference or ID for this Discount
       attribute :ref, GOBL::Types::String.optional
 
-      # Base represents the value used as a base for rate calculations. If not already provided, we'll take the invoices sum.
+      # Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum.
       attribute :base, GOBL::Num::Amount.optional
 
-      # Percentage rate to apply to the invoice's Sum
-      attribute :rate, GOBL::Num::Percentage.optional
+      # Percentage to apply to the invoice's Sum
+      attribute :percent, GOBL::Num::Percentage.optional
 
       # Amount to apply
       attribute :amount, GOBL::Num::Amount
@@ -48,7 +48,7 @@ module GOBL
           i: data['i'],
           ref: data['ref'],
           base: data['base'] ? GOBL::Num::Amount.from_gobl!(data['base']) : nil,
-          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           code: data['code'],
@@ -67,7 +67,7 @@ module GOBL
           'i' => attributes[:i],
           'ref' => attributes[:ref],
           'base' => attributes[:base]&.to_gobl,
-          'rate' => attributes[:rate]&.to_gobl,
+          'percent' => attributes[:percent]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
           'taxes' => attributes[:taxes]&.to_gobl,
           'code' => attributes[:code],

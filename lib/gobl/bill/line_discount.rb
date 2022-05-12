@@ -10,8 +10,8 @@ module GOBL
   module Bill
     # LineDiscount represents an amount deducted from the line, and will be applied before taxes.
     class LineDiscount < Dry::Struct
-      # Percentage rate if fixed amount not applied
-      attribute :rate, GOBL::Num::Percentage.optional
+      # Percentage if fixed amount not applied
+      attribute :percent, GOBL::Num::Percentage.optional
 
       # Fixed discount amount to apply
       attribute :amount, GOBL::Num::Amount
@@ -26,7 +26,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
           code: data['code'],
           reason: data['reason']
@@ -39,7 +39,7 @@ module GOBL
 
       def to_gobl
         {
-          'rate' => attributes[:rate]&.to_gobl,
+          'percent' => attributes[:percent]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
           'code' => attributes[:code],
           'reason' => attributes[:reason]

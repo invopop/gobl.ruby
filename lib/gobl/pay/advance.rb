@@ -26,7 +26,7 @@ module GOBL
       attribute :desc, GOBL::Types::String
 
       # How much as a percentage of the total with tax was paid
-      attribute :rate, GOBL::Num::Percentage.optional
+      attribute :percent, GOBL::Num::Percentage.optional
 
       # How much was paid.
       attribute :amount, GOBL::Num::Amount
@@ -43,7 +43,7 @@ module GOBL
           ref: data['ref'],
           grant: data['grant'],
           desc: data['desc'],
-          rate: data['rate'] ? GOBL::Num::Percentage.from_gobl!(data['rate']) : nil,
+          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
           amount: GOBL::Num::Amount.from_gobl!(data['amount']),
           currency: data['currency']
         )
@@ -60,7 +60,7 @@ module GOBL
           'ref' => attributes[:ref],
           'grant' => attributes[:grant],
           'desc' => attributes[:desc],
-          'rate' => attributes[:rate]&.to_gobl,
+          'percent' => attributes[:percent]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
           'currency' => attributes[:currency]
         }

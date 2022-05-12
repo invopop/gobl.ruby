@@ -3,5 +3,5 @@
 require 'active_support'
 require_relative '../app/generator'
 
-generator = Generator.new(path: 'schemas', lang: 'ruby')
+generator = Generator.new(path: 'data/schemas', lang: 'ruby')
 generator.export_to('lib/gobl')

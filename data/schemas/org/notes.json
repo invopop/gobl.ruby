@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gobl.org/draft-0/org/notes",
+  "$ref": "#/$defs/Notes",
+  "$defs": {
+    "Note": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "title": "Key",
+          "description": "Key specifying subject of the text"
+        },
+        "code": {
+          "type": "string",
+          "title": "Code",
+          "description": "Code used for additional data that may be required to identify the note."
+        },
+        "src": {
+          "type": "string",
+          "title": "Source",
+          "description": "Source of this note, especially useful when auto-generated."
+        },
+        "text": {
+          "type": "string",
+          "title": "Text",
+          "description": "The contents of the note"
+        }
+      },
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "description": "Note represents a free text of additional information that may be added to a document."
+    },
+    "Notes": {
+      "items": {
+        "$ref": "#/$defs/Note"
+      },
+      "type": "array",
+      "description": "Notes holds an array of Note objects"
+    }
+  },
+  "$comment": "Generated with GOBL v0.22.0"
+}
