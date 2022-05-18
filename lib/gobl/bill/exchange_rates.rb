@@ -15,7 +15,7 @@ module GOBL
 
       attribute :ary, GOBL::Types::Array.of(GOBL::Currency::ExchangeRate)
 
-      def_delegators :ary, :[], :each, :empty?, :length
+      def_delegators :ary, :[], :each, :empty?, :length, :find
 
       def self.from_gobl!(data)
         new(ary: data&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) } )

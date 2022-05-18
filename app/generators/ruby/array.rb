@@ -13,7 +13,7 @@ module Generators
         <<~EOFATTR
           attribute :ary, #{gobl_type_string(schema)}
 
-          def_delegators :ary, :[], :each, :empty?, :length
+          def_delegators :ary, :[], :each, :empty?, :length, :find
         EOFATTR
       end
 

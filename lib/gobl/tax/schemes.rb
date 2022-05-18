@@ -15,7 +15,7 @@ module GOBL
 
       attribute :ary, GOBL::Types::Array.of(Scheme)
 
-      def_delegators :ary, :[], :each, :empty?, :length
+      def_delegators :ary, :[], :each, :empty?, :length, :find
 
       def self.from_gobl!(data)
         new(ary: data&.map { |item| Scheme.from_gobl!(item) } )
