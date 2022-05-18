@@ -15,7 +15,7 @@ module Generators
         <<~EOFATTR
           attribute :value, #{gobl_type_string(schema)}
 
-          def_delegators :value, :[], :each, :empty?
+          def_delegators :value, :[], :each, :empty?, :length, :each_key
         EOFATTR
       end
 

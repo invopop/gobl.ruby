@@ -14,7 +14,7 @@ module GOBL
 
     attribute :value, GOBL::Types::Hash
 
-    def_delegators :value, :[], :each, :empty?
+    def_delegators :value, :[], :each, :empty?, :length, :each_key
 
     def self.from_gobl!(data)
       new(value: data)

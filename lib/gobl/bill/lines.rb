@@ -15,7 +15,7 @@ module GOBL
 
       attribute :ary, GOBL::Types::Array.of(Line)
 
-      def_delegators :ary, :[], :each, :empty?
+      def_delegators :ary, :[], :each, :empty?, :length
 
       def self.from_gobl!(data)
         new(ary: data&.map { |item| Line.from_gobl!(item) } )
