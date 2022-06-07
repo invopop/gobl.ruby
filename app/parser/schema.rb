@@ -18,6 +18,10 @@ module Parser
       end
     end
 
+    def comment
+      @data['$comment']
+    end
+
     # Hash of property keys to more schemas
     def properties
       @props ||= (@data['properties'] || {}).transform_values do |v|

@@ -4,12 +4,13 @@ module Generators
     class Base
       include TypeHelpers
 
-      attr_reader :schema, :name, :modules
+      attr_reader :schema, :name, :modules, :parent
 
-      def initialize(modules, name, schema)
+      def initialize(modules, name, schema, parent)
         @modules = modules
         @name = name
         @schema = schema
+        @parent = parent
       end
 
       def to_s
@@ -29,13 +30,17 @@ module Generators
       end
 
       def header
-        <<~EOFHEAD
+        head = <<~EOFHEAD
           # frozen_string_literal: true
 
           ##
           ## DO NOT EDIT - This file was generated automatically.
           ##
         EOFHEAD
+        if parent.present? && parent.comment.present?
+          head << "## #{parent.comment}\n##\n"
+        end
+        head
       end
 
       def add_modules(mods)

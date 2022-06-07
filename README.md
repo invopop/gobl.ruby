@@ -20,10 +20,6 @@ gem 'gobl', git: 'https://github.com/invopop/gobl.ruby', branch: 'main'
 
 ## Project Structure
 
-### `schema`
-
-Copy of the current GOBL schema data.
-
 ### `lib`
 
 Contains the `gobl` library components to be imported into other projects.
@@ -52,7 +48,15 @@ The command `mage install` gets the required dependencies to use the gem.
 
 ### Compilation
 
-The command `mage generate` generates the Ruby files from the JSON Schema. If
+Ensure all the GOBL JSON Schema files are available by manually copying the
+base GOBL projects `build/schemas` path to the `data/schemas` path in this repository.
+Schemas are ignored and must be copied every time a new update is made:
+
+```bash
+cp -r ../gobl/build/schemas ./data
+```
+
+The command `mage -v generate` generates the Ruby files from the JSON Schema. If
 the schema is updated, the command will update the Ruby files.
 
 ## Tests

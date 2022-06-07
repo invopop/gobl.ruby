@@ -3,6 +3,8 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
+## Generated with GOBL v0.23.0
+##
 
 require 'dry-struct'
 
@@ -14,14 +16,22 @@ module GOBL
       attribute :cat, GOBL::Types::String
 
       # Rate within a category to apply.
-      attribute :rate, GOBL::Types::String
+      attribute :rate, GOBL::Types::String.optional
+
+      # Percent defines the percentage set manually or determined from the rate key.
+      attribute :percent, GOBL::Num::Percentage
+
+      # Retained when true indicates the percent is retained from the totals instead of added.
+      attribute :retained, GOBL::Types::Bool.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           cat: data['cat'],
-          rate: data['rate']
+          rate: data['rate'],
+          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
+          retained: data['retained']
         )
       end
 
@@ -32,7 +42,9 @@ module GOBL
       def to_gobl
         {
           'cat' => attributes[:cat],
-          'rate' => attributes[:rate]
+          'rate' => attributes[:rate],
+          'percent' => attributes[:percent]&.to_gobl,
+          'retained' => attributes[:retained]
         }
       end
 

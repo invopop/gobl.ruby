@@ -3,14 +3,16 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
+## Generated with GOBL v0.23.0
+##
 
 require 'dry-struct'
 
 module GOBL
   module Tax
-    # RateTotal contains a sum of all the tax rates in the document with a matching category and definition.
+    # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
     class RateTotal < Dry::Struct
-      attribute :key, GOBL::Types::String
+      attribute :key, GOBL::Types::String.optional
 
       attribute :base, GOBL::Num::Amount
 

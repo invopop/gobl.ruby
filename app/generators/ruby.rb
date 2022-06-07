@@ -34,7 +34,7 @@ module Generators
       path += "/#{schema.id.module}" if schema.id.module.present?
       schema.definitions.each do |name, sub_schema|
         mods = "gobl/#{schema.id.module}".split('/')
-        data = schema_to_ruby(mods, name, sub_schema).to_s
+        data = schema_to_ruby(mods, name, sub_schema, schema).to_s
         FileUtils.mkdir_p(path)
         dest = "#{path}/#{name.underscore}.rb"
         save_file(dest, data)
@@ -43,17 +43,17 @@ module Generators
 
     protected
 
-    def schema_to_ruby(mods, name, schema)
+    def schema_to_ruby(mods, name, schema, parent)
       if schema.type.object?
         if schema.properties.empty?
-          Map.new(mods, name, schema)
+          Map.new(mods, name, schema, parent)
         else
-          Object.new(mods, name, schema)
+          Object.new(mods, name, schema, parent)
         end
       elsif schema.type.array?
-        Array.new(mods, name, schema)
+        Array.new(mods, name, schema, parent)
       elsif schema.type.string?
-        String.new(mods, name, schema)
+        String.new(mods, name, schema, parent)
       else
         raise 'undefined json schema type'
       end
