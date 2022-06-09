@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.23.0
+## Generated with GOBL v0.24.0
 ##
 
 require 'dry-struct'
@@ -21,17 +21,13 @@ module GOBL
       # Percent defines the percentage set manually or determined from the rate key.
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
-      # Retained when true indicates the percent is retained from the totals instead of added.
-      attribute :retained, GOBL::Types::Bool.optional
-
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           cat: data['cat'],
           rate: data['rate'],
-          percent: data['percent'],
-          retained: data['retained']
+          percent: data['percent']
         )
       end
 
@@ -43,8 +39,7 @@ module GOBL
         {
           'cat' => attributes[:cat],
           'rate' => attributes[:rate],
-          'percent' => attributes[:percent]&.to_gobl,
-          'retained' => attributes[:retained]
+          'percent' => attributes[:percent]&.to_gobl
         }
       end
 
