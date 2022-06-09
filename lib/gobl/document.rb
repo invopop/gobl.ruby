@@ -14,12 +14,12 @@ module GOBL
     extend Forwardable
     include Enumerable
 
-    attribute :value, GOBL::Types::Hash
+    attribute :_value, GOBL::Types::Hash
 
-    def_delegators :value, :[], :each, :empty?, :length, :each_key
+    def_delegators :_value, :[], :each, :empty?, :length, :each_key
 
     def self.from_gobl!(data)
-      new(value: data)
+      new(_value: data)
     end
 
     def self.from_json!(json)
@@ -27,7 +27,7 @@ module GOBL
     end
 
     def to_gobl
-      value
+      _value
     end
 
     def to_json(options = nil)

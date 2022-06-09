@@ -14,3 +14,10 @@ end
 GOBL::Tax::Region.class_eval do
   extend GOBLExtensions::Tax::RegionHelper # these are all class helpers
 end
+#GOBL::Num::Amount.class_eval do
+#  include GOBLExtensions::Num::AmountHelper
+#end
+#GOBL::Num::Percentage.class_eval do
+#  include GOBLExtensions::Num::AmountHelper
+#  include GOBLExtensions::Num::PercentageHelper
+#end

@@ -13,57 +13,57 @@ module GOBL
     # Totals contains the summaries of all calculations for the invoice.
     class Totals < Dry::Struct
       # Sum of all line item sums
-      attribute :sum, GOBL::Num::Amount
+      attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Sum of all document level discounts
-      attribute :discount, GOBL::Num::Amount.optional
+      attribute :discount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Sum of all document level charges
-      attribute :charge, GOBL::Num::Amount.optional
+      attribute :charge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # If prices include tax, this is the total tax included in the price.
-      attribute :tax_included, GOBL::Num::Amount.optional
+      attribute :tax_included, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Sum of all line sums minus the discounts, plus the charges, without tax.
-      attribute :total, GOBL::Num::Amount
+      attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Summary of all the taxes included in the invoice.
       attribute :taxes, GOBL::Tax::Total.optional
 
       # Total amount of tax to apply to the invoice.
-      attribute :tax, GOBL::Num::Amount.optional
+      attribute :tax, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Grand total after all taxes have been applied.
-      attribute :total_with_tax, GOBL::Num::Amount
+      attribute :total_with_tax, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Total paid in outlays that need to be reimbursed
-      attribute :outlays, GOBL::Num::Amount.optional
+      attribute :outlays, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Total amount to be paid after applying taxes and outlays.
-      attribute :payable, GOBL::Num::Amount
+      attribute :payable, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Total amount already paid in advance.
-      attribute :advance, GOBL::Num::Amount.optional
+      attribute :advance, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # How much actually needs to be paid now.
-      attribute :due, GOBL::Num::Amount.optional
+      attribute :due, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          sum: GOBL::Num::Amount.from_gobl!(data['sum']),
-          discount: data['discount'] ? GOBL::Num::Amount.from_gobl!(data['discount']) : nil,
-          charge: data['charge'] ? GOBL::Num::Amount.from_gobl!(data['charge']) : nil,
-          tax_included: data['tax_included'] ? GOBL::Num::Amount.from_gobl!(data['tax_included']) : nil,
-          total: GOBL::Num::Amount.from_gobl!(data['total']),
+          sum: data['sum'],
+          discount: data['discount'] ? data['discount'] : nil,
+          charge: data['charge'] ? data['charge'] : nil,
+          tax_included: data['tax_included'] ? data['tax_included'] : nil,
+          total: data['total'],
           taxes: data['taxes'] ? GOBL::Tax::Total.from_gobl!(data['taxes']) : nil,
-          tax: data['tax'] ? GOBL::Num::Amount.from_gobl!(data['tax']) : nil,
-          total_with_tax: GOBL::Num::Amount.from_gobl!(data['total_with_tax']),
-          outlays: data['outlays'] ? GOBL::Num::Amount.from_gobl!(data['outlays']) : nil,
-          payable: GOBL::Num::Amount.from_gobl!(data['payable']),
-          advance: data['advance'] ? GOBL::Num::Amount.from_gobl!(data['advance']) : nil,
-          due: data['due'] ? GOBL::Num::Amount.from_gobl!(data['due']) : nil
+          tax: data['tax'] ? data['tax'] : nil,
+          total_with_tax: data['total_with_tax'],
+          outlays: data['outlays'] ? data['outlays'] : nil,
+          payable: data['payable'],
+          advance: data['advance'] ? data['advance'] : nil,
+          due: data['due'] ? data['due'] : nil
         )
       end
 

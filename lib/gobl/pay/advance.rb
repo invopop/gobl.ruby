@@ -28,10 +28,10 @@ module GOBL
       attribute :desc, GOBL::Types::String
 
       # How much as a percentage of the total with tax was paid
-      attribute :percent, GOBL::Num::Percentage.optional
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # How much was paid.
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # If different from the parent document's base currency.
       attribute :currency, GOBL::Types::String.optional
@@ -45,8 +45,8 @@ module GOBL
           ref: data['ref'],
           grant: data['grant'],
           desc: data['desc'],
-          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          percent: data['percent'] ? data['percent'] : nil,
+          amount: data['amount'],
           currency: data['currency']
         )
       end

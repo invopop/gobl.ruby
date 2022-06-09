@@ -14,20 +14,20 @@ module GOBL
     class RateTotal < Dry::Struct
       attribute :key, GOBL::Types::String.optional
 
-      attribute :base, GOBL::Num::Amount
+      attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
 
-      attribute :percent, GOBL::Num::Percentage
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           key: data['key'],
-          base: GOBL::Num::Amount.from_gobl!(data['base']),
-          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
-          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
+          base: data['base'],
+          percent: data['percent'],
+          amount: data['amount']
         )
       end
 

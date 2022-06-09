@@ -1,5 +1,7 @@
 module Generators
   class Ruby
+    class SkipFileError < StandardError; end
+
     # Base is used to define the basic structure and methods used in generating a ruby structure.
     class Base
       include TypeHelpers
@@ -7,6 +9,10 @@ module Generators
       attr_reader :schema, :name, :modules, :parent
 
       def initialize(modules, name, schema, parent)
+        if gobl_custom_ref_map.has_key?(parent.id.to_s)
+          raise SkipFileError 
+        end
+
         @modules = modules
         @name = name
         @schema = schema
@@ -37,9 +43,7 @@ module Generators
           ## DO NOT EDIT - This file was generated automatically.
           ##
         EOFHEAD
-        if parent.present? && parent.comment.present?
-          head << "## #{parent.comment}\n##\n"
-        end
+        head << "## #{parent.comment}\n##\n" if parent.present? && parent.comment.present?
         head
       end
 

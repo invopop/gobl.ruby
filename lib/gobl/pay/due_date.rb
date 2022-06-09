@@ -19,10 +19,10 @@ module GOBL
       attribute :notes, GOBL::Types::String.optional
 
       # How much needs to be paid by the date.
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Percentage of the total that should be paid by the date.
-      attribute :percent, GOBL::Num::Percentage.optional
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # If different from the parent document's base currency.
       attribute :currency, GOBL::Types::String.optional
@@ -33,8 +33,8 @@ module GOBL
         new(
           date: GOBL::Cal::Date.from_gobl!(data['date']),
           notes: data['notes'],
-          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
-          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
+          amount: data['amount'],
+          percent: data['percent'] ? data['percent'] : nil,
           currency: data['currency']
         )
       end
