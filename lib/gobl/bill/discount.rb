@@ -22,13 +22,13 @@ module GOBL
       attribute :ref, GOBL::Types::String.optional
 
       # Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum.
-      attribute :base, GOBL::Num::Amount.optional
+      attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Percentage to apply to the invoice's Sum
-      attribute :percent, GOBL::Num::Percentage.optional
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Amount to apply
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # List of taxes to apply to the discount
       attribute :taxes, GOBL::Tax::Set.optional
@@ -49,9 +49,9 @@ module GOBL
           uuid: data['uuid'],
           i: data['i'],
           ref: data['ref'],
-          base: data['base'] ? GOBL::Num::Amount.from_gobl!(data['base']) : nil,
-          percent: data['percent'] ? GOBL::Num::Percentage.from_gobl!(data['percent']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(data['amount']),
+          base: data['base'] ? data['base'] : nil,
+          percent: data['percent'] ? data['percent'] : nil,
+          amount: data['amount'],
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           code: data['code'],
           reason: data['reason'],

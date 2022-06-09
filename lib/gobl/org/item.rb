@@ -28,7 +28,7 @@ module GOBL
       attribute :currency, GOBL::Types::String.optional
 
       # Base price of a single unit to be sold.
-      attribute :price, GOBL::Num::Amount
+      attribute :price, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Free-text unit of measure.
       attribute :unit, GOBL::Types::String.optional
@@ -51,7 +51,7 @@ module GOBL
           name: data['name'],
           desc: data['desc'],
           currency: data['currency'],
-          price: GOBL::Num::Amount.from_gobl!(data['price']),
+          price: data['price'],
           unit: data['unit'],
           codes: data['codes']&.map { |item| ItemCode.from_gobl!(item) },
           origin: data['origin'],

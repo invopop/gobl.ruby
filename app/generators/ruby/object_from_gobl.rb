@@ -49,8 +49,13 @@ module Generators
           if optional
             "#{var} ? #{property_value_string(property, var, false)} : nil"
           else
-            klass = gobl_type_from_reference(property.ref)
-            "#{klass}.from_gobl!(#{var})"
+            c = gobl_custom_ref_map[property.ref.to_s]
+            if c.present?
+              var
+            else
+              klass = gobl_type_from_reference(property.ref)
+              "#{klass}.from_gobl!(#{var})"
+            end
           end
         else
           var

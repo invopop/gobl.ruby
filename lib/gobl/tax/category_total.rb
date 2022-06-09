@@ -18,9 +18,9 @@ module GOBL
 
       attribute :rates, GOBL::Types::Array.of(RateTotal)
 
-      attribute :base, GOBL::Num::Amount
+      attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
 
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -29,8 +29,8 @@ module GOBL
           code: data['code'],
           retained: data['retained'],
           rates: data['rates']&.map { |item| RateTotal.from_gobl!(item) },
-          base: GOBL::Num::Amount.from_gobl!(data['base']),
-          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
+          base: data['base'],
+          amount: data['amount']
         )
       end
 

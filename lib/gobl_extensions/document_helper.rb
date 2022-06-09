@@ -3,7 +3,7 @@ module GOBLExtensions
   # contained inside the envelope.
   module DocumentHelper
     def schema
-      @schema ||= GOBL::ID.new(value['$schema'])
+      @schema ||= GOBL::ID.new(_value['$schema'])
     end
 
     # Determine the type of document currently embedded by reading the schema
@@ -18,7 +18,7 @@ module GOBLExtensions
       typs << schema.name.underscore.camelize
       klass = typs.join('::').constantize
 
-      klass.from_gobl!(value.except('$schema'))
+      klass.from_gobl!(_value.except('$schema'))
     end
   end
 end

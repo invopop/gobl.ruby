@@ -34,7 +34,7 @@ module GOBL
       attribute :supplier, GOBL::Org::Party.optional
 
       # Amount paid by the supplier.
-      attribute :amount, GOBL::Num::Amount
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -47,7 +47,7 @@ module GOBL
           series: data['series'],
           desc: data['desc'],
           supplier: data['supplier'] ? GOBL::Org::Party.from_gobl!(data['supplier']) : nil,
-          amount: GOBL::Num::Amount.from_gobl!(data['amount'])
+          amount: data['amount']
         )
       end
 

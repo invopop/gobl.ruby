@@ -11,16 +11,16 @@ module Generators
 
       def attributes
         <<~EOFATTR
-          attribute :ary, #{gobl_type_string(schema)}
+          attribute :_ary, #{gobl_type_string(schema)}
 
-          def_delegators :ary, :[], :each, :empty?, :length, :find
+          def_delegators :_ary, :[], :each, :empty?, :length, :find
         EOFATTR
       end
 
       def from_gobl_method
         <<~EOFMETH
           def self.from_gobl!(data)
-            new(ary: #{from_gobl_method_map_or_instance} )
+            new(_ary: #{from_gobl_method_map_or_instance} )
           end
         EOFMETH
       end
@@ -37,7 +37,7 @@ module Generators
       def to_gobl_method
         <<~EOFMETH
           def to_gobl
-            ary
+            _ary
           end
         EOFMETH
       end

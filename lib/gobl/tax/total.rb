@@ -16,14 +16,14 @@ module GOBL
       attribute :categories, GOBL::Types::Array.of(CategoryTotal).optional
 
       # Total value of all the taxes applied.
-      attribute :sum, GOBL::Num::Amount
+      attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           categories: data['categories']&.map { |item| CategoryTotal.from_gobl!(item) },
-          sum: GOBL::Num::Amount.from_gobl!(data['sum'])
+          sum: data['sum']
         )
       end
 

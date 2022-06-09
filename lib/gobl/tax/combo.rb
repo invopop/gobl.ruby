@@ -19,7 +19,7 @@ module GOBL
       attribute :rate, GOBL::Types::String.optional
 
       # Percent defines the percentage set manually or determined from the rate key.
-      attribute :percent, GOBL::Num::Percentage
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
       # Retained when true indicates the percent is retained from the totals instead of added.
       attribute :retained, GOBL::Types::Bool.optional
@@ -30,7 +30,7 @@ module GOBL
         new(
           cat: data['cat'],
           rate: data['rate'],
-          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
+          percent: data['percent'],
           retained: data['retained']
         )
       end

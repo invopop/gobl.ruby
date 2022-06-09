@@ -16,7 +16,7 @@ module GOBL
       attribute :since, GOBL::Cal::Date.optional
 
       # Rate that should be applied
-      attribute :percent, GOBL::Num::Percentage
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
       # When true, this value should no longer be used.
       attribute :disabled, GOBL::Types::Bool.optional
@@ -26,7 +26,7 @@ module GOBL
 
         new(
           since: data['since'] ? GOBL::Cal::Date.from_gobl!(data['since']) : nil,
-          percent: GOBL::Num::Percentage.from_gobl!(data['percent']),
+          percent: data['percent'],
           disabled: data['disabled']
         )
       end

@@ -13,6 +13,14 @@ module Generators
         }
       end
 
+      def gobl_custom_ref_map
+        @gobl_custom_ref_map ||= {
+          'https://gobl.org/draft-0/num/amount' => 'GOBL::Num::Amount',
+          'https://gobl.org/draft-0/num/percentage' => 'GOBL::Num::Percentage'
+        }
+      end
+      # GOBL::Types.Constructor(
+
       # Provide a safe property symbol from the name, as Ruby and specifically
       # Dry::Struct doesn't play nice with `$` in symbols
       def safe_property_name(name)
@@ -25,7 +33,12 @@ module Generators
 
       def gobl_type_string(property)
         if property.ref.present?
-          gobl_type_from_reference(property.ref)
+          c = gobl_custom_ref_map[property.ref.to_s]
+          if c.present?
+            "GOBL::Types.Constructor(#{c})"
+          else
+            gobl_type_from_reference(property.ref)
+          end
         elsif property.type.array?
           "GOBL::Types::Array.of(#{gobl_type_string(property.items)})"
         else
@@ -34,7 +47,10 @@ module Generators
       end
 
       def gobl_type_from_reference(ref)
-        if ref.fragment.present?
+        c = gobl_custom_ref_map[ref.to_s]
+        if c.present?
+          c
+        elsif ref.fragment.present?
           m = ref.fragment.match(%r{^/\$defs/(.+)})
           m[1] # already in CamelCase
         elsif ref.gobl?

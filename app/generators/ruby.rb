@@ -39,6 +39,8 @@ module Generators
         dest = "#{path}/#{name.underscore}.rb"
         save_file(dest, data)
       end
+    rescue SkipFileError
+      puts "Skipping #{schema.id.to_s}"
     end
 
     protected

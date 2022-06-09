@@ -15,12 +15,12 @@ module GOBL
       extend Forwardable
       include Enumerable
 
-      attribute :ary, GOBL::Types::Array.of(Note)
+      attribute :_ary, GOBL::Types::Array.of(Note)
 
-      def_delegators :ary, :[], :each, :empty?, :length, :find
+      def_delegators :_ary, :[], :each, :empty?, :length, :find
 
       def self.from_gobl!(data)
-        new(ary: data&.map { |item| Note.from_gobl!(item) } )
+        new(_ary: data&.map { |item| Note.from_gobl!(item) } )
       end
 
       def self.from_json!(json)
@@ -28,7 +28,7 @@ module GOBL
       end
 
       def to_gobl
-        ary
+        _ary
       end
 
       def to_json(options = nil)

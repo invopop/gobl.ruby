@@ -22,11 +22,15 @@ module Generators
         out = ''
         out << "# #{schema.description}\n" if schema.description.present?
         out << <<~EOFMOD
-          class #{class_name} < Dry::Struct
+          class #{class_name} < #{parent_class}
           #{indent(class_content, 1).chomp}
           end
         EOFMOD
         out
+      end
+
+      def parent_class
+        "Dry::Struct"
       end
 
       def class_content
