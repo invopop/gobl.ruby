@@ -9,21 +9,19 @@
 require 'dry-struct'
 
 module GOBL
-  module Pay
-    # Card contains simplified card holder data as a reference for the customer.
-    class Card < Dry::Struct
-      # Last 4 digits of the card's Primary Account Number (PAN).
-      attribute :last4, GOBL::Types::String
+  module Tax
+    # RateTotalSurcharge reflects the sum surcharges inside the rate.
+    class RateTotalSurcharge < Dry::Struct
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
-      # Name of the person whom the card belongs to.
-      attribute :holder, GOBL::Types::String
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          last4: data['last4'],
-          holder: data['holder']
+          percent: data['percent'],
+          amount: data['amount']
         )
       end
 
@@ -33,8 +31,8 @@ module GOBL
 
       def to_gobl
         {
-          'last4' => attributes[:last4],
-          'holder' => attributes[:holder]
+          'percent' => attributes[:percent]&.to_gobl,
+          'amount' => attributes[:amount]&.to_gobl
         }
       end
 

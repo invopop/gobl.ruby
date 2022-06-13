@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.24.0
+## Generated with GOBL v0.25.0
 ##
 
 require 'dry-struct'
@@ -21,13 +21,17 @@ module GOBL
       # Percent defines the percentage set manually or determined from the rate key.
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
+      # Some countries require an additional surcharge.
+      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
           cat: data['cat'],
           rate: data['rate'],
-          percent: data['percent']
+          percent: data['percent'],
+          surcharge: data['surcharge'] ? data['surcharge'] : nil
         )
       end
 
@@ -39,7 +43,8 @@ module GOBL
         {
           'cat' => attributes[:cat],
           'rate' => attributes[:rate],
-          'percent' => attributes[:percent]&.to_gobl
+          'percent' => attributes[:percent]&.to_gobl,
+          'surcharge' => attributes[:surcharge]&.to_gobl
         }
       end
 

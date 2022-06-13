@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.24.0
+## Generated with GOBL v0.25.0
 ##
 
 require 'dry-struct'
@@ -15,8 +15,11 @@ module GOBL
       # Date from which this value should be applied.
       attribute :since, GOBL::Cal::Date.optional
 
-      # Rate that should be applied
+      # Percent rate that should be applied
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
+
+      # An additional surcharge to apply.
+      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # When true, this value should no longer be used.
       attribute :disabled, GOBL::Types::Bool.optional
@@ -27,6 +30,7 @@ module GOBL
         new(
           since: data['since'] ? GOBL::Cal::Date.from_gobl!(data['since']) : nil,
           percent: data['percent'],
+          surcharge: data['surcharge'] ? data['surcharge'] : nil,
           disabled: data['disabled']
         )
       end
@@ -39,6 +43,7 @@ module GOBL
         {
           'since' => attributes[:since]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
+          'surcharge' => attributes[:surcharge]&.to_gobl,
           'disabled' => attributes[:disabled]
         }
       end

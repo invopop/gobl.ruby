@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.24.0
+## Generated with GOBL v0.25.0
 ##
 
 require 'dry-struct'
@@ -22,6 +22,8 @@ module GOBL
 
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -30,7 +32,8 @@ module GOBL
           retained: data['retained'],
           rates: data['rates']&.map { |item| RateTotal.from_gobl!(item) },
           base: data['base'],
-          amount: data['amount']
+          amount: data['amount'],
+          surcharge: data['surcharge'] ? data['surcharge'] : nil
         )
       end
 
@@ -44,7 +47,8 @@ module GOBL
           'retained' => attributes[:retained],
           'rates' => attributes[:rates]&.map { |item| item&.to_gobl },
           'base' => attributes[:base]&.to_gobl,
-          'amount' => attributes[:amount]&.to_gobl
+          'amount' => attributes[:amount]&.to_gobl,
+          'surcharge' => attributes[:surcharge]&.to_gobl
         }
       end
 

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.24.0
+## Generated with GOBL v0.25.0
 ##
 
 require 'dry-struct'
@@ -18,7 +18,10 @@ module GOBL
 
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
+      # Total amount of rate, excluding surcharges
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
+
+      attribute :surcharge, RateTotalSurcharge.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -27,7 +30,8 @@ module GOBL
           key: data['key'],
           base: data['base'],
           percent: data['percent'],
-          amount: data['amount']
+          amount: data['amount'],
+          surcharge: data['surcharge'] ? RateTotalSurcharge.from_gobl!(data['surcharge']) : nil
         )
       end
 
@@ -40,7 +44,8 @@ module GOBL
           'key' => attributes[:key],
           'base' => attributes[:base]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
-          'amount' => attributes[:amount]&.to_gobl
+          'amount' => attributes[:amount]&.to_gobl,
+          'surcharge' => attributes[:surcharge]&.to_gobl
         }
       end
 
