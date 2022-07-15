@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Discount represents an allowance applied to the complete document independent from the individual lines.
     class Discount < Dry::Struct
       # Unique identifying for the discount entry
-      attribute :uuid, GOBL::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the list of discounts
       attribute :i, GOBL::Types::Int
@@ -46,7 +46,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          uuid: data['uuid'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           i: data['i'],
           ref: data['ref'],
           base: data['base'] ? data['base'] : nil,
@@ -65,7 +65,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'i' => attributes[:i],
           'ref' => attributes[:ref],
           'base' => attributes[:base]&.to_gobl,

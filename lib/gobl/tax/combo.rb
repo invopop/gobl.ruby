@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,10 +13,10 @@ module GOBL
     # Combo represents the tax combination of a category code and rate key.
     class Combo < Dry::Struct
       # Tax category code from those available inside a region.
-      attribute :cat, GOBL::Types::String
+      attribute :cat, GOBL::Org::Code
 
       # Rate within a category to apply.
-      attribute :rate, GOBL::Types::String.optional
+      attribute :rate, GOBL::Org::Key.optional
 
       # Percent defines the percentage set manually or determined from the rate key.
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
@@ -28,8 +28,8 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          cat: data['cat'],
-          rate: data['rate'],
+          cat: GOBL::Org::Code.from_gobl!(data['cat']),
+          rate: data['rate'] ? GOBL::Org::Key.from_gobl!(data['rate']) : nil,
           percent: data['percent'],
           surcharge: data['surcharge'] ? data['surcharge'] : nil
         )
@@ -41,8 +41,8 @@ module GOBL
 
       def to_gobl
         {
-          'cat' => attributes[:cat],
-          'rate' => attributes[:rate],
+          'cat' => attributes[:cat]&.to_gobl,
+          'rate' => attributes[:rate]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
           'surcharge' => attributes[:surcharge]&.to_gobl
         }

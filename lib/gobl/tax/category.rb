@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -12,7 +12,7 @@ module GOBL
   module Tax
     # Category contains the definition of a general type of tax inside a region.
     class Category < Dry::Struct
-      attribute :code, GOBL::Types::String
+      attribute :code, GOBL::Org::Code
 
       attribute :name, GOBL::I18n::String
 
@@ -28,7 +28,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          code: data['code'],
+          code: GOBL::Org::Code.from_gobl!(data['code']),
           name: GOBL::I18n::String.from_gobl!(data['name']),
           desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
           retained: data['retained'],
@@ -42,7 +42,7 @@ module GOBL
 
       def to_gobl
         {
-          'code' => attributes[:code],
+          'code' => attributes[:code]&.to_gobl,
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
           'retained' => attributes[:retained],

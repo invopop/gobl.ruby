@@ -9,28 +9,24 @@
 require 'dry-struct'
 
 module GOBL
-  module Org
-    # Email describes the electronic mailing details.
-    class Email < Dry::Struct
-      # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+  module Tax
+    # Locality represents an area inside a region, like a province or a state, which shares the basic definitions of the region, but may vary in some validation rules.
+    class Locality < Dry::Struct
+      # Code
+      attribute :code, GOBL::Types::String
 
-      # Identifier for the email.
-      attribute :label, GOBL::Types::String.optional
+      # Name of the locality with local and hopefully international translations.
+      attribute :name, GOBL::I18n::String
 
-      # Electronic mailing address.
-      attribute :addr, GOBL::Types::String
-
-      # Additional fields.
+      # Any additional information
       attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
         new(
-          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
-          label: data['label'],
-          addr: data['addr'],
+          code: data['code'],
+          name: GOBL::I18n::String.from_gobl!(data['name']),
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
@@ -41,9 +37,8 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid]&.to_gobl,
-          'label' => attributes[:label],
-          'addr' => attributes[:addr],
+          'code' => attributes[:code],
+          'name' => attributes[:name]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }
       end

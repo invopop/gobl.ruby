@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -18,8 +18,11 @@ module GOBL
       # Country code for the region
       attribute :country, GOBL::Types::String
 
-      # Locality, city, region, or similar code inside the country, if needed.
+      # Locality, city, province, county, or similar code inside the country, if needed.
       attribute :locality, GOBL::Types::String.optional
+
+      # List of sub-localities inside a region.
+      attribute :localities, Localities.optional
 
       # Currency used by the region for tax purposes.
       attribute :currency, GOBL::Types::String
@@ -37,6 +40,7 @@ module GOBL
           name: GOBL::I18n::String.from_gobl!(data['name']),
           country: data['country'],
           locality: data['locality'],
+          localities: data['localities'] ? Localities.from_gobl!(data['localities']) : nil,
           currency: data['currency'],
           schemes: data['schemes'] ? Schemes.from_gobl!(data['schemes']) : nil,
           categories: data['categories']&.map { |item| Category.from_gobl!(item) }
@@ -52,6 +56,7 @@ module GOBL
           'name' => attributes[:name]&.to_gobl,
           'country' => attributes[:country],
           'locality' => attributes[:locality],
+          'localities' => attributes[:localities]&.to_gobl,
           'currency' => attributes[:currency],
           'schemes' => attributes[:schemes]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }

@@ -3,14 +3,14 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
 
 module GOBL
   module UUID
-    # Universally Unique Identifier. We only recommend using versions 1 and 4 within GoBL.
+    # Universally Unique Identifier. We only recommend using versions 1 and 4 within GOBL.
     class UUID < Dry::Struct
       attribute :_value, GOBL::Types::String
 

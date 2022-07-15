@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Rate defines a single rate inside a category
     class Rate < Dry::Struct
       # Key identifies this rate within the system
-      attribute :key, GOBL::Types::String
+      attribute :key, GOBL::Org::Key
 
       attribute :name, GOBL::I18n::String
 
@@ -26,7 +26,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          key: data['key'],
+          key: GOBL::Org::Key.from_gobl!(data['key']),
           name: GOBL::I18n::String.from_gobl!(data['name']),
           desc: data['desc'] ? GOBL::I18n::String.from_gobl!(data['desc']) : nil,
           values: data['values']&.map { |item| RateValue.from_gobl!(item) }
@@ -39,7 +39,7 @@ module GOBL
 
       def to_gobl
         {
-          'key' => attributes[:key],
+          'key' => attributes[:key]&.to_gobl,
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
           'values' => attributes[:values]&.map { |item| item&.to_gobl }

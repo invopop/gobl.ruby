@@ -9,18 +9,18 @@
 require 'dry-struct'
 
 module GOBL
-  module Bill
-    # ExchangeRates represents an array of currency exchange rates.
-    class ExchangeRates < Dry::Struct
+  module Tax
+    # Localities stores an array of locality objects used to describe areas sub-divisions inside a region.
+    class Localities < Dry::Struct
       extend Forwardable
       include Enumerable
 
-      attribute :_ary, GOBL::Types::Array.of(GOBL::Currency::ExchangeRate)
+      attribute :_ary, GOBL::Types::Array.of(Locality)
 
       def_delegators :_ary, :[], :each, :empty?, :length, :find
 
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) } )
+        new(_ary: data&.map { |item| Locality.from_gobl!(item) } )
       end
 
       def self.from_json!(json)

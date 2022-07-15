@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -12,6 +12,7 @@ module GOBL
   module Org
     # Telephone describes what is expected for a telephone number.
     class Telephone < Dry::Struct
+      # Unique identity code
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for this number.

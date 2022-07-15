@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -12,7 +12,7 @@ module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
     class RateTotal < Dry::Struct
-      attribute :key, GOBL::Types::String.optional
+      attribute :key, GOBL::Org::Key.optional
 
       attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
 
@@ -27,7 +27,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          key: data['key'],
+          key: data['key'] ? GOBL::Org::Key.from_gobl!(data['key']) : nil,
           base: data['base'],
           percent: data['percent'],
           amount: data['amount'],
@@ -41,7 +41,7 @@ module GOBL
 
       def to_gobl
         {
-          'key' => attributes[:key],
+          'key' => attributes[:key]&.to_gobl,
           'base' => attributes[:base]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,

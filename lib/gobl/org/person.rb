@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -27,6 +27,7 @@ module GOBL
       # Electronic mail addresses that belong to the person.
       attribute :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
 
+      # Regular phone or mobile numbers
       attribute :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
 
       # Data about the data.

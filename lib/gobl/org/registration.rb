@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -14,7 +14,6 @@ module GOBL
     class Registration < Dry::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Office where the company is registered.
       attribute :office, GOBL::Types::String.optional
 
       attribute :book, GOBL::Types::String.optional

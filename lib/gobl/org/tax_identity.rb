@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -22,7 +22,7 @@ module GOBL
       attribute :locality, GOBL::Types::String.optional
 
       # What is the source document of this tax identity.
-      attribute :document, GOBL::Types::String.optional
+      attribute :document, GOBL::Org::Key.optional
 
       # Tax identity Code
       attribute :code, GOBL::Types::String.optional
@@ -37,7 +37,7 @@ module GOBL
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           country: data['country'],
           locality: data['locality'],
-          document: data['document'],
+          document: data['document'] ? GOBL::Org::Key.from_gobl!(data['document']) : nil,
           code: data['code'],
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
@@ -52,7 +52,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'country' => attributes[:country],
           'locality' => attributes[:locality],
-          'document' => attributes[:document],
+          'document' => attributes[:document]&.to_gobl,
           'code' => attributes[:code],
           'meta' => attributes[:meta]&.to_gobl
         }

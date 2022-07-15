@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Note represents a free text of additional information that may be added to a document.
     class Note < Dry::Struct
       # Key specifying subject of the text
-      attribute :key, GOBL::Types::String.optional
+      attribute :key, GOBL::Org::Key.optional
 
       # Code used for additional data that may be required to identify the note.
       attribute :code, GOBL::Types::String.optional
@@ -28,7 +28,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          key: data['key'],
+          key: data['key'] ? GOBL::Org::Key.from_gobl!(data['key']) : nil,
           code: data['code'],
           src: data['src'],
           text: data['text']
@@ -41,7 +41,7 @@ module GOBL
 
       def to_gobl
         {
-          'key' => attributes[:key],
+          'key' => attributes[:key]&.to_gobl,
           'code' => attributes[:code],
           'src' => attributes[:src],
           'text' => attributes[:text]
