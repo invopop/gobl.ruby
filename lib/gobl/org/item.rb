@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Item is used to describe a single product or service.
     class Item < Dry::Struct
       # Unique identify of this item independent of the Supplier IDs
-      attribute :uuid, GOBL::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
       attribute :ref, GOBL::Types::String.optional
@@ -46,7 +46,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          uuid: data['uuid'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           ref: data['ref'],
           name: data['name'],
           desc: data['desc'],
@@ -65,7 +65,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'ref' => attributes[:ref],
           'name' => attributes[:name],
           'desc' => attributes[:desc],

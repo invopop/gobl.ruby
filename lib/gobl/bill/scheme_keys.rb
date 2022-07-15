@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -15,12 +15,12 @@ module GOBL
       extend Forwardable
       include Enumerable
 
-      attribute :_ary, GOBL::Types::Array.of(GOBL::Types::String)
+      attribute :_ary, GOBL::Types::Array.of(GOBL::Org::Key)
 
       def_delegators :_ary, :[], :each, :empty?, :length, :find
 
       def self.from_gobl!(data)
-        new(_ary: data )
+        new(_ary: data&.map { |item| GOBL::Org::Key.from_gobl!(item) } )
       end
 
       def self.from_json!(json)

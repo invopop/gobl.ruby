@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Tax defines a summary of the taxes which may be applied to an invoice.
     class Tax < Dry::Struct
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
-      attribute :prices_include, GOBL::Types::String.optional
+      attribute :prices_include, GOBL::Org::Code.optional
 
       # Special tax schemes that apply to this invoice according to local requirements.
       attribute :schemes, SchemeKeys.optional
@@ -25,7 +25,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          prices_include: data['prices_include'],
+          prices_include: data['prices_include'] ? GOBL::Org::Code.from_gobl!(data['prices_include']) : nil,
           schemes: data['schemes'] ? SchemeKeys.from_gobl!(data['schemes']) : nil,
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
@@ -37,7 +37,7 @@ module GOBL
 
       def to_gobl
         {
-          'prices_include' => attributes[:prices_include],
+          'prices_include' => attributes[:prices_include]&.to_gobl,
           'schemes' => attributes[:schemes]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }

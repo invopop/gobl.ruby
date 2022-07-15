@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
     class Outlay < Dry::Struct
       # Unique identity for this outlay.
-      attribute :uuid, GOBL::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Outlay number index inside the invoice for ordering.
       attribute :i, GOBL::Types::Int
@@ -40,7 +40,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          uuid: data['uuid'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           i: data['i'],
           date: data['date'] ? GOBL::Cal::Date.from_gobl!(data['date']) : nil,
           code: data['code'],
@@ -57,7 +57,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'i' => attributes[:i],
           'date' => attributes[:date]&.to_gobl,
           'code' => attributes[:code],

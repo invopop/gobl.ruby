@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -12,7 +12,7 @@ module GOBL
   module Tax
     # CategoryTotal groups together all rates inside a given category.
     class CategoryTotal < Dry::Struct
-      attribute :code, GOBL::Types::String
+      attribute :code, GOBL::Org::Code
 
       attribute :retained, GOBL::Types::Bool.optional
 
@@ -28,7 +28,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          code: data['code'],
+          code: GOBL::Org::Code.from_gobl!(data['code']),
           retained: data['retained'],
           rates: data['rates']&.map { |item| RateTotal.from_gobl!(item) },
           base: data['base'],
@@ -43,7 +43,7 @@ module GOBL
 
       def to_gobl
         {
-          'code' => attributes[:code],
+          'code' => attributes[:code]&.to_gobl,
           'retained' => attributes[:retained],
           'rates' => attributes[:rates]&.map { |item| item&.to_gobl },
           'base' => attributes[:base]&.to_gobl,

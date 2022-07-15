@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -18,13 +18,13 @@ module GOBL
       # Bank Identifier Code used for international transfers.
       attribute :bic, GOBL::Types::String.optional
 
-      # Account number
+      # Account number, if IBAN not available.
       attribute :number, GOBL::Types::String.optional
 
       # Name of the bank.
       attribute :name, GOBL::Types::String.optional
 
-      # Bank office branch address
+      # Bank office branch address, not normally required.
       attribute :branch, GOBL::Org::Address.optional
 
       def self.from_gobl!(data)

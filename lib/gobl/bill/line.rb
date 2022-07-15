@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.25.0
+## Generated with GOBL v0.28.1
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Line is a single row in an invoice.
     class Line < Dry::Struct
       # Unique identifier for this line
-      attribute :uuid, GOBL::Types::String.optional
+      attribute :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the parent
       attribute :i, GOBL::Types::Int
@@ -46,7 +46,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          uuid: data['uuid'],
+          uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           i: data['i'],
           quantity: data['quantity'],
           item: GOBL::Org::Item.from_gobl!(data['item']),
@@ -65,7 +65,7 @@ module GOBL
 
       def to_gobl
         {
-          'uuid' => attributes[:uuid],
+          'uuid' => attributes[:uuid]&.to_gobl,
           'i' => attributes[:i],
           'quantity' => attributes[:quantity]&.to_gobl,
           'item' => attributes[:item]&.to_gobl,

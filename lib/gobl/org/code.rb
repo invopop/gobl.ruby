@@ -9,18 +9,13 @@
 require 'dry-struct'
 
 module GOBL
-  module Bill
-    # ExchangeRates represents an array of currency exchange rates.
-    class ExchangeRates < Dry::Struct
-      extend Forwardable
-      include Enumerable
-
-      attribute :_ary, GOBL::Types::Array.of(GOBL::Currency::ExchangeRate)
-
-      def_delegators :_ary, :[], :each, :empty?, :length, :find
+  module Org
+    # Short upper-case identifier.
+    class Code < Dry::Struct
+      attribute :_value, GOBL::Types::String
 
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) } )
+        new(_value: data)
       end
 
       def self.from_json!(json)
@@ -28,11 +23,15 @@ module GOBL
       end
 
       def to_gobl
-        _ary
+        _value
       end
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
+      end
+
+      def to_s
+        _value.to_s
       end
     end
   end
