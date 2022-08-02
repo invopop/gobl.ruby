@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -25,7 +25,7 @@ module GOBL
       attribute :type_key, GOBL::Types::String.optional
 
       # Currency for all invoice totals.
-      attribute :currency, GOBL::Types::String
+      attribute :currency, GOBL::Currency::Code
 
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
       attribute :exchange_rates, ExchangeRates.optional
@@ -86,7 +86,7 @@ module GOBL
           code: data['code'],
           series: data['series'],
           type_key: data['type_key'],
-          currency: data['currency'],
+          currency: GOBL::Currency::Code.from_gobl!(data['currency']),
           exchange_rates: data['exchange_rates'] ? ExchangeRates.from_gobl!(data['exchange_rates']) : nil,
           tax: data['tax'] ? Tax.from_gobl!(data['tax']) : nil,
           preceding: data['preceding'] ? Preceding.from_gobl!(data['preceding']) : nil,
@@ -118,7 +118,7 @@ module GOBL
           'code' => attributes[:code],
           'series' => attributes[:series],
           'type_key' => attributes[:type_key],
-          'currency' => attributes[:currency],
+          'currency' => attributes[:currency]&.to_gobl,
           'exchange_rates' => attributes[:exchange_rates]&.to_gobl,
           'tax' => attributes[:tax]&.to_gobl,
           'preceding' => attributes[:preceding]&.to_gobl,
