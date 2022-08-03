@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Instructions holds a set of instructions that determine how the payment has or should be made.
     class Instructions < Dry::Struct
       # How payment is expected or has been arranged to be collected
-      attribute :key, GOBL::Org::Key
+      attribute :key, MethodKey
 
       # Optional text description of the payment method
       attribute :detail, GOBL::Types::String.optional
@@ -43,7 +43,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          key: GOBL::Org::Key.from_gobl!(data['key']),
+          key: MethodKey.from_gobl!(data['key']),
           detail: data['detail'],
           ref: data['ref'],
           credit_transfer: data['credit_transfer']&.map { |item| CreditTransfer.from_gobl!(item) },

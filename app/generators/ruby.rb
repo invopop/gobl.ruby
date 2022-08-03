@@ -11,6 +11,7 @@ require_relative 'ruby/object_from_gobl'
 require_relative 'ruby/object_to_gobl'
 require_relative 'ruby/object'
 require_relative 'ruby/string'
+require_relative 'ruby/any'
 
 # Define our custom inflections for Ruby conversion here
 ActiveSupport::Inflector.inflections do |inflect|
@@ -46,7 +47,9 @@ module Generators
     protected
 
     def schema_to_ruby(mods, name, schema, parent)
-      if schema.type.object?
+      if schema.type.nil?
+        Any.new(mods, name, schema, parent)
+      elsif schema.type.object?
         if schema.properties.empty?
           Map.new(mods, name, schema, parent)
         else

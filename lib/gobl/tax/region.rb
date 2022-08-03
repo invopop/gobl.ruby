@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -16,16 +16,16 @@ module GOBL
       attribute :name, GOBL::I18n::String
 
       # Country code for the region
-      attribute :country, GOBL::Types::String
+      attribute :country, GOBL::L10n::CountryCode
 
       # Locality, city, province, county, or similar code inside the country, if needed.
-      attribute :locality, GOBL::Types::String.optional
+      attribute :locality, GOBL::L10n::Code.optional
 
       # List of sub-localities inside a region.
       attribute :localities, Localities.optional
 
       # Currency used by the region for tax purposes.
-      attribute :currency, GOBL::Types::String
+      attribute :currency, GOBL::Currency::Code
 
       # Set of specific scheme definitions inside the region.
       attribute :schemes, Schemes.optional
@@ -38,10 +38,10 @@ module GOBL
 
         new(
           name: GOBL::I18n::String.from_gobl!(data['name']),
-          country: data['country'],
-          locality: data['locality'],
+          country: GOBL::L10n::CountryCode.from_gobl!(data['country']),
+          locality: data['locality'] ? GOBL::L10n::Code.from_gobl!(data['locality']) : nil,
           localities: data['localities'] ? Localities.from_gobl!(data['localities']) : nil,
-          currency: data['currency'],
+          currency: GOBL::Currency::Code.from_gobl!(data['currency']),
           schemes: data['schemes'] ? Schemes.from_gobl!(data['schemes']) : nil,
           categories: data['categories']&.map { |item| Category.from_gobl!(item) }
         )
@@ -54,10 +54,10 @@ module GOBL
       def to_gobl
         {
           'name' => attributes[:name]&.to_gobl,
-          'country' => attributes[:country],
-          'locality' => attributes[:locality],
+          'country' => attributes[:country]&.to_gobl,
+          'locality' => attributes[:locality]&.to_gobl,
           'localities' => attributes[:localities]&.to_gobl,
-          'currency' => attributes[:currency],
+          'currency' => attributes[:currency]&.to_gobl,
           'schemes' => attributes[:schemes]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
         }

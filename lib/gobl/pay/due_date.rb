@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -25,7 +25,7 @@ module GOBL
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # If different from the parent document's base currency.
-      attribute :currency, GOBL::Types::String.optional
+      attribute :currency, GOBL::Currency::Code.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -35,7 +35,7 @@ module GOBL
           notes: data['notes'],
           amount: data['amount'],
           percent: data['percent'] ? data['percent'] : nil,
-          currency: data['currency']
+          currency: data['currency'] ? GOBL::Currency::Code.from_gobl!(data['currency']) : nil
         )
       end
 
@@ -49,7 +49,7 @@ module GOBL
           'notes' => attributes[:notes],
           'amount' => attributes[:amount]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
-          'currency' => attributes[:currency]
+          'currency' => attributes[:currency]&.to_gobl
         }
       end
 
