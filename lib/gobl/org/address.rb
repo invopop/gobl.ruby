@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -12,9 +12,10 @@ module GOBL
   module Org
     # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
     class Address < Dry::Struct
+      # Internal ID used to identify the party inside a document.
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Useful identifier
+      # Useful identifier, such as home, work, etc.
       attribute :label, GOBL::Types::String.optional
 
       # Box number or code for the post office box located at the address.
@@ -32,27 +33,28 @@ module GOBL
       # Door number within the building.
       attribute :door, GOBL::Types::String.optional
 
-      # Fist line of street.
+      # First line of street.
       attribute :street, GOBL::Types::String.optional
 
       # Additional street address details.
       attribute :street_extra, GOBL::Types::String.optional
 
-      # The village
+      # The village, town, district, or city.
       attribute :locality, GOBL::Types::String
 
-      # Province
+      # Province, County, or State.
       attribute :region, GOBL::Types::String
 
       # Post or ZIP code.
       attribute :code, GOBL::Types::String.optional
 
       # ISO country code.
-      attribute :country, GOBL::Types::String.optional
+      attribute :country, GOBL::L10n::CountryCode.optional
 
-      # For when the postal address is not sufficient
+      # When the postal address is not sufficient, coordinates help locate the address more precisely.
       attribute :coords, GOBL::Org::Coordinates.optional
 
+      # Any additional semi-structure details about the address.
       attribute :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
@@ -71,7 +73,7 @@ module GOBL
           locality: data['locality'],
           region: data['region'],
           code: data['code'],
-          country: data['country'],
+          country: data['country'] ? GOBL::L10n::CountryCode.from_gobl!(data['country']) : nil,
           coords: data['coords'] ? GOBL::Org::Coordinates.from_gobl!(data['coords']) : nil,
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
@@ -95,7 +97,7 @@ module GOBL
           'locality' => attributes[:locality],
           'region' => attributes[:region],
           'code' => attributes[:code],
-          'country' => attributes[:country],
+          'country' => attributes[:country]&.to_gobl,
           'coords' => attributes[:coords]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -16,13 +16,13 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # ISO country code for Where the tax identity was issued.
-      attribute :country, GOBL::Types::String
+      attribute :country, GOBL::L10n::CountryCode
 
       # Where inside a country the Tax ID was issued, if required.
-      attribute :locality, GOBL::Types::String.optional
+      attribute :locality, GOBL::L10n::Code.optional
 
       # What is the source document of this tax identity.
-      attribute :document, GOBL::Org::Key.optional
+      attribute :source, SourceKey.optional
 
       # Tax identity Code
       attribute :code, GOBL::Types::String.optional
@@ -35,9 +35,9 @@ module GOBL
 
         new(
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
-          country: data['country'],
-          locality: data['locality'],
-          document: data['document'] ? GOBL::Org::Key.from_gobl!(data['document']) : nil,
+          country: GOBL::L10n::CountryCode.from_gobl!(data['country']),
+          locality: data['locality'] ? GOBL::L10n::Code.from_gobl!(data['locality']) : nil,
+          source: data['source'] ? SourceKey.from_gobl!(data['source']) : nil,
           code: data['code'],
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
@@ -50,9 +50,9 @@ module GOBL
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
-          'country' => attributes[:country],
-          'locality' => attributes[:locality],
-          'document' => attributes[:document]&.to_gobl,
+          'country' => attributes[:country]&.to_gobl,
+          'locality' => attributes[:locality]&.to_gobl,
+          'source' => attributes[:source]&.to_gobl,
           'code' => attributes[:code],
           'meta' => attributes[:meta]&.to_gobl
         }

@@ -9,18 +9,12 @@
 require 'dry-struct'
 
 module GOBL
-  module Tax
-    # Schemes defines an array of scheme objects with helper functions.
-    class Schemes < Dry::Struct
-      extend Forwardable
-      include Enumerable
-
-      attribute :_ary, GOBL::Types::Array.of(Scheme)
-
-      def_delegators :_ary, :[], :each, :empty?, :length, :find
+  module L10n
+    class CountryCode < Dry::Struct
+      attribute :_value, GOBL::Types::Any
 
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| Scheme.from_gobl!(item) } )
+        new(_value: data)
       end
 
       def self.from_json!(json)
@@ -28,11 +22,15 @@ module GOBL
       end
 
       def to_gobl
-        _ary
+        _value
       end
 
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
+      end
+
+      def to_s
+        _value.to_s
       end
     end
   end

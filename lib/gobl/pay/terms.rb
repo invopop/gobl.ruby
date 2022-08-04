@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.28.1
+## Generated with GOBL v0.29.0
 ##
 
 require 'dry-struct'
@@ -13,7 +13,7 @@ module GOBL
     # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
     class Terms < Dry::Struct
       # Type of terms to be applied.
-      attribute :key, GOBL::Org::Key
+      attribute :key, TermKey
 
       # Text detail of the chosen payment terms.
       attribute :detail, GOBL::Types::String.optional
@@ -28,7 +28,7 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          key: GOBL::Org::Key.from_gobl!(data['key']),
+          key: TermKey.from_gobl!(data['key']),
           detail: data['detail'],
           due_dates: data['due_dates']&.map { |item| DueDate.from_gobl!(item) },
           notes: data['notes']
