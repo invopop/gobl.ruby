@@ -53,6 +53,20 @@ module Generators
             def description
               #{enum_const_name}.fetch(_value, _value)
             end
+
+            INQUIRERS = #{enum_const_name}.keys.map { |key| [ \"\#{key.underscore}?\".to_sym, key ] }.to_h
+
+            def respond_to_missing?(method_name, include_private = false)
+              INQUIRERS.has_key?(method_name) || super
+            end
+
+            def method_missing(method_name, *args, &block)
+              if INQUIRERS.has_key?(method_name)
+                _value == INQUIRERS[method_name]
+              else
+                super
+              end
+            end
           EOFADD
         end
       end

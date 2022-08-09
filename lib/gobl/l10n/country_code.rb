@@ -288,6 +288,20 @@ module GOBL
       def description
         ENUM.fetch(_value, _value)
       end
+
+      INQUIRERS = ENUM.keys.map { |key| [ "#{key.underscore}?".to_sym, key ] }.to_h
+
+      def respond_to_missing?(method_name, include_private = false)
+        INQUIRERS.has_key?(method_name) || super
+      end
+
+      def method_missing(method_name, *args, &block)
+        if INQUIRERS.has_key?(method_name)
+          _value == INQUIRERS[method_name]
+        else
+          super
+        end
+      end
     end
   end
 end
