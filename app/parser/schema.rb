@@ -50,12 +50,25 @@ module Parser
       @data['description']
     end
 
+    def const
+      @data['const']
+    end
+
+    def const?
+      @data.has_key?('const')
+    end
+
     def type
       @data['type'].present? ? Type.new(@data['type']) : nil
     end
 
     def items
       @items ||= (@data['items'].present? ? Schema.new(@data['items']) : nil)
+    end
+
+    def composition
+      composition_data = @data.slice('anyOf', 'oneOf', 'allOf').first
+      composition_data.present? ? Composition.new(*composition_data) : nil
     end
   end
 end

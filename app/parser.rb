@@ -2,6 +2,7 @@
 
 require_relative 'parser/id'
 require_relative 'parser/loader'
+require_relative 'parser/composition'
 require_relative 'parser/schema'
 require_relative 'parser/type'
 

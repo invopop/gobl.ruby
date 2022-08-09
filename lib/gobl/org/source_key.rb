@@ -12,7 +12,15 @@ module GOBL
   module Org
     # SourceKey identifies the source of a tax identity
     class SourceKey < Dry::Struct
-      attribute :_value, GOBL::Types::Any
+      ENUM = {
+        'tax-agency' => 'Sourced directly from a tax agency',
+        'passport' => 'A passport document',
+        'national' => 'National ID Card or similar',
+        'permit' => 'Residential or similar permit',
+        'other' => 'An other type of source not listed'
+      }
+
+      attribute :_value, GOBL::Types::Any.enum(*ENUM.keys)
 
       def self.from_gobl!(data)
         new(_value: data)
@@ -32,6 +40,10 @@ module GOBL
 
       def to_s
         _value.to_s
+      end
+
+      def description
+        ENUM.fetch(_value, _value)
       end
     end
   end

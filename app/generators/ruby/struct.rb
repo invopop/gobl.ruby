@@ -36,16 +36,21 @@ module Generators
       def class_content
         [
           includes,
+          constants,
           attributes,
           from_gobl_method,
           from_json_method,
           to_gobl_method,
           to_json_method,
           additional_methods
-        ].reject{ |i| i.empty? }.join("\n")
+        ].flatten.reject(&:blank?).join("\n")
       end
 
       def includes
+        ''
+      end
+
+      def constants
         ''
       end
 
