@@ -71,6 +71,10 @@ module Generators
         end
         mods.join('::')
       end
+
+      def serialize_str(str)
+        "'#{str.gsub("'", "\\'")}'"
+      end
     end
   end
 end
