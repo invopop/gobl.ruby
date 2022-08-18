@@ -11,6 +11,8 @@ require 'forwardable'
 # load its components. There are sub-namespaces specically defined for GoBL
 # objects, based on the GoBL JSON schema.
 module GOBL
+  extend Operations
+
   def self.inflections
     {
       'gobl' => 'GOBL',
