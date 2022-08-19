@@ -43,6 +43,7 @@ func dockerRunCmd(name, publicPort string, cmd ...string) error {
 			"--label", "traefik.enable=true",
 			"--label", "traefik.http.routers."+name+".rule=Host(`"+name+".invopop.dev`)",
 			"--label", "traefik.http.routers."+name+".tls=true",
+			"--label", "traefik.http.services."+name+".loadbalancer.server.port="+publicPort,
 			"--expose", publicPort,
 		)
 	}
@@ -54,4 +55,9 @@ func dockerRunCmd(name, publicPort string, cmd ...string) error {
 // Shell runs an interactive shell within a docker container.
 func Shell() error {
 	return dockerRunCmd(name+"-shell", "", "bash")
+}
+
+// Starts yard server
+func YardServer() error {
+	return dockerRunCmd("gobl-ruby-yard", "8808", "yard", "server", "--reload")
 }
