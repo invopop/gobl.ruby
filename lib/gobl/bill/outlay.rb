@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -15,7 +15,7 @@ module GOBL
       # Unique identity for this outlay.
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Outlay number index inside the invoice for ordering.
+      # Outlay number index inside the invoice for ordering (calculated).
       attribute :i, GOBL::Types::Int
 
       # When was the outlay made.

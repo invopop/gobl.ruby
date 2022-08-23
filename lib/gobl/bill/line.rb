@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -15,7 +15,7 @@ module GOBL
       # Unique identifier for this line
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Line number inside the parent
+      # Line number inside the parent (calculated)
       attribute :i, GOBL::Types::Int
 
       # Number of items
@@ -24,7 +24,7 @@ module GOBL
       # Details about what is being sold
       attribute :item, GOBL::Org::Item
 
-      # Result of quantity multiplied by the item's price
+      # Result of quantity multiplied by the item's price (calculated)
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Discounts applied to this line
@@ -36,7 +36,7 @@ module GOBL
       # Map of taxes to be applied and used in the invoice totals
       attribute :taxes, GOBL::Tax::Set.optional
 
-      # Total line amount after applying discounts to the sum.
+      # Total line amount after applying discounts to the sum (calculated).
       attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Set of specific notes for this line that may be required for clarification.

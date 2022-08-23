@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -18,10 +18,10 @@ module GOBL
       # Rate within a category to apply.
       attribute :rate, GOBL::Org::Key.optional
 
-      # Percent defines the percentage set manually or determined from the rate key.
+      # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
-      # Some countries require an additional surcharge.
+      # Some countries require an additional surcharge (calculated if rate present).
       attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       def self.from_gobl!(data)

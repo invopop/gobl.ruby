@@ -9,20 +9,17 @@
 require 'dry-struct'
 
 module GOBL
-  module Pay
-    # Payment terms key
-    class TermKey < Dry::Struct
+  module Bill
+    # Defines an invoice type according to a subset of the UNTDID 1001 standard list.
+    class InvoiceType < Dry::Struct
       ENUM = {
-        '' => 'Not yet defined',
-        'end-of-month' => 'End of month',
-        'due-date' => 'Due on a specific date',
-        'deferred' => 'Deferred until after the due date',
-        'proximo' => 'Month after the present',
-        'instant' => 'On receipt of invoice',
-        'elective' => 'Chosen by the buyer',
-        'pending' => 'Seller to advise buyer in separate transaction',
-        'advance' => 'Payment made in advance',
-        'delivery' => 'Payment on Delivery'
+        'proforma' => 'Proforma invoice, for a clients validation before sending a final invoice.',
+        'simplified' => 'Simplified invoice or receipt typically used for small transactions that dont require customer details.t require customer details.',
+        'partial' => 'Partial invoice',
+        'commercial' => 'Commercial invoice, usually cross-border transactions requiring an invoice for customs.',
+        'corrected' => 'Corrected invoice',
+        'credit-note' => 'Credit note',
+        'self-billed' => 'Self billed invoice'
       }
 
       attribute :_value, GOBL::Types::String.enum(*ENUM.keys)

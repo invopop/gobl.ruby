@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -20,7 +20,7 @@ module GOBL
         'other' => 'An other type of source not listed'
       }
 
-      attribute :_value, GOBL::Types::Any.enum(*ENUM.keys)
+      attribute :_value, GOBL::Types::String.enum(*ENUM.keys)
 
       def self.from_gobl!(data)
         new(_value: data)

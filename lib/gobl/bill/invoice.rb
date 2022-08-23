@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -21,8 +21,8 @@ module GOBL
       # Used in addition to the Code in some regions.
       attribute :series, GOBL::Types::String.optional
 
-      # Functional type of the invoice, default is always 'commercial'.
-      attribute :type_key, GOBL::Types::String.optional
+      # Optional invoice type, leave empty unless needed for a specific situation.
+      attribute :type, InvoiceType.optional
 
       # Currency for all invoice totals.
       attribute :currency, GOBL::Currency::Code
@@ -69,7 +69,7 @@ module GOBL
 
       attribute :delivery, Delivery.optional
 
-      # Summary of all the invoice totals, including taxes.
+      # Summary of all the invoice totals, including taxes (calculated).
       attribute :totals, Totals
 
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
@@ -85,7 +85,7 @@ module GOBL
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           code: data['code'],
           series: data['series'],
-          type_key: data['type_key'],
+          type: data['type'] ? InvoiceType.from_gobl!(data['type']) : nil,
           currency: GOBL::Currency::Code.from_gobl!(data['currency']),
           exchange_rates: data['exchange_rates'] ? ExchangeRates.from_gobl!(data['exchange_rates']) : nil,
           tax: data['tax'] ? Tax.from_gobl!(data['tax']) : nil,
@@ -117,7 +117,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'code' => attributes[:code],
           'series' => attributes[:series],
-          'type_key' => attributes[:type_key],
+          'type' => attributes[:type]&.to_gobl,
           'currency' => attributes[:currency]&.to_gobl,
           'exchange_rates' => attributes[:exchange_rates]&.to_gobl,
           'tax' => attributes[:tax]&.to_gobl,
