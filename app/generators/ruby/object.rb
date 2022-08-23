@@ -22,7 +22,7 @@ module Generators
         out = ''
         desc = property.description&.split&.join(' ')
         out << "# #{desc}\n" if desc.present?
-        ts = property_as_type(name, property, !schema.required?(name))
+        ts = property_as_type(name, property, schema.optional?(name))
         out << "attribute :#{safe_property_name(name)}, #{ts}\n"
         out
       end

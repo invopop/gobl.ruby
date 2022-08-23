@@ -16,7 +16,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the list of discounts (calculated).
-      attribute :i, GOBL::Types::Int
+      attribute :i, GOBL::Types::Int.optional
 
       # Code to used to refer to the this charge
       attribute :ref, GOBL::Types::String.optional
@@ -28,7 +28,7 @@ module GOBL
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Amount to apply (calculated if percent present)
-      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # List of taxes to apply to the charge
       attribute :taxes, GOBL::Tax::Set.optional
@@ -51,7 +51,7 @@ module GOBL
           ref: data['ref'],
           base: data['base'] ? data['base'] : nil,
           percent: data['percent'] ? data['percent'] : nil,
-          amount: data['amount'],
+          amount: data['amount'] ? data['amount'] : nil,
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           code: data['code'],
           reason: data['reason'],

@@ -16,7 +16,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the parent (calculated)
-      attribute :i, GOBL::Types::Int
+      attribute :i, GOBL::Types::Int.optional
 
       # Number of items
       attribute :quantity, GOBL::Types.Constructor(GOBL::Num::Amount)
@@ -25,7 +25,7 @@ module GOBL
       attribute :item, GOBL::Org::Item
 
       # Result of quantity multiplied by the item's price (calculated)
-      attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
+      attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Discounts applied to this line
       attribute :discounts, GOBL::Types::Array.of(LineDiscount).optional
@@ -37,7 +37,7 @@ module GOBL
       attribute :taxes, GOBL::Tax::Set.optional
 
       # Total line amount after applying discounts to the sum (calculated).
-      attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount)
+      attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Set of specific notes for this line that may be required for clarification.
       attribute :notes, GOBL::Org::Notes.optional
@@ -50,11 +50,11 @@ module GOBL
           i: data['i'],
           quantity: data['quantity'],
           item: GOBL::Org::Item.from_gobl!(data['item']),
-          sum: data['sum'],
+          sum: data['sum'] ? data['sum'] : nil,
           discounts: data['discounts']&.map { |item| LineDiscount.from_gobl!(item) },
           charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
-          total: data['total'],
+          total: data['total'] ? data['total'] : nil,
           notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil
         )
       end

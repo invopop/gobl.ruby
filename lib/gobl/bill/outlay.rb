@@ -16,7 +16,7 @@ module GOBL
       attribute :uuid, GOBL::UUID::UUID.optional
 
       # Outlay number index inside the invoice for ordering (calculated).
-      attribute :i, GOBL::Types::Int
+      attribute :i, GOBL::Types::Int.optional
 
       # When was the outlay made.
       attribute :date, GOBL::Cal::Date.optional
