@@ -34,6 +34,10 @@ module GOBL
     loader.inflector.inflect(inflections)
     loader
   end
+
+  def self.config
+    @config ||= Config.new
+  end
 end
 
 ActiveSupport::Inflector.inflections do |inflect|
@@ -51,3 +55,5 @@ require_relative 'id'
 GOBL.loader.setup
 
 require_relative 'extensions'
+
+GOBL.extend GOBL::Operations
