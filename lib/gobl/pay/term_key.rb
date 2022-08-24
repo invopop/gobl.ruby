@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Payment terms key
-    class TermKey < Dry::Struct
+    class TermKey < GOBL::Struct
       ENUM = {
         '' => 'Not yet defined',
         'end-of-month' => 'End of month',
@@ -31,16 +29,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

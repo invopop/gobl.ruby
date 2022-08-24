@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Item is used to describe a single product or service.
-    class Item < Dry::Struct
+    class Item < GOBL::Struct
       # Unique identify of this item independent of the Supplier IDs
       attribute :uuid, GOBL::UUID::UUID.optional
 
@@ -59,10 +57,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -76,10 +70,6 @@ module GOBL
           'origin' => attributes[:origin]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

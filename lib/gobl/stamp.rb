@@ -6,11 +6,9 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   # Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
-  class Stamp < Dry::Struct
+  class Stamp < GOBL::Struct
     # Identity of the agency used to create the stamp usually defined by each region.
     attribute :prv, GOBL::Org::Key
 
@@ -26,19 +24,11 @@ module GOBL
       )
     end
 
-    def self.from_json!(json)
-      from_gobl!(JSON.parse(json))
-    end
-
     def to_gobl
       {
         'prv' => attributes[:prv]&.to_gobl,
         'val' => attributes[:val]
       }
-    end
-
-    def to_json(options = nil)
-      JSON.generate(to_gobl, options)
     end
   end
 end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Registration is used in countries that require additional information to be associated with a company usually related to a specific registration office.
-    class Registration < Dry::Struct
+    class Registration < GOBL::Struct
       attribute :uuid, GOBL::UUID::UUID.optional
 
       attribute :office, GOBL::Types::String.optional
@@ -43,10 +41,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -58,10 +52,6 @@ module GOBL
           'page' => attributes[:page],
           'entry' => attributes[:entry]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

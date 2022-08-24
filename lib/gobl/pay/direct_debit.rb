@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # DirectDebit defines the data that will be used to make the direct debit.
-    class DirectDebit < Dry::Struct
+    class DirectDebit < GOBL::Struct
       # Unique identifier assigned by the payee for referencing the direct debit.
       attribute :ref, GOBL::Types::String.optional
 
@@ -31,20 +29,12 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'ref' => attributes[:ref],
           'creditor' => attributes[:creditor],
           'account' => attributes[:account]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

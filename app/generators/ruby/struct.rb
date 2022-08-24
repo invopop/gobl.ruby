@@ -12,8 +12,6 @@ module Generators
       def content
         <<~EOFCNT
           #{header}
-          require 'dry-struct'
-
           #{add_modules(modules)}
         EOFCNT
       end
@@ -30,7 +28,7 @@ module Generators
       end
 
       def parent_class
-        "Dry::Struct"
+        "GOBL::Struct"
       end
 
       def class_content
@@ -67,19 +65,11 @@ module Generators
       end
 
       def from_json_method
-        <<~EOFFROM
-          def self.from_json!(json)
-            from_gobl!(JSON.parse(json))
-          end
-        EOFFROM
+        ''
       end
 
       def to_json_method
-        <<~EOFTO
-          def to_json(options = nil)
-            JSON.generate(to_gobl, options)
-          end
-        EOFTO
+        ''
       end
 
       def additional_methods
