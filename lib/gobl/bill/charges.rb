@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'

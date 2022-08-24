@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -15,7 +15,7 @@ module GOBL
       # Percentage if fixed amount not applied
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
-      # Fixed or resulting charge amount to apply
+      # Fixed or resulting charge amount to apply (calculated if percent present).
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Reference code.

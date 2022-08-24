@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.29.0
+## Generated with GOBL v0.30.2
 ##
 
 require 'dry-struct'
@@ -15,7 +15,7 @@ module GOBL
       # Unique identifying for the discount entry
       attribute :uuid, GOBL::UUID::UUID.optional
 
-      # Line number inside the list of discounts
+      # Line number inside the list of discounts (calculated).
       attribute :i, GOBL::Types::Int
 
       # Code to used to refer to the this charge
@@ -27,7 +27,7 @@ module GOBL
       # Percentage to apply to the invoice's Sum
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
-      # Amount to apply
+      # Amount to apply (calculated if percent present)
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # List of taxes to apply to the charge
