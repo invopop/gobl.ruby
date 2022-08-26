@@ -5,9 +5,8 @@
 # calls.
 #
 # It uses the GOBL CLI bin present at the path specified in `TestServer::GOBL_CLI_PATH`.
-# If you wish to upgrade the server, you simply need to overwrite the binary in that
-# location with the upgraded version compiled for the target operating system and
-# compilation architecture where you'll run the tests.
+# You can run the `bin/fetch_gobl_cli` to download the latest version of the CLI to that
+# path.
 module TestServer
   GOBL_CLI_PATH = 'spec/support/bin/gobl'
 
@@ -18,8 +17,15 @@ module TestServer
   PORT = 3033
 
   def start_test_server
+    check_cli_presence
     launch_server
     wait_for_server
+  end
+
+  def check_cli_presence
+    unless File.exists?(GOBL_CLI_PATH)
+      raise "GOBL CLI not found at #{GOBL_CLI_PATH}. You can fetch it by running `bin/fetch_gobl_cli`"
+    end
   end
 
   def launch_server
