@@ -37,7 +37,7 @@ module Generators
 
       def property_key_value_pair(name, property)
         var = "#{PARAM_NAME}['#{name}']"
-        txt = property_value_string(property, var, !schema.required?(name))
+        txt = property_value_string(property, var, schema.optional?(name))
         # explicitely define symbol so we avoid errors with `$schema` or `$id`
         "#{safe_property_name(name)}: #{txt}"
       end

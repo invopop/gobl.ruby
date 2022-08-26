@@ -70,5 +70,13 @@ module Parser
       composition_data = @data.slice('anyOf', 'oneOf', 'allOf').first
       composition_data.present? ? Composition.new(*composition_data) : nil
     end
+
+    def calculated?
+      @data['calculated'] || false
+    end
+
+    def optional?(property_name)
+      !required?(property_name) || properties[property_name].calculated?
+    end
   end
 end

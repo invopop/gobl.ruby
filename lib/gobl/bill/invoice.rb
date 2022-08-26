@@ -70,7 +70,7 @@ module GOBL
       attribute :delivery, Delivery.optional
 
       # Summary of all the invoice totals, including taxes (calculated).
-      attribute :totals, Totals
+      attribute :totals, Totals.optional
 
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
       attribute :notes, GOBL::Org::Notes.optional
@@ -102,7 +102,7 @@ module GOBL
           ordering: data['ordering'] ? Ordering.from_gobl!(data['ordering']) : nil,
           payment: data['payment'] ? Payment.from_gobl!(data['payment']) : nil,
           delivery: data['delivery'] ? Delivery.from_gobl!(data['delivery']) : nil,
-          totals: Totals.from_gobl!(data['totals']),
+          totals: data['totals'] ? Totals.from_gobl!(data['totals']) : nil,
           notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil,
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )

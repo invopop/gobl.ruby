@@ -16,7 +16,7 @@ module GOBL
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Fixed or resulting charge amount to apply (calculated if percent present).
-      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
+      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Reference code.
       attribute :code, GOBL::Types::String.optional
@@ -29,7 +29,7 @@ module GOBL
 
         new(
           percent: data['percent'] ? data['percent'] : nil,
-          amount: data['amount'],
+          amount: data['amount'] ? data['amount'] : nil,
           code: data['code'],
           reason: data['reason']
         )

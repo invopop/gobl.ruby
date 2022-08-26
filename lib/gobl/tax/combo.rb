@@ -19,7 +19,7 @@ module GOBL
       attribute :rate, GOBL::Org::Key.optional
 
       # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
+      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Some countries require an additional surcharge (calculated if rate present).
       attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
@@ -30,7 +30,7 @@ module GOBL
         new(
           cat: GOBL::Org::Code.from_gobl!(data['cat']),
           rate: data['rate'] ? GOBL::Org::Key.from_gobl!(data['rate']) : nil,
-          percent: data['percent'],
+          percent: data['percent'] ? data['percent'] : nil,
           surcharge: data['surcharge'] ? data['surcharge'] : nil
         )
       end
