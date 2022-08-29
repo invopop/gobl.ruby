@@ -25,9 +25,8 @@ module GOBL
   #   invoice = built_doc.extract
   #   invoice.totals.total.to_s #=> "1800.00"
   module Operations
-    class ServiceError < StandardError; end
-
     BUILDABLE_TYPES = [GOBL::Document, GOBL::Envelope].freeze
+    VALIDATABLE_TYPES = [GOBL::Document, GOBL::Envelope].freeze
 
     # Calculates and validates an envelope or document, wrapping it in an envelope if
     # requested.
@@ -62,11 +61,46 @@ module GOBL
     def build(struct, envelop: nil, draft: nil)
       check_struct_type struct, BUILDABLE_TYPES
 
-      payload = request_action(:build, struct: struct,
-                                       envelop: envelop,
-                                       draft: draft)
+      response = request_action(:build, struct: struct,
+                                        envelop: envelop,
+                                        draft: draft)
 
-      GOBL::Struct.from_gobl! payload
+      raise ServiceError, response['error'] if response['error'].present?
+
+      GOBL::Struct.from_gobl! response['payload']
+    end
+
+    # Checks whether or not a document or envelope is valid according to the GOBL schema
+    #   and rules.
+    #
+    # @param struct [GOBL::Document, GOBL::Envelope] the document or the envelope to
+    #   validate.
+    #
+    # @return [GOBL::ValidationResult] the result of the validations.
+    #
+    # @example Validate an invalid document.
+    #   document =  GOBL::Document.from_json!(File.read('invalid_invoice.json'))
+    #   result = GOBL.validate(document)
+    #   result.valid? #=> false
+    #   result.errors #=> ['code: cannot be blank', 'totals: cannot be blank']
+    #
+    # @example Validate a valid envelope.
+    #   envelope = GOBL::Envelop.from_json!(File.read('valid_envelope.json'))
+    #   result = GOBL.validate(envelope)
+    #   result.valid? #=> true
+    #   result.errors #=> []
+    def validate(struct)
+      check_struct_type struct, VALIDATABLE_TYPES
+
+      response = request_action(:validate, struct: struct)
+
+      if response['error'].present?
+        ValidationResult.from_service_error(response['error'])
+      elsif response['payload']['ok']
+        ValidationResult.valid
+      else
+        raise 'Unexpected response from the service'
+      end
     end
 
     private
@@ -80,11 +114,7 @@ module GOBL
       response.error! unless response.is_a?(Net::HTTPSuccess)
 
       parts = parse_bulk_response(response)
-      part = parts.first # We're only requesting one action, the response is the first part
-
-      raise ServiceError, part["error"] if part["error"].present?
-
-      part["payload"]
+      parts.first # We're only requesting one action, the response is the first part
     end
 
     def build_bulk_request(action, struct, params)
