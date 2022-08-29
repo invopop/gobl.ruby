@@ -75,4 +75,45 @@ RSpec.describe GOBL::Operations do
       expect { GOBL.build(header) }.to raise_error(ArgumentError)
     end
   end
+
+  describe '#validate' do
+    it 'validates an invalid document' do
+      gobl = File.read('spec/example/uncalculated_invoice.json')
+      doc = GOBL::Document.from_json!(gobl)
+
+      result = GOBL.validate(doc)
+
+      expect(result).not_to be_valid
+      expect(result.errors).to include('totals: cannot be blank.')
+    end
+
+    it 'validates a valid envelope' do
+      gobl = File.read('spec/example/message_envelope.json')
+      doc = GOBL::Envelope.from_json!(gobl)
+
+      result = GOBL.validate(doc)
+
+      expect(result).to be_valid
+      expect(result.errors).to be_blank
+    end
+
+    it 'validates invalid documents' do
+      invalid_docs = [
+        GOBL::Document.from_gobl!({}),
+        GOBL::Document.from_gobl!('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+      ]
+
+      invalid_docs.each do |struct|
+        result = GOBL.validate(struct)
+        expect(result).not_to be_valid
+      end
+    end
+
+    it 'fails when an unsupported struct is given' do
+      gobl = File.read('spec/example/basic_header.json')
+      header = GOBL::Header.from_json!(gobl)
+
+      expect { GOBL.validate(header) }.to raise_error(ArgumentError)
+    end
+  end
 end
