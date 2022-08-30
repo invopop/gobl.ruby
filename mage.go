@@ -34,6 +34,7 @@ func dockerRunCmd(name, publicPort string, cmd ...string) error {
 		"--network", "invopop-local",
 		"-v", "$PWD:/app",
 		"-v", "$PWD/.tmp_bundle:/usr/local/bundle",
+		"-v", "$PWD/spec/support/keys:/root/.gobl",
 		"-w", "/app",
 		"-it", // interactive
 		// "--entrypoint=rake",

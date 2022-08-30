@@ -116,4 +116,45 @@ RSpec.describe GOBL::Operations do
       expect { GOBL.validate(header) }.to raise_error(ArgumentError)
     end
   end
+
+  describe '#sign' do
+    it 'signs a draft envelope' do
+      gobl = File.read('spec/example/draft_envelope.json')
+      envelope = GOBL::Envelope.from_json!(gobl)
+
+      signed_envelope = GOBL.sign(envelope)
+
+      expect(signed_envelope.sigs).not_to be_empty
+    end
+
+    it 'signs a document' do
+      gobl = File.read('spec/example/uncalculated_invoice.json')
+      doc = GOBL::Document.from_json!(gobl)
+
+      envelope = GOBL.sign(doc)
+
+      expect(envelope.sigs).not_to be_empty
+
+      invoice = envelope.extract
+      expect(invoice.totals).to be_present
+    end
+
+    it 'fails when an invalid document is given' do
+      invalid_docs = [
+        GOBL::Document.from_gobl!({}),
+        GOBL::Document.from_gobl!('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+      ]
+
+      invalid_docs.each do |struct|
+        expect { GOBL.sign(struct) }.to raise_error(GOBL::Operations::ServiceError)
+      end
+    end
+
+    it 'fails when an unsupported struct is given' do
+      gobl = File.read('spec/example/basic_header.json')
+      header = GOBL::Header.from_json!(gobl)
+
+      expect { GOBL.sign(header) }.to raise_error(ArgumentError)
+    end
+  end
 end
