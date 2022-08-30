@@ -25,8 +25,10 @@ module GOBL
   #   invoice = built_doc.extract
   #   invoice.totals.total.to_s #=> "1800.00"
   module Operations
-    BUILDABLE_TYPES = [GOBL::Document, GOBL::Envelope].freeze
-    VALIDATABLE_TYPES = [GOBL::Document, GOBL::Envelope].freeze
+    VALIDATABLE_TYPES = SIGNABLE_TYPES = BUILDABLE_TYPES = [
+      GOBL::Document,
+      GOBL::Envelope
+    ].freeze
 
     # Calculates and validates an envelope or document, wrapping it in an envelope if
     # requested.
@@ -101,6 +103,28 @@ module GOBL
       else
         raise 'Unexpected response from the service'
       end
+    end
+
+    # Signs a document or envelope, calculating, enveloping and validating it first if
+    #   needed. The signing key will be the one configured in the server.
+    #
+    # @param struct [GOBL::Document, GOBL::Envelope] the envelop or document to sign.
+    #
+    # @return [GOBL::Envelope] a signed envelope.
+    #
+    # @raise [GOBL::Operations::ServiceError] if the service returns any errors.
+    #
+    # @example Sign an envelope.
+    #   envelope = GOBL::Envelop.from_json!(File.read('draft_envelope.json'))
+    #   GOBL.sign(envelope) #=> A new signed GOBL::Envelope
+    def sign(struct)
+      check_struct_type struct, SIGNABLE_TYPES
+
+      response = request_action(:sign, struct: struct)
+
+      raise ServiceError, response["error"] if response["error"].present?
+
+      GOBL::Struct.from_gobl! response["payload"]
     end
 
     private
