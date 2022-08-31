@@ -68,6 +68,10 @@ module GOBL
 
         end
       end
+
+      def to_sym
+        to_s.parameterize.underscore.to_sym
+      end
     end
   end
 end

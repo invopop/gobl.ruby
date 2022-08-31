@@ -90,22 +90,22 @@ module Generators
               #{else_case}
             end
           end
+
+          def to_sym
+            to_s.parameterize.underscore.to_sym
+          end
         EOFADD
       end
 
       def enum_additional_methods
         if enum?
           <<~EOFADD
-            def to_sym
-              self.class.enum_key_to_sym(to_s)
-            end
-
             def self.lookup_enum_key_from_sym(sym)
-              ENUM.keys.find { |key| enum_key_to_sym(key) == sym }
+              all.find { |object| object.to_sym == sym }&._value #FIXME
             end
 
-            def self.enum_key_to_sym(object)
-              object.underscore.to_sym
+            def self.all
+              ENUM.keys.map { |key| new(key) }
             end
 
             def description
