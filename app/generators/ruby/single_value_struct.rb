@@ -40,9 +40,53 @@ module Generators
       end
 
       def common_additional_methods
+        enum_option = <<~EOFOPT
+          when Symbol
+            super _value: ENUM.keys.find { |key| to_sym(key) == object }
+        EOFOPT
+
         <<~EOFADD
           def to_s
             _value.to_s
+          end
+
+          def self.to_sym(object)
+            object.to_s.underscore.to_sym
+          end
+
+          def to_sym
+            self.class.to_sym(self)
+          end
+
+          def ==(other)
+            case other
+            when self.class
+              super
+            when String
+              to_s == other
+            when Symbol
+              to_sym == other
+            else
+              if other.respond_to?(:to_s)
+                self == other.to_s
+              else
+                super
+              end
+            end
+          end
+
+          def self.new(object)
+            case object
+            when Hash, self
+              super
+            when String #FIXME: type might not be String
+              super _value: object
+            #{enum_option if enum?}
+            else
+              if object.respond_to?(:to_s)
+                super _value: object.to_s
+              end
+            end
           end
         EOFADD
       end

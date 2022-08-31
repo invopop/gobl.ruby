@@ -14,7 +14,7 @@ module GOBL
     class CategoryTotal < Dry::Struct
       attribute :code, GOBL::Org::Code
 
-      attribute :retained, GOBL::Types::Bool.optional
+      attribute? :retained, GOBL::Types::Bool.optional
 
       attribute :rates, GOBL::Types::Array.of(RateTotal)
 
@@ -22,7 +22,7 @@ module GOBL
 
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
-      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

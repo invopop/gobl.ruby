@@ -13,10 +13,10 @@ module GOBL
     # Telephone describes what is expected for a telephone number.
     class Telephone < Dry::Struct
       # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for this number.
-      attribute :label, GOBL::Types::String.optional
+      attribute? :label, GOBL::Types::String.optional
 
       # The number to be dialed in ITU E.164 international format.
       attribute :num, GOBL::Types::String

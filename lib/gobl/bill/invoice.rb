@@ -13,70 +13,70 @@ module GOBL
     # Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
     class Invoice < Dry::Struct
       # Unique document ID. Not required, but always recommended in addition to the Code.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Sequential code used to identify this invoice in tax declarations.
       attribute :code, GOBL::Types::String
 
       # Used in addition to the Code in some regions.
-      attribute :series, GOBL::Types::String.optional
+      attribute? :series, GOBL::Types::String.optional
 
       # Optional invoice type, leave empty unless needed for a specific situation.
-      attribute :type, InvoiceType.optional
+      attribute? :type, InvoiceType.optional
 
       # Currency for all invoice totals.
       attribute :currency, GOBL::Currency::Code
 
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      attribute :exchange_rates, ExchangeRates.optional
+      attribute? :exchange_rates, ExchangeRates.optional
 
       # Special tax configuration for billing.
-      attribute :tax, Tax.optional
+      attribute? :tax, Tax.optional
 
       # Key information regarding a previous invoice and potentially details as to why it was corrected.
-      attribute :preceding, Preceding.optional
+      attribute? :preceding, Preceding.optional
 
       # When the invoice was created.
       attribute :issue_date, GOBL::Cal::Date
 
       # Date when the operation defined by the invoice became effective.
-      attribute :op_date, GOBL::Cal::Date.optional
+      attribute? :op_date, GOBL::Cal::Date.optional
 
       # When the taxes of this invoice become accountable, if none set, the issue date is used.
-      attribute :value_date, GOBL::Cal::Date.optional
+      attribute? :value_date, GOBL::Cal::Date.optional
 
       # The taxable entity supplying the goods or services.
       attribute :supplier, GOBL::Org::Party
 
       # Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices.
-      attribute :customer, GOBL::Org::Party.optional
+      attribute? :customer, GOBL::Org::Party.optional
 
       # List of invoice lines representing each of the items sold to the customer.
-      attribute :lines, Lines.optional
+      attribute? :lines, Lines.optional
 
       # Discounts or allowances applied to the complete invoice
-      attribute :discounts, Discounts.optional
+      attribute? :discounts, Discounts.optional
 
       # Charges or surcharges applied to the complete invoice
-      attribute :charges, Charges.optional
+      attribute? :charges, Charges.optional
 
       # Expenses paid for by the supplier but invoiced directly to the customer.
-      attribute :outlays, Outlays.optional
+      attribute? :outlays, Outlays.optional
 
-      attribute :ordering, Ordering.optional
+      attribute? :ordering, Ordering.optional
 
-      attribute :payment, Payment.optional
+      attribute? :payment, Payment.optional
 
-      attribute :delivery, Delivery.optional
+      attribute? :delivery, Delivery.optional
 
       # Summary of all the invoice totals, including taxes (calculated).
-      attribute :totals, Totals.optional
+      attribute? :totals, Totals.optional
 
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
-      attribute :notes, GOBL::Org::Notes.optional
+      attribute? :notes, GOBL::Org::Notes.optional
 
       # Additional semi-structured data that doesn't fit into the body of the invoice.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

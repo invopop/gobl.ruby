@@ -13,16 +13,16 @@ module GOBL
     # LineCharge represents an amount added to the line, and will be applied before taxes.
     class LineCharge < Dry::Struct
       # Percentage if fixed amount not applied
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Fixed or resulting charge amount to apply (calculated if percent present).
-      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Reference code.
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Text description as to why the charge was applied
-      attribute :reason, GOBL::Types::String.optional
+      attribute? :reason, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

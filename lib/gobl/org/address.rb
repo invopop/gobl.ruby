@@ -13,31 +13,31 @@ module GOBL
     # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
     class Address < Dry::Struct
       # Internal ID used to identify the party inside a document.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Useful identifier, such as home, work, etc.
-      attribute :label, GOBL::Types::String.optional
+      attribute? :label, GOBL::Types::String.optional
 
       # Box number or code for the post office box located at the address.
-      attribute :po_box, GOBL::Types::String.optional
+      attribute? :po_box, GOBL::Types::String.optional
 
       # House or building number in the street.
-      attribute :num, GOBL::Types::String.optional
+      attribute? :num, GOBL::Types::String.optional
 
       # Floor number within the building.
-      attribute :floor, GOBL::Types::String.optional
+      attribute? :floor, GOBL::Types::String.optional
 
       # Block number within the building.
-      attribute :block, GOBL::Types::String.optional
+      attribute? :block, GOBL::Types::String.optional
 
       # Door number within the building.
-      attribute :door, GOBL::Types::String.optional
+      attribute? :door, GOBL::Types::String.optional
 
       # First line of street.
-      attribute :street, GOBL::Types::String.optional
+      attribute? :street, GOBL::Types::String.optional
 
       # Additional street address details.
-      attribute :street_extra, GOBL::Types::String.optional
+      attribute? :street_extra, GOBL::Types::String.optional
 
       # The village, town, district, or city.
       attribute :locality, GOBL::Types::String
@@ -46,16 +46,16 @@ module GOBL
       attribute :region, GOBL::Types::String
 
       # Post or ZIP code.
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # ISO country code.
-      attribute :country, GOBL::L10n::CountryCode.optional
+      attribute? :country, GOBL::L10n::CountryCode.optional
 
       # When the postal address is not sufficient, coordinates help locate the address more precisely.
-      attribute :coords, GOBL::Org::Coordinates.optional
+      attribute? :coords, GOBL::Org::Coordinates.optional
 
       # Any additional semi-structure details about the address.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

@@ -16,10 +16,10 @@ module GOBL
 
       attribute :name, GOBL::I18n::String
 
-      attribute :desc, GOBL::I18n::String.optional
+      attribute? :desc, GOBL::I18n::String.optional
 
       # Retained when true implies that the tax amount will be retained by the buyer on behalf of the supplier, and thus subtracted from the invoice taxable base total. Typically used for taxes related to income.
-      attribute :retained, GOBL::Types::Bool.optional
+      attribute? :retained, GOBL::Types::Bool.optional
 
       # Specific tax definitions inside this category.
       attribute :rates, GOBL::Types::Array.of(Rate)

@@ -16,28 +16,28 @@ module GOBL
       attribute :key, MethodKey
 
       # Optional text description of the payment method
-      attribute :detail, GOBL::Types::String.optional
+      attribute? :detail, GOBL::Types::String.optional
 
       # Remittance information, a text value used to link the payment with the invoice.
-      attribute :ref, GOBL::Types::String.optional
+      attribute? :ref, GOBL::Types::String.optional
 
       # Instructions for sending payment via a bank transfer.
-      attribute :credit_transfer, GOBL::Types::Array.of(CreditTransfer).optional
+      attribute? :credit_transfer, GOBL::Types::Array.of(CreditTransfer).optional
 
       # Details of the payment that will be made via a credit or debit card.
-      attribute :card, Card.optional
+      attribute? :card, Card.optional
 
       # A group of terms that can be used by the customer or payer to consolidate direct debit payments.
-      attribute :direct_debit, DirectDebit.optional
+      attribute? :direct_debit, DirectDebit.optional
 
       # Array of online payment options
-      attribute :online, GOBL::Types::Array.of(Online).optional
+      attribute? :online, GOBL::Types::Array.of(Online).optional
 
       # Any additional instructions that may be required to make the payment.
-      attribute :notes, GOBL::Types::String.optional
+      attribute? :notes, GOBL::Types::String.optional
 
       # Non-structured additional data that may be useful.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

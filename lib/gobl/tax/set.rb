@@ -34,6 +34,15 @@ module GOBL
       def to_json(options = nil)
         JSON.generate(to_gobl, options)
       end
+
+      def self.new(object)
+        case object
+        when Array
+          super _ary: object
+        else
+          super
+        end
+      end
     end
   end
 end

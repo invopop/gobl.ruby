@@ -12,7 +12,7 @@ module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
     class RateTotal < Dry::Struct
-      attribute :key, GOBL::Org::Key.optional
+      attribute? :key, GOBL::Org::Key.optional
 
       attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
 
@@ -21,7 +21,7 @@ module GOBL
       # Total amount of rate, excluding surcharges
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
-      attribute :surcharge, RateTotalSurcharge.optional
+      attribute? :surcharge, RateTotalSurcharge.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

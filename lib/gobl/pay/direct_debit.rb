@@ -13,13 +13,13 @@ module GOBL
     # DirectDebit defines the data that will be used to make the direct debit.
     class DirectDebit < Dry::Struct
       # Unique identifier assigned by the payee for referencing the direct debit.
-      attribute :ref, GOBL::Types::String.optional
+      attribute? :ref, GOBL::Types::String.optional
 
       # Unique banking reference that identifies the payee or seller assigned by the bank.
-      attribute :creditor, GOBL::Types::String.optional
+      attribute? :creditor, GOBL::Types::String.optional
 
       # Account identifier to be debited by the direct debit.
-      attribute :account, GOBL::Types::String.optional
+      attribute? :account, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

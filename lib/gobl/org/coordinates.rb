@@ -13,16 +13,16 @@ module GOBL
     # Coordinates describes an exact geographical location in the world.
     class Coordinates < Dry::Struct
       # Decimal latitude coordinate.
-      attribute :lat, GOBL::Types::Double.optional
+      attribute? :lat, GOBL::Types::Double.optional
 
       # Decimal longitude coordinate.
-      attribute :lon, GOBL::Types::Double.optional
+      attribute? :lon, GOBL::Types::Double.optional
 
       # Text coordinates compose of three words.
-      attribute :w3w, GOBL::Types::String.optional
+      attribute? :w3w, GOBL::Types::String.optional
 
       # Single string coordinate based on geohash standard.
-      attribute :geohash, GOBL::Types::String.optional
+      attribute? :geohash, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

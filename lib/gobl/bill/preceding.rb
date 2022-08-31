@@ -13,31 +13,31 @@ module GOBL
     # Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.
     class Preceding < Dry::Struct
       # Preceding document's UUID if available can be useful for tracing.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Identity code of the previous invoice.
       attribute :code, GOBL::Types::String
 
       # Additional identification details
-      attribute :series, GOBL::Types::String.optional
+      attribute? :series, GOBL::Types::String.optional
 
       # When the preceding invoice was issued.
       attribute :issue_date, GOBL::Cal::Date
 
       # Tax period in which the previous invoice has an effect.
-      attribute :period, GOBL::Cal::Period.optional
+      attribute? :period, GOBL::Cal::Period.optional
 
       # Specific codes for the corrections made.
-      attribute :corrections, GOBL::Types::Array.of(GOBL::Types::String).optional
+      attribute? :corrections, GOBL::Types::Array.of(GOBL::Types::String).optional
 
       # How has the previous invoice been corrected?
-      attribute :correction_method, GOBL::Types::String.optional
+      attribute? :correction_method, GOBL::Types::String.optional
 
       # Additional details regarding preceding invoice
-      attribute :notes, GOBL::Types::String.optional
+      attribute? :notes, GOBL::Types::String.optional
 
       # Additional semi-structured data that may be useful in specific regions
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

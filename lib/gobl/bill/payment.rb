@@ -13,16 +13,16 @@ module GOBL
     # Payment contains details as to how the invoice should be paid.
     class Payment < Dry::Struct
       # The party responsible for paying for the invoice, if not the customer.
-      attribute :payer, GOBL::Org::Party.optional
+      attribute? :payer, GOBL::Org::Party.optional
 
       # Payment terms or conditions.
-      attribute :terms, GOBL::Pay::Terms.optional
+      attribute? :terms, GOBL::Pay::Terms.optional
 
       # Any amounts that have been paid in advance and should be deducted from the amount due.
-      attribute :advances, Advances.optional
+      attribute? :advances, Advances.optional
 
       # Details on how payment should be made.
-      attribute :instructions, GOBL::Pay::Instructions.optional
+      attribute? :instructions, GOBL::Pay::Instructions.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

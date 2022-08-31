@@ -13,22 +13,22 @@ module GOBL
     # TaxIdentity stores the details required to identify an entity for tax purposes.
     class TaxIdentity < Dry::Struct
       # Unique universal identity code.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # ISO country code for Where the tax identity was issued.
       attribute :country, GOBL::L10n::CountryCode
 
       # Where inside a country the Tax ID was issued, if required.
-      attribute :locality, GOBL::L10n::Code.optional
+      attribute? :locality, GOBL::L10n::Code.optional
 
       # What is the source document of this tax identity.
-      attribute :source, SourceKey.optional
+      attribute? :source, SourceKey.optional
 
       # Tax identity Code
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Additional details that may be required.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

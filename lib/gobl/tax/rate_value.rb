@@ -13,16 +13,16 @@ module GOBL
     # RateValue contains a percentage rate or fixed amount for a given date range.
     class RateValue < Dry::Struct
       # Date from which this value should be applied.
-      attribute :since, GOBL::Cal::Date.optional
+      attribute? :since, GOBL::Cal::Date.optional
 
       # Percent rate that should be applied
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
       # An additional surcharge to apply.
-      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # When true, this value should no longer be used.
-      attribute :disabled, GOBL::Types::Bool.optional
+      attribute? :disabled, GOBL::Types::Bool.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

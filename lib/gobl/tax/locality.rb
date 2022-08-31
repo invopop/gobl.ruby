@@ -19,7 +19,7 @@ module GOBL
       attribute :name, GOBL::I18n::String
 
       # Any additional information
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

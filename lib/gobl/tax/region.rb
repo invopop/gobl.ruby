@@ -19,16 +19,16 @@ module GOBL
       attribute :country, GOBL::L10n::CountryCode
 
       # Locality, city, province, county, or similar code inside the country, if needed.
-      attribute :locality, GOBL::L10n::Code.optional
+      attribute? :locality, GOBL::L10n::Code.optional
 
       # List of sub-localities inside a region.
-      attribute :localities, Localities.optional
+      attribute? :localities, Localities.optional
 
       # Currency used by the region for tax purposes.
       attribute :currency, GOBL::Currency::Code
 
       # Set of specific scheme definitions inside the region.
-      attribute :schemes, Schemes.optional
+      attribute? :schemes, Schemes.optional
 
       # List of tax categories.
       attribute :categories, GOBL::Types::Array.of(Category)
