@@ -85,14 +85,6 @@ module GOBL
         _value.to_s
       end
 
-      def self.to_sym(object)
-        object.to_s.underscore.to_sym
-      end
-
-      def to_sym
-        self.class.to_sym(self)
-      end
-
       def ==(other)
         case other
         when self.class
@@ -114,34 +106,52 @@ module GOBL
         case object
         when Hash, self
           super
-        when String #FIXME: type might not be String
-          super _value: object
+        when String
+        super _value: object
+
         when Symbol
-        super _value: ENUM.keys.find { |key| to_sym(key) == object }
+        super _value: lookup_enum_key_from_sym(object)
 
         else
           if object.respond_to?(:to_s)
-            super _value: object.to_s
-          end
+        super _value: object.to_s
+      else
+        super
+      end
+
         end
+      end
+
+      def to_sym
+        self.class.enum_key_to_sym(to_s)
+      end
+
+      def self.lookup_enum_key_from_sym(sym)
+        ENUM.keys.find { |key| enum_key_to_sym(key) == sym }
+      end
+
+      def self.enum_key_to_sym(object)
+        object.underscore.to_sym
       end
 
       def description
         ENUM.fetch(_value, _value)
       end
 
-      INQUIRERS = ENUM.keys.map { |key| [ "#{key.underscore}?".to_sym, key ] }.to_h
-
       def respond_to_missing?(method_name, include_private = false)
-        INQUIRERS.has_key?(method_name) || super
+        inquired_key(method_name).present? || super
       end
 
       def method_missing(method_name, *args, &block)
-        if INQUIRERS.has_key?(method_name)
-          _value == INQUIRERS[method_name]
+        if value = inquired_key(method_name)
+          _value == value
         else
           super
         end
+      end
+
+      def inquired_key(method_name)
+        method_name =~ /(.+)\?$/ && self.class.lookup_enum_key_from_sym($1.to_sym)
       end
     end
   end

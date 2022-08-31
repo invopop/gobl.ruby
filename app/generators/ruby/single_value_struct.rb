@@ -40,22 +40,27 @@ module Generators
       end
 
       def common_additional_methods
-        enum_option = <<~EOFOPT
+        symbol_case = <<~EOFOPT if enum?
           when Symbol
-            super _value: ENUM.keys.find { |key| to_sym(key) == object }
+            super _value: lookup_enum_key_from_sym(object)
+        EOFOPT
+
+        string_case =  <<~EOFOPT if value_is_string?
+          when String
+            super _value: object
+        EOFOPT
+
+        else_case = value_is_string? ? <<~EOFOPT : 'super'
+          if object.respond_to?(:to_s)
+            super _value: object.to_s
+          else
+            super
+          end
         EOFOPT
 
         <<~EOFADD
           def to_s
             _value.to_s
-          end
-
-          def self.to_sym(object)
-            object.to_s.underscore.to_sym
-          end
-
-          def to_sym
-            self.class.to_sym(self)
           end
 
           def ==(other)
@@ -79,13 +84,10 @@ module Generators
             case object
             when Hash, self
               super
-            when String #FIXME: type might not be String
-              super _value: object
-            #{enum_option if enum?}
+            #{string_case}
+            #{symbol_case}
             else
-              if object.respond_to?(:to_s)
-                super _value: object.to_s
-              end
+              #{else_case}
             end
           end
         EOFADD
@@ -94,22 +96,36 @@ module Generators
       def enum_additional_methods
         if enum?
           <<~EOFADD
+            def to_sym
+              self.class.enum_key_to_sym(to_s)
+            end
+
+            def self.lookup_enum_key_from_sym(sym)
+              ENUM.keys.find { |key| enum_key_to_sym(key) == sym }
+            end
+
+            def self.enum_key_to_sym(object)
+              object.underscore.to_sym
+            end
+
             def description
               #{enum_const_name}.fetch(_value, _value)
             end
 
-            INQUIRERS = #{enum_const_name}.keys.map { |key| [ \"\#{key.underscore}?\".to_sym, key ] }.to_h
-
             def respond_to_missing?(method_name, include_private = false)
-              INQUIRERS.has_key?(method_name) || super
+              inquired_key(method_name).present? || super
             end
 
             def method_missing(method_name, *args, &block)
-              if INQUIRERS.has_key?(method_name)
-                _value == INQUIRERS[method_name]
+              if value = inquired_key(method_name)
+                _value == value
               else
                 super
               end
+            end
+
+            def inquired_key(method_name)
+              method_name =~ /(.+)\\?$/ && self.class.lookup_enum_key_from_sym($1.to_sym)
             end
           EOFADD
         end
@@ -142,6 +158,10 @@ module Generators
 
       def enforce_enum?
         enum? && schema.composition.entries.all?(&:const?)
+      end
+
+      def value_is_string?
+        false
       end
     end
   end

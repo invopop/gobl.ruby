@@ -34,14 +34,6 @@ module GOBL
         _value.to_s
       end
 
-      def self.to_sym(object)
-        object.to_s.underscore.to_sym
-      end
-
-      def to_sym
-        self.class.to_sym(self)
-      end
-
       def ==(other)
         case other
         when self.class
@@ -63,13 +55,17 @@ module GOBL
         case object
         when Hash, self
           super
-        when String #FIXME: type might not be String
-          super _value: object
+        when String
+        super _value: object
+
 
         else
           if object.respond_to?(:to_s)
-            super _value: object.to_s
-          end
+        super _value: object.to_s
+      else
+        super
+      end
+
         end
       end
     end

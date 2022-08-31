@@ -5,6 +5,10 @@ module Generators
       def value_type
         'GOBL::Types::String'
       end
+
+      def value_is_string?
+        true
+      end
     end
   end
 end
