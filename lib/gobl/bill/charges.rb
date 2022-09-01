@@ -28,7 +28,7 @@ module GOBL
       end
 
       def to_gobl
-        _ary
+        _ary.map(&:to_gobl)
       end
 
       def to_json(options = nil)

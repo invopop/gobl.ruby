@@ -48,4 +48,18 @@ RSpec.describe GOBL::Bill::Invoice do
       end
     end
   end
+
+  it 'can be serialized' do
+    document = GOBL::Document.from_json!(File.read('spec/example/uncalculated_invoice.json'))
+
+    schema = document['$schema']
+
+    invoice = document.extract
+
+    new_doc = GOBL::Document.from_gobl!({ '$schema' => schema }.merge(invoice.to_gobl))
+
+    new_inv = new_doc.extract
+
+    expect(new_inv).to eq(invoice)
+  end
 end
