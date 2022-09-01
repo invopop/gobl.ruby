@@ -24,7 +24,7 @@ module GOBL
       def to_gobl
         {
           'seller' => attributes[:seller]&.to_gobl
-        }
+        }.compact
       end
     end
   end

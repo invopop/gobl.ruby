@@ -39,7 +39,7 @@ module GOBL
           'amount' => attributes[:amount]&.to_gobl,
           'code' => attributes[:code],
           'reason' => attributes[:reason]
-        }
+        }.compact
       end
     end
   end

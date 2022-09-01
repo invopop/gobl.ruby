@@ -51,7 +51,7 @@ module GOBL
           'section' => attributes[:section],
           'page' => attributes[:page],
           'entry' => attributes[:entry]
-        }
+        }.compact
       end
     end
   end

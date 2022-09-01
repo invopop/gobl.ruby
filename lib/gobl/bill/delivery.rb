@@ -39,7 +39,7 @@ module GOBL
           'date' => attributes[:date]&.to_gobl,
           'start_date' => attributes[:start_date]&.to_gobl,
           'end_date' => attributes[:end_date]&.to_gobl
-        }
+        }.compact
       end
     end
   end

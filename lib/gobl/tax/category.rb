@@ -41,7 +41,7 @@ module GOBL
           'desc' => attributes[:desc]&.to_gobl,
           'retained' => attributes[:retained],
           'rates' => attributes[:rates]&.map { |item| item&.to_gobl }
-        }
+        }.compact
       end
     end
   end

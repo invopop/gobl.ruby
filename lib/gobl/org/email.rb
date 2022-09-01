@@ -39,7 +39,7 @@ module GOBL
           'label' => attributes[:label],
           'addr' => attributes[:addr],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

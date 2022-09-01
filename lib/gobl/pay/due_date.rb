@@ -44,7 +44,7 @@ module GOBL
           'amount' => attributes[:amount]&.to_gobl,
           'percent' => attributes[:percent]&.to_gobl,
           'currency' => attributes[:currency]&.to_gobl
-        }
+        }.compact
       end
     end
   end

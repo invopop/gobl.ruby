@@ -69,7 +69,7 @@ module GOBL
           'codes' => attributes[:codes]&.map { |item| item&.to_gobl },
           'origin' => attributes[:origin]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

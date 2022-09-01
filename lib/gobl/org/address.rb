@@ -94,7 +94,7 @@ module GOBL
           'country' => attributes[:country]&.to_gobl,
           'coords' => attributes[:coords]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

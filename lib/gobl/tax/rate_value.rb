@@ -39,7 +39,7 @@ module GOBL
           'percent' => attributes[:percent]&.to_gobl,
           'surcharge' => attributes[:surcharge]&.to_gobl,
           'disabled' => attributes[:disabled]
-        }
+        }.compact
       end
     end
   end

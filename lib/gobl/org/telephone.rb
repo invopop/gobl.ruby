@@ -34,7 +34,7 @@ module GOBL
           'uuid' => attributes[:uuid]&.to_gobl,
           'label' => attributes[:label],
           'num' => attributes[:num]
-        }
+        }.compact
       end
     end
   end

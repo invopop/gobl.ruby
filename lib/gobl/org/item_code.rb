@@ -29,7 +29,7 @@ module GOBL
         {
           'label' => attributes[:label],
           'value' => attributes[:value]
-        }
+        }.compact
       end
     end
   end

@@ -79,7 +79,7 @@ module GOBL
           'payable' => attributes[:payable]&.to_gobl,
           'advance' => attributes[:advance]&.to_gobl,
           'due' => attributes[:due]&.to_gobl
-        }
+        }.compact
       end
     end
   end

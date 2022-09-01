@@ -28,7 +28,7 @@ module GOBL
       {
         'prv' => attributes[:prv]&.to_gobl,
         'val' => attributes[:val]
-      }
+      }.compact
     end
   end
 end

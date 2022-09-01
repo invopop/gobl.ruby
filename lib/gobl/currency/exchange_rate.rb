@@ -29,7 +29,7 @@ module GOBL
         {
           'currency' => attributes[:currency]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl
-        }
+        }.compact
       end
     end
   end

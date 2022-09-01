@@ -54,7 +54,7 @@ module GOBL
           'currency' => attributes[:currency]&.to_gobl,
           'schemes' => attributes[:schemes]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
-        }
+        }.compact
       end
     end
   end

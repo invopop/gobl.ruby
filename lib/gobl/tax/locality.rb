@@ -34,7 +34,7 @@ module GOBL
           'code' => attributes[:code]&.to_gobl,
           'name' => attributes[:name]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

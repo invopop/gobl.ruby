@@ -39,7 +39,7 @@ module GOBL
           'detail' => attributes[:detail],
           'due_dates' => attributes[:due_dates]&.map { |item| item&.to_gobl },
           'notes' => attributes[:notes]
-        }
+        }.compact
       end
     end
   end

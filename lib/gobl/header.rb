@@ -53,7 +53,7 @@ module GOBL
         'meta' => attributes[:meta]&.to_gobl,
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]
-      }
+      }.compact
     end
   end
 end

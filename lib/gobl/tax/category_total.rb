@@ -43,7 +43,7 @@ module GOBL
           'base' => attributes[:base]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl,
           'surcharge' => attributes[:surcharge]&.to_gobl
-        }
+        }.compact
       end
     end
   end

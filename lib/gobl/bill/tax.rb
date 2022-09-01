@@ -34,7 +34,7 @@ module GOBL
           'prices_include' => attributes[:prices_include]&.to_gobl,
           'schemes' => attributes[:schemes]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

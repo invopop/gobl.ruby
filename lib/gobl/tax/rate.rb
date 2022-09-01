@@ -37,7 +37,7 @@ module GOBL
           'name' => attributes[:name]&.to_gobl,
           'desc' => attributes[:desc]&.to_gobl,
           'values' => attributes[:values]&.map { |item| item&.to_gobl }
-        }
+        }.compact
       end
     end
   end

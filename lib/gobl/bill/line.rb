@@ -69,7 +69,7 @@ module GOBL
           'taxes' => attributes[:taxes]&.to_gobl,
           'total' => attributes[:total]&.to_gobl,
           'notes' => attributes[:notes]&.to_gobl
-        }
+        }.compact
       end
     end
   end

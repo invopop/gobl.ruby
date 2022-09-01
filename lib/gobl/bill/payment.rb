@@ -39,7 +39,7 @@ module GOBL
           'terms' => attributes[:terms]&.to_gobl,
           'advances' => attributes[:advances]&.to_gobl,
           'instructions' => attributes[:instructions]&.to_gobl
-        }
+        }.compact
       end
     end
   end

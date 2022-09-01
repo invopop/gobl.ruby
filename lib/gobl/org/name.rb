@@ -64,7 +64,7 @@ module GOBL
           'surname2' => attributes[:surname2],
           'suffix' => attributes[:suffix],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

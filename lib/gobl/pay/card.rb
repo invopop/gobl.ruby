@@ -29,7 +29,7 @@ module GOBL
         {
           'last4' => attributes[:last4],
           'holder' => attributes[:holder]
-        }
+        }.compact
       end
     end
   end

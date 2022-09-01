@@ -64,7 +64,7 @@ module GOBL
           'correction_method' => attributes[:correction_method],
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

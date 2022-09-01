@@ -39,7 +39,7 @@ module GOBL
           'code' => attributes[:code],
           'src' => attributes[:src],
           'text' => attributes[:text]
-        }
+        }.compact
       end
     end
   end

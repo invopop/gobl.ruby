@@ -29,7 +29,7 @@ module GOBL
         {
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl },
           'sum' => attributes[:sum]&.to_gobl
-        }
+        }.compact
       end
     end
   end

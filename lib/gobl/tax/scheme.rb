@@ -44,7 +44,7 @@ module GOBL
           'description' => attributes[:description]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl },
           'note' => attributes[:note]&.to_gobl
-        }
+        }.compact
       end
     end
   end

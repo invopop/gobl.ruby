@@ -34,7 +34,7 @@ module GOBL
           'ref' => attributes[:ref],
           'creditor' => attributes[:creditor],
           'account' => attributes[:account]
-        }
+        }.compact
       end
     end
   end

@@ -39,7 +39,7 @@ module GOBL
           'lon' => attributes[:lon],
           'w3w' => attributes[:w3w],
           'geohash' => attributes[:geohash]
-        }
+        }.compact
       end
     end
   end

@@ -79,7 +79,7 @@ module GOBL
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'registration' => attributes[:registration]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

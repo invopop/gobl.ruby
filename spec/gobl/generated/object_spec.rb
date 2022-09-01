@@ -3,19 +3,21 @@
 require './lib/gobl'
 
 RSpec.describe 'Generated Object' do
-  let(:object_class) { GOBL::Note::Message }
+  let(:object_class) { GOBL::Bill::Invoice }
 
   it 'creates a new object from a JSON' do
-    json = { 'content' => 'Testing Message' }.to_json
+    json = File.read('spec/example/uncalculated_invoice.json')
     object = object_class.from_json!(json)
 
-    expect(object.content).to eq('Testing Message')
+    expect(object.code).to eq('SAMPLE-001')
   end
 
-  it 'converts an object into a JSON' do
-    json = { 'title' => nil, 'content' => 'Testing Message', 'meta' => nil }.to_json
-    object = object_class.from_json!(json)
+  it 'serialises an object into a JSON' do
+    orig_json = File.read('spec/example/uncalculated_invoice.json')
+    object = object_class.from_json!(orig_json)
+    json = object.to_json
 
-    expect(object.to_json).to eq(json)
+    # `$schema` is not an attribute of the object so it’s not expected to be serialised
+    expect(JSON.parse(json)).to eq(JSON.parse(orig_json).except('$schema'))
   end
 end

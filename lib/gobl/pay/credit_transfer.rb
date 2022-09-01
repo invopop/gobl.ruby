@@ -44,7 +44,7 @@ module GOBL
           'number' => attributes[:number],
           'name' => attributes[:name],
           'branch' => attributes[:branch]&.to_gobl
-        }
+        }.compact
       end
     end
   end

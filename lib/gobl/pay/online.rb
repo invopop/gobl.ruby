@@ -29,7 +29,7 @@ module GOBL
         {
           'name' => attributes[:name],
           'addr' => attributes[:addr]
-        }
+        }.compact
       end
     end
   end

@@ -49,7 +49,7 @@ module GOBL
           'source' => attributes[:source]&.to_gobl,
           'code' => attributes[:code],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

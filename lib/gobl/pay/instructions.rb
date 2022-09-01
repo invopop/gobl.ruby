@@ -64,7 +64,7 @@ module GOBL
           'online' => attributes[:online]&.map { |item| item&.to_gobl },
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

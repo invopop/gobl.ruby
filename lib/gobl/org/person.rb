@@ -54,7 +54,7 @@ module GOBL
           'emails' => attributes[:emails]&.map { |item| item&.to_gobl },
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

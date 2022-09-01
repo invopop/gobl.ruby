@@ -38,7 +38,7 @@ module GOBL
         'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc]&.to_gobl,
         'sigs' => attributes[:sigs]&.map { |item| item&.to_gobl }
-      }
+      }.compact
     end
   end
 end

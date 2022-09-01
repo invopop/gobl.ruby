@@ -131,7 +131,7 @@ module GOBL
           'totals' => attributes[:totals]&.to_gobl,
           'notes' => attributes[:notes]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

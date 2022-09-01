@@ -44,7 +44,7 @@ module GOBL
           'role' => attributes[:role]&.to_gobl,
           'name' => attributes[:name],
           'code' => attributes[:code]
-        }
+        }.compact
       end
     end
   end
