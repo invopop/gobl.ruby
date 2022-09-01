@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Coordinates describes an exact geographical location in the world.
-    class Coordinates < Dry::Struct
+    class Coordinates < GOBL::Struct
       # Decimal latitude coordinate.
       attribute? :lat, GOBL::Types::Double.optional
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'lat' => attributes[:lat],
@@ -46,10 +40,6 @@ module GOBL
           'w3w' => attributes[:w3w],
           'geohash' => attributes[:geohash]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
-    class Outlay < Dry::Struct
+    class Outlay < GOBL::Struct
       # Unique identity for this outlay.
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -51,10 +49,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -66,10 +60,6 @@ module GOBL
           'supplier' => attributes[:supplier]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

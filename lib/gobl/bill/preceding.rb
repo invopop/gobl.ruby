@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.
-    class Preceding < Dry::Struct
+    class Preceding < GOBL::Struct
       # Preceding document's UUID if available can be useful for tracing.
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -55,10 +53,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -71,10 +65,6 @@ module GOBL
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

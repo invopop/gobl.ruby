@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Ordering allows additional order details to be appended
-    class Ordering < Dry::Struct
+    class Ordering < GOBL::Struct
       # Party who is selling the goods and is not responsible for taxes
       attribute? :seller, GOBL::Org::Party.optional
 
@@ -23,18 +21,10 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'seller' => attributes[:seller]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
-    class RateTotal < Dry::Struct
+    class RateTotal < GOBL::Struct
       attribute? :key, GOBL::Org::Key.optional
 
       attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -47,10 +41,6 @@ module GOBL
           'amount' => attributes[:amount]&.to_gobl,
           'surcharge' => attributes[:surcharge]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

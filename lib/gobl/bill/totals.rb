@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Totals contains the summaries of all calculations for the invoice.
-    class Totals < Dry::Struct
+    class Totals < GOBL::Struct
       # Sum of all line item sums
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
@@ -67,10 +65,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'sum' => attributes[:sum]&.to_gobl,
@@ -86,10 +80,6 @@ module GOBL
           'advance' => attributes[:advance]&.to_gobl,
           'due' => attributes[:due]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

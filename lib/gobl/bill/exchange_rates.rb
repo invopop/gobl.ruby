@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # ExchangeRates represents an array of currency exchange rates.
-    class ExchangeRates < Dry::Struct
+    class ExchangeRates < GOBL::Struct
       extend Forwardable
       include Enumerable
 
@@ -23,16 +21,8 @@ module GOBL
         new(_ary: data&.map { |item| GOBL::Currency::ExchangeRate.from_gobl!(item) } )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _ary.map(&:to_gobl)
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def self.new(object)

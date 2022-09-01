@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
-    class Terms < Dry::Struct
+    class Terms < GOBL::Struct
       # Type of terms to be applied.
       attribute :key, TermKey
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'due_dates' => attributes[:due_dates]&.map { |item| item&.to_gobl },
           'notes' => attributes[:notes]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

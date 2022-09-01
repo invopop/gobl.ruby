@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Inbox is used to store data about a connection with a service that is responsible for potentially receiving copies of GOBL envelopes or other document formats defined locally.
-    class Inbox < Dry::Struct
+    class Inbox < GOBL::Struct
       # Unique ID. Useful if inbox is stored in a database.
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -39,10 +37,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -51,10 +45,6 @@ module GOBL
           'name' => attributes[:name],
           'code' => attributes[:code]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

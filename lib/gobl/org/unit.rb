@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Unit describes how the quantity of the product should be interpreted.
-    class Unit < Dry::Struct
+    class Unit < GOBL::Struct
       ENUM = {
         'g' => 'Metric grams',
         'kg' => 'Metric kilograms',
@@ -69,16 +67,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

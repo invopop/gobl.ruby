@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Note represents a free text of additional information that may be added to a document.
-    class Note < Dry::Struct
+    class Note < GOBL::Struct
       # Key specifying subject of the text
       attribute? :key, NoteKey.optional
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'src' => attributes[:src],
           'text' => attributes[:text]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

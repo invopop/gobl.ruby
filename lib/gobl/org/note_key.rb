@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # NoteKey identifies the type of note being edited
-    class NoteKey < Dry::Struct
+    class NoteKey < GOBL::Struct
       ENUM = {
         'goods' => 'Goods Description',
         'payment' => 'Terms of Payment',
@@ -46,16 +44,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

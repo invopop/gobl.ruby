@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
-    class Address < Dry::Struct
+    class Address < GOBL::Struct
       # Internal ID used to identify the party inside a document.
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -79,10 +77,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -101,10 +95,6 @@ module GOBL
           'coords' => attributes[:coords]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

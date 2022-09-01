@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Payment contains details as to how the invoice should be paid.
-    class Payment < Dry::Struct
+    class Payment < GOBL::Struct
       # The party responsible for paying for the invoice, if not the customer.
       attribute? :payer, GOBL::Org::Party.optional
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'payer' => attributes[:payer]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'advances' => attributes[:advances]&.to_gobl,
           'instructions' => attributes[:instructions]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

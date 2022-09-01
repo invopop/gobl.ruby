@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Name represents what a human is called.
-    class Name < Dry::Struct
+    class Name < GOBL::Struct
       # Unique identity code
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -55,10 +53,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -71,10 +65,6 @@ module GOBL
           'suffix' => attributes[:suffix],
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

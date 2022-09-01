@@ -6,11 +6,9 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module L10n
-    class CountryCode < Dry::Struct
+    class CountryCode < GOBL::Struct
       ENUM = {
         'AF' => 'Afghanistan',
         'AX' => 'Åland Islands',
@@ -269,16 +267,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

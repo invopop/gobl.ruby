@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Method Key describes how a payment should be made
-    class MethodKey < Dry::Struct
+    class MethodKey < GOBL::Struct
       ENUM = {
         'any' => 'Any method available, no preference',
         'card' => 'Credit or debit card',
@@ -28,16 +26,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

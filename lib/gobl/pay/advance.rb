@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
-    class Advance < Dry::Struct
+    class Advance < GOBL::Struct
       # Unique identifier for this advance.
       attribute? :uuid, GOBL::UUID::UUID.optional
 
@@ -51,10 +49,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -66,10 +60,6 @@ module GOBL
           'amount' => attributes[:amount]&.to_gobl,
           'currency' => attributes[:currency]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

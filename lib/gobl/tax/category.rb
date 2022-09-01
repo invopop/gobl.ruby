@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # Category contains the definition of a general type of tax inside a region.
-    class Category < Dry::Struct
+    class Category < GOBL::Struct
       attribute :code, GOBL::Org::Code
 
       attribute :name, GOBL::I18n::String
@@ -36,10 +34,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'code' => attributes[:code]&.to_gobl,
@@ -48,10 +42,6 @@ module GOBL
           'retained' => attributes[:retained],
           'rates' => attributes[:rates]&.map { |item| item&.to_gobl }
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

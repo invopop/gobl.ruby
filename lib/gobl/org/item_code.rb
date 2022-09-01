@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # ItemCode contains a value and optional label property that means additional codes can be added to an item.
-    class ItemCode < Dry::Struct
+    class ItemCode < GOBL::Struct
       # Local or human reference for the type of code the value represents.
       attribute? :label, GOBL::Types::String.optional
 
@@ -27,19 +25,11 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'label' => attributes[:label],
           'value' => attributes[:value]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -1,0 +1,53 @@
+{
+	"$schema": "https://gobl.org/draft-0/envelope",
+	"head": {
+		"uuid": "732f5ac9-239f-11ed-b59b-e6a7901137ed",
+		"dig": {
+			"alg": "sha256",
+			"val": "f125ec2fba4a532329e6606c8d0115931ccb8ddedba52f6c7a5cabfdad8dec9f"
+		},
+		"draft": true
+	},
+	"doc": {
+		"$schema": "https://gobl.org/draft-0/bill/invoice",
+		"code": "SAMPLE-001",
+		"currency": "EUR",
+		"issue_date": "2022-02-01",
+		"supplier": {
+			"tax_id": {
+				"country": "ES",
+				"code": "54387763P"
+			},
+			"name": "Provide One S.L."
+		},
+		"customer": {
+			"tax_id": {
+				"country": "ES",
+				"code": "54387763P"
+			},
+			"name": "Sample Consumer"
+		},
+		"lines": [
+			{
+				"i": 1,
+				"quantity": "20",
+				"item": {
+					"name": "Development services",
+					"price": "90.00"
+				},
+				"sum": "1800.00",
+				"total": "1800.00"
+			}
+		],
+		"totals": {
+			"sum": "1800.00",
+			"total": "1800.00",
+			"taxes": {
+				"sum": "0.00"
+			},
+			"tax": "0.00",
+			"total_with_tax": "1800.00",
+			"payable": "1800.00"
+		}
+	}
+}

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Defines an invoice type according to a subset of the UNTDID 1001 standard list.
-    class InvoiceType < Dry::Struct
+    class InvoiceType < GOBL::Struct
       ENUM = {
         'proforma' => 'Proforma invoice, for a clients validation before sending a final invoice.',
         'simplified' => 'Simplified invoice or receipt typically used for small transactions that dont require customer details.t require customer details.',
@@ -28,16 +26,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       def to_s

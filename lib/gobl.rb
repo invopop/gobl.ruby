@@ -2,10 +2,12 @@
 
 require 'json'
 require 'zeitwerk'
-require 'dry-types'
+require 'dry-struct'
 require 'active_support/core_ext/string/inflections'
 require 'active_support/concern'
 require 'forwardable'
+require 'net/http'
+require 'base64'
 
 # Main GOBL namespace which has the differents structures to generate and
 # load its components. There are sub-namespaces specically defined for GoBL
@@ -32,6 +34,10 @@ module GOBL
     loader.inflector.inflect(inflections)
     loader
   end
+
+  def self.config
+    @config ||= Config.new
+  end
 end
 
 ActiveSupport::Inflector.inflections do |inflect|
@@ -49,3 +55,5 @@ require_relative 'id'
 GOBL.loader.setup
 
 require_relative 'extensions'
+
+GOBL.extend GOBL::Operations

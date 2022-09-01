@@ -6,11 +6,9 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   # Header defines the meta data of the body.
-  class Header < Dry::Struct
+  class Header < GOBL::Struct
     # Unique UUIDv1 identifier for the envelope.
     attribute :uuid, GOBL::UUID::UUID
 
@@ -46,10 +44,6 @@ module GOBL
       )
     end
 
-    def self.from_json!(json)
-      from_gobl!(JSON.parse(json))
-    end
-
     def to_gobl
       {
         'uuid' => attributes[:uuid]&.to_gobl,
@@ -60,10 +54,6 @@ module GOBL
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]
       }
-    end
-
-    def to_json(options = nil)
-      JSON.generate(to_gobl, options)
     end
   end
 end
