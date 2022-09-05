@@ -1,7 +1,7 @@
 module Generators
   class Ruby
     # Base generator of a json schema of type string
-    class SingleValueStruct < Struct
+    class SingleValue < Struct
 
       def constants
         if enum?

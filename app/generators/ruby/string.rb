@@ -1,7 +1,7 @@
 module Generators
   class Ruby
     # Base generator of a json schema of type string
-    class String < SingleValueStruct
+    class String < SingleValue
       def value_type
         'GOBL::Types::String'
       end
