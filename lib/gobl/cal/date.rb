@@ -11,6 +11,7 @@ module GOBL
     # Civil date in simplified ISO format, like 2021-05-26
     class Date < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

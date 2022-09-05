@@ -11,6 +11,7 @@ module GOBL
     # JSON Web Signature in compact form.
     class Signature < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

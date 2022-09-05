@@ -39,6 +39,7 @@ module GOBL
       }
 
       attribute :_value, GOBL::Types::String.enum(*ENUM.keys)
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

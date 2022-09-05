@@ -62,6 +62,7 @@ module GOBL
       }
 
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

@@ -16,6 +16,7 @@ module Generators
       def attributes
         <<~EOFATTR
           attribute :_value, #{value_type}#{type_modifiers}
+          private :_value
         EOFATTR
       end
 

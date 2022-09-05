@@ -11,6 +11,7 @@ module GOBL
     # Short upper-case identifier.
     class Code < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

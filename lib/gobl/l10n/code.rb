@@ -11,6 +11,7 @@ module GOBL
     # Code is used for short identifies like country or state codes.
     class Code < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

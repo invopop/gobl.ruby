@@ -11,6 +11,7 @@ module GOBL
     # Universally Unique Identifier. We only recommend using versions 1 and 4 within GOBL.
     class UUID < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)

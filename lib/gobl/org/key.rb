@@ -11,6 +11,7 @@ module GOBL
     # Text identifier to be used instead of a code for a more verbose but readable identifier.
     class Key < GOBL::Struct
       attribute :_value, GOBL::Types::String
+      private :_value
 
       def self.from_gobl!(data)
         new(_value: data)
