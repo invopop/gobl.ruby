@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module I18n
     # Map of 2-Letter language codes to their translations.
-    class String < Dry::Struct
+    class String < GOBL::Struct
       extend Forwardable
       include Enumerable
 
@@ -23,16 +21,8 @@ module GOBL
         new(_value: data)
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         _value
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

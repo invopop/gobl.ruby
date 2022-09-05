@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Note
     # Message represents the minimum possible contents for a GoBL document type.
-    class Message < Dry::Struct
+    class Message < GOBL::Struct
       # Summary of the message content
       attribute :title, GOBL::Types::String.optional
 
@@ -31,20 +29,12 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'title' => attributes[:title],
           'content' => attributes[:content],
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

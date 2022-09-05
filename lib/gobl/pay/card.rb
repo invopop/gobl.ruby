@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Card contains simplified card holder data as a reference for the customer.
-    class Card < Dry::Struct
+    class Card < GOBL::Struct
       # Last 4 digits of the card's Primary Account Number (PAN).
       attribute :last4, GOBL::Types::String
 
@@ -27,19 +25,11 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'last4' => attributes[:last4],
           'holder' => attributes[:holder]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
-    class Scheme < Dry::Struct
+    class Scheme < GOBL::Struct
       # Key used to identify this scheme
       attribute :key, GOBL::Org::Key
 
@@ -39,10 +37,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -51,10 +45,6 @@ module GOBL
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl },
           'note' => attributes[:note]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

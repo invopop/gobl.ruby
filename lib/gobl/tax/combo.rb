@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # Combo represents the tax combination of a category code and rate key.
-    class Combo < Dry::Struct
+    class Combo < GOBL::Struct
       # Tax category code from those available inside a region.
       attribute :cat, GOBL::Org::Code
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'cat' => attributes[:cat]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'percent' => attributes[:percent]&.to_gobl,
           'surcharge' => attributes[:surcharge]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

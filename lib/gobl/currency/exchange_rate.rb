@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Currency
     # ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.
-    class ExchangeRate < Dry::Struct
+    class ExchangeRate < GOBL::Struct
       # ISO currency code this rate represents.
       attribute :currency, GOBL::Currency::Code
 
@@ -27,19 +25,11 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'currency' => attributes[:currency]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Party represents a person or business entity.
-    class Party < Dry::Struct
+    class Party < GOBL::Struct
       # Internal ID used to identify the party inside a document.
       attribute :id, GOBL::Types::String.optional
 
@@ -67,10 +65,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'id' => attributes[:id],
@@ -86,10 +80,6 @@ module GOBL
           'registration' => attributes[:registration]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

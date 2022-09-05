@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Fetches the latest released GOBL CLI for the current's machine architecture and leaves
+# it in the path where the `TestServer` expects it. This is only used for testing
+# purposes.
+
+OS=$(echo $(uname -s) | tr '[:upper:]' '[:lower:]')
+ARCH=$(echo $(uname -m) | tr '[:upper:]' '[:lower:]')
+
+if [ "$ARCH" == "x86_64" ]; then
+  ARCH="amd64"
+fi
+
+VERSION=`curl -Ls -o /dev/null -w %{url_effective} https://github.com/invopop/gobl.cli/releases/latest | sed -n 's/.*v\([^ ]*\)$/\1/p'`
+RELEASE_NAME="gobl.cli_${VERSION}_${OS}_${ARCH}"
+DESTINATION_PATH=`ruby -r './spec/support/test_server' -e 'puts TestServer::GOBL_CLI_PATH'`
+
+curl -Ls https://github.com/invopop/gobl.cli/releases/download/v${VERSION}/${RELEASE_NAME}.tar.gz \
+  | tar -C spec/support/bin/ -xOz ${RELEASE_NAME}/gobl \
+  > ${DESTINATION_PATH}
+
+chmod +x ${DESTINATION_PATH}

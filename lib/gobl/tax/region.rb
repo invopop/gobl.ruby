@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # Region defines the holding structure for a regions categories and subsequent Rates and Values.
-    class Region < Dry::Struct
+    class Region < GOBL::Struct
       # Name of the region
       attribute :name, GOBL::I18n::String
 
@@ -47,10 +45,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'name' => attributes[:name]&.to_gobl,
@@ -61,10 +55,6 @@ module GOBL
           'schemes' => attributes[:schemes]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl }
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

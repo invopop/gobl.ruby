@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # DueDate contains an amount that should be paid by the given date.
-    class DueDate < Dry::Struct
+    class DueDate < GOBL::Struct
       # When the payment is due.
       attribute :date, GOBL::Cal::Date
 
@@ -39,10 +37,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'date' => attributes[:date]&.to_gobl,
@@ -51,10 +45,6 @@ module GOBL
           'percent' => attributes[:percent]&.to_gobl,
           'currency' => attributes[:currency]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

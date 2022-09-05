@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Pay
     # Instructions holds a set of instructions that determine how the payment has or should be made.
-    class Instructions < Dry::Struct
+    class Instructions < GOBL::Struct
       # How payment is expected or has been arranged to be collected
       attribute :key, MethodKey
 
@@ -55,10 +53,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -71,10 +65,6 @@ module GOBL
           'notes' => attributes[:notes],
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

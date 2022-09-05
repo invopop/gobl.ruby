@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # RateValue contains a percentage rate or fixed amount for a given date range.
-    class RateValue < Dry::Struct
+    class RateValue < GOBL::Struct
       # Date from which this value should be applied.
       attribute :since, GOBL::Cal::Date.optional
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'since' => attributes[:since]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'surcharge' => attributes[:surcharge]&.to_gobl,
           'disabled' => attributes[:disabled]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # Tax defines a summary of the taxes which may be applied to an invoice.
-    class Tax < Dry::Struct
+    class Tax < GOBL::Struct
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
       attribute :prices_include, GOBL::Org::Code.optional
 
@@ -31,20 +29,12 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'prices_include' => attributes[:prices_include]&.to_gobl,
           'schemes' => attributes[:schemes]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

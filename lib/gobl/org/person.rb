@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Org
     # Person represents a human, and how to contact them electronically.
-    class Person < Dry::Struct
+    class Person < GOBL::Struct
       # Internal ID used to identify the person inside a document.
       attribute :id, GOBL::Types::String.optional
 
@@ -47,10 +45,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'id' => attributes[:id],
@@ -61,10 +55,6 @@ module GOBL
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'meta' => attributes[:meta]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

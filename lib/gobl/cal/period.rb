@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Cal
     # Period represents two dates with a start and finish.
-    class Period < Dry::Struct
+    class Period < GOBL::Struct
       attribute :start, GOBL::Cal::Date
 
       attribute :end, GOBL::Cal::Date
@@ -25,19 +23,11 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'start' => attributes[:start]&.to_gobl,
           'end' => attributes[:end]&.to_gobl
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

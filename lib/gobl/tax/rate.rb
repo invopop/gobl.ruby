@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Tax
     # Rate defines a single rate inside a category
-    class Rate < Dry::Struct
+    class Rate < GOBL::Struct
       # Key identifies this rate within the system
       attribute :key, GOBL::Org::Key
 
@@ -33,10 +31,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -44,10 +38,6 @@ module GOBL
           'desc' => attributes[:desc]&.to_gobl,
           'values' => attributes[:values]&.map { |item| item&.to_gobl }
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end

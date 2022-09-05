@@ -6,12 +6,10 @@
 ## Generated with GOBL v0.30.2
 ##
 
-require 'dry-struct'
-
 module GOBL
   module Bill
     # LineCharge represents an amount added to the line, and will be applied before taxes.
-    class LineCharge < Dry::Struct
+    class LineCharge < GOBL::Struct
       # Percentage if fixed amount not applied
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
@@ -35,10 +33,6 @@ module GOBL
         )
       end
 
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
       def to_gobl
         {
           'percent' => attributes[:percent]&.to_gobl,
@@ -46,10 +40,6 @@ module GOBL
           'code' => attributes[:code],
           'reason' => attributes[:reason]
         }
-      end
-
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
     end
   end
