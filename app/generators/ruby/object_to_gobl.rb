@@ -16,7 +16,7 @@ module Generators
           def to_gobl
             {
               #{property_key_value_pairs.join(",\n    ")}
-            }
+            }.compact
           end
         EOFS
       end

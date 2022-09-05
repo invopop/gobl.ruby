@@ -19,7 +19,7 @@ module GOBL
     attribute :doc, Document
 
     # JSON Web Signatures of the header
-    attribute :sigs, GOBL::Types::Array.of(GOBL::DSig::Signature).optional
+    attribute? :sigs, GOBL::Types::Array.of(GOBL::DSig::Signature).optional
 
     def self.from_gobl!(data)
       data = GOBL::Types::Hash[data]
@@ -38,7 +38,7 @@ module GOBL
         'head' => attributes[:head]&.to_gobl,
         'doc' => attributes[:doc]&.to_gobl,
         'sigs' => attributes[:sigs]&.map { |item| item&.to_gobl }
-      }
+      }.compact
     end
   end
 end

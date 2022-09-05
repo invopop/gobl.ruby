@@ -11,34 +11,34 @@ module GOBL
     # Charge represents a surchange applied to the complete document independent from the individual lines.
     class Charge < GOBL::Struct
       # Unique identifying for the discount entry
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the list of discounts (calculated).
-      attribute :i, GOBL::Types::Int.optional
+      attribute? :i, GOBL::Types::Int.optional
 
       # Code to used to refer to the this charge
-      attribute :ref, GOBL::Types::String.optional
+      attribute? :ref, GOBL::Types::String.optional
 
       # Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts.
-      attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :base, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Percentage to apply to the invoice's Sum
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Amount to apply (calculated if percent present)
-      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # List of taxes to apply to the charge
-      attribute :taxes, GOBL::Tax::Set.optional
+      attribute? :taxes, GOBL::Tax::Set.optional
 
       # Code for why was this charge applied?
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Text description as to why the charge was applied
-      attribute :reason, GOBL::Types::String.optional
+      attribute? :reason, GOBL::Types::String.optional
 
       # Additional semi-structured information.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -69,7 +69,7 @@ module GOBL
           'code' => attributes[:code],
           'reason' => attributes[:reason],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

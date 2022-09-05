@@ -11,34 +11,34 @@ module GOBL
     # Item is used to describe a single product or service.
     class Item < GOBL::Struct
       # Unique identify of this item independent of the Supplier IDs
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
-      attribute :ref, GOBL::Types::String.optional
+      attribute? :ref, GOBL::Types::String.optional
 
       # Brief name of the item
       attribute :name, GOBL::Types::String
 
       # Detailed description
-      attribute :desc, GOBL::Types::String.optional
+      attribute? :desc, GOBL::Types::String.optional
 
       # Currency used for the item's price.
-      attribute :currency, GOBL::Types::String.optional
+      attribute? :currency, GOBL::Types::String.optional
 
       # Base price of a single unit to be sold.
       attribute :price, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Unit of measure.
-      attribute :unit, GOBL::Org::Unit.optional
+      attribute? :unit, GOBL::Org::Unit.optional
 
       # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
-      attribute :codes, GOBL::Types::Array.of(ItemCode).optional
+      attribute? :codes, GOBL::Types::Array.of(ItemCode).optional
 
       # Country code of where this item was from originally.
-      attribute :origin, GOBL::L10n::CountryCode.optional
+      attribute? :origin, GOBL::L10n::CountryCode.optional
 
       # Additional meta information that may be useful
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -69,7 +69,7 @@ module GOBL
           'codes' => attributes[:codes]&.map { |item| item&.to_gobl },
           'origin' => attributes[:origin]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

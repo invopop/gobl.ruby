@@ -11,16 +11,16 @@ module GOBL
     # Email describes the electronic mailing details.
     class Email < GOBL::Struct
       # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Identifier for the email.
-      attribute :label, GOBL::Types::String.optional
+      attribute? :label, GOBL::Types::String.optional
 
       # Electronic mailing address.
       attribute :addr, GOBL::Types::String
 
       # Additional fields.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -39,7 +39,7 @@ module GOBL
           'label' => attributes[:label],
           'addr' => attributes[:addr],
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

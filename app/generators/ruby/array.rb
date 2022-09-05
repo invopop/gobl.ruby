@@ -37,9 +37,22 @@ module Generators
       def to_gobl_method
         <<~EOFMETH
           def to_gobl
-            _ary
+            _ary.map(&:to_gobl)
           end
         EOFMETH
+      end
+
+      def additional_methods
+        <<~EOFADD
+          def self.new(object)
+            case object
+            when Array
+              super _ary: object
+            else
+              super
+            end
+          end
+        EOFADD
       end
     end
   end

@@ -11,25 +11,25 @@ module GOBL
     # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
     class Outlay < GOBL::Struct
       # Unique identity for this outlay.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Outlay number index inside the invoice for ordering (calculated).
-      attribute :i, GOBL::Types::Int.optional
+      attribute? :i, GOBL::Types::Int.optional
 
       # When was the outlay made.
-      attribute :date, GOBL::Cal::Date.optional
+      attribute? :date, GOBL::Cal::Date.optional
 
       # Invoice number or other reference detail used to identify the outlay.
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Series of the outlay invoice.
-      attribute :series, GOBL::Types::String.optional
+      attribute? :series, GOBL::Types::String.optional
 
       # Details on what the outlay was.
       attribute :desc, GOBL::Types::String
 
       # Who was the supplier of the outlay
-      attribute :supplier, GOBL::Org::Party.optional
+      attribute? :supplier, GOBL::Org::Party.optional
 
       # Amount paid by the supplier.
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
@@ -59,7 +59,7 @@ module GOBL
           'desc' => attributes[:desc],
           'supplier' => attributes[:supplier]&.to_gobl,
           'amount' => attributes[:amount]&.to_gobl
-        }
+        }.compact
       end
     end
   end

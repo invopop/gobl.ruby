@@ -11,19 +11,19 @@ module GOBL
     # CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
     class CreditTransfer < GOBL::Struct
       # International Bank Account Number
-      attribute :iban, GOBL::Types::String.optional
+      attribute? :iban, GOBL::Types::String.optional
 
       # Bank Identifier Code used for international transfers.
-      attribute :bic, GOBL::Types::String.optional
+      attribute? :bic, GOBL::Types::String.optional
 
       # Account number, if IBAN not available.
-      attribute :number, GOBL::Types::String.optional
+      attribute? :number, GOBL::Types::String.optional
 
       # Name of the bank.
-      attribute :name, GOBL::Types::String.optional
+      attribute? :name, GOBL::Types::String.optional
 
       # Bank office branch address, not normally required.
-      attribute :branch, GOBL::Org::Address.optional
+      attribute? :branch, GOBL::Org::Address.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -44,7 +44,7 @@ module GOBL
           'number' => attributes[:number],
           'name' => attributes[:name],
           'branch' => attributes[:branch]&.to_gobl
-        }
+        }.compact
       end
     end
   end

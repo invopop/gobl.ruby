@@ -11,40 +11,40 @@ module GOBL
     # Party represents a person or business entity.
     class Party < GOBL::Struct
       # Internal ID used to identify the party inside a document.
-      attribute :id, GOBL::Types::String.optional
+      attribute? :id, GOBL::Types::String.optional
 
       # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.
-      attribute :tax_id, GOBL::Org::TaxIdentity.optional
+      attribute? :tax_id, GOBL::Org::TaxIdentity.optional
 
       # Legal name or representation of the organization.
       attribute :name, GOBL::Types::String
 
       # Alternate short name.
-      attribute :alias, GOBL::Types::String.optional
+      attribute? :alias, GOBL::Types::String.optional
 
       # Details of physical people who represent the party.
-      attribute :people, GOBL::Types::Array.of(GOBL::Org::Person).optional
+      attribute? :people, GOBL::Types::Array.of(GOBL::Org::Person).optional
 
       # Digital inboxes used for forwarding electronic versions of documents
-      attribute :inboxes, GOBL::Types::Array.of(GOBL::Org::Inbox).optional
+      attribute? :inboxes, GOBL::Types::Array.of(GOBL::Org::Inbox).optional
 
       # Regular post addresses for where information should be sent if needed.
-      attribute :addresses, GOBL::Types::Array.of(GOBL::Org::Address).optional
+      attribute? :addresses, GOBL::Types::Array.of(GOBL::Org::Address).optional
 
       # Electronic mail addresses
-      attribute :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
+      attribute? :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
 
       # Regular telephone numbers
-      attribute :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
+      attribute? :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
 
       # Additional registration details about the company that may need to be included in a document.
-      attribute :registration, GOBL::Org::Registration.optional
+      attribute? :registration, GOBL::Org::Registration.optional
 
       # Any additional semi-structured information that does not fit into the rest of the party.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -79,7 +79,7 @@ module GOBL
           'telephones' => attributes[:telephones]&.map { |item| item&.to_gobl },
           'registration' => attributes[:registration]&.to_gobl,
           'meta' => attributes[:meta]&.to_gobl
-        }
+        }.compact
       end
     end
   end

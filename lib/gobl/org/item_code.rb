@@ -11,7 +11,7 @@ module GOBL
     # ItemCode contains a value and optional label property that means additional codes can be added to an item.
     class ItemCode < GOBL::Struct
       # Local or human reference for the type of code the value represents.
-      attribute :label, GOBL::Types::String.optional
+      attribute? :label, GOBL::Types::String.optional
 
       # The item code's value.
       attribute :value, GOBL::Types::String
@@ -29,7 +29,7 @@ module GOBL
         {
           'label' => attributes[:label],
           'value' => attributes[:value]
-        }
+        }.compact
       end
     end
   end

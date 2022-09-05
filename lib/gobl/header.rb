@@ -16,19 +16,19 @@ module GOBL
     attribute :dig, GOBL::DSig::Digest
 
     # Seals of approval from other organisations.
-    attribute :stamps, GOBL::Types::Array.of(Stamp).optional
+    attribute? :stamps, GOBL::Types::Array.of(Stamp).optional
 
     # Set of labels that describe but have no influence on the data.
-    attribute :tags, GOBL::Types::Array.of(GOBL::Types::String).optional
+    attribute? :tags, GOBL::Types::Array.of(GOBL::Types::String).optional
 
     # Additional semi-structured information about this envelope.
-    attribute :meta, GOBL::Org::Meta.optional
+    attribute? :meta, GOBL::Org::Meta.optional
 
     # Any information that may be relevant to other humans about this envelope
-    attribute :notes, GOBL::Types::String.optional
+    attribute? :notes, GOBL::Types::String.optional
 
     # When true, implies that this document should not be considered final. Digital signatures are optional.
-    attribute :draft, GOBL::Types::Bool.optional
+    attribute? :draft, GOBL::Types::Bool.optional
 
     def self.from_gobl!(data)
       data = GOBL::Types::Hash[data]
@@ -53,7 +53,7 @@ module GOBL
         'meta' => attributes[:meta]&.to_gobl,
         'notes' => attributes[:notes],
         'draft' => attributes[:draft]
-      }
+      }.compact
     end
   end
 end

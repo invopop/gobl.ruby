@@ -11,16 +11,16 @@ module GOBL
     # LineDiscount represents an amount deducted from the line, and will be applied before taxes.
     class LineDiscount < GOBL::Struct
       # Percentage if fixed amount not applied
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Fixed discount amount to apply (calculated if percent present).
-      attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Reason code.
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Text description as to why the discount was applied
-      attribute :reason, GOBL::Types::String.optional
+      attribute? :reason, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -39,7 +39,7 @@ module GOBL
           'amount' => attributes[:amount]&.to_gobl,
           'code' => attributes[:code],
           'reason' => attributes[:reason]
-        }
+        }.compact
       end
     end
   end

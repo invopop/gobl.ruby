@@ -11,10 +11,10 @@ module GOBL
     # Line is a single row in an invoice.
     class Line < GOBL::Struct
       # Unique identifier for this line
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Line number inside the parent (calculated)
-      attribute :i, GOBL::Types::Int.optional
+      attribute? :i, GOBL::Types::Int.optional
 
       # Number of items
       attribute :quantity, GOBL::Types.Constructor(GOBL::Num::Amount)
@@ -23,22 +23,22 @@ module GOBL
       attribute :item, GOBL::Org::Item
 
       # Result of quantity multiplied by the item's price (calculated)
-      attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :sum, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Discounts applied to this line
-      attribute :discounts, GOBL::Types::Array.of(LineDiscount).optional
+      attribute? :discounts, GOBL::Types::Array.of(LineDiscount).optional
 
       # Charges applied to this line
-      attribute :charges, GOBL::Types::Array.of(LineCharge).optional
+      attribute? :charges, GOBL::Types::Array.of(LineCharge).optional
 
       # Map of taxes to be applied and used in the invoice totals
-      attribute :taxes, GOBL::Tax::Set.optional
+      attribute? :taxes, GOBL::Tax::Set.optional
 
       # Total line amount after applying discounts to the sum (calculated).
-      attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :total, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Set of specific notes for this line that may be required for clarification.
-      attribute :notes, GOBL::Org::Notes.optional
+      attribute? :notes, GOBL::Org::Notes.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -69,7 +69,7 @@ module GOBL
           'taxes' => attributes[:taxes]&.to_gobl,
           'total' => attributes[:total]&.to_gobl,
           'notes' => attributes[:notes]&.to_gobl
-        }
+        }.compact
       end
     end
   end

@@ -17,13 +17,13 @@ module GOBL
       attribute :name, GOBL::I18n::String
 
       # Human details describing what this scheme is used for.
-      attribute :description, GOBL::I18n::String.optional
+      attribute? :description, GOBL::I18n::String.optional
 
       # List of tax category codes that can be used when this scheme is applied.
-      attribute :categories, GOBL::Types::Array.of(GOBL::Org::Code).optional
+      attribute? :categories, GOBL::Types::Array.of(GOBL::Org::Code).optional
 
       # Notes defines messages that should be added to a document when this scheme is used.
-      attribute :note, Note.optional
+      attribute? :note, Note.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -44,7 +44,7 @@ module GOBL
           'description' => attributes[:description]&.to_gobl,
           'categories' => attributes[:categories]&.map { |item| item&.to_gobl },
           'note' => attributes[:note]&.to_gobl
-        }
+        }.compact
       end
     end
   end

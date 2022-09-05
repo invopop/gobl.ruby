@@ -11,16 +11,16 @@ module GOBL
     # Delivery covers the details of the destination for the products described in the invoice body.
     class Delivery < GOBL::Struct
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
-      attribute :receiver, GOBL::Org::Party.optional
+      attribute? :receiver, GOBL::Org::Party.optional
 
       # When the goods should be expected
-      attribute :date, GOBL::Cal::Date.optional
+      attribute? :date, GOBL::Cal::Date.optional
 
       # Start of a n invoicing or delivery period
-      attribute :start_date, GOBL::Cal::Date.optional
+      attribute? :start_date, GOBL::Cal::Date.optional
 
       # End of a n invoicing or delivery period
-      attribute :end_date, GOBL::Cal::Date.optional
+      attribute? :end_date, GOBL::Cal::Date.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
@@ -39,7 +39,7 @@ module GOBL
           'date' => attributes[:date]&.to_gobl,
           'start_date' => attributes[:start_date]&.to_gobl,
           'end_date' => attributes[:end_date]&.to_gobl
-        }
+        }.compact
       end
     end
   end

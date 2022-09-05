@@ -27,7 +27,7 @@ module GOBL
         {
           'start' => attributes[:start]&.to_gobl,
           'end' => attributes[:end]&.to_gobl
-        }
+        }.compact
       end
     end
   end
