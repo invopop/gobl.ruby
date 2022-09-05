@@ -11,13 +11,13 @@ module GOBL
     # Message represents the minimum possible contents for a GoBL document type.
     class Message < GOBL::Struct
       # Summary of the message content
-      attribute :title, GOBL::Types::String.optional
+      attribute? :title, GOBL::Types::String.optional
 
       # Details of what exactly this message wants to communicate
       attribute :content, GOBL::Types::String
 
       # Any additional semi-structured data that might be useful.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

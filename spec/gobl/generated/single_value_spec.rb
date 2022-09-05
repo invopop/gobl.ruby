@@ -3,23 +3,82 @@
 require_relative '../../../lib/gobl'
 
 RSpec.describe 'Generated Single Value' do
-  describe 'Enum String' do
-    let(:enum_value_class) { GOBL::L10n::CountryCode }
+  describe 'String Value' do
+    let(:string_value_class) { GOBL::Org::Code }
 
     it 'instantiates from JSON' do
-      value = enum_value_class.from_json!('ES'.to_json)
-      expect(value.to_gobl).to eq('ES')
+      value = string_value_class.from_json!('CODE001'.to_json)
+      expect(value.to_gobl).to eq('CODE001')
     end
 
-    it 'doesn’t instantiate with an invalid value' do
-      expect { enum_value_class.from_gobl!('PP') }.to raise_error(TypeError)
+    it 'instantiates from a string' do
+      value = string_value_class.new('CODE0001')
+      expect(value.to_gobl).to eq('CODE0001')
     end
 
-    it 'returns the description of the country' do
-      value = enum_value_class.from_gobl!('ES')
+    it 'instantiates from a symbol' do
+      value = string_value_class.new(:code0001)
+      expect(value.to_gobl).to eq('code0001')
+    end
 
-      expect(value.description).to eq('Spain')
-      expect(enum_value_class::ENUM['ES']).to eq('Spain')
+    it 'instantiates from any object that responds to :to_s' do
+      value = string_value_class.new(double(to_s: 'CODE0001'))
+      expect(value.to_gobl).to eq('CODE0001')
+    end
+
+    it 'compares with other objects of the same class' do
+      value1 = string_value_class.new('CODE0001')
+      value2 = string_value_class.new('CODE0001')
+      value3 = string_value_class.new('CODE0002')
+
+      expect(value1).to eq(value2)
+      expect(value1).not_to eq(value3)
+    end
+  end
+
+  describe 'Enum String' do
+    let(:enum_value_class) { GOBL::Bill::InvoiceType }
+
+    it 'instantiates from JSON' do
+      value = enum_value_class.from_json!('credit-note'.to_json)
+      expect(value.to_gobl).to eq('credit-note')
+    end
+
+    it 'instantiates from a string' do
+      value = enum_value_class.new('credit-note')
+      expect(value.to_gobl).to eq('credit-note')
+    end
+
+    it 'doesn’t instantiate with an unenumerated value' do
+      expect { enum_value_class.new('another-value') }.to raise_error(TypeError)
+    end
+
+    it 'instantiates from a symbol' do
+      value = enum_value_class.new(:credit_note)
+      expect(value.to_gobl).to eq('credit-note')
+    end
+
+    it 'doesn’t instantiate from an unenumerated symbol' do
+      expect { enum_value_class.new(:another_value) }.to raise_error(TypeError)
+      expect { enum_value_class.new(:CREDIT_NOTE) }.to raise_error(TypeError)
+    end
+
+    it 'returns its description' do
+      value = enum_value_class.new('credit-note')
+
+      expect(value.description).to eq('Credit note')
+      expect(enum_value_class::ENUM['credit-note']).to eq('Credit note')
+    end
+
+    it 'responds to inquiries about its value' do
+      value = enum_value_class.new('credit-note')
+
+      expect(value.credit_note?).to eq(true)
+      expect(value.corrected?).to eq(false)
+
+      expect(value).to respond_to(:credit_note?)
+      expect(value).to respond_to(:corrected?)
+      expect(value).to_not respond_to(:another?)
     end
   end
 
@@ -43,6 +102,11 @@ RSpec.describe 'Generated Single Value' do
       expect(value).to respond_to(:min?)
       expect(value).to_not respond_to(:pts?)
     end
+
+    it 'instantiates from an unenumerated symbol' do
+      value = enum_value_class.new(:value123)
+      expect(value.to_gobl).to eq('value123')
+    end
   end
 
   describe 'Enum With Empty Option' do
@@ -53,6 +117,11 @@ RSpec.describe 'Generated Single Value' do
 
       expect(value.to_gobl).to eq('')
       expect(value.description).to eq('Not yet defined')
+    end
+
+    it 'instantiates from an empty symbol' do
+      value = enum_value_class.new(:'')
+      expect(value.to_gobl).to eq('')
     end
   end
 end

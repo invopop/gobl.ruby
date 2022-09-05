@@ -14,13 +14,13 @@ module GOBL
       attribute :cat, GOBL::Org::Code
 
       # Rate within a category to apply.
-      attribute :rate, GOBL::Org::Key.optional
+      attribute? :rate, GOBL::Org::Key.optional
 
       # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # Some countries require an additional surcharge (calculated if rate present).
-      attribute :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

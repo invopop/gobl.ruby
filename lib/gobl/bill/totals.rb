@@ -14,37 +14,37 @@ module GOBL
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Sum of all document level discounts
-      attribute :discount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :discount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Sum of all document level charges
-      attribute :charge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :charge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # If prices include tax, this is the total tax included in the price.
-      attribute :tax_included, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :tax_included, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Sum of all line sums minus the discounts, plus the charges, without tax.
       attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Summary of all the taxes included in the invoice.
-      attribute :taxes, GOBL::Tax::Total.optional
+      attribute? :taxes, GOBL::Tax::Total.optional
 
       # Total amount of tax to apply to the invoice.
-      attribute :tax, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :tax, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Grand total after all taxes have been applied.
       attribute :total_with_tax, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Total paid in outlays that need to be reimbursed
-      attribute :outlays, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :outlays, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # Total amount to be paid after applying taxes and outlays.
       attribute :payable, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Total amount already paid in advance.
-      attribute :advance, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :advance, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       # How much actually needs to be paid now.
-      attribute :due, GOBL::Types.Constructor(GOBL::Num::Amount).optional
+      attribute? :due, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

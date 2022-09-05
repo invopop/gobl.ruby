@@ -14,16 +14,16 @@ module GOBL
       attribute :date, GOBL::Cal::Date
 
       # Other details to take into account for the due date.
-      attribute :notes, GOBL::Types::String.optional
+      attribute? :notes, GOBL::Types::String.optional
 
       # How much needs to be paid by the date.
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # Percentage of the total that should be paid by the date.
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # If different from the parent document's base currency.
-      attribute :currency, GOBL::Currency::Code.optional
+      attribute? :currency, GOBL::Currency::Code.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

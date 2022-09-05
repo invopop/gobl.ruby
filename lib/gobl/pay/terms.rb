@@ -14,13 +14,13 @@ module GOBL
       attribute :key, TermKey
 
       # Text detail of the chosen payment terms.
-      attribute :detail, GOBL::Types::String.optional
+      attribute? :detail, GOBL::Types::String.optional
 
       # Set of dates for agreed payments.
-      attribute :due_dates, GOBL::Types::Array.of(DueDate).optional
+      attribute? :due_dates, GOBL::Types::Array.of(DueDate).optional
 
       # Description of the conditions for payment.
-      attribute :notes, GOBL::Types::String.optional
+      attribute? :notes, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

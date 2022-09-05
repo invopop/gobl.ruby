@@ -24,6 +24,15 @@ module GOBL
       def to_gobl
         _ary.map(&:to_gobl)
       end
+
+      def self.new(object)
+        case object
+        when Array
+          super _ary: object
+        else
+          super
+        end
+      end
     end
   end
 end

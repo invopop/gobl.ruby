@@ -10,21 +10,21 @@ module GOBL
   module Org
     # Registration is used in countries that require additional information to be associated with a company usually related to a specific registration office.
     class Registration < GOBL::Struct
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
-      attribute :office, GOBL::Types::String.optional
+      attribute? :office, GOBL::Types::String.optional
 
-      attribute :book, GOBL::Types::String.optional
+      attribute? :book, GOBL::Types::String.optional
 
-      attribute :volume, GOBL::Types::String.optional
+      attribute? :volume, GOBL::Types::String.optional
 
-      attribute :sheet, GOBL::Types::String.optional
+      attribute? :sheet, GOBL::Types::String.optional
 
-      attribute :section, GOBL::Types::String.optional
+      attribute? :section, GOBL::Types::String.optional
 
-      attribute :page, GOBL::Types::String.optional
+      attribute? :page, GOBL::Types::String.optional
 
-      attribute :entry, GOBL::Types::String.optional
+      attribute? :entry, GOBL::Types::String.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

@@ -11,16 +11,16 @@ module GOBL
     # Inbox is used to store data about a connection with a service that is responsible for potentially receiving copies of GOBL envelopes or other document formats defined locally.
     class Inbox < GOBL::Struct
       # Unique ID. Useful if inbox is stored in a database.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Type of inbox being defined.
       attribute :key, GOBL::Org::Key
 
       # Role assigned to this inbox that may be relevant for the consumer.
-      attribute :role, GOBL::Org::Key.optional
+      attribute? :role, GOBL::Org::Key.optional
 
       # Human name for the inbox.
-      attribute :name, GOBL::Types::String.optional
+      attribute? :name, GOBL::Types::String.optional
 
       # Actual Code or ID that identifies the Inbox.
       attribute :code, GOBL::Types::String

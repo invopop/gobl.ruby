@@ -11,13 +11,13 @@ module GOBL
     # Note represents a free text of additional information that may be added to a document.
     class Note < GOBL::Struct
       # Key specifying subject of the text
-      attribute :key, NoteKey.optional
+      attribute? :key, NoteKey.optional
 
       # Code used for additional data that may be required to identify the note.
-      attribute :code, GOBL::Types::String.optional
+      attribute? :code, GOBL::Types::String.optional
 
       # Source of this note, especially useful when auto-generated.
-      attribute :src, GOBL::Types::String.optional
+      attribute? :src, GOBL::Types::String.optional
 
       # The contents of the note
       attribute :text, GOBL::Types::String

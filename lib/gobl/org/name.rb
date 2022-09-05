@@ -11,31 +11,31 @@ module GOBL
     # Name represents what a human is called.
     class Name < GOBL::Struct
       # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # What the person would like to be called
-      attribute :alias, GOBL::Types::String.optional
+      attribute? :alias, GOBL::Types::String.optional
 
       # Additional prefix to add to name, like Mrs. or Mr.
-      attribute :prefix, GOBL::Types::String.optional
+      attribute? :prefix, GOBL::Types::String.optional
 
       # Person's given or first name
       attribute :given, GOBL::Types::String
 
       # Middle names or initials
-      attribute :middle, GOBL::Types::String.optional
+      attribute? :middle, GOBL::Types::String.optional
 
       # Second or Family name.
       attribute :surname, GOBL::Types::String
 
       # Additional second of family name.
-      attribute :surname2, GOBL::Types::String.optional
+      attribute? :surname2, GOBL::Types::String.optional
 
       # Titles to include after the name.
-      attribute :suffix, GOBL::Types::String.optional
+      attribute? :suffix, GOBL::Types::String.optional
 
       # Any additional useful data.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

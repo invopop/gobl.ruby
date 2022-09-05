@@ -21,6 +21,10 @@ module GOBL
         elsif data.is_a?(self.class)
           @value = data.value
           @exp = data.exp
+        elsif data.respond_to?(:to_s)
+          parse(data.to_s)
+        else
+          raise 'Unsupported input amount'
         end
       end
 

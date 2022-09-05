@@ -11,25 +11,25 @@ module GOBL
     # Person represents a human, and how to contact them electronically.
     class Person < GOBL::Struct
       # Internal ID used to identify the person inside a document.
-      attribute :id, GOBL::Types::String.optional
+      attribute? :id, GOBL::Types::String.optional
 
       # Unique identity code
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # Complete details on the name of the person
       attribute :name, GOBL::Org::Name
 
       # What they do within an organization
-      attribute :role, GOBL::Types::String.optional
+      attribute? :role, GOBL::Types::String.optional
 
       # Electronic mail addresses that belong to the person.
-      attribute :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
+      attribute? :emails, GOBL::Types::Array.of(GOBL::Org::Email).optional
 
       # Regular phone or mobile numbers
-      attribute :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
+      attribute? :telephones, GOBL::Types::Array.of(GOBL::Org::Telephone).optional
 
       # Data about the data.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

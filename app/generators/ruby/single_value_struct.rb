@@ -41,28 +41,63 @@ module Generators
 
       def common_additional_methods
         <<~EOFADD
+          def self.new(object)
+            case object
+            when Hash, self
+              super
+            when Symbol
+              #{instantiation_from_symbol}
+            else
+              super _value: object.to_s
+            end
+          end
+
           def to_s
             _value.to_s
           end
+
+          def to_sym
+            to_s.parameterize.underscore.to_sym
+          end
         EOFADD
+      end
+
+      def instantiation_from_symbol
+        if enforce_enum?
+          'new find_by_sym(object)'
+        elsif enum?
+          'new find_by_sym(object) || object.to_s'
+        else
+          'new object.to_s'
+        end
       end
 
       def enum_additional_methods
         if enum?
           <<~EOFADD
+            def self.all
+              #{enum_const_name}.keys.map { |key| new(key) }
+            end
+
+            def self.find_by_sym(sym)
+              all.find { |object| object.to_sym == sym }
+            end
+
+            def self.find_by_inquirer(method_name)
+              method_name =~ /(.+)\\?$/ && find_by_sym($1.to_sym)
+            end
+
             def description
               #{enum_const_name}.fetch(_value, _value)
             end
 
-            INQUIRERS = #{enum_const_name}.keys.map { |key| [ \"\#{key.underscore}?\".to_sym, key ] }.to_h
-
             def respond_to_missing?(method_name, include_private = false)
-              INQUIRERS.has_key?(method_name) || super
+              self.class.find_by_inquirer(method_name) || super
             end
 
             def method_missing(method_name, *args, &block)
-              if INQUIRERS.has_key?(method_name)
-                _value == INQUIRERS[method_name]
+              if value = self.class.find_by_inquirer(method_name)
+                self == value
               else
                 super
               end

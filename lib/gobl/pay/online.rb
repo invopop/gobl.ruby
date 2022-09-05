@@ -11,7 +11,7 @@ module GOBL
     # Online provides the details required to make a payment online using a website
     class Online < GOBL::Struct
       # Descriptive name given to the online provider.
-      attribute :name, GOBL::Types::String.optional
+      attribute? :name, GOBL::Types::String.optional
 
       # Full URL to be used for payment.
       attribute :addr, GOBL::Types::String

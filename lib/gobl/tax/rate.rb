@@ -15,7 +15,7 @@ module GOBL
 
       attribute :name, GOBL::I18n::String
 
-      attribute :desc, GOBL::I18n::String.optional
+      attribute? :desc, GOBL::I18n::String.optional
 
       # Values contains a list of Value objects that contain the current and historical percentage values for the rate; order is important, newer values should come before older values.
       attribute :values, GOBL::Types::Array.of(RateValue)

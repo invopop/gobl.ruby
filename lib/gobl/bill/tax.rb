@@ -11,13 +11,13 @@ module GOBL
     # Tax defines a summary of the taxes which may be applied to an invoice.
     class Tax < GOBL::Struct
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
-      attribute :prices_include, GOBL::Org::Code.optional
+      attribute? :prices_include, GOBL::Org::Code.optional
 
       # Special tax schemes that apply to this invoice according to local requirements.
-      attribute :schemes, SchemeKeys.optional
+      attribute? :schemes, SchemeKeys.optional
 
       # Any additional data that may be required for processing, but should never be relied upon by recipients.
-      attribute :meta, GOBL::Org::Meta.optional
+      attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

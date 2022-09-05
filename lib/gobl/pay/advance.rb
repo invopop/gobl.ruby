@@ -11,28 +11,28 @@ module GOBL
     # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
     class Advance < GOBL::Struct
       # Unique identifier for this advance.
-      attribute :uuid, GOBL::UUID::UUID.optional
+      attribute? :uuid, GOBL::UUID::UUID.optional
 
       # When the advance was made.
-      attribute :date, GOBL::Cal::Date.optional
+      attribute? :date, GOBL::Cal::Date.optional
 
       # ID or reference for the advance.
-      attribute :ref, GOBL::Types::String.optional
+      attribute? :ref, GOBL::Types::String.optional
 
       # If this "advance" payment has come from a public grant or subsidy, set this to true.
-      attribute :grant, GOBL::Types::Bool.optional
+      attribute? :grant, GOBL::Types::Bool.optional
 
       # Details about the advance.
       attribute :desc, GOBL::Types::String
 
       # How much as a percentage of the total with tax was paid
-      attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       # How much was paid.
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       # If different from the parent document's base currency.
-      attribute :currency, GOBL::Currency::Code.optional
+      attribute? :currency, GOBL::Currency::Code.optional
 
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]

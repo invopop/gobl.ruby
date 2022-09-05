@@ -20,8 +20,23 @@ module GOBL
         _value
       end
 
+      def self.new(object)
+        case object
+        when Hash, self
+          super
+        when Symbol
+          new object.to_s
+        else
+          super _value: object.to_s
+        end
+      end
+
       def to_s
         _value.to_s
+      end
+
+      def to_sym
+        to_s.parameterize.underscore.to_sym
       end
     end
   end
