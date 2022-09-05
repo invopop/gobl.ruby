@@ -34,6 +34,20 @@ RSpec.describe 'Generated Single Value' do
       expect(value1).to eq(value2)
       expect(value1).not_to eq(value3)
     end
+
+    it 'compares with strings' do
+      value = string_value_class.new('CODE0001')
+
+      expect(value).to eq('CODE0001')
+      expect(value).not_to eq('CODE0002')
+    end
+
+    it 'compares with symbols' do
+      value = string_value_class.new('CODE-0001 a')
+
+      expect(value).to eq(:code_0001_a)
+      expect(value).not_to eq(:code_0001_b)
+    end
   end
 
   describe 'Enum String' do
@@ -68,6 +82,21 @@ RSpec.describe 'Generated Single Value' do
 
       expect(value.description).to eq('Credit note')
       expect(enum_value_class::ENUM['credit-note']).to eq('Credit note')
+    end
+
+    it 'compares with a string' do
+      value = enum_value_class.new('credit-note')
+
+      expect(value).to eq('credit-note')
+      expect(value).not_to eq('corrected')
+    end
+
+    it 'compares with a symbol' do
+      value = enum_value_class.new('credit-note')
+
+      expect(value).to eq(:credit_note)
+      expect(value).not_to eq(:corrected)
+      expect(value).not_to eq(:CREDIT_NOTE)
     end
 
     it 'responds to inquiries about its value' do
@@ -106,6 +135,11 @@ RSpec.describe 'Generated Single Value' do
     it 'instantiates from an unenumerated symbol' do
       value = enum_value_class.new(:value123)
       expect(value.to_gobl).to eq('value123')
+    end
+
+    it 'compares with a symbol' do
+      value = enum_value_class.new('abc-123 a')
+      expect(value).to eq(:abc_123_a)
     end
   end
 

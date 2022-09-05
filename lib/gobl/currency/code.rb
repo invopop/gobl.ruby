@@ -204,6 +204,17 @@ module GOBL
         _value.to_s
       end
 
+      def ==(other)
+        case other
+        when self.class
+          super
+        when Symbol
+          to_sym == other
+        else
+          to_s == other.to_s
+        end
+      end
+
       def to_sym
         to_s.parameterize.underscore.to_sym
       end
