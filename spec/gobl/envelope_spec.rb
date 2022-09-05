@@ -3,25 +3,26 @@
 require_relative '../../lib/gobl'
 
 RSpec.describe GOBL::Envelope do
-  it 'creates a new invoice envelope from a JSON' do
-    gobl = File.read('spec/example/invoice-es-es-freelance.json')
-    envelope = described_class.from_json!(gobl)
+  describe 'extensions' do
+    it 'extracts invoice from a JSON envelope' do
+      gobl = File.read('spec/example/invoice_envelope.json')
+      envelope = described_class.from_json!(gobl)
 
-    # puts "ENVELOPE: #{envelope.doc.inspect}"
-    invoice = envelope.extract
+      invoice = envelope.extract
 
-    expect(invoice.code).to eq('SAMPLE-001')
-    expect(invoice.lines).not_to be_empty
-    l1 = invoice.lines[0]
-    expect(l1.item.name).to eq('Development services')
-  end
+      expect(invoice.code).to eq('SAMPLE-001')
+      expect(invoice.lines).not_to be_empty
+      l1 = invoice.lines[0]
+      expect(l1.item.name).to eq('Development services')
+    end
 
-  it 'creates a new message envelope from a JSON' do
-    gobl = File.read('spec/example/message_envelope.json')
-    envelope = described_class.from_json!(gobl)
+    it 'extracts message from a JSON envelope' do
+      gobl = File.read('spec/example/message_envelope.json')
+      envelope = described_class.from_json!(gobl)
 
-    msg = envelope.extract
+      msg = envelope.extract
 
-    expect(msg.content).to eq('This is a test message with some random *markdown* contents.')
+      expect(msg.content).to eq('This is a test message with some random *markdown* contents.')
+    end
   end
 end
