@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Note represents a free text of additional information that may be added to a document.
     class Note < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/notes#/$defs/Note'
+
       # Key specifying subject of the text
       attribute? :key, NoteKey.optional
 

@@ -10,6 +10,8 @@ module GOBL
   module UUID
     # Universally Unique Identifier. We only recommend using versions 1 and 4 within GOBL.
     class UUID < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/uuid/uuid'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

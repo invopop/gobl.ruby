@@ -10,6 +10,8 @@ module GOBL
   module Org
     # NoteKey identifies the type of note being edited
     class NoteKey < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/notes#/$defs/NoteKey'
+
       ENUM = {
         'goods' => 'Goods Description',
         'payment' => 'Terms of Payment',

@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # RateTotalSurcharge reflects the sum surcharges inside the rate.
     class RateTotalSurcharge < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotalSurcharge'
+
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)

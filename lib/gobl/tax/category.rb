@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Category contains the definition of a general type of tax inside a region.
     class Category < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Category'
+
       attribute :code, GOBL::Org::Code
 
       attribute :name, GOBL::I18n::String

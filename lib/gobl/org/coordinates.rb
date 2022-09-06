@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Coordinates describes an exact geographical location in the world.
     class Coordinates < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/coordinates'
+
       # Decimal latitude coordinate.
       attribute? :lat, GOBL::Types::Double.optional
 

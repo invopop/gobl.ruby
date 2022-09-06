@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Totals contains the summaries of all calculations for the invoice.
     class Totals < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Totals'
+
       # Sum of all line item sums
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 

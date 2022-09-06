@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Telephone describes what is expected for a telephone number.
     class Telephone < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/telephone'
+
       # Unique identity code
       attribute? :uuid, GOBL::UUID::UUID.optional
 

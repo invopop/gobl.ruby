@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Instructions holds a set of instructions that determine how the payment has or should be made.
     class Instructions < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions'
+
       # How payment is expected or has been arranged to be collected
       attribute :key, MethodKey
 

@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
     class RateTotal < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotal'
+
       attribute? :key, GOBL::Org::Key.optional
 
       attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)

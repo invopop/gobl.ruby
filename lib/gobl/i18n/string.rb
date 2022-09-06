@@ -10,6 +10,8 @@ module GOBL
   module I18n
     # Map of 2-Letter language codes to their translations.
     class String < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/i18n/string'
+
       extend Forwardable
       include Enumerable
 

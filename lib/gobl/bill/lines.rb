@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Lines holds an array of Line objects.
     class Lines < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Lines'
+
       extend Forwardable
       include Enumerable
 

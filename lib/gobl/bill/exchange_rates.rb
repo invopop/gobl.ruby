@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # ExchangeRates represents an array of currency exchange rates.
     class ExchangeRates < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/ExchangeRates'
+
       extend Forwardable
       include Enumerable
 

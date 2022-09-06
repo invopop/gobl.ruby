@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
     class Terms < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms'
+
       # Type of terms to be applied.
       attribute :key, TermKey
 

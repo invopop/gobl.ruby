@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Outlays holds an array of Outlay objects used inside a billing document.
     class Outlays < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Outlays'
+
       extend Forwardable
       include Enumerable
 

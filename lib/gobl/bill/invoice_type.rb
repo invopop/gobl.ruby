@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Defines an invoice type according to a subset of the UNTDID 1001 standard list.
     class InvoiceType < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/InvoiceType'
+
       ENUM = {
         'proforma' => 'Proforma invoice, for a clients validation before sending a final invoice.',
         'simplified' => 'Simplified invoice or receipt typically used for small transactions that dont require customer details.t require customer details.',

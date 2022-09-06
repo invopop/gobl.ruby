@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Item is used to describe a single product or service.
     class Item < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/item'
+
       # Unique identify of this item independent of the Supplier IDs
       attribute? :uuid, GOBL::UUID::UUID.optional
 

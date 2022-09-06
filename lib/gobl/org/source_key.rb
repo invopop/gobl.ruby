@@ -10,6 +10,8 @@ module GOBL
   module Org
     # SourceKey identifies the source of a tax identity
     class SourceKey < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity#/$defs/SourceKey'
+
       ENUM = {
         'tax-agency' => 'Sourced directly from a tax agency',
         'passport' => 'A passport document',

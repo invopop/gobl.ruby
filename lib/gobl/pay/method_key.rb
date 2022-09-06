@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Method Key describes how a payment should be made
     class MethodKey < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/MethodKey'
+
       ENUM = {
         'any' => 'Any method available, no preference',
         'card' => 'Credit or debit card',

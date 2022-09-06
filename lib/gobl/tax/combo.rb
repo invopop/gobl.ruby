@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Combo represents the tax combination of a category code and rate key.
     class Combo < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/set#/$defs/Combo'
+
       # Tax category code from those available inside a region.
       attribute :cat, GOBL::Org::Code
 

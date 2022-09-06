@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # LineCharge represents an amount added to the line, and will be applied before taxes.
     class LineCharge < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/LineCharge'
+
       # Percentage if fixed amount not applied
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 

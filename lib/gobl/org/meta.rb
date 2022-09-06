@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Meta defines a structure for data about the data being defined.
     class Meta < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/meta'
+
       extend Forwardable
       include Enumerable
 

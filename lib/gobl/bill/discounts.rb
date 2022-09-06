@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Discounts represents an array of discounts.
     class Discounts < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Discounts'
+
       extend Forwardable
       include Enumerable
 

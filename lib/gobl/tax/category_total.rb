@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # CategoryTotal groups together all rates inside a given category.
     class CategoryTotal < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/CategoryTotal'
+
       attribute :code, GOBL::Org::Code
 
       attribute? :retained, GOBL::Types::Bool.optional

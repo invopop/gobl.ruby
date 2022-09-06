@@ -9,6 +9,8 @@
 module GOBL
   # Contents of the envelope that must contain a $schema.
   class Document < GOBL::Struct
+    SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Document'
+
     extend Forwardable
     include Enumerable
 

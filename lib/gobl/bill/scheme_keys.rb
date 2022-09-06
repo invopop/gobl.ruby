@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # SchemeKeys stores a list of keys that makes it easier to perform matches.
     class SchemeKeys < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/SchemeKeys'
+
       extend Forwardable
       include Enumerable
 

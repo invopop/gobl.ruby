@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.
     class Preceding < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Preceding'
+
       # Preceding document's UUID if available can be useful for tracing.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

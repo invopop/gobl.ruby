@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Person represents a human, and how to contact them electronically.
     class Person < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/person'
+
       # Internal ID used to identify the person inside a document.
       attribute? :id, GOBL::Types::String.optional
 

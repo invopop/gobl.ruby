@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Rate defines a single rate inside a category
     class Rate < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Rate'
+
       # Key identifies this rate within the system
       attribute :key, GOBL::Org::Key
 

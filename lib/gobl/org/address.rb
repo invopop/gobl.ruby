@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
     class Address < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/address'
+
       # Internal ID used to identify the party inside a document.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Party represents a person or business entity.
     class Party < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/party'
+
       # Internal ID used to identify the party inside a document.
       attribute? :id, GOBL::Types::String.optional
 

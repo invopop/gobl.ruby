@@ -10,6 +10,8 @@ module GOBL
   module Org
     # ItemCode contains a value and optional label property that means additional codes can be added to an item.
     class ItemCode < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/item#/$defs/ItemCode'
+
       # Local or human reference for the type of code the value represents.
       attribute? :label, GOBL::Types::String.optional
 

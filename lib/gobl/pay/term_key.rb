@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Payment terms key
     class TermKey < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms#/$defs/TermKey'
+
       ENUM = {
         '' => 'Not yet defined',
         'end-of-month' => 'End of month',

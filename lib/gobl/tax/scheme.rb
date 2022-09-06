@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
     class Scheme < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Scheme'
+
       # Key used to identify this scheme
       attribute :key, GOBL::Org::Key
 

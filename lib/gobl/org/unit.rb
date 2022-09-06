@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Unit describes how the quantity of the product should be interpreted.
     class Unit < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/unit'
+
       ENUM = {
         'g' => 'Metric grams',
         'kg' => 'Metric kilograms',

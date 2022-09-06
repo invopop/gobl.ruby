@@ -10,6 +10,8 @@ module GOBL
   module DSig
     # Digest defines a structure to hold a digest value including the algorithm used to generate it.
     class Digest < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/dsig/digest'
+
       # Algorithm stores the algorithm key that was used to generate the value.
       attribute :alg, GOBL::Types::String
 

@@ -9,6 +9,8 @@
 module GOBL
   # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
   class Envelope < GOBL::Struct
+    SCHEMA_ID = 'https://gobl.org/draft-0/envelope'
+
     # Schema identifies the schema that should be used to understand this document
     attribute :schema, GOBL::Types::String
 

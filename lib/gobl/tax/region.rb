@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Region defines the holding structure for a regions categories and subsequent Rates and Values.
     class Region < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region'
+
       # Name of the region
       attribute :name, GOBL::I18n::String
 
