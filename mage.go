@@ -62,3 +62,8 @@ func Shell() error {
 func YardServer() error {
 	return dockerRunCmd("gobl-ruby-yard", "8808", "yard", "server", "--reload")
 }
+
+// Runs an IRB session with the library required.
+func Console() error {
+	return dockerRunCmd(name, "", "sh", "-c", "irb -r ./lib/gobl")
+}
