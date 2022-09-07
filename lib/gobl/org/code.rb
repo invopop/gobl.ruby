@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Short upper-case identifier.
     class Code < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/code'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

@@ -10,6 +10,8 @@ module GOBL
   module Currency
     # ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.
     class ExchangeRate < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/currency/exchange-rate'
+
       # ISO currency code this rate represents.
       attribute :currency, GOBL::Currency::Code
 

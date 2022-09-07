@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Advances contains an array of advance objects.
     class Advances < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Advances'
+
       extend Forwardable
       include Enumerable
 

@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Schemes defines an array of scheme objects with helper functions.
     class Schemes < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Schemes'
+
       extend Forwardable
       include Enumerable
 

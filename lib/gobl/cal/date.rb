@@ -10,6 +10,8 @@ module GOBL
   module Cal
     # Civil date in simplified ISO format, like 2021-05-26
     class Date < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/cal/date'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

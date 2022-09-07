@@ -10,6 +10,8 @@ module GOBL
   module Currency
     # ISO Currency Code
     class Code < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/currency/code'
+
       ENUM = {
         'AED' => 'UAE Dirham',
         'AFN' => 'Afghani',

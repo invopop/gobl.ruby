@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Charge represents a surchange applied to the complete document independent from the individual lines.
     class Charge < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Charge'
+
       # Unique identifying for the discount entry
       attribute? :uuid, GOBL::UUID::UUID.optional
 

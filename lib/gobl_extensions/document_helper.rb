@@ -2,6 +2,10 @@ module GOBLExtensions
   # Additional methods to help extract the contents of a "Document"
   # contained inside the envelope.
   module DocumentHelper
+    def self.included(klass)
+      klass.extend ClassMethods
+    end
+
     def schema
       @schema ||= GOBL::ID.new(_value['$schema'])
     end
@@ -18,7 +22,19 @@ module GOBLExtensions
       typs << schema.name.underscore.camelize
       klass = typs.join('::').constantize
 
+      # Sanity check
+      raise "#{klass.name}::SCHEMA_ID expected to be '#{schema}'" unless schema == klass::SCHEMA_ID
+
       klass.from_gobl!(_value.except('$schema'))
+    end
+
+    module ClassMethods
+      # Embed the given struct in a new document injecting the proper $schema key.
+      def embed(struct)
+        from_gobl! struct.to_gobl.merge(
+          '$schema' => struct.class::SCHEMA_ID
+        )
+      end
     end
   end
 end

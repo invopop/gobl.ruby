@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # DueDate contains an amount that should be paid by the given date.
     class DueDate < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms#/$defs/DueDate'
+
       # When the payment is due.
       attribute :date, GOBL::Cal::Date
 

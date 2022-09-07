@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Notes holds an array of Note objects
     class Notes < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/notes'
+
       extend Forwardable
       include Enumerable
 

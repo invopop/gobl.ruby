@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Localities stores an array of locality objects used to describe areas sub-divisions inside a region.
     class Localities < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Localities'
+
       extend Forwardable
       include Enumerable
 

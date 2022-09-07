@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Line is a single row in an invoice.
     class Line < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Line'
+
       # Unique identifier for this line
       attribute? :uuid, GOBL::UUID::UUID.optional
 

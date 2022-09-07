@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
     class Invoice < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice'
+
       # Unique document ID. Not required, but always recommended in addition to the Code.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

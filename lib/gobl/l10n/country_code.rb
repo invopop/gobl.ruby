@@ -9,6 +9,8 @@
 module GOBL
   module L10n
     class CountryCode < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/l10n/country-code'
+
       ENUM = {
         'AF' => 'Afghanistan',
         'AX' => 'Åland Islands',

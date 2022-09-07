@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Set defines a list of tax categories and their rates to be used alongside taxable items.
     class Set < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/set'
+
       extend Forwardable
       include Enumerable
 

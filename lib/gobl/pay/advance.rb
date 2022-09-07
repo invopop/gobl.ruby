@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
     class Advance < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/advance'
+
       # Unique identifier for this advance.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

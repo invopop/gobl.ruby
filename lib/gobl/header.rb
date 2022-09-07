@@ -9,6 +9,8 @@
 module GOBL
   # Header defines the meta data of the body.
   class Header < GOBL::Struct
+    SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Header'
+
     # Unique UUIDv1 identifier for the envelope.
     attribute :uuid, GOBL::UUID::UUID
 

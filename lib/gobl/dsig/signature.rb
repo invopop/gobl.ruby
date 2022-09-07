@@ -10,6 +10,8 @@ module GOBL
   module DSig
     # JSON Web Signature in compact form.
     class Signature < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/dsig/signature'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

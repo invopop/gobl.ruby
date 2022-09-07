@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Email describes the electronic mailing details.
     class Email < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/email'
+
       # Unique identity code
       attribute? :uuid, GOBL::UUID::UUID.optional
 

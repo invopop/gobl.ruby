@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
     class CreditTransfer < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/CreditTransfer'
+
       # International Bank Account Number
       attribute? :iban, GOBL::Types::String.optional
 

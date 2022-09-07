@@ -10,6 +10,8 @@ module GOBL
   module Pay
     # Online provides the details required to make a payment online using a website
     class Online < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/Online'
+
       # Descriptive name given to the online provider.
       attribute? :name, GOBL::Types::String.optional
 

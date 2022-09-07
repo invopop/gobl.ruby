@@ -10,6 +10,8 @@ module GOBL
   module L10n
     # Code is used for short identifies like country or state codes.
     class Code < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/l10n/code'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

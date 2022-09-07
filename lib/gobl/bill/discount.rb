@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Discount represents an allowance applied to the complete document independent from the individual lines.
     class Discount < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Discount'
+
       # Unique identifying for the discount entry
       attribute? :uuid, GOBL::UUID::UUID.optional
 

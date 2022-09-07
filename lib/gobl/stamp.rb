@@ -9,6 +9,8 @@
 module GOBL
   # Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
   class Stamp < GOBL::Struct
+    SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Stamp'
+
     # Identity of the agency used to create the stamp usually defined by each region.
     attribute :prv, GOBL::Org::Key
 

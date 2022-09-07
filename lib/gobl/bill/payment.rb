@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Payment contains details as to how the invoice should be paid.
     class Payment < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Payment'
+
       # The party responsible for paying for the invoice, if not the customer.
       attribute? :payer, GOBL::Org::Party.optional
 

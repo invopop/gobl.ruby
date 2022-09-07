@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Total contains a set of Category Totals which in turn contain all the accumulated taxes contained in the document.
     class Total < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/total'
+
       # Grouping of all the taxes by their category
       attribute? :categories, GOBL::Types::Array.of(CategoryTotal).optional
 

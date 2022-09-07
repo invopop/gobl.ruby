@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Tax defines a summary of the taxes which may be applied to an invoice.
     class Tax < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Tax'
+
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
       attribute? :prices_include, GOBL::Org::Code.optional
 

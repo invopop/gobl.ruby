@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Text identifier to be used instead of a code for a more verbose but readable identifier.
     class Key < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/key'
+
       attribute :_value, GOBL::Types::String
       private :_value
 

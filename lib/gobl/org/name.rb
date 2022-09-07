@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Name represents what a human is called.
     class Name < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/name'
+
       # Unique identity code
       attribute? :uuid, GOBL::UUID::UUID.optional
 

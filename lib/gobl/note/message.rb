@@ -10,6 +10,8 @@ module GOBL
   module Note
     # Message represents the minimum possible contents for a GoBL document type.
     class Message < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/note/message'
+
       # Summary of the message content
       attribute? :title, GOBL::Types::String.optional
 

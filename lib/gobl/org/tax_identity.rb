@@ -10,6 +10,8 @@ module GOBL
   module Org
     # TaxIdentity stores the details required to identify an entity for tax purposes.
     class TaxIdentity < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity'
+
       # Unique universal identity code.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Delivery covers the details of the destination for the products described in the invoice body.
     class Delivery < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Delivery'
+
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
       attribute? :receiver, GOBL::Org::Party.optional
 

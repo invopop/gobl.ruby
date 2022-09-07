@@ -10,6 +10,8 @@ module GOBL
   module Org
     # Registration is used in countries that require additional information to be associated with a company usually related to a specific registration office.
     class Registration < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/registration'
+
       attribute? :uuid, GOBL::UUID::UUID.optional
 
       attribute? :office, GOBL::Types::String.optional

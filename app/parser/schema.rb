@@ -78,5 +78,12 @@ module Parser
     def optional?(property_name)
       !required?(property_name) || properties[property_name].calculated?
     end
+
+    def definition_schema_id(name)
+      pointer = ID.new("#/$defs/#{name}")
+      pointer = nil if pointer == ref
+
+      ID.new([id, pointer].join)
+    end
   end
 end

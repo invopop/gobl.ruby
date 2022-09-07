@@ -10,6 +10,8 @@ module GOBL
   module Tax
     # Locality represents an area inside a region, like a province or a state, which shares the basic definitions of the region, but may vary in some validation rules.
     class Locality < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Locality'
+
       # Code
       attribute :code, GOBL::L10n::Code
 

@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Charges represents an array of charge objects
     class Charges < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Charges'
+
       extend Forwardable
       include Enumerable
 

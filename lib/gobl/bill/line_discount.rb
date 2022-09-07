@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # LineDiscount represents an amount deducted from the line, and will be applied before taxes.
     class LineDiscount < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/LineDiscount'
+
       # Percentage if fixed amount not applied
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 

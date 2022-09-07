@@ -10,6 +10,8 @@ module GOBL
   module Bill
     # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
     class Outlay < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Outlay'
+
       # Unique identity for this outlay.
       attribute? :uuid, GOBL::UUID::UUID.optional
 

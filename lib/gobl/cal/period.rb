@@ -10,6 +10,8 @@ module GOBL
   module Cal
     # Period represents two dates with a start and finish.
     class Period < GOBL::Struct
+      SCHEMA_ID = 'https://gobl.org/draft-0/cal/period'
+
       attribute :start, GOBL::Cal::Date
 
       attribute :end, GOBL::Cal::Date
