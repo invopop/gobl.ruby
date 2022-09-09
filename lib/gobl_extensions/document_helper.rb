@@ -2,10 +2,6 @@ module GOBLExtensions
   # Additional methods to help extract the contents of a "Document"
   # contained inside the envelope.
   module DocumentHelper
-    def self.included(klass)
-      klass.extend ClassMethods
-    end
-
     def schema
       @schema ||= GOBL::ID.new(_value['$schema'])
     end

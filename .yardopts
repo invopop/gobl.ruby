@@ -1,1 +1,3 @@
 --markup markdown
+lib/*/**/*.rb # This forces generated classes to be parsed before `lib/extensions.rb`.
+lib/*.rb      #   Otherwise YARD returns a parse error
