@@ -21,12 +21,18 @@ loader.inflector.inflect(
 )
 loader.setup
 
-# Main GOBL namespace which has the differents structures to generate and
-# load its components. There are sub-namespaces specically defined for GOBL
-# objects, based on the GOBL JSON schema.
+# Main GOBL namespace. It provides direct access to the library's configuration (see
+# {Config}) and to the available operations (see {Operations}).
+#
+# The library also provides Ruby classes for each structure defined in the GOBL JSON
+# Schema. They are available in namespaces defined under this one and named after the
+# schema ID of each structure.
 module GOBL
   extend GOBL::Operations
 
+  # Returns the current configuration of the library
+  #
+  # @return [GOBL::Config]
   def self.config
     @config ||= Config.new
   end
