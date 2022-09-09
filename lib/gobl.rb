@@ -10,8 +10,8 @@ require 'net/http'
 require 'base64'
 
 # Main GOBL namespace which has the differents structures to generate and
-# load its components. There are sub-namespaces specically defined for GoBL
-# objects, based on the GoBL JSON schema.
+# load its components. There are sub-namespaces specically defined for GOBL
+# objects, based on the GOBL JSON schema.
 module GOBL
   def self.inflections
     {
