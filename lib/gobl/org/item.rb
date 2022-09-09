@@ -12,34 +12,54 @@ module GOBL
     class Item < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/item'
 
+      # @!attribute [r] uuid
       # Unique identify of this item independent of the Supplier IDs
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] ref
       # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
+      # @return [String]
       attribute? :ref, GOBL::Types::String.optional
 
+      # @!attribute [r] name
       # Brief name of the item
+      # @return [String]
       attribute :name, GOBL::Types::String
 
+      # @!attribute [r] desc
       # Detailed description
+      # @return [String]
       attribute? :desc, GOBL::Types::String.optional
 
+      # @!attribute [r] currency
       # Currency used for the item's price.
+      # @return [String]
       attribute? :currency, GOBL::Types::String.optional
 
+      # @!attribute [r] price
       # Base price of a single unit to be sold.
+      # @return [GOBL::Num::Amount]
       attribute :price, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] unit
       # Unit of measure.
+      # @return [GOBL::Org::Unit]
       attribute? :unit, GOBL::Org::Unit.optional
 
+      # @!attribute [r] codes
       # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
+      # @return [Array<ItemCode>]
       attribute? :codes, GOBL::Types::Array.of(ItemCode).optional
 
+      # @!attribute [r] origin
       # Country code of where this item was from originally.
+      # @return [GOBL::L10n::CountryCode]
       attribute? :origin, GOBL::L10n::CountryCode.optional
 
+      # @!attribute [r] meta
       # Additional meta information that may be useful
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

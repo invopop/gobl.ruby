@@ -21,8 +21,10 @@ module Generators
       def attribute(name, property)
         out = ''
         desc = property.description&.split&.join(' ')
-        out << "# #{desc}\n" if desc.present?
         ts = property_as_type(name, property, schema.optional?(name))
+        out << "# @!attribute [r] #{safe_property_name(name)}\n"
+        out << "# #{desc}\n" if desc.present?
+        out << "# @return [#{ruby_type_string(property)}]\n"
         out << "attribute#{'?' if schema.optional?(name)} :#{safe_property_name(name)}, #{ts}\n"
         out
       end

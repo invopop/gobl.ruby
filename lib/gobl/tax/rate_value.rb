@@ -12,16 +12,24 @@ module GOBL
     class RateValue < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/RateValue'
 
+      # @!attribute [r] since
       # Date from which this value should be applied.
+      # @return [GOBL::Cal::Date]
       attribute? :since, GOBL::Cal::Date.optional
 
+      # @!attribute [r] percent
       # Percent rate that should be applied
+      # @return [GOBL::Num::Percentage]
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
+      # @!attribute [r] surcharge
       # An additional surcharge to apply.
+      # @return [GOBL::Num::Percentage]
       attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] disabled
       # When true, this value should no longer be used.
+      # @return [Boolean]
       attribute? :disabled, GOBL::Types::Bool.optional
 
       def self.from_gobl!(data)

@@ -12,16 +12,24 @@ module GOBL
     class Coordinates < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/coordinates'
 
+      # @!attribute [r] lat
       # Decimal latitude coordinate.
+      # @return [Float]
       attribute? :lat, GOBL::Types::Double.optional
 
+      # @!attribute [r] lon
       # Decimal longitude coordinate.
+      # @return [Float]
       attribute? :lon, GOBL::Types::Double.optional
 
+      # @!attribute [r] w3w
       # Text coordinates compose of three words.
+      # @return [String]
       attribute? :w3w, GOBL::Types::String.optional
 
+      # @!attribute [r] geohash
       # Single string coordinate based on geohash standard.
+      # @return [String]
       attribute? :geohash, GOBL::Types::String.optional
 
       def self.from_gobl!(data)

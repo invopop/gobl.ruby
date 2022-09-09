@@ -12,16 +12,24 @@ module GOBL
     class Delivery < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Delivery'
 
+      # @!attribute [r] receiver
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
+      # @return [GOBL::Org::Party]
       attribute? :receiver, GOBL::Org::Party.optional
 
+      # @!attribute [r] date
       # When the goods should be expected
+      # @return [GOBL::Cal::Date]
       attribute? :date, GOBL::Cal::Date.optional
 
+      # @!attribute [r] start_date
       # Start of a n invoicing or delivery period
+      # @return [GOBL::Cal::Date]
       attribute? :start_date, GOBL::Cal::Date.optional
 
+      # @!attribute [r] end_date
       # End of a n invoicing or delivery period
+      # @return [GOBL::Cal::Date]
       attribute? :end_date, GOBL::Cal::Date.optional
 
       def self.from_gobl!(data)

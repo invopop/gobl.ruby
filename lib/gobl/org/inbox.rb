@@ -12,19 +12,29 @@ module GOBL
     class Inbox < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/inbox'
 
+      # @!attribute [r] uuid
       # Unique ID. Useful if inbox is stored in a database.
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] key
       # Type of inbox being defined.
+      # @return [GOBL::Org::Key]
       attribute :key, GOBL::Org::Key
 
+      # @!attribute [r] role
       # Role assigned to this inbox that may be relevant for the consumer.
+      # @return [GOBL::Org::Key]
       attribute? :role, GOBL::Org::Key.optional
 
+      # @!attribute [r] name
       # Human name for the inbox.
+      # @return [String]
       attribute? :name, GOBL::Types::String.optional
 
+      # @!attribute [r] code
       # Actual Code or ID that identifies the Inbox.
+      # @return [String]
       attribute :code, GOBL::Types::String
 
       def self.from_gobl!(data)

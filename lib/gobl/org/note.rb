@@ -12,16 +12,24 @@ module GOBL
     class Note < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/notes#/$defs/Note'
 
+      # @!attribute [r] key
       # Key specifying subject of the text
+      # @return [NoteKey]
       attribute? :key, NoteKey.optional
 
+      # @!attribute [r] code
       # Code used for additional data that may be required to identify the note.
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] src
       # Source of this note, especially useful when auto-generated.
+      # @return [String]
       attribute? :src, GOBL::Types::String.optional
 
+      # @!attribute [r] text
       # The contents of the note
+      # @return [String]
       attribute :text, GOBL::Types::String
 
       def self.from_gobl!(data)

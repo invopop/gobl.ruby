@@ -12,19 +12,29 @@ module GOBL
     class Scheme < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Scheme'
 
+      # @!attribute [r] key
       # Key used to identify this scheme
+      # @return [GOBL::Org::Key]
       attribute :key, GOBL::Org::Key
 
+      # @!attribute [r] name
       # Name of this scheme.
+      # @return [GOBL::I18n::String]
       attribute :name, GOBL::I18n::String
 
+      # @!attribute [r] description
       # Human details describing what this scheme is used for.
+      # @return [GOBL::I18n::String]
       attribute? :description, GOBL::I18n::String.optional
 
+      # @!attribute [r] categories
       # List of tax category codes that can be used when this scheme is applied.
+      # @return [Array<GOBL::Org::Code>]
       attribute? :categories, GOBL::Types::Array.of(GOBL::Org::Code).optional
 
+      # @!attribute [r] note
       # Notes defines messages that should be added to a document when this scheme is used.
+      # @return [Note]
       attribute? :note, Note.optional
 
       def self.from_gobl!(data)

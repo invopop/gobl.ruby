@@ -12,16 +12,24 @@ module GOBL
     class Combo < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/set#/$defs/Combo'
 
+      # @!attribute [r] cat
       # Tax category code from those available inside a region.
+      # @return [GOBL::Org::Code]
       attribute :cat, GOBL::Org::Code
 
+      # @!attribute [r] rate
       # Rate within a category to apply.
+      # @return [GOBL::Org::Key]
       attribute? :rate, GOBL::Org::Key.optional
 
+      # @!attribute [r] percent
       # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
+      # @return [GOBL::Num::Percentage]
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] surcharge
       # Some countries require an additional surcharge (calculated if rate present).
+      # @return [GOBL::Num::Percentage]
       attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
       def self.from_gobl!(data)

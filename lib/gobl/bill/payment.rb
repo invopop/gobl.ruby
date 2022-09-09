@@ -12,16 +12,24 @@ module GOBL
     class Payment < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Payment'
 
+      # @!attribute [r] payer
       # The party responsible for paying for the invoice, if not the customer.
+      # @return [GOBL::Org::Party]
       attribute? :payer, GOBL::Org::Party.optional
 
+      # @!attribute [r] terms
       # Payment terms or conditions.
+      # @return [GOBL::Pay::Terms]
       attribute? :terms, GOBL::Pay::Terms.optional
 
+      # @!attribute [r] advances
       # Any amounts that have been paid in advance and should be deducted from the amount due.
+      # @return [Advances]
       attribute? :advances, Advances.optional
 
+      # @!attribute [r] instructions
       # Details on how payment should be made.
+      # @return [GOBL::Pay::Instructions]
       attribute? :instructions, GOBL::Pay::Instructions.optional
 
       def self.from_gobl!(data)

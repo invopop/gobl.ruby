@@ -12,31 +12,49 @@ module GOBL
     class Instructions < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions'
 
+      # @!attribute [r] key
       # How payment is expected or has been arranged to be collected
+      # @return [MethodKey]
       attribute :key, MethodKey
 
+      # @!attribute [r] detail
       # Optional text description of the payment method
+      # @return [String]
       attribute? :detail, GOBL::Types::String.optional
 
+      # @!attribute [r] ref
       # Remittance information, a text value used to link the payment with the invoice.
+      # @return [String]
       attribute? :ref, GOBL::Types::String.optional
 
+      # @!attribute [r] credit_transfer
       # Instructions for sending payment via a bank transfer.
+      # @return [Array<CreditTransfer>]
       attribute? :credit_transfer, GOBL::Types::Array.of(CreditTransfer).optional
 
+      # @!attribute [r] card
       # Details of the payment that will be made via a credit or debit card.
+      # @return [Card]
       attribute? :card, Card.optional
 
+      # @!attribute [r] direct_debit
       # A group of terms that can be used by the customer or payer to consolidate direct debit payments.
+      # @return [DirectDebit]
       attribute? :direct_debit, DirectDebit.optional
 
+      # @!attribute [r] online
       # Array of online payment options
+      # @return [Array<Online>]
       attribute? :online, GOBL::Types::Array.of(Online).optional
 
+      # @!attribute [r] notes
       # Any additional instructions that may be required to make the payment.
+      # @return [String]
       attribute? :notes, GOBL::Types::String.optional
 
+      # @!attribute [r] meta
       # Non-structured additional data that may be useful.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

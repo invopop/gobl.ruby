@@ -12,10 +12,14 @@ module GOBL
     class ExchangeRate < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/currency/exchange-rate'
 
+      # @!attribute [r] currency
       # ISO currency code this rate represents.
+      # @return [GOBL::Currency::Code]
       attribute :currency, GOBL::Currency::Code
 
+      # @!attribute [r] amount
       # How much is 1.00 of this currency worth in the documents currency.
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)

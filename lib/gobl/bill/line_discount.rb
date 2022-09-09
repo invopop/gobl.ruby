@@ -12,16 +12,24 @@ module GOBL
     class LineDiscount < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/LineDiscount'
 
+      # @!attribute [r] percent
       # Percentage if fixed amount not applied
+      # @return [GOBL::Num::Percentage]
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] amount
       # Fixed discount amount to apply (calculated if percent present).
+      # @return [GOBL::Num::Amount]
       attribute? :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] code
       # Reason code.
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] reason
       # Text description as to why the discount was applied
+      # @return [String]
       attribute? :reason, GOBL::Types::String.optional
 
       def self.from_gobl!(data)

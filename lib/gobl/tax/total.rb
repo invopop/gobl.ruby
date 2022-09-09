@@ -12,10 +12,14 @@ module GOBL
     class Total < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total'
 
+      # @!attribute [r] categories
       # Grouping of all the taxes by their category
+      # @return [Array<CategoryTotal>]
       attribute? :categories, GOBL::Types::Array.of(CategoryTotal).optional
 
+      # @!attribute [r] sum
       # Total value of all the taxes applied.
+      # @return [GOBL::Num::Amount]
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)

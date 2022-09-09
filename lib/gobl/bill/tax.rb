@@ -12,13 +12,19 @@ module GOBL
     class Tax < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Tax'
 
+      # @!attribute [r] prices_include
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
+      # @return [GOBL::Org::Code]
       attribute? :prices_include, GOBL::Org::Code.optional
 
+      # @!attribute [r] schemes
       # Special tax schemes that apply to this invoice according to local requirements.
+      # @return [SchemeKeys]
       attribute? :schemes, SchemeKeys.optional
 
+      # @!attribute [r] meta
       # Any additional data that may be required for processing, but should never be relied upon by recipients.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

@@ -12,40 +12,64 @@ module GOBL
     class Totals < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Totals'
 
+      # @!attribute [r] sum
       # Sum of all line item sums
+      # @return [GOBL::Num::Amount]
       attribute :sum, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] discount
       # Sum of all document level discounts
+      # @return [GOBL::Num::Amount]
       attribute? :discount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] charge
       # Sum of all document level charges
+      # @return [GOBL::Num::Amount]
       attribute? :charge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] tax_included
       # If prices include tax, this is the total tax included in the price.
+      # @return [GOBL::Num::Amount]
       attribute? :tax_included, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] total
       # Sum of all line sums minus the discounts, plus the charges, without tax.
+      # @return [GOBL::Num::Amount]
       attribute :total, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] taxes
       # Summary of all the taxes included in the invoice.
+      # @return [GOBL::Tax::Total]
       attribute? :taxes, GOBL::Tax::Total.optional
 
+      # @!attribute [r] tax
       # Total amount of tax to apply to the invoice.
+      # @return [GOBL::Num::Amount]
       attribute? :tax, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] total_with_tax
       # Grand total after all taxes have been applied.
+      # @return [GOBL::Num::Amount]
       attribute :total_with_tax, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] outlays
       # Total paid in outlays that need to be reimbursed
+      # @return [GOBL::Num::Amount]
       attribute? :outlays, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] payable
       # Total amount to be paid after applying taxes and outlays.
+      # @return [GOBL::Num::Amount]
       attribute :payable, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] advance
       # Total amount already paid in advance.
+      # @return [GOBL::Num::Amount]
       attribute? :advance, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] due
       # How much actually needs to be paid now.
+      # @return [GOBL::Num::Amount]
       attribute? :due, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       def self.from_gobl!(data)

@@ -12,8 +12,12 @@ module GOBL
     class RateTotalSurcharge < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotalSurcharge'
 
+      # @!attribute [r] percent
+      # @return [GOBL::Num::Percentage]
       attribute :percent, GOBL::Types.Constructor(GOBL::Num::Percentage)
 
+      # @!attribute [r] amount
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)

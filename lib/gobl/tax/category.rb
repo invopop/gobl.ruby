@@ -12,16 +12,26 @@ module GOBL
     class Category < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Category'
 
+      # @!attribute [r] code
+      # @return [GOBL::Org::Code]
       attribute :code, GOBL::Org::Code
 
+      # @!attribute [r] name
+      # @return [GOBL::I18n::String]
       attribute :name, GOBL::I18n::String
 
+      # @!attribute [r] desc
+      # @return [GOBL::I18n::String]
       attribute? :desc, GOBL::I18n::String.optional
 
+      # @!attribute [r] retained
       # Retained when true implies that the tax amount will be retained by the buyer on behalf of the supplier, and thus subtracted from the invoice taxable base total. Typically used for taxes related to income.
+      # @return [Boolean]
       attribute? :retained, GOBL::Types::Bool.optional
 
+      # @!attribute [r] rates
       # Specific tax definitions inside this category.
+      # @return [Array<Rate>]
       attribute :rates, GOBL::Types::Array.of(Rate)
 
       def self.from_gobl!(data)

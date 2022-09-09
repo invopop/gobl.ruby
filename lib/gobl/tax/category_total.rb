@@ -12,16 +12,28 @@ module GOBL
     class CategoryTotal < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/CategoryTotal'
 
+      # @!attribute [r] code
+      # @return [GOBL::Org::Code]
       attribute :code, GOBL::Org::Code
 
+      # @!attribute [r] retained
+      # @return [Boolean]
       attribute? :retained, GOBL::Types::Bool.optional
 
+      # @!attribute [r] rates
+      # @return [Array<RateTotal>]
       attribute :rates, GOBL::Types::Array.of(RateTotal)
 
+      # @!attribute [r] base
+      # @return [GOBL::Num::Amount]
       attribute :base, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] amount
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] surcharge
+      # @return [GOBL::Num::Amount]
       attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
       def self.from_gobl!(data)

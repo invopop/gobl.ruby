@@ -12,10 +12,14 @@ module GOBL
     class Online < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/Online'
 
+      # @!attribute [r] name
       # Descriptive name given to the online provider.
+      # @return [String]
       attribute? :name, GOBL::Types::String.optional
 
+      # @!attribute [r] addr
       # Full URL to be used for payment.
+      # @return [String]
       attribute :addr, GOBL::Types::String
 
       def self.from_gobl!(data)

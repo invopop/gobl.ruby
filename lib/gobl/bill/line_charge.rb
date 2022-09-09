@@ -12,16 +12,24 @@ module GOBL
     class LineCharge < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/LineCharge'
 
+      # @!attribute [r] percent
       # Percentage if fixed amount not applied
+      # @return [GOBL::Num::Percentage]
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] amount
       # Fixed or resulting charge amount to apply (calculated if percent present).
+      # @return [GOBL::Num::Amount]
       attribute? :amount, GOBL::Types.Constructor(GOBL::Num::Amount).optional
 
+      # @!attribute [r] code
       # Reference code.
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] reason
       # Text description as to why the charge was applied
+      # @return [String]
       attribute? :reason, GOBL::Types::String.optional
 
       def self.from_gobl!(data)

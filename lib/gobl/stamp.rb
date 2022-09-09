@@ -11,10 +11,14 @@ module GOBL
   class Stamp < GOBL::Struct
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Stamp'
 
+    # @!attribute [r] prv
     # Identity of the agency used to create the stamp usually defined by each region.
+    # @return [GOBL::Org::Key]
     attribute :prv, GOBL::Org::Key
 
+    # @!attribute [r] val
     # The serialized stamp value generated for or by the external agency
+    # @return [String]
     attribute :val, GOBL::Types::String
 
     def self.from_gobl!(data)

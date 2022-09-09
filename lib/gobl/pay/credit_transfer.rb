@@ -12,19 +12,29 @@ module GOBL
     class CreditTransfer < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/CreditTransfer'
 
+      # @!attribute [r] iban
       # International Bank Account Number
+      # @return [String]
       attribute? :iban, GOBL::Types::String.optional
 
+      # @!attribute [r] bic
       # Bank Identifier Code used for international transfers.
+      # @return [String]
       attribute? :bic, GOBL::Types::String.optional
 
+      # @!attribute [r] number
       # Account number, if IBAN not available.
+      # @return [String]
       attribute? :number, GOBL::Types::String.optional
 
+      # @!attribute [r] name
       # Name of the bank.
+      # @return [String]
       attribute? :name, GOBL::Types::String.optional
 
+      # @!attribute [r] branch
       # Bank office branch address, not normally required.
+      # @return [GOBL::Org::Address]
       attribute? :branch, GOBL::Org::Address.optional
 
       def self.from_gobl!(data)

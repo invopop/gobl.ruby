@@ -12,28 +12,44 @@ module GOBL
     class Outlay < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Outlay'
 
+      # @!attribute [r] uuid
       # Unique identity for this outlay.
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] i
       # Outlay number index inside the invoice for ordering (calculated).
+      # @return [Integer]
       attribute? :i, GOBL::Types::Int.optional
 
+      # @!attribute [r] date
       # When was the outlay made.
+      # @return [GOBL::Cal::Date]
       attribute? :date, GOBL::Cal::Date.optional
 
+      # @!attribute [r] code
       # Invoice number or other reference detail used to identify the outlay.
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] series
       # Series of the outlay invoice.
+      # @return [String]
       attribute? :series, GOBL::Types::String.optional
 
+      # @!attribute [r] desc
       # Details on what the outlay was.
+      # @return [String]
       attribute :desc, GOBL::Types::String
 
+      # @!attribute [r] supplier
       # Who was the supplier of the outlay
+      # @return [GOBL::Org::Party]
       attribute? :supplier, GOBL::Org::Party.optional
 
+      # @!attribute [r] amount
       # Amount paid by the supplier.
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
       def self.from_gobl!(data)

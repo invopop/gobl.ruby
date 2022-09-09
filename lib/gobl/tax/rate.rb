@@ -12,14 +12,22 @@ module GOBL
     class Rate < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Rate'
 
+      # @!attribute [r] key
       # Key identifies this rate within the system
+      # @return [GOBL::Org::Key]
       attribute :key, GOBL::Org::Key
 
+      # @!attribute [r] name
+      # @return [GOBL::I18n::String]
       attribute :name, GOBL::I18n::String
 
+      # @!attribute [r] desc
+      # @return [GOBL::I18n::String]
       attribute? :desc, GOBL::I18n::String.optional
 
+      # @!attribute [r] values
       # Values contains a list of Value objects that contain the current and historical percentage values for the rate; order is important, newer values should come before older values.
+      # @return [Array<RateValue>]
       attribute :values, GOBL::Types::Array.of(RateValue)
 
       def self.from_gobl!(data)

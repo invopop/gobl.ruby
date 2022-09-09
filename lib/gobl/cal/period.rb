@@ -12,8 +12,12 @@ module GOBL
     class Period < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/cal/period'
 
+      # @!attribute [r] start
+      # @return [GOBL::Cal::Date]
       attribute :start, GOBL::Cal::Date
 
+      # @!attribute [r] end
+      # @return [GOBL::Cal::Date]
       attribute :end, GOBL::Cal::Date
 
       def self.from_gobl!(data)

@@ -11,16 +11,24 @@ module GOBL
   class Envelope < GOBL::Struct
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope'
 
+    # @!attribute [r] schema
     # Schema identifies the schema that should be used to understand this document
+    # @return [String]
     attribute :schema, GOBL::Types::String
 
+    # @!attribute [r] head
     # Details on what the contents are
+    # @return [Header]
     attribute :head, Header
 
+    # @!attribute [r] doc
     # The data inside the envelope
+    # @return [Document]
     attribute :doc, Document
 
+    # @!attribute [r] sigs
     # JSON Web Signatures of the header
+    # @return [Array<GOBL::DSig::Signature>]
     attribute? :sigs, GOBL::Types::Array.of(GOBL::DSig::Signature).optional
 
     def self.from_gobl!(data)

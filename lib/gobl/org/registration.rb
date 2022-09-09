@@ -12,20 +12,36 @@ module GOBL
     class Registration < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/registration'
 
+      # @!attribute [r] uuid
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] office
+      # @return [String]
       attribute? :office, GOBL::Types::String.optional
 
+      # @!attribute [r] book
+      # @return [String]
       attribute? :book, GOBL::Types::String.optional
 
+      # @!attribute [r] volume
+      # @return [String]
       attribute? :volume, GOBL::Types::String.optional
 
+      # @!attribute [r] sheet
+      # @return [String]
       attribute? :sheet, GOBL::Types::String.optional
 
+      # @!attribute [r] section
+      # @return [String]
       attribute? :section, GOBL::Types::String.optional
 
+      # @!attribute [r] page
+      # @return [String]
       attribute? :page, GOBL::Types::String.optional
 
+      # @!attribute [r] entry
+      # @return [String]
       attribute? :entry, GOBL::Types::String.optional
 
       def self.from_gobl!(data)

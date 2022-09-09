@@ -12,16 +12,24 @@ module GOBL
     class Email < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/email'
 
+      # @!attribute [r] uuid
       # Unique identity code
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] label
       # Identifier for the email.
+      # @return [String]
       attribute? :label, GOBL::Types::String.optional
 
+      # @!attribute [r] addr
       # Electronic mailing address.
+      # @return [String]
       attribute :addr, GOBL::Types::String
 
+      # @!attribute [r] meta
       # Additional fields.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

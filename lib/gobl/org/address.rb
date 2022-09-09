@@ -12,49 +12,79 @@ module GOBL
     class Address < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/address'
 
+      # @!attribute [r] uuid
       # Internal ID used to identify the party inside a document.
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] label
       # Useful identifier, such as home, work, etc.
+      # @return [String]
       attribute? :label, GOBL::Types::String.optional
 
+      # @!attribute [r] po_box
       # Box number or code for the post office box located at the address.
+      # @return [String]
       attribute? :po_box, GOBL::Types::String.optional
 
+      # @!attribute [r] num
       # House or building number in the street.
+      # @return [String]
       attribute? :num, GOBL::Types::String.optional
 
+      # @!attribute [r] floor
       # Floor number within the building.
+      # @return [String]
       attribute? :floor, GOBL::Types::String.optional
 
+      # @!attribute [r] block
       # Block number within the building.
+      # @return [String]
       attribute? :block, GOBL::Types::String.optional
 
+      # @!attribute [r] door
       # Door number within the building.
+      # @return [String]
       attribute? :door, GOBL::Types::String.optional
 
+      # @!attribute [r] street
       # First line of street.
+      # @return [String]
       attribute? :street, GOBL::Types::String.optional
 
+      # @!attribute [r] street_extra
       # Additional street address details.
+      # @return [String]
       attribute? :street_extra, GOBL::Types::String.optional
 
+      # @!attribute [r] locality
       # The village, town, district, or city.
+      # @return [String]
       attribute :locality, GOBL::Types::String
 
+      # @!attribute [r] region
       # Province, County, or State.
+      # @return [String]
       attribute :region, GOBL::Types::String
 
+      # @!attribute [r] code
       # Post or ZIP code.
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] country
       # ISO country code.
+      # @return [GOBL::L10n::CountryCode]
       attribute? :country, GOBL::L10n::CountryCode.optional
 
+      # @!attribute [r] coords
       # When the postal address is not sufficient, coordinates help locate the address more precisely.
+      # @return [GOBL::Org::Coordinates]
       attribute? :coords, GOBL::Org::Coordinates.optional
 
+      # @!attribute [r] meta
       # Any additional semi-structure details about the address.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

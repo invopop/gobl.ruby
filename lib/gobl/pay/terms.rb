@@ -12,16 +12,24 @@ module GOBL
     class Terms < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms'
 
+      # @!attribute [r] key
       # Type of terms to be applied.
+      # @return [TermKey]
       attribute :key, TermKey
 
+      # @!attribute [r] detail
       # Text detail of the chosen payment terms.
+      # @return [String]
       attribute? :detail, GOBL::Types::String.optional
 
+      # @!attribute [r] due_dates
       # Set of dates for agreed payments.
+      # @return [Array<DueDate>]
       attribute? :due_dates, GOBL::Types::Array.of(DueDate).optional
 
+      # @!attribute [r] notes
       # Description of the conditions for payment.
+      # @return [String]
       attribute? :notes, GOBL::Types::String.optional
 
       def self.from_gobl!(data)

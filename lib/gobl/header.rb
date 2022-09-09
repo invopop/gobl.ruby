@@ -11,25 +11,39 @@ module GOBL
   class Header < GOBL::Struct
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Header'
 
+    # @!attribute [r] uuid
     # Unique UUIDv1 identifier for the envelope.
+    # @return [GOBL::UUID::UUID]
     attribute :uuid, GOBL::UUID::UUID
 
+    # @!attribute [r] dig
     # Digest of the canonical JSON body.
+    # @return [GOBL::DSig::Digest]
     attribute :dig, GOBL::DSig::Digest
 
+    # @!attribute [r] stamps
     # Seals of approval from other organisations.
+    # @return [Array<Stamp>]
     attribute? :stamps, GOBL::Types::Array.of(Stamp).optional
 
+    # @!attribute [r] tags
     # Set of labels that describe but have no influence on the data.
+    # @return [Array<String>]
     attribute? :tags, GOBL::Types::Array.of(GOBL::Types::String).optional
 
+    # @!attribute [r] meta
     # Additional semi-structured information about this envelope.
+    # @return [GOBL::Org::Meta]
     attribute? :meta, GOBL::Org::Meta.optional
 
+    # @!attribute [r] notes
     # Any information that may be relevant to other humans about this envelope
+    # @return [String]
     attribute? :notes, GOBL::Types::String.optional
 
+    # @!attribute [r] draft
     # When true, implies that this document should not be considered final. Digital signatures are optional.
+    # @return [Boolean]
     attribute? :draft, GOBL::Types::Bool.optional
 
     def self.from_gobl!(data)

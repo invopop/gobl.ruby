@@ -12,13 +12,19 @@ module GOBL
     class Message < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/note/message'
 
+      # @!attribute [r] title
       # Summary of the message content
+      # @return [String]
       attribute? :title, GOBL::Types::String.optional
 
+      # @!attribute [r] content
       # Details of what exactly this message wants to communicate
+      # @return [String]
       attribute :content, GOBL::Types::String
 
+      # @!attribute [r] meta
       # Any additional semi-structured data that might be useful.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

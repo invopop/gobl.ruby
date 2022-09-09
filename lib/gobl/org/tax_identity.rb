@@ -12,22 +12,34 @@ module GOBL
     class TaxIdentity < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity'
 
+      # @!attribute [r] uuid
       # Unique universal identity code.
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] country
       # ISO country code for Where the tax identity was issued.
+      # @return [GOBL::L10n::CountryCode]
       attribute :country, GOBL::L10n::CountryCode
 
+      # @!attribute [r] locality
       # Where inside a country the Tax ID was issued, if required.
+      # @return [GOBL::L10n::Code]
       attribute? :locality, GOBL::L10n::Code.optional
 
+      # @!attribute [r] source
       # What is the source document of this tax identity.
+      # @return [SourceKey]
       attribute? :source, SourceKey.optional
 
+      # @!attribute [r] code
       # Tax identity Code
+      # @return [String]
       attribute? :code, GOBL::Types::String.optional
 
+      # @!attribute [r] meta
       # Additional details that may be required.
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)

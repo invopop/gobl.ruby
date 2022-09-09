@@ -12,28 +12,44 @@ module GOBL
     class Advance < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/advance'
 
+      # @!attribute [r] uuid
       # Unique identifier for this advance.
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] date
       # When the advance was made.
+      # @return [GOBL::Cal::Date]
       attribute? :date, GOBL::Cal::Date.optional
 
+      # @!attribute [r] ref
       # ID or reference for the advance.
+      # @return [String]
       attribute? :ref, GOBL::Types::String.optional
 
+      # @!attribute [r] grant
       # If this "advance" payment has come from a public grant or subsidy, set this to true.
+      # @return [Boolean]
       attribute? :grant, GOBL::Types::Bool.optional
 
+      # @!attribute [r] desc
       # Details about the advance.
+      # @return [String]
       attribute :desc, GOBL::Types::String
 
+      # @!attribute [r] percent
       # How much as a percentage of the total with tax was paid
+      # @return [GOBL::Num::Percentage]
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] amount
       # How much was paid.
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] currency
       # If different from the parent document's base currency.
+      # @return [GOBL::Currency::Code]
       attribute? :currency, GOBL::Currency::Code.optional
 
       def self.from_gobl!(data)

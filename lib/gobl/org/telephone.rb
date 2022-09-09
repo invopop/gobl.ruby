@@ -12,13 +12,19 @@ module GOBL
     class Telephone < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/org/telephone'
 
+      # @!attribute [r] uuid
       # Unique identity code
+      # @return [GOBL::UUID::UUID]
       attribute? :uuid, GOBL::UUID::UUID.optional
 
+      # @!attribute [r] label
       # Identifier for this number.
+      # @return [String]
       attribute? :label, GOBL::Types::String.optional
 
+      # @!attribute [r] num
       # The number to be dialed in ITU E.164 international format.
+      # @return [String]
       attribute :num, GOBL::Types::String
 
       def self.from_gobl!(data)

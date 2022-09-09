@@ -12,10 +12,14 @@ module GOBL
     class Card < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/Card'
 
+      # @!attribute [r] last4
       # Last 4 digits of the card's Primary Account Number (PAN).
+      # @return [String]
       attribute :last4, GOBL::Types::String
 
+      # @!attribute [r] holder
       # Name of the person whom the card belongs to.
+      # @return [String]
       attribute :holder, GOBL::Types::String
 
       def self.from_gobl!(data)

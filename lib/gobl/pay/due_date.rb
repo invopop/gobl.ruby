@@ -12,19 +12,29 @@ module GOBL
     class DueDate < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms#/$defs/DueDate'
 
+      # @!attribute [r] date
       # When the payment is due.
+      # @return [GOBL::Cal::Date]
       attribute :date, GOBL::Cal::Date
 
+      # @!attribute [r] notes
       # Other details to take into account for the due date.
+      # @return [String]
       attribute? :notes, GOBL::Types::String.optional
 
+      # @!attribute [r] amount
       # How much needs to be paid by the date.
+      # @return [GOBL::Num::Amount]
       attribute :amount, GOBL::Types.Constructor(GOBL::Num::Amount)
 
+      # @!attribute [r] percent
       # Percentage of the total that should be paid by the date.
+      # @return [GOBL::Num::Percentage]
       attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
 
+      # @!attribute [r] currency
       # If different from the parent document's base currency.
+      # @return [GOBL::Currency::Code]
       attribute? :currency, GOBL::Currency::Code.optional
 
       def self.from_gobl!(data)

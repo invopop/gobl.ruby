@@ -12,13 +12,19 @@ module GOBL
     class Locality < GOBL::Struct
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Locality'
 
+      # @!attribute [r] code
       # Code
+      # @return [GOBL::L10n::Code]
       attribute :code, GOBL::L10n::Code
 
+      # @!attribute [r] name
       # Name of the locality with local and hopefully international translations.
+      # @return [GOBL::I18n::String]
       attribute :name, GOBL::I18n::String
 
+      # @!attribute [r] meta
       # Any additional information
+      # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
       def self.from_gobl!(data)
