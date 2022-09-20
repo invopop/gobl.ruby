@@ -10,6 +10,7 @@ module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.
     class RateTotal < GOBL::Struct
+      # The Schema ID of the GOBL RateTotal structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotal'
 
       # @!attribute [r] key
@@ -33,6 +34,11 @@ module GOBL
       # @return [RateTotalSurcharge]
       attribute? :surcharge, RateTotalSurcharge.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [RateTotal] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -45,6 +51,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'key' => attributes[:key]&.to_gobl,
@@ -54,6 +63,17 @@ module GOBL
           'surcharge' => attributes[:surcharge]&.to_gobl
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {RateTotal} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [RateTotal] the object corresponding to the given input
     end
   end
 end

@@ -10,6 +10,7 @@ module GOBL
   module Org
     # Telephone describes what is expected for a telephone number.
     class Telephone < GOBL::Struct
+      # The Schema ID of the GOBL Telephone structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/telephone'
 
       # @!attribute [r] uuid
@@ -27,6 +28,11 @@ module GOBL
       # @return [String]
       attribute :num, GOBL::Types::String
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [Telephone] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -37,6 +43,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -44,6 +53,17 @@ module GOBL
           'num' => attributes[:num]
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {Telephone} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [Telephone] the object corresponding to the given input
     end
   end
 end

@@ -51,6 +51,7 @@ module Generators
         if mods.length.zero?
           module_content
         else
+          mods = mods.dup
           mod = mods.shift
           <<~EOFMOD
             module #{mod.camelize}

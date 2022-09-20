@@ -10,6 +10,7 @@ module GOBL
   module Org
     # Inbox is used to store data about a connection with a service that is responsible for potentially receiving copies of GOBL envelopes or other document formats defined locally.
     class Inbox < GOBL::Struct
+      # The Schema ID of the GOBL Inbox structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/inbox'
 
       # @!attribute [r] uuid
@@ -37,6 +38,11 @@ module GOBL
       # @return [String]
       attribute :code, GOBL::Types::String
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [Inbox] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -49,6 +55,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -58,6 +67,17 @@ module GOBL
           'code' => attributes[:code]
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {Inbox} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [Inbox] the object corresponding to the given input
     end
   end
 end

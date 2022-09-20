@@ -21,8 +21,6 @@ module Generators
         out << "# #{schema.description}\n" if schema.description.present?
         out << <<~EOFMOD
           class #{class_name} < #{parent_class}
-            #{schema_id_const}
-
           #{indent(class_content, 1).chomp}
           end
         EOFMOD
@@ -34,12 +32,16 @@ module Generators
       end
 
       def schema_id_const
-        "SCHEMA_ID = '#{parent.definition_schema_id(name)}'"
+        <<~EOFCONST
+          # The Schema ID of the GOBL #{name} structure
+          SCHEMA_ID = '#{parent.definition_schema_id(name)}'
+        EOFCONST
       end
 
       def class_content
         [
           includes,
+          schema_id_const,
           constants,
           attributes,
           from_gobl_method,

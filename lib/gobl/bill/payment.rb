@@ -10,6 +10,7 @@ module GOBL
   module Bill
     # Payment contains details as to how the invoice should be paid.
     class Payment < GOBL::Struct
+      # The Schema ID of the GOBL Payment structure
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Payment'
 
       # @!attribute [r] payer
@@ -32,6 +33,11 @@ module GOBL
       # @return [GOBL::Pay::Instructions]
       attribute? :instructions, GOBL::Pay::Instructions.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [Payment] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -43,6 +49,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'payer' => attributes[:payer]&.to_gobl,
@@ -51,6 +60,17 @@ module GOBL
           'instructions' => attributes[:instructions]&.to_gobl
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {Payment} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [Payment] the object corresponding to the given input
     end
   end
 end

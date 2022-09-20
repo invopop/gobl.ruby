@@ -8,13 +8,19 @@ module Generators
 
       PARAM_NAME = 'data'
 
-      def initialize(schema)
+      def initialize(schema, name)
         @schema = schema
         @properties = @schema.properties
+        @name = name
       end
 
       def to_s
         <<~EOFS
+          # Creates a new object from a hash of GOBL data
+          #
+          # @param #{PARAM_NAME} [Hash] a hash of GOBL data
+          #
+          # @return [#{name}] the object created from the given data
           def self.from_gobl!(#{PARAM_NAME})
             #{variable_assigment}
 
@@ -27,7 +33,7 @@ module Generators
 
       private
 
-      attr_reader :schema, :properties
+      attr_reader :schema, :properties, :name
 
       def property_key_value_pairs
         properties.map do |name, prop|

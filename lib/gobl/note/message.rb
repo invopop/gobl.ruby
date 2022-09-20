@@ -10,6 +10,7 @@ module GOBL
   module Note
     # Message represents the minimum possible contents for a GoBL document type.
     class Message < GOBL::Struct
+      # The Schema ID of the GOBL Message structure
       SCHEMA_ID = 'https://gobl.org/draft-0/note/message'
 
       # @!attribute [r] title
@@ -27,6 +28,11 @@ module GOBL
       # @return [GOBL::Org::Meta]
       attribute? :meta, GOBL::Org::Meta.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [Message] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -37,6 +43,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'title' => attributes[:title],
@@ -44,6 +53,17 @@ module GOBL
           'meta' => attributes[:meta]&.to_gobl
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {Message} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [Message] the object corresponding to the given input
     end
   end
 end

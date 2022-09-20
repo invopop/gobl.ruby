@@ -10,6 +10,7 @@ module GOBL
   module Tax
     # RateValue contains a percentage rate or fixed amount for a given date range.
     class RateValue < GOBL::Struct
+      # The Schema ID of the GOBL RateValue structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/RateValue'
 
       # @!attribute [r] since
@@ -32,6 +33,11 @@ module GOBL
       # @return [Boolean]
       attribute? :disabled, GOBL::Types::Bool.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [RateValue] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -43,6 +49,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'since' => attributes[:since]&.to_gobl,
@@ -51,6 +60,17 @@ module GOBL
           'disabled' => attributes[:disabled]
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {RateValue} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [RateValue] the object corresponding to the given input
     end
   end
 end

@@ -10,6 +10,7 @@ module GOBL
   module Pay
     # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
     class Advance < GOBL::Struct
+      # The Schema ID of the GOBL Advance structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/advance'
 
       # @!attribute [r] uuid
@@ -52,6 +53,11 @@ module GOBL
       # @return [GOBL::Currency::Code]
       attribute? :currency, GOBL::Currency::Code.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [Advance] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -67,6 +73,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'uuid' => attributes[:uuid]&.to_gobl,
@@ -79,6 +88,17 @@ module GOBL
           'currency' => attributes[:currency]&.to_gobl
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {Advance} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [Advance] the object corresponding to the given input
     end
   end
 end

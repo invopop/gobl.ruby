@@ -10,6 +10,7 @@ module GOBL
   module Pay
     # DirectDebit defines the data that will be used to make the direct debit.
     class DirectDebit < GOBL::Struct
+      # The Schema ID of the GOBL DirectDebit structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/DirectDebit'
 
       # @!attribute [r] ref
@@ -27,6 +28,11 @@ module GOBL
       # @return [String]
       attribute? :account, GOBL::Types::String.optional
 
+      # Creates a new object from a hash of GOBL data
+      #
+      # @param data [Hash] a hash of GOBL data
+      #
+      # @return [DirectDebit] the object created from the given data
       def self.from_gobl!(data)
         data = GOBL::Types::Hash[data]
 
@@ -37,6 +43,9 @@ module GOBL
         )
       end
 
+      # Returns a hash of GOBL data representing the current object
+      #
+      # @return [Hash] the array of GOBL data that represents the current object
       def to_gobl
         {
           'ref' => attributes[:ref],
@@ -44,6 +53,17 @@ module GOBL
           'account' => attributes[:account]
         }.compact
       end
+
+      # @!method self.new(attrs)
+      #
+      #   Returns a {DirectDebit} object from a given hash of attributes. Nested
+      #   attributes are supported: the constructor will instantiate the proper GOBL
+      #   objects when nested hashes or arrays are given as part of the `attrs`
+      #   parameter.
+      #
+      #   @param attrs [Hash] the hash of attributes
+      #
+      #   @return [DirectDebit] the object corresponding to the given input
     end
   end
 end
