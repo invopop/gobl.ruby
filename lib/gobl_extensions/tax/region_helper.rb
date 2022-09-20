@@ -4,9 +4,14 @@ require 'dry/files'
 
 module GOBLExtensions
   module Tax
-    # Class methods used to load a region
+    # Additional methods for the generated {GOBL::Tax::Region} class
     module RegionHelper
       module ClassMethods
+        # Loads a {GOBL::Tax::Region} object identified by the given code with all its data
+        #
+        # @param code [String] the code of the region to load
+        #
+        # @return [Region] the requested region
         def fetch(code)
           regions[code] ||= load_region(code)
         end
