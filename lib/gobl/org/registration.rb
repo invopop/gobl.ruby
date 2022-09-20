@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Org
     # Registration is used in countries that require additional information to be associated with a company usually related to a specific registration office.

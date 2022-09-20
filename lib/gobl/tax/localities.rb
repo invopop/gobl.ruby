@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # Localities stores an array of locality objects used to describe areas sub-divisions inside a region.

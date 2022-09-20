@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
   class Envelope < GOBL::Struct

@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # Schemes defines an array of scheme objects with helper functions.

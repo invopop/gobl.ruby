@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.

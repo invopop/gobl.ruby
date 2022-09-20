@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   # Contents of the envelope that must contain a $schema.
   class Document < GOBL::Struct

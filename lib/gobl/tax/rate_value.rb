@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # RateValue contains a percentage rate or fixed amount for a given date range.

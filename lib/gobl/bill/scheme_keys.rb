@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Bill
     # SchemeKeys stores a list of keys that makes it easier to perform matches.

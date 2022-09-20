@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Pay
     # DueDate contains an amount that should be paid by the given date.

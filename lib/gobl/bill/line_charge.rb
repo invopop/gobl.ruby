@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Bill
     # LineCharge represents an amount added to the line, and will be applied before taxes.

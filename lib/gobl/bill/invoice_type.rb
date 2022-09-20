@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Bill
     # Defines an invoice type according to a subset of the UNTDID 1001 standard list.

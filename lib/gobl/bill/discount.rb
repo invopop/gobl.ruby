@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Bill
     # Discount represents an allowance applied to the complete document independent from the individual lines.

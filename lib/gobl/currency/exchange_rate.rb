@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Currency
     # ExchangeRate contains data on the rate to be used when converting amounts from the document's base currency to whatever is defined.

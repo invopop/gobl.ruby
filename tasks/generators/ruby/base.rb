@@ -43,8 +43,8 @@ module Generators
           ## DO NOT EDIT - This file was generated automatically.
           ##
         EOFHEAD
-        head << "## #{parent.comment}\n##\n" if parent.present? && parent.comment.present?
-        head
+        head << "## #{parent.comment}\n" if parent.present? && parent.comment.present?
+        head << "##\n\n"
       end
 
       def add_modules(mods)

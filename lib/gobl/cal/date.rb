@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Cal
     # Civil date in simplified ISO format, like 2021-05-26

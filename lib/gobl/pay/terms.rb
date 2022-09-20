@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Pay
     # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.

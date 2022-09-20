@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Bill
     # Preceding allows for information to be provided about a previous invoice that this one will replace or subtract from.

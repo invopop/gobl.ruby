@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Pay
     # Instructions holds a set of instructions that determine how the payment has or should be made.

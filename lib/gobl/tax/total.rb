@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # Total contains a set of Category Totals which in turn contain all the accumulated taxes contained in the document.

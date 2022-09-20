@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Org
     # Text identifier to be used instead of a code for a more verbose but readable identifier.

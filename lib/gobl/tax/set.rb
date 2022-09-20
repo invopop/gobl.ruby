@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # Set defines a list of tax categories and their rates to be used alongside taxable items.

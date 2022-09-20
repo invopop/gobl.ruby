@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module Tax
     # RateTotal contains a sum of all the tax rates in the document with a matching category and rate.

@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   # Header defines the meta data of the body.
   class Header < GOBL::Struct

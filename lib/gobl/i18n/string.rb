@@ -6,6 +6,7 @@
 ## Generated with GOBL v0.30.2
 ##
 
+
 module GOBL
   module I18n
     # Map of 2-Letter language codes to their translations.
