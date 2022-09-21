@@ -4,7 +4,7 @@ module GOBL
   module Operations
     # The result of a GOBL validation over a GOBL structure
     class ValidationResult
-      SERVICE_ERROR_REGEX = /^code=(?<code>\d+), message=(?<msg>.+)$/.freeze
+      SERVICE_ERROR_REGEX = /^code=(?<code>\d+), message=(?<msg>.+)$/.freeze # @api private
 
       def initialize(errors)
         @errors = errors

@@ -25,6 +25,7 @@ module GOBL
   #   invoice = built_doc.extract
   #   invoice.totals.total.to_s #=> "1800.00"
   module Operations
+    # @api private
     VALIDATABLE_TYPES = SIGNABLE_TYPES = BUILDABLE_TYPES = [
       GOBL::Document,
       GOBL::Envelope
