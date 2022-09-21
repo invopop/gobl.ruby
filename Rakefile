@@ -9,7 +9,10 @@ task :lint do
 end
 
 task :generate do
-  ruby 'bin/generate.rb'
+  require_relative 'tasks/generator'
+
+  generator = Generator.new(path: 'data/schemas', lang: 'ruby')
+  generator.export_to('lib/gobl')
 end
 
 RSpec::Core::RakeTask.new('spec')
