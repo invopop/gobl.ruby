@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.3
+## Generated with GOBL v0.30.4
 ##
 
 
@@ -36,8 +36,8 @@ module GOBL
 
       # @!attribute [r] note
       # Notes defines messages that should be added to a document when this scheme is used.
-      # @return [Note]
-      attribute? :note, Note.optional
+      # @return [GOBL::Org::Note]
+      attribute? :note, GOBL::Org::Note.optional
 
       # Creates a new object from a hash of GOBL data
       #
@@ -52,7 +52,7 @@ module GOBL
           name: GOBL::I18n::String.from_gobl!(data['name']),
           description: data['description'] ? GOBL::I18n::String.from_gobl!(data['description']) : nil,
           categories: data['categories']&.map { |item| GOBL::Org::Code.from_gobl!(item) },
-          note: data['note'] ? Note.from_gobl!(data['note']) : nil
+          note: data['note'] ? GOBL::Org::Note.from_gobl!(data['note']) : nil
         )
       end
 

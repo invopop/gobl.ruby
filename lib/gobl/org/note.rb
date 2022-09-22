@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.3
+## Generated with GOBL v0.30.4
 ##
 
 
@@ -12,7 +12,7 @@ module GOBL
     # Note represents a free text of additional information that may be added to a document.
     class Note < GOBL::Struct
       # The Schema ID of the GOBL Note structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/notes#/$defs/Note'
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/note'
 
       # @!attribute [r] key
       # Key specifying subject of the text

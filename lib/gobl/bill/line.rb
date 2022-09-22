@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.3
+## Generated with GOBL v0.30.4
 ##
 
 
@@ -61,8 +61,8 @@ module GOBL
 
       # @!attribute [r] notes
       # Set of specific notes for this line that may be required for clarification.
-      # @return [GOBL::Org::Notes]
-      attribute? :notes, GOBL::Org::Notes.optional
+      # @return [Array<GOBL::Org::Note>]
+      attribute? :notes, GOBL::Types::Array.of(GOBL::Org::Note).optional
 
       # Creates a new object from a hash of GOBL data
       #
@@ -82,7 +82,7 @@ module GOBL
           charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           total: data['total'] ? data['total'] : nil,
-          notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil
+          notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) }
         )
       end
 
@@ -100,7 +100,7 @@ module GOBL
           'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
           'taxes' => attributes[:taxes]&.to_gobl,
           'total' => attributes[:total]&.to_gobl,
-          'notes' => attributes[:notes]&.to_gobl
+          'notes' => attributes[:notes]&.map { |item| item&.to_gobl }
         }.compact
       end
 
