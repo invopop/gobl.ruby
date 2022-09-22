@@ -4,56 +4,38 @@ require 'json'
 require 'zeitwerk'
 require 'dry-struct'
 require 'active_support/core_ext/string/inflections'
-require 'active_support/concern'
 require 'forwardable'
 require 'net/http'
 require 'base64'
 
-# Main GOBL namespace which has the differents structures to generate and
-# load its components. There are sub-namespaces specically defined for GoBL
-# objects, based on the GoBL JSON schema.
+loader = Zeitwerk::Loader.for_gem
+loader.inflector.inflect(
+  'gobl' => 'GOBL',
+  'gobl_extensions' => 'GOBLExtensions',
+  'uuid' => 'UUID',
+  'url' => 'URL',
+  'item_id' => 'ItemID',
+  'tax_id' => 'TaxID',
+  'dsig' => 'DSig',
+  'id' => 'ID'
+)
+loader.setup
+
+# Main GOBL namespace. It provides direct access to the library's configuration (see
+# {Config}) and to the available operations (see {Operations}).
+#
+# The library also provides Ruby classes for each structure defined in the GOBL JSON
+# Schema. They are available in namespaces defined under this one and named after the
+# schema ID of each structure.
 module GOBL
-  def self.inflections
-    {
-      'gobl' => 'GOBL',
-      'gobl_extensions' => 'GOBLExtensions',
-      'uuid' => 'UUID',
-      'url' => 'URL',
-      'item_id' => 'ItemID',
-      'tax_id' => 'TaxID',
-      'dsig' => 'DSig'
-    }
-  end
+  extend GOBL::Operations
 
-  def self.loader
-    @loader ||= create_loader
-  end
-
-  def self.create_loader
-    loader = Zeitwerk::Loader.for_gem
-    loader.inflector.inflect(inflections)
-    loader
-  end
-
+  # Returns the current configuration of the library
+  #
+  # @return [GOBL::Config]
   def self.config
     @config ||= Config.new
   end
 end
 
-ActiveSupport::Inflector.inflections do |inflect|
-  inflect.acronym 'GOBL'
-  inflect.acronym 'UUID'
-  inflect.acronym 'URL'
-  inflect.acronym 'DSig'
-  # inflect.acronym 'ItemID'
-  # inflect.acronym 'TaxID'
-end
-
-require_relative 'types'
-require_relative 'id'
-
-GOBL.loader.setup
-
 require_relative 'extensions'
-
-GOBL.extend GOBL::Operations

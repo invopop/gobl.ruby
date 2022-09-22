@@ -11,7 +11,7 @@ module Generators
       end
 
       def from_gobl_method
-        @from_gobl_method ||= ObjectFromGobl.new(schema).to_s
+        @from_gobl_method ||= ObjectFromGobl.new(schema, name).to_s
       end
 
       def to_gobl_method
@@ -21,8 +21,10 @@ module Generators
       def attribute(name, property)
         out = ''
         desc = property.description&.split&.join(' ')
-        out << "# #{desc}\n" if desc.present?
         ts = property_as_type(name, property, schema.optional?(name))
+        out << "# @!attribute [r] #{safe_property_name(name)}\n"
+        out << "# #{desc}\n" if desc.present?
+        out << "# @return [#{ruby_type_string(property)}]\n"
         out << "attribute#{'?' if schema.optional?(name)} :#{safe_property_name(name)}, #{ts}\n"
         out
       end
@@ -33,6 +35,21 @@ module Generators
         else
           gobl_type_string(property)
         end
+      end
+
+      def additional_methods
+        <<~EOFADD
+          # @!method self.new(attrs)
+          #
+          #   Returns a {#{name}} object from a given hash of attributes. Nested
+          #   attributes are supported: the constructor will instantiate the proper GOBL
+          #   objects when nested hashes or arrays are given as part of the `attrs`
+          #   parameter.
+          #
+          #   @param attrs [Hash] the hash of attributes
+          #
+          #   @return [#{name}] the object corresponding to the given input
+        EOFADD
       end
     end
   end

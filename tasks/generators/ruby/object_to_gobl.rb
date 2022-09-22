@@ -13,6 +13,9 @@ module Generators
 
       def to_s
         <<~EOFS
+          # Returns a hash of GOBL data representing the current object
+          #
+          # @return [Hash] the array of GOBL data that represents the current object
           def to_gobl
             {
               #{property_key_value_pairs.join(",\n    ")}

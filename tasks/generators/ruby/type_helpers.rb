@@ -3,23 +3,24 @@ module Generators
     module TypeHelpers
       def json_schema_type_map
         @json_schema_type_map ||= {
-          'string' => 'String',
-          'number' => 'Double',
-          'integer' => 'Int',
-          'boolean' => 'Bool',
-          'object' => 'Hash',
-          'array' => 'Array',
-          'null' => 'Nil'
+          'string'  => { gobl: 'GOBL::Types::String', ruby: 'String'   },
+          'number'  => { gobl: 'GOBL::Types::Double', ruby: 'Float'    },
+          'integer' => { gobl: 'GOBL::Types::Int',    ruby: 'Integer'  },
+          'boolean' => { gobl: 'GOBL::Types::Bool',   ruby: 'Boolean'  },
+          'object'  => { gobl: 'GOBL::Types::Hash',   ruby: 'Hash'     },
+          'array'   => { gobl: 'GOBL::Types::Array',  ruby: 'Array'    },
+          'null'    => { gobl: 'GOBL::Types::Nil',    ruby: 'NilClass' },
+        }.tap { |map|
+          map.default = { gobl: 'GOBL::Types::Any', ruby: 'Object' }
         }
       end
 
       def gobl_custom_ref_map
         @gobl_custom_ref_map ||= {
-          'https://gobl.org/draft-0/num/amount' => 'GOBL::Num::Amount',
+          'https://gobl.org/draft-0/num/amount'     => 'GOBL::Num::Amount',
           'https://gobl.org/draft-0/num/percentage' => 'GOBL::Num::Percentage'
         }
       end
-      # GOBL::Types.Constructor(
 
       # Provide a safe property symbol from the name, as Ruby and specifically
       # Dry::Struct doesn't play nice with `$` in symbols
@@ -27,22 +28,34 @@ module Generators
         name.gsub(/^\$/, '')
       end
 
-      def gobl_type_from_json_schema(type)
-        json_schema_type_map[type] || 'Any'
+      def gobl_type_string(property)
+        type_string property, {
+          custom_ref: ->(property) { "GOBL::Types.Constructor(#{gobl_custom_ref_map[property.ref.to_s]})" },
+          array:      ->(property) { "GOBL::Types::Array.of(#{gobl_type_string(property.items)})" },
+          type:       ->(property) { json_schema_type_map[property.type.to_s][:gobl] }
+        }
       end
 
-      def gobl_type_string(property)
+      def ruby_type_string(property)
+        type_string property, {
+          custom_ref: ->(property) { gobl_custom_ref_map[property.ref.to_s] },
+          array:      ->(property) { "Array<#{ruby_type_string(property.items)}>" },
+          type:       ->(property) { json_schema_type_map[property.type.to_s][:ruby] }
+        }
+      end
+
+      # Template pattern customised by the procs in the `builders` argument
+      def type_string(property, builders = {})
         if property.ref.present?
-          c = gobl_custom_ref_map[property.ref.to_s]
-          if c.present?
-            "GOBL::Types.Constructor(#{c})"
+          if gobl_custom_ref_map.has_key?(property.ref.to_s)
+            builders[:custom_ref].call property
           else
             gobl_type_from_reference(property.ref)
           end
         elsif property.type.array?
-          "GOBL::Types::Array.of(#{gobl_type_string(property.items)})"
+          builders[:array].call property
         else
-          "GOBL::Types::#{gobl_type_from_json_schema(property.type.to_s)}"
+          builders[:type].call property
         end
       end
 

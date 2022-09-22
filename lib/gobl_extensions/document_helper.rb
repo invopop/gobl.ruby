@@ -1,17 +1,18 @@
 module GOBLExtensions
-  # Additional methods to help extract the contents of a "Document"
-  # contained inside the envelope.
+  # Additional methods for the generated {GOBL::Document} class
   module DocumentHelper
-    def self.included(klass)
-      klass.extend ClassMethods
-    end
-
+    # Returns the Schema ID of the current document
+    #
+    # @return [GOBL::ID] the Schema ID
     def schema
       @schema ||= GOBL::ID.new(_value['$schema'])
     end
 
-    # Determine the type of document currently embedded by reading the schema
-    # and attempting to instantiate the detected class.
+    # Extracts the GOBL struct embedded in the document. It determines the type of document
+    # currently embedded by reading the schema and attemps to instantiate the detected
+    # class.
+    #
+    # @return [GOBL::Struct] the GOBL struct embedded in the document
     def extract
       raise 'unknown schema' unless schema.gobl?
 
@@ -29,7 +30,9 @@ module GOBLExtensions
     end
 
     module ClassMethods
-      # Embed the given struct in a new document injecting the proper $schema key.
+      # Embeds the given GOBL struct in a new document injecting the proper Schema ID.
+      #
+      # @return [Document] the document embedding the given struct
       def embed(struct)
         from_gobl! struct.to_gobl.merge(
           '$schema' => struct.class::SCHEMA_ID

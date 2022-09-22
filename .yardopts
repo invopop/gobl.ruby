@@ -1,1 +1,7 @@
+--embed-mixins
+--no-private
+--hide-api private
 --markup markdown
+--markup-provider rdiscount # rdiscount renders HTML in markdown files (like in the README) properly
+lib/*/**/*.rb # This forces generated classes to be parsed before `lib/extensions.rb`.
+lib/*.rb      #   Otherwise YARD returns a parse error
