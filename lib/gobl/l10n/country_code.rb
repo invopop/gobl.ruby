@@ -3,12 +3,13 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.2
+## Generated with GOBL v0.30.3
 ##
 
 
 module GOBL
   module L10n
+    # Defines an ISO 3166-2 country code
     class CountryCode < GOBL::Struct
       # The Schema ID of the GOBL CountryCode structure
       SCHEMA_ID = 'https://gobl.org/draft-0/l10n/country-code'
