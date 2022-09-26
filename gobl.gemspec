@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('rubocop-performance', '~> 1.11.5')
   spec.add_development_dependency('rubocop-rspec', '~> 2.4.0')
   spec.add_development_dependency('yard')
-  spec.add_development_dependency('rdiscount')
+  spec.add_development_dependency('redcarpet')
   spec.homepage = 'https://github.com/invopop/gobl.ruby'
   spec.description = 'Minimalist ruby version of the GOBL library'
   spec.metadata = {
