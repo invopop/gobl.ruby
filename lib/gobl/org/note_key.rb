@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.3
+## Generated with GOBL v0.30.4
 ##
 
 
@@ -12,7 +12,7 @@ module GOBL
     # NoteKey identifies the type of note being edited
     class NoteKey < GOBL::Struct
       # The Schema ID of the GOBL NoteKey structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/notes#/$defs/NoteKey'
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/note#/$defs/NoteKey'
 
       # The enumeration of values of the object and their descriptions (Values different to these are not allowed)
       ENUM = {

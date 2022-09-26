@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.3
+## Generated with GOBL v0.30.4
 ##
 
 
@@ -81,23 +81,23 @@ module GOBL
 
       # @!attribute [r] lines
       # List of invoice lines representing each of the items sold to the customer.
-      # @return [Lines]
-      attribute? :lines, Lines.optional
+      # @return [Array<Line>]
+      attribute? :lines, GOBL::Types::Array.of(Line).optional
 
       # @!attribute [r] discounts
       # Discounts or allowances applied to the complete invoice
-      # @return [Discounts]
-      attribute? :discounts, Discounts.optional
+      # @return [Array<Discount>]
+      attribute? :discounts, GOBL::Types::Array.of(Discount).optional
 
       # @!attribute [r] charges
       # Charges or surcharges applied to the complete invoice
-      # @return [Charges]
-      attribute? :charges, Charges.optional
+      # @return [Array<Charge>]
+      attribute? :charges, GOBL::Types::Array.of(Charge).optional
 
       # @!attribute [r] outlays
       # Expenses paid for by the supplier but invoiced directly to the customer.
-      # @return [Outlays]
-      attribute? :outlays, Outlays.optional
+      # @return [Array<Outlay>]
+      attribute? :outlays, GOBL::Types::Array.of(Outlay).optional
 
       # @!attribute [r] ordering
       # @return [Ordering]
@@ -118,8 +118,8 @@ module GOBL
 
       # @!attribute [r] notes
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
-      # @return [GOBL::Org::Notes]
-      attribute? :notes, GOBL::Org::Notes.optional
+      # @return [Array<GOBL::Org::Note>]
+      attribute? :notes, GOBL::Types::Array.of(GOBL::Org::Note).optional
 
       # @!attribute [r] meta
       # Additional semi-structured data that doesn't fit into the body of the invoice.
@@ -148,15 +148,15 @@ module GOBL
           value_date: data['value_date'] ? GOBL::Cal::Date.from_gobl!(data['value_date']) : nil,
           supplier: GOBL::Org::Party.from_gobl!(data['supplier']),
           customer: data['customer'] ? GOBL::Org::Party.from_gobl!(data['customer']) : nil,
-          lines: data['lines'] ? Lines.from_gobl!(data['lines']) : nil,
-          discounts: data['discounts'] ? Discounts.from_gobl!(data['discounts']) : nil,
-          charges: data['charges'] ? Charges.from_gobl!(data['charges']) : nil,
-          outlays: data['outlays'] ? Outlays.from_gobl!(data['outlays']) : nil,
+          lines: data['lines']&.map { |item| Line.from_gobl!(item) },
+          discounts: data['discounts']&.map { |item| Discount.from_gobl!(item) },
+          charges: data['charges']&.map { |item| Charge.from_gobl!(item) },
+          outlays: data['outlays']&.map { |item| Outlay.from_gobl!(item) },
           ordering: data['ordering'] ? Ordering.from_gobl!(data['ordering']) : nil,
           payment: data['payment'] ? Payment.from_gobl!(data['payment']) : nil,
           delivery: data['delivery'] ? Delivery.from_gobl!(data['delivery']) : nil,
           totals: data['totals'] ? Totals.from_gobl!(data['totals']) : nil,
-          notes: data['notes'] ? GOBL::Org::Notes.from_gobl!(data['notes']) : nil,
+          notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) },
           meta: data['meta'] ? GOBL::Org::Meta.from_gobl!(data['meta']) : nil
         )
       end
@@ -179,15 +179,15 @@ module GOBL
           'value_date' => attributes[:value_date]&.to_gobl,
           'supplier' => attributes[:supplier]&.to_gobl,
           'customer' => attributes[:customer]&.to_gobl,
-          'lines' => attributes[:lines]&.to_gobl,
-          'discounts' => attributes[:discounts]&.to_gobl,
-          'charges' => attributes[:charges]&.to_gobl,
-          'outlays' => attributes[:outlays]&.to_gobl,
+          'lines' => attributes[:lines]&.map { |item| item&.to_gobl },
+          'discounts' => attributes[:discounts]&.map { |item| item&.to_gobl },
+          'charges' => attributes[:charges]&.map { |item| item&.to_gobl },
+          'outlays' => attributes[:outlays]&.map { |item| item&.to_gobl },
           'ordering' => attributes[:ordering]&.to_gobl,
           'payment' => attributes[:payment]&.to_gobl,
           'delivery' => attributes[:delivery]&.to_gobl,
           'totals' => attributes[:totals]&.to_gobl,
-          'notes' => attributes[:notes]&.to_gobl,
+          'notes' => attributes[:notes]&.map { |item| item&.to_gobl },
           'meta' => attributes[:meta]&.to_gobl
         }.compact
       end
