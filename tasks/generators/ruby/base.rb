@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Generators
   class Ruby
     class SkipFileError < StandardError; end
@@ -9,9 +11,7 @@ module Generators
       attr_reader :schema, :name, :modules, :parent
 
       def initialize(modules, name, schema, parent)
-        if gobl_custom_ref_map.has_key?(parent.id.to_s)
-          raise SkipFileError 
-        end
+        raise SkipFileError if gobl_custom_ref_map.key?(parent.id.to_s)
 
         @modules = modules
         @name = name
@@ -43,8 +43,8 @@ module Generators
           ## DO NOT EDIT - This file was generated automatically.
           ##
         EOFHEAD
-        head << "## #{parent.comment}\n" if parent.present? && parent.comment.present?
-        head << "##\n\n"
+        head += "## #{parent.comment}\n" if parent.present? && parent.comment.present?
+        head += "##\n\n"
       end
 
       def add_modules(mods)
@@ -67,7 +67,7 @@ module Generators
         out = ''
         pad = '  ' * indent
         str.split("\n").each do |line|
-          out << (line.blank? ? "\n" : "#{pad}#{line}\n")
+          out += (line.blank? ? "\n" : "#{pad}#{line}\n")
         end
         out
       end

@@ -42,7 +42,7 @@ module Generators
         save_file(dest, data)
       end
     rescue SkipFileError
-      puts "Skipping #{schema.id.to_s}"
+      puts "Skipping #{schema.id}"
     end
 
     protected

@@ -31,7 +31,7 @@ RSpec.describe 'Generated Object' do
       lines: [{
         quantity: 20,
         item: { name: 'Development services', price: 90.0 },
-        taxes: [ { cat: 'VAT', rate: :standard } ]
+        taxes: [{ cat: 'VAT', rate: :standard }]
       }]
     )
 

@@ -6,7 +6,7 @@ module Generators
     class ObjectFromGobl
       include TypeHelpers
 
-      PARAM_NAME = 'data'
+      PARAM_NAME = 'data'.freeze
 
       def initialize(schema, name)
         @schema = schema

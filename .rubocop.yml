@@ -7,3 +7,22 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'lib/gobl/**/*.rb'
+
+Metrics/AbcSize:
+  Max: 55
+
+Metrics/MethodLength:
+  Max: 100
+
+Metrics/BlockLength:
+  Max: 20
+  AllowedMethods: ['describe', 'context']
+
+Metrics/ModuleLength:
+  Max: 200
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 5

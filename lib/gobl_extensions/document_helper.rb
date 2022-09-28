@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GOBLExtensions
   # Additional methods for the generated {GOBL::Document} class
   module DocumentHelper

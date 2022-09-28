@@ -27,7 +27,7 @@ module Parser
     def load_schemas(path)
       @schemas = {}
       Dir["#{path}/**/*.json"].each do |file|
-        data = File.open(file).read
+        data = File.read(file)
         schema = Schema.new(MultiJson.load(data))
         puts "loaded schema: #{file}"
         @schemas[schema.id] = schema

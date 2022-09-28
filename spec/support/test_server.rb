@@ -23,7 +23,7 @@ module TestServer
   end
 
   def check_cli_presence
-    unless File.exists?(GOBL_CLI_PATH)
+    unless File.exist?(GOBL_CLI_PATH)
       raise "GOBL CLI not found at #{GOBL_CLI_PATH}. You can fetch it by running `bin/fetch_gobl_cli`"
     end
   end
@@ -40,7 +40,7 @@ module TestServer
 
     max_attempts.times do
       begin
-        response = Net::HTTP.get_response(HOST, "/", PORT)
+        response = Net::HTTP.get_response(HOST, '/', PORT)
         return [HOST, PORT] if response.is_a?(Net::HTTPSuccess)
       rescue Errno::EADDRNOTAVAIL, Errno::ECONNREFUSED
       end

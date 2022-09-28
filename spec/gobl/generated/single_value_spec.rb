@@ -107,7 +107,7 @@ RSpec.describe 'Generated Single Value' do
 
       expect(value).to respond_to(:credit_note?)
       expect(value).to respond_to(:corrected?)
-      expect(value).to_not respond_to(:another?)
+      expect(value).not_to respond_to(:another?)
     end
   end
 
@@ -129,7 +129,7 @@ RSpec.describe 'Generated Single Value' do
 
       expect(value).to respond_to(:day?)
       expect(value).to respond_to(:min?)
-      expect(value).to_not respond_to(:pts?)
+      expect(value).not_to respond_to(:pts?)
     end
 
     it 'instantiates from an unenumerated symbol' do
