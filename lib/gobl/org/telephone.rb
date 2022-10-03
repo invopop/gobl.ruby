@@ -62,6 +62,9 @@ module GOBL
       #   objects when nested hashes or arrays are given as part of the `attrs`
       #   parameter.
       #
+      #   The `new` method will only allow to create a new object if all attributes
+      #   marked as mandatory and not calculated in the JSON schema are provided.
+      #
       #   @param attrs [Hash] the hash of attributes
       #
       #   @return [Telephone] the object corresponding to the given input
