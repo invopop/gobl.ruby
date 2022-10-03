@@ -13,7 +13,7 @@ module Parser
     end
 
     def definitions
-      @defs ||= (@data['$defs'] || {}).transform_values do |v|
+      @definitions ||= (@data['$defs'] || {}).transform_values do |v|
         Schema.new(v)
       end
     end
@@ -24,7 +24,7 @@ module Parser
 
     # Hash of property keys to more schemas
     def properties
-      @props ||= (@data['properties'] || {}).transform_values do |v|
+      @properties ||= (@data['properties'] || {}).transform_values do |v|
         Schema.new(v)
       end
     end
@@ -55,7 +55,7 @@ module Parser
     end
 
     def const?
-      @data.has_key?('const')
+      @data.key?('const')
     end
 
     def type

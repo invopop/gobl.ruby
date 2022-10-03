@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
 module Generators
   class Ruby
     # Base generator of a json schema of type string
     class SingleValue < Struct
-
       def constants
         if enum?
           <<~EOFCONST
-            # The enumeration of values of the object and their descriptions (Values different to these are #{enforce_enum? ? "not" : "also"} allowed)
+            # The enumeration of values of the object and their descriptions (Values different to these are #{enforce_enum? ? 'not' : 'also'} allowed)
             #{enum_const_name} = {
-              #{enum_hash.map { |key, value| serialize_str(key) + ' => ' + serialize_str(value) }.join(",\n  ")}
+              #{enum_hash.map { |key, value| "#{serialize_str(key)} => #{serialize_str(value)}" }.join(",\n  ")}
             }
           EOFCONST
         end
@@ -46,7 +47,7 @@ module Generators
       end
 
       def additional_methods
-        [ common_additional_methods, enum_additional_methods ]
+        [common_additional_methods, enum_additional_methods]
       end
 
       def common_additional_methods
@@ -194,9 +195,7 @@ module Generators
       end
 
       def type_modifiers
-        if enforce_enum?
-          ".enum(*#{enum_const_name}.keys)"
-        end
+        ".enum(*#{enum_const_name}.keys)" if enforce_enum?
       end
 
       def enum_const_name
@@ -207,7 +206,7 @@ module Generators
         @enum_hash ||=
           schema.composition&.entries
             &.filter(&:const?)
-            &.to_h { |e| [ e.const, e.description ] }
+            &.to_h { |e| [e.const, e.description] }
       end
 
       def enum?

@@ -211,7 +211,7 @@ You can avoid mage and the docker container if you prefer so. Take a look at the
 
 #### Installation
 
-The command `mage install` fetches and installs all the required dependencies to use the gem.
+The command `mage setup` fetches and installs all the required dependencies to use the gem.
 
 #### Code generation
 

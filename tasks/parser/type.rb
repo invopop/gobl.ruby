@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Parser
   # Type provides a wrapper around the schema "Type" that makes it
   # easier to determine what is possible.

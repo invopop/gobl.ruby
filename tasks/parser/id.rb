@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Parser
   # ID is used to simplify URL parsing. The JSON Schema `$id` field must always be a
   # fully qualified URL. This class adds special support for parsing GOBL URLs.

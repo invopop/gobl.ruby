@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Generators
   class Ruby
     # Base generator of a json schema of type array

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Generators
   class Ruby
     STRUCT_VALUE_NAME = 'value'
@@ -18,8 +20,8 @@ module Generators
 
       def module_content
         out = ''
-        out << "# #{schema.description}\n" if schema.description.present?
-        out << <<~EOFMOD
+        out += "# #{schema.description}\n" if schema.description.present?
+        out += <<~EOFMOD
           class #{class_name} < #{parent_class}
           #{indent(class_content, 1).chomp}
           end
@@ -28,7 +30,7 @@ module Generators
       end
 
       def parent_class
-        "GOBL::Struct"
+        'GOBL::Struct'
       end
 
       def schema_id_const

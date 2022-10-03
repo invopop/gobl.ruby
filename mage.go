@@ -12,9 +12,9 @@ const (
 	runImage = "ruby:2.7"
 )
 
-// Install runs bundle install
-func Install() error {
-	return dockerRunCmd(name+"-install", "", "bundle", "install")
+// Runs gem's setup script (install dependencies…)
+func Setup() error {
+	return dockerRunCmd(name+"-install", "", "bin/setup")
 }
 
 // Generate uses the schema to generate the ruby structures
@@ -22,35 +22,9 @@ func Generate() error {
 	return dockerRunCmd(name, "", "rake", "generate")
 }
 
+// Runs gem's rspec tests.
 func Spec() error {
 	return dockerRunCmd(name, "", "rake", "spec")
-}
-
-func dockerRunCmd(name, publicPort string, cmd ...string) error {
-	args := []string{
-		"run",
-		"--rm",
-		"--name", name,
-		"--network", "invopop-local",
-		"-v", "$PWD:/app",
-		"-v", "$PWD/.tmp_bundle:/usr/local/bundle",
-		"-v", "$PWD/spec/support/keys:/root/.gobl",
-		"-w", "/app",
-		"-it", // interactive
-		// "--entrypoint=rake",
-	}
-	if publicPort != "" {
-		args = append(args,
-			"--label", "traefik.enable=true",
-			"--label", "traefik.http.routers."+name+".rule=Host(`"+name+".invopop.dev`)",
-			"--label", "traefik.http.routers."+name+".tls=true",
-			"--label", "traefik.http.services."+name+".loadbalancer.server.port="+publicPort,
-			"--expose", publicPort,
-		)
-	}
-	args = append(args, runImage)
-	args = append(args, cmd...)
-	return sh.RunV("docker", args...)
 }
 
 // Shell runs an interactive shell within a docker container.
@@ -65,5 +39,31 @@ func YardServer() error {
 
 // Runs an IRB session with the library required.
 func Console() error {
-	return dockerRunCmd(name, "", "sh", "-c", "irb -r ./lib/gobl")
+	return dockerRunCmd(name, "", "bin/console")
+}
+
+func dockerRunCmd(name, publicPort string, cmd ...string) error {
+	args := []string{
+		"run",
+		"--rm",
+		"--name", name,
+		"--network", "invopop-local",
+		"-v", "$PWD:/app",
+		"-v", "$PWD/.tmp_bundle:/usr/local/bundle",
+		"-v", "$PWD/spec/support/keys:/root/.gobl",
+		"-w", "/app",
+		"-it",
+	}
+	if publicPort != "" {
+		args = append(args,
+			"--label", "traefik.enable=true",
+			"--label", "traefik.http.routers."+name+".rule=Host(`"+name+".invopop.dev`)",
+			"--label", "traefik.http.routers."+name+".tls=true",
+			"--label", "traefik.http.services."+name+".loadbalancer.server.port="+publicPort,
+			"--expose", publicPort,
+		)
+	}
+	args = append(args, runImage)
+	args = append(args, cmd...)
+	return sh.RunV("docker", args...)
 }
