@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Advances contains an array of advance objects.
@@ -60,7 +59,7 @@ module GOBL
       #
       # @return [Advances] the object created from the given data
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| GOBL::Pay::Advance.from_gobl!(item) } )
+        new(_ary: data&.map { |item| GOBL::Pay::Advance.from_gobl!(item) })
       end
 
       # Returns an array of GOBL data representing the current object
@@ -89,4 +88,3 @@ module GOBL
     end
   end
 end
-

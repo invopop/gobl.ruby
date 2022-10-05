@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Discount represents an allowance applied to the complete document independent from the individual lines.
@@ -76,9 +75,9 @@ module GOBL
           uuid: data['uuid'] ? GOBL::UUID::UUID.from_gobl!(data['uuid']) : nil,
           i: data['i'],
           ref: data['ref'],
-          base: data['base'] ? data['base'] : nil,
-          percent: data['percent'] ? data['percent'] : nil,
-          amount: data['amount'] ? data['amount'] : nil,
+          base: data['base'] || nil,
+          percent: data['percent'] || nil,
+          amount: data['amount'] || nil,
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
           code: data['code'],
           reason: data['reason'],
@@ -120,4 +119,3 @@ module GOBL
     end
   end
 end
-

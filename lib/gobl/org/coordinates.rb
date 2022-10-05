@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Coordinates describes an exact geographical location in the world.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

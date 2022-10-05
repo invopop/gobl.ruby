@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Meta defines a structure for data about the data being defined.
@@ -71,4 +70,3 @@ module GOBL
     end
   end
 end
-

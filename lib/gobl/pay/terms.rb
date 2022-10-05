@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # Terms defines when we expect the customer to pay, or have paid, for the contents of the document.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

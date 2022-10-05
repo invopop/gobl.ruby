@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Telephone describes what is expected for a telephone number.
@@ -71,4 +70,3 @@ module GOBL
     end
   end
 end
-

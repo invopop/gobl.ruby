@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # DirectDebit defines the data that will be used to make the direct debit.
@@ -71,4 +70,3 @@ module GOBL
     end
   end
 end
-

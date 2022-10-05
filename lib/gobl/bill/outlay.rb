@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Outlay represents a reimbursable expense that was paid for by the supplier and invoiced separately by the third party directly to the customer.
@@ -106,4 +105,3 @@ module GOBL
     end
   end
 end
-

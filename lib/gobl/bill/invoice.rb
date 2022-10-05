@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Invoice represents a payment claim for goods or services supplied under conditions agreed between the supplier and the customer.
@@ -208,4 +207,3 @@ module GOBL
     end
   end
 end
-

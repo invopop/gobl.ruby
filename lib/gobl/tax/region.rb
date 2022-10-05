@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Region defines the holding structure for a regions categories and subsequent Rates and Values.
@@ -99,4 +98,3 @@ module GOBL
     end
   end
 end
-

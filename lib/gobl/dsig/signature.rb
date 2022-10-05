@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module DSig
     # JSON Web Signature in compact form.
@@ -105,4 +104,3 @@ module GOBL
     end
   end
 end
-

@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Line is a single row in an invoice.
@@ -77,11 +76,11 @@ module GOBL
           i: data['i'],
           quantity: data['quantity'],
           item: GOBL::Org::Item.from_gobl!(data['item']),
-          sum: data['sum'] ? data['sum'] : nil,
+          sum: data['sum'] || nil,
           discounts: data['discounts']&.map { |item| LineDiscount.from_gobl!(item) },
           charges: data['charges']&.map { |item| LineCharge.from_gobl!(item) },
           taxes: data['taxes'] ? GOBL::Tax::Set.from_gobl!(data['taxes']) : nil,
-          total: data['total'] ? data['total'] : nil,
+          total: data['total'] || nil,
           notes: data['notes']&.map { |item| GOBL::Org::Note.from_gobl!(item) }
         )
       end
@@ -120,4 +119,3 @@ module GOBL
     end
   end
 end
-

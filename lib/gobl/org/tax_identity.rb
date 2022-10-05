@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # TaxIdentity stores the details required to identify an entity for tax purposes.
@@ -92,4 +91,3 @@ module GOBL
     end
   end
 end
-

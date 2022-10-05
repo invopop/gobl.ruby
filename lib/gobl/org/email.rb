@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Email describes the electronic mailing details.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

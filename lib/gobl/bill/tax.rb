@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Tax defines a summary of the taxes which may be applied to an invoice.
@@ -71,4 +70,3 @@ module GOBL
     end
   end
 end
-

@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Ordering allows additional order details to be appended
@@ -57,4 +56,3 @@ module GOBL
     end
   end
 end
-

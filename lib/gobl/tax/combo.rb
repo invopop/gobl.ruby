@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Combo represents the tax combination of a category code and rate key.
@@ -45,8 +44,8 @@ module GOBL
         new(
           cat: GOBL::Org::Code.from_gobl!(data['cat']),
           rate: data['rate'] ? GOBL::Org::Key.from_gobl!(data['rate']) : nil,
-          percent: data['percent'] ? data['percent'] : nil,
-          surcharge: data['surcharge'] ? data['surcharge'] : nil
+          percent: data['percent'] || nil,
+          surcharge: data['surcharge'] || nil
         )
       end
 
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

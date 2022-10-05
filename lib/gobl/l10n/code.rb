@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module L10n
     # Code is used for short identifies like country or state codes.
@@ -105,4 +104,3 @@ module GOBL
     end
   end
 end
-

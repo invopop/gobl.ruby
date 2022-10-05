@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # ItemCode contains a value and optional label property that means additional codes can be added to an item.
@@ -64,4 +63,3 @@ module GOBL
     end
   end
 end
-

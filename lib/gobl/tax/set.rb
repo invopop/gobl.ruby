@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Set defines a list of tax categories and their rates to be used alongside taxable items.
@@ -60,7 +59,7 @@ module GOBL
       #
       # @return [Set] the object created from the given data
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| Combo.from_gobl!(item) } )
+        new(_ary: data&.map { |item| Combo.from_gobl!(item) })
       end
 
       # Returns an array of GOBL data representing the current object
@@ -89,4 +88,3 @@ module GOBL
     end
   end
 end
-

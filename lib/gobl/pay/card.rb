@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # Card contains simplified card holder data as a reference for the customer.
@@ -64,4 +63,3 @@ module GOBL
     end
   end
 end
-

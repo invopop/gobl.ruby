@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # RateValue contains a percentage rate or fixed amount for a given date range.
@@ -45,7 +44,7 @@ module GOBL
         new(
           since: data['since'] ? GOBL::Cal::Date.from_gobl!(data['since']) : nil,
           percent: data['percent'],
-          surcharge: data['surcharge'] ? data['surcharge'] : nil,
+          surcharge: data['surcharge'] || nil,
           disabled: data['disabled']
         )
       end
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

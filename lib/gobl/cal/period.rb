@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Cal
     # Period represents two dates with a start and finish.
@@ -62,4 +61,3 @@ module GOBL
     end
   end
 end
-

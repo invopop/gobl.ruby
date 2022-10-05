@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
   class Envelope < GOBL::Struct
@@ -76,4 +75,3 @@ module GOBL
     #   @return [Envelope] the object corresponding to the given input
   end
 end
-

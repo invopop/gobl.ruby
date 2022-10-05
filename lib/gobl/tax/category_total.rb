@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # CategoryTotal groups together all rates inside a given category.
@@ -52,7 +51,7 @@ module GOBL
           rates: data['rates']&.map { |item| RateTotal.from_gobl!(item) },
           base: data['base'],
           amount: data['amount'],
-          surcharge: data['surcharge'] ? data['surcharge'] : nil
+          surcharge: data['surcharge'] || nil
         )
       end
 
@@ -86,4 +85,3 @@ module GOBL
     end
   end
 end
-

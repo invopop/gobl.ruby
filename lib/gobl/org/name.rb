@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Name represents what a human is called.
@@ -113,4 +112,3 @@ module GOBL
     end
   end
 end
-

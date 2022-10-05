@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # Advance represents a single payment that has been made already, such as a deposit on an intent to purchase, or as credit from a previous invoice which was later corrected or cancelled.
@@ -68,7 +67,7 @@ module GOBL
           ref: data['ref'],
           grant: data['grant'],
           desc: data['desc'],
-          percent: data['percent'] ? data['percent'] : nil,
+          percent: data['percent'] || nil,
           amount: data['amount'],
           currency: data['currency'] ? GOBL::Currency::Code.from_gobl!(data['currency']) : nil
         )
@@ -106,4 +105,3 @@ module GOBL
     end
   end
 end
-

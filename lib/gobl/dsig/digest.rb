@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module DSig
     # Digest defines a structure to hold a digest value including the algorithm used to generate it.
@@ -64,4 +63,3 @@ module GOBL
     end
   end
 end
-
