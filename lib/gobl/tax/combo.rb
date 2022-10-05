@@ -9,71 +9,30 @@
 module GOBL
   module Tax
     # Combo represents the tax combination of a category code and rate key.
-    class Combo < GOBL::Struct
+    class Combo < GOBL::Object
       # The Schema ID of the GOBL Combo structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/set#/$defs/Combo'
 
       # @!attribute [r] cat
       # Tax category code from those available inside a region.
       # @return [GOBL::Org::Code]
-      attribute :cat, GOBL::Org::Code
+      property :cat, GOBL::Org::Code
+      validates :cat, presence: true
 
       # @!attribute [r] rate
       # Rate within a category to apply.
       # @return [GOBL::Org::Key]
-      attribute? :rate, GOBL::Org::Key.optional
+      property :rate, GOBL::Org::Key
 
       # @!attribute [r] percent
       # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
       # @return [GOBL::Num::Percentage]
-      attribute? :percent, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
+      property :percent, GOBL::Num::Percentage
 
       # @!attribute [r] surcharge
       # Some countries require an additional surcharge (calculated if rate present).
       # @return [GOBL::Num::Percentage]
-      attribute? :surcharge, GOBL::Types.Constructor(GOBL::Num::Percentage).optional
-
-      # Creates a new object from a hash of GOBL data
-      #
-      # @param data [Hash] a hash of GOBL data
-      #
-      # @return [Combo] the object created from the given data
-      def self.from_gobl!(data)
-        data = GOBL::Types::Hash[data]
-
-        new(
-          cat: GOBL::Org::Code.from_gobl!(data['cat']),
-          rate: data['rate'] ? GOBL::Org::Key.from_gobl!(data['rate']) : nil,
-          percent: data['percent'] || nil,
-          surcharge: data['surcharge'] || nil
-        )
-      end
-
-      # Returns a hash of GOBL data representing the current object
-      #
-      # @return [Hash] the array of GOBL data that represents the current object
-      def to_gobl
-        {
-          'cat' => attributes[:cat]&.to_gobl,
-          'rate' => attributes[:rate]&.to_gobl,
-          'percent' => attributes[:percent]&.to_gobl,
-          'surcharge' => attributes[:surcharge]&.to_gobl
-        }.compact
-      end
-
-      # @!method self.new(attrs)
-      #
-      #   Returns a {Combo} object from a given hash of attributes. Nested
-      #   attributes are supported: the constructor will instantiate the proper GOBL
-      #   objects when nested hashes or arrays are given as part of the `attrs`
-      #   parameter.
-      #
-      #   The `new` method will only allow to create a new object if all attributes
-      #   marked as mandatory and not calculated in the JSON schema are provided.
-      #
-      #   @param attrs [Hash] the hash of attributes
-      #
-      #   @return [Combo] the object corresponding to the given input
+      property :surcharge, GOBL::Num::Percentage
     end
   end
 end
