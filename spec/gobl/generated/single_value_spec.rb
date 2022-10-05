@@ -8,22 +8,22 @@ RSpec.describe 'Generated Single Value' do
 
     it 'instantiates from JSON' do
       value = string_value_class.from_json!('CODE001'.to_json)
-      expect(value.to_gobl).to eq('CODE001')
+      expect(value.to_s).to eq('CODE001')
     end
 
     it 'instantiates from a string' do
       value = string_value_class.new('CODE0001')
-      expect(value.to_gobl).to eq('CODE0001')
+      expect(value.to_s).to eq('CODE0001')
     end
 
     it 'instantiates from a symbol' do
       value = string_value_class.new(:code0001)
-      expect(value.to_gobl).to eq('code0001')
+      expect(value.to_s).to eq('code0001')
     end
 
     it 'instantiates from any object that responds to :to_s' do
       value = string_value_class.new(double(to_s: 'CODE0001'))
-      expect(value.to_gobl).to eq('CODE0001')
+      expect(value.to_s).to eq('CODE0001')
     end
 
     it 'compares with other objects of the same class' do
@@ -55,12 +55,12 @@ RSpec.describe 'Generated Single Value' do
 
     it 'instantiates from JSON' do
       value = enum_value_class.from_json!('credit-note'.to_json)
-      expect(value.to_gobl).to eq('credit-note')
+      expect(value.to_s).to eq('credit-note')
     end
 
     it 'instantiates from a string' do
       value = enum_value_class.new('credit-note')
-      expect(value.to_gobl).to eq('credit-note')
+      expect(value.to_s).to eq('credit-note')
     end
 
     it 'doesn’t instantiate with an unenumerated value' do
@@ -69,7 +69,7 @@ RSpec.describe 'Generated Single Value' do
 
     it 'instantiates from a symbol' do
       value = enum_value_class.new(:credit_note)
-      expect(value.to_gobl).to eq('credit-note')
+      expect(value.to_s).to eq('credit-note')
     end
 
     it 'doesn’t instantiate from an unenumerated symbol' do
@@ -115,14 +115,14 @@ RSpec.describe 'Generated Single Value' do
     let(:enum_value_class) { GOBL::Org::Unit }
 
     it 'instantiates with an invalid value' do
-      value = enum_value_class.from_gobl!('pts')
+      value = enum_value_class.new('pts')
 
-      expect(value.to_gobl).to eq('pts')
+      expect(value.to_s).to eq('pts')
       expect(value.description).to eq('pts')
     end
 
     it 'reponds to inquiries about enumerated values' do
-      value = enum_value_class.from_gobl!('day')
+      value = enum_value_class.new('day')
 
       expect(value.day?).to be(true)
       expect(value.min?).to be(false)
@@ -134,7 +134,7 @@ RSpec.describe 'Generated Single Value' do
 
     it 'instantiates from an unenumerated symbol' do
       value = enum_value_class.new(:value123)
-      expect(value.to_gobl).to eq('value123')
+      expect(value.to_s).to eq('value123')
     end
 
     it 'compares with a symbol' do
@@ -147,15 +147,15 @@ RSpec.describe 'Generated Single Value' do
     let(:enum_value_class) { GOBL::Pay::TermKey }
 
     it 'instantiates from an empty string' do
-      value = enum_value_class.from_gobl!('')
+      value = enum_value_class.new('')
 
-      expect(value.to_gobl).to eq('')
+      expect(value.to_s).to eq('')
       expect(value.description).to eq('Not yet defined')
     end
 
     it 'instantiates from an empty symbol' do
       value = enum_value_class.new(:'')
-      expect(value.to_gobl).to eq('')
+      expect(value.to_s).to eq('')
     end
   end
 end

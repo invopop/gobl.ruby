@@ -24,5 +24,15 @@ RSpec.describe GOBL::Envelope do
 
       expect(msg.content).to eq('This is a test message with some random *markdown* contents.')
     end
+
+    it 'provides a getter and a setter for the schema' do
+      gobl = File.read('spec/example/invoice_envelope.json')
+      envelope = described_class.from_json!(gobl)
+
+      expect(envelope.schema).to eq('https://gobl.org/draft-0/envelope')
+
+      envelope.schema = 'https://example.com'
+      expect(envelope.schema).to eq('https://example.com')
+    end
   end
 end

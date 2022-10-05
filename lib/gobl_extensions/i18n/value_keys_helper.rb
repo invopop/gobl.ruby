@@ -11,8 +11,8 @@ module GOBLExtensions
       #   str.en #=> "Name"
       #   str.es #=> "Nombre"
       def method_missing(method_name, *args, &block)
-        if _value.key?(method_name) || _value.key?(method_name.to_s)
-          _value[method_name] || _value[method_name.to_s]
+        if _map.key?(method_name) || _map.key?(method_name.to_s)
+          _map[method_name] || _map[method_name.to_s]
         else
           super
         end
@@ -20,7 +20,7 @@ module GOBLExtensions
 
       # @api private
       def respond_to_missing?(method_name, *)
-        _value.key?(method_name) || _value.key?(method_name.to_s) || super
+        _map.key?(method_name) || _map.key?(method_name.to_s) || super
       end
     end
   end

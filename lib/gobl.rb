@@ -2,11 +2,13 @@
 
 require 'json'
 require 'zeitwerk'
-require 'dry-struct'
 require 'active_support/core_ext/string/inflections'
 require 'forwardable'
 require 'net/http'
 require 'base64'
+require 'hashme'
+
+require_relative 'ext/hashme'
 
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect(

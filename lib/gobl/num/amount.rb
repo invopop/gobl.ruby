@@ -3,7 +3,7 @@
 module GOBL
   module Num
     # Represents a numeric quantity with optional decimal places that determine accuracy
-    class Amount
+    class Amount < GOBL::Struct
       # The integer value of the amount
       attr_reader :value
 
@@ -31,40 +31,6 @@ module GOBL
         else
           raise 'Unsupported input amount'
         end
-      end
-
-      # Creates a new {Amount} from a GOBL value
-      #
-      # @param data [Hash] a GOBL value
-      #
-      # @return [Amount] the object created from the given data
-      def self.from_gobl!(data)
-        new(data)
-      end
-
-      # Deserializes an {Amount} from a JSON string
-      #
-      # @param json [String] a JSON string
-      #
-      # @return [Amount] the deserialized {Amount}
-      def self.from_json!(json)
-        from_gobl!(JSON.parse(json))
-      end
-
-      # Returns a GOBL value representing the current amount
-      #
-      # @return [String] the GOBL value that represents the current amount
-      def to_gobl
-        to_s
-      end
-
-      # Serializes a GOBL struct into a JSON string
-      #
-      # @param options [#to_h] a Hash-like object to pass to `JSON.generate`
-      #
-      # @return [GOBL::Struct] the JSON string representing the GOBL struct
-      def to_json(options = nil)
-        JSON.generate(to_gobl, options)
       end
 
       # Returns the string representation of the current amount
@@ -220,6 +186,11 @@ module GOBL
       # @return [Amount] the amount with the opposite sign
       def invert
         self.class.new(value: -value, exp: exp)
+      end
+
+      #  @api private
+      def as_json(*)
+        to_s
       end
 
       protected
