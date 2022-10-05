@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # RateTotalSurcharge reflects the sum surcharges inside the rate.
@@ -62,4 +61,3 @@ module GOBL
     end
   end
 end
-

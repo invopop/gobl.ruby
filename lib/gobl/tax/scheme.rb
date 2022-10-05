@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Scheme contains the definition of a scheme that belongs to a region and can be used to simplify validation processes for document contents.
@@ -35,7 +34,7 @@ module GOBL
       attribute? :categories, GOBL::Types::Array.of(GOBL::Org::Code).optional
 
       # @!attribute [r] note
-      # Notes defines messages that should be added to a document when this scheme is used.
+      # Note defines a message that should be added to a document when this scheme is used.
       # @return [GOBL::Org::Note]
       attribute? :note, GOBL::Org::Note.optional
 
@@ -85,4 +84,3 @@ module GOBL
     end
   end
 end
-

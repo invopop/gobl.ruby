@@ -20,7 +20,7 @@ module Generators
       end
 
       def to_s
-        content
+        content.chomp
       end
 
       protected
@@ -44,7 +44,7 @@ module Generators
           ##
         EOFHEAD
         head += "## #{parent.comment}\n" if parent.present? && parent.comment.present?
-        head += "##\n\n"
+        head += "##\n"
       end
 
       def add_modules(mods)

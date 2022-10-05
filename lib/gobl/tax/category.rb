@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Category contains the definition of a general type of tax inside a region.
@@ -82,4 +81,3 @@ module GOBL
     end
   end
 end
-

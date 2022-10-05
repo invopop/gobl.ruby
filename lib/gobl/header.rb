@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   # Header defines the meta data of the body.
   class Header < GOBL::Struct
@@ -97,4 +96,3 @@ module GOBL
     #   @return [Header] the object corresponding to the given input
   end
 end
-

@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Person represents a human, and how to contact them electronically.
@@ -99,4 +98,3 @@ module GOBL
     end
   end
 end
-

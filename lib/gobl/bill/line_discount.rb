@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # LineDiscount represents an amount deducted from the line, and will be applied before taxes.
@@ -43,8 +42,8 @@ module GOBL
         data = GOBL::Types::Hash[data]
 
         new(
-          percent: data['percent'] ? data['percent'] : nil,
-          amount: data['amount'] ? data['amount'] : nil,
+          percent: data['percent'] || nil,
+          amount: data['amount'] || nil,
           code: data['code'],
           reason: data['reason']
         )
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

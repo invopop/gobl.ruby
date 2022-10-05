@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Localities stores an array of locality objects used to describe areas sub-divisions inside a region.
@@ -60,7 +59,7 @@ module GOBL
       #
       # @return [Localities] the object created from the given data
       def self.from_gobl!(data)
-        new(_ary: data&.map { |item| Locality.from_gobl!(item) } )
+        new(_ary: data&.map { |item| Locality.from_gobl!(item) })
       end
 
       # Returns an array of GOBL data representing the current object
@@ -89,4 +88,3 @@ module GOBL
     end
   end
 end
-

@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Delivery covers the details of the destination for the products described in the invoice body.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

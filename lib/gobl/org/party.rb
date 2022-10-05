@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Party represents a person or business entity.
@@ -134,4 +133,3 @@ module GOBL
     end
   end
 end
-

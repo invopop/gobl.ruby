@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Totals contains the summaries of all calculations for the invoice.
@@ -84,17 +83,17 @@ module GOBL
 
         new(
           sum: data['sum'],
-          discount: data['discount'] ? data['discount'] : nil,
-          charge: data['charge'] ? data['charge'] : nil,
-          tax_included: data['tax_included'] ? data['tax_included'] : nil,
+          discount: data['discount'] || nil,
+          charge: data['charge'] || nil,
+          tax_included: data['tax_included'] || nil,
           total: data['total'],
           taxes: data['taxes'] ? GOBL::Tax::Total.from_gobl!(data['taxes']) : nil,
-          tax: data['tax'] ? data['tax'] : nil,
+          tax: data['tax'] || nil,
           total_with_tax: data['total_with_tax'],
-          outlays: data['outlays'] ? data['outlays'] : nil,
+          outlays: data['outlays'] || nil,
           payable: data['payable'],
-          advance: data['advance'] ? data['advance'] : nil,
-          due: data['due'] ? data['due'] : nil
+          advance: data['advance'] || nil,
+          due: data['due'] || nil
         )
       end
 
@@ -134,4 +133,3 @@ module GOBL
     end
   end
 end
-

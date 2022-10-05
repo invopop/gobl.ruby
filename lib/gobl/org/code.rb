@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Short upper-case identifier.
@@ -105,4 +104,3 @@ module GOBL
     end
   end
 end
-

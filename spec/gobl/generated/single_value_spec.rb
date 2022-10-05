@@ -102,8 +102,8 @@ RSpec.describe 'Generated Single Value' do
     it 'responds to inquiries about its value' do
       value = enum_value_class.new('credit-note')
 
-      expect(value.credit_note?).to eq(true)
-      expect(value.corrected?).to eq(false)
+      expect(value.credit_note?).to be(true)
+      expect(value.corrected?).to be(false)
 
       expect(value).to respond_to(:credit_note?)
       expect(value).to respond_to(:corrected?)
@@ -124,8 +124,8 @@ RSpec.describe 'Generated Single Value' do
     it 'reponds to inquiries about enumerated values' do
       value = enum_value_class.from_gobl!('day')
 
-      expect(value.day?).to eq(true)
-      expect(value.min?).to eq(false)
+      expect(value.day?).to be(true)
+      expect(value.min?).to be(false)
 
       expect(value).to respond_to(:day?)
       expect(value).to respond_to(:min?)

@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # CreditTransfer contains fields that can be used for making payments via a bank transfer or wire.
@@ -85,4 +84,3 @@ module GOBL
     end
   end
 end
-

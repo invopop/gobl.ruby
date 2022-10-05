@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Note
     # Message represents the minimum possible contents for a GoBL document type.
@@ -71,4 +70,3 @@ module GOBL
     end
   end
 end
-

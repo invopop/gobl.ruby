@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Bill
     # Payment contains details as to how the invoice should be paid.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

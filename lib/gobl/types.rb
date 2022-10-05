@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GOBL
   # Types used by the generated GOBL code.
   # @api private

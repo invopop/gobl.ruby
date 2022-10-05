@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Note represents a free text of additional information that may be added to a document.
@@ -78,4 +77,3 @@ module GOBL
     end
   end
 end
-

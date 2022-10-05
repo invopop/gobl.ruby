@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Address defines a globally acceptable set of attributes that describes a postal or fiscal address.
@@ -155,4 +154,3 @@ module GOBL
     end
   end
 end
-

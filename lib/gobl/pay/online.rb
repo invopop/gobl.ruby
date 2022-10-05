@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # Online provides the details required to make a payment online using a website
@@ -64,4 +63,3 @@ module GOBL
     end
   end
 end
-

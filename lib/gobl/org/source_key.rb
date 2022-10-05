@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # SourceKey identifies the source of a tax identity
@@ -21,7 +20,7 @@ module GOBL
         'national' => 'National ID Card or similar',
         'permit' => 'Residential or similar permit',
         'other' => 'An other type of source not listed'
-      }
+      }.freeze
 
       attribute :_value, GOBL::Types::String.enum(*ENUM.keys)
       private :_value
@@ -126,7 +125,7 @@ module GOBL
 
       # @api private
       def self.find_by_inquirer(method_name)
-        method_name =~ /(.+)\?$/ && find_by_sym($1.to_sym)
+        method_name =~ /(.+)\?$/ && find_by_sym(Regexp.last_match(1).to_sym)
       end
 
       # Returns the description of the current object
@@ -160,4 +159,3 @@ module GOBL
     end
   end
 end
-

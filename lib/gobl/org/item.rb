@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Org
     # Item is used to describe a single product or service.
@@ -120,4 +119,3 @@ module GOBL
     end
   end
 end
-

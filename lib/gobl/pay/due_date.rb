@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Pay
     # DueDate contains an amount that should be paid by the given date.
@@ -51,7 +50,7 @@ module GOBL
           date: GOBL::Cal::Date.from_gobl!(data['date']),
           notes: data['notes'],
           amount: data['amount'],
-          percent: data['percent'] ? data['percent'] : nil,
+          percent: data['percent'] || nil,
           currency: data['currency'] ? GOBL::Currency::Code.from_gobl!(data['currency']) : nil
         )
       end
@@ -85,4 +84,3 @@ module GOBL
     end
   end
 end
-

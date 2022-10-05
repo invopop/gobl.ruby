@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module Tax
     # Rate defines a single rate inside a category
@@ -76,4 +75,3 @@ module GOBL
     end
   end
 end
-

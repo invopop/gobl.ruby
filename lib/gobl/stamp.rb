@@ -6,7 +6,6 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   # Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
   class Stamp < GOBL::Struct
@@ -62,4 +61,3 @@ module GOBL
     #   @return [Stamp] the object corresponding to the given input
   end
 end
-

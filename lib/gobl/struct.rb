@@ -4,7 +4,7 @@ module GOBL
   # Base class for any GOBL structure
   class Struct < Dry::Struct
     # Returns a new GOBL struct from a hash of GOBL data. The type of the returned struct
-    # is determined from the `$schema` attribute.
+    # is determined from the `$schema` attribute.
     #
     # This method is usually overwritten at sub-class level, where the `$schema` attribute
     # isn't necessary since the type is determined by the sub-class itself.

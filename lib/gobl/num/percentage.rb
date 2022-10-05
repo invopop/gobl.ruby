@@ -7,19 +7,19 @@ module GOBL
 
     # Similar to {GOBL::Num::Amount}, but specialized in representing percentages
     class Percentage < Amount
-      # Returns a string representation of the percentage with the percentage symbol
+      # Returns a string representation of the percentage with the percentage symbol
       #
       # @return [String] the string representing the percentage
       def to_s
-        to_s_without_symbol + '%'
+        "#{to_s_without_symbol}%"
       end
 
-      # Returns a string representation of the percentage with_out the percentage symbol
+      # Returns a string representation of the percentage with_out the percentage symbol
       #
       # @return [String] the string representing the percentage
       def to_s_without_symbol
         e = exp - 2
-        e = 0 if e < 0
+        e = 0 if e.negative?
         p = multiply(Factor100).rescale(e)
         p.as_s
       end

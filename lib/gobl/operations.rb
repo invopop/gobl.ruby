@@ -123,9 +123,9 @@ module GOBL
 
       response = request_action(:sign, struct: struct)
 
-      raise ServiceError, response["error"] if response["error"].present?
+      raise ServiceError, response['error'] if response['error'].present?
 
-      GOBL::Struct.from_gobl! response["payload"]
+      GOBL::Struct.from_gobl! response['payload']
     end
 
     private
@@ -145,14 +145,14 @@ module GOBL
     def build_bulk_request(action, struct, params)
       payload = params.merge(data: Base64.encode64(struct.to_json.to_s))
 
-      {action: action, payload: payload}.to_json
+      { action: action, payload: payload }.to_json
     end
 
     def bulk_endpoint
       @bulk_endpoint ||= URI::HTTP.build(
         host: GOBL.config.service_host,
         port: GOBL.config.service_port,
-        path: "/bulk"
+        path: '/bulk'
       )
     end
 
@@ -163,7 +163,7 @@ module GOBL
     def check_struct_type(struct, allowed_types)
       return if allowed_types.any? { |klass| struct.is_a?(klass) }
 
-      message = "This operation only supports #{allowed_types.join(", ")} structs"
+      message = "This operation only supports #{allowed_types.join(', ')} structs"
       raise ArgumentError, message
     end
   end

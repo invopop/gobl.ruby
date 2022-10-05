@@ -6,9 +6,9 @@
 ## Generated with GOBL v0.30.4
 ##
 
-
 module GOBL
   module L10n
+    # Defines an ISO 3166-2 country code
     class CountryCode < GOBL::Struct
       # The Schema ID of the GOBL CountryCode structure
       SCHEMA_ID = 'https://gobl.org/draft-0/l10n/country-code'
@@ -264,7 +264,7 @@ module GOBL
         'YE' => 'Yemen',
         'ZM' => 'Zambia',
         'ZW' => 'Zimbabwe'
-      }
+      }.freeze
 
       attribute :_value, GOBL::Types::String.enum(*ENUM.keys)
       private :_value
@@ -369,7 +369,7 @@ module GOBL
 
       # @api private
       def self.find_by_inquirer(method_name)
-        method_name =~ /(.+)\?$/ && find_by_sym($1.to_sym)
+        method_name =~ /(.+)\?$/ && find_by_sym(Regexp.last_match(1).to_sym)
       end
 
       # Returns the description of the current object
@@ -403,4 +403,3 @@ module GOBL
     end
   end
 end
-
