@@ -53,7 +53,11 @@ module Generators
           "#{var}&.map { |item| #{property_value_string(property.items, 'item', false)} }"
         elsif property.ref.present?
           if optional
-            "#{var} ? #{property_value_string(property, var, false)} : nil"
+            if var == property_value_string(property, var, false)
+              "#{var} || nil"
+            else
+              "#{var} ? #{property_value_string(property, var, false)} : nil"
+            end
           else
             c = gobl_custom_ref_map[property.ref.to_s]
             if c.present?

@@ -80,13 +80,13 @@ module GOBL
       #
       # @return [String] the string representation of the current amount
       def as_s
-        return value.to_s if exp == 0
+        return value.to_s if exp.zero?
         raise 'exponent too high' if exp > 100
 
         p = 10**exp
         v1 = value / p
         v2 = value - (v1 * p)
-        v2 = -v2 if v2 < 0
+        v2 = -v2 if v2.negative?
         format('%d.%0*d', v1, exp, v2)
       end
 
@@ -128,7 +128,7 @@ module GOBL
       #
       # @return [Boolean] whether the two amounts are equal (`true`) or not (`false`)
       def ==(other)
-        compare(other) == 0
+        compare(other).zero?
       end
 
       # Changes the exponent of the {Amount} multipling or dividing its value as
@@ -158,7 +158,7 @@ module GOBL
       #
       # @return [Boolean] `true` if the current amount is equal to zero, `false`otherwise
       def zero?
-        value == 0
+        value.zero?
       end
 
       # Adds the current amount to a given one

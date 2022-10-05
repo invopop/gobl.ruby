@@ -5,8 +5,6 @@ require:
 AllCops:
   TargetRubyVersion: 2.7
   NewCops: enable
-  Exclude:
-    - 'lib/gobl/**/*.rb'
 
 Metrics/AbcSize:
   Max: 55

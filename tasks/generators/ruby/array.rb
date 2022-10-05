@@ -60,7 +60,7 @@ module Generators
           #
           # @return [#{name}] the object created from the given data
           def self.from_gobl!(data)
-            new(_ary: #{from_gobl_method_map_or_instance} )
+            new(_ary: #{from_gobl_method_map_or_instance})
           end
         EOFMETH
       end

@@ -10,7 +10,7 @@ module Generators
             # The enumeration of values of the object and their descriptions (Values different to these are #{enforce_enum? ? 'not' : 'also'} allowed)
             #{enum_const_name} = {
               #{enum_hash.map { |key, value| "#{serialize_str(key)} => #{serialize_str(value)}" }.join(",\n  ")}
-            }
+            }.freeze
           EOFCONST
         end
       end
@@ -151,7 +151,7 @@ module Generators
 
             # @api private
             def self.find_by_inquirer(method_name)
-              method_name =~ /(.+)\\?$/ && find_by_sym($1.to_sym)
+              method_name =~ /(.+)\\?$/ && find_by_sym(Regexp.last_match(1).to_sym)
             end
 
             # Returns the description of the current object
