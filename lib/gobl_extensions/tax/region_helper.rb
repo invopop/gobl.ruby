@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dry/files'
-
 module GOBLExtensions
   module Tax
     # Additional methods for the generated {GOBL::Tax::Region} class
@@ -18,21 +16,17 @@ module GOBLExtensions
 
         protected
 
-        def files
-          @files ||= Dry::Files.new
-        end
-
         # map of region ID to region instance
         def regions
           @regions ||= {}
         end
 
         def load_region(code)
-          path = files.join("#{__dir__}/../../../data/tax", "#{code}.json")
+          path = File.join("#{__dir__}/../../../data/tax", "#{code}.json")
           msg = "region definition for #{code} does not exist at #{path}"
-          raise StandardError, msg unless files.exist?(path)
+          raise StandardError, msg unless File.exist?(path)
 
-          data = files.read(path)
+          data = File.read(path)
           from_json!(data)
         end
       end

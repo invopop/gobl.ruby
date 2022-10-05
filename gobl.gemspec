@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
   }
 
   spec.add_dependency('activesupport', '~> 6.1')
-  spec.add_dependency('dry-files', '~> 0.1.0')
   spec.add_dependency('dry-struct', '~> 1.4.0')
   spec.add_dependency('dry-types', '~> 1.5.1')
   spec.add_dependency('json', '~> 2.6.1')
