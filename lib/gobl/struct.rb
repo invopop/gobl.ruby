@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
 module GOBL
-  # Base class for any GOBL structure
-  class Struct < Dry::Struct
+  # Base class for any structure present in the GOBL Schema
+  class Struct
     # Returns a new GOBL struct from a hash of GOBL data. The type of the returned struct
     # is determined from the `$schema` attribute.
-    #
-    # This method is usually overwritten at sub-class level, where the `$schema` attribute
-    # isn't necessary since the type is determined by the sub-class itself.
     #
     # @param data [Hash] the hash of GOBL data
     #
     # @return [GOBL::Struct] the created GOBL struct
-    def self.from_gobl!(data)
+    def self.from_data(data)
       raise ArgumentError, 'Schema not present in the given data' unless data&.key?('$schema')
 
       schema = GOBL::ID.new(data['$schema'])
@@ -21,9 +18,9 @@ module GOBL
       # being an envelope is considered to be a document as these are the only two structures
       # that are required to specify its schema.
       if schema.name == 'envelope'
-        GOBL::Envelope.from_gobl! data
+        GOBL::Envelope.new data
       else
-        GOBL::Document.from_gobl! data
+        GOBL::Document.new data
       end
     end
 
@@ -33,16 +30,19 @@ module GOBL
     #
     # @return [GOBL::Struct] the deserialized GOBL struct
     def self.from_json!(json)
-      from_gobl!(JSON.parse(json))
+      new JSON.parse(json)
     end
 
-    # Serializes a GOBL struct into a JSON string
+    # Serializes the current GOBL struct into a JSON string
     #
-    # @param options [#to_h] a Hash-like object to pass to `JSON.generate`
-    #
-    # @return [GOBL::Struct] the JSON string representing the GOBL struct
-    def to_json(options = nil)
-      JSON.generate(to_gobl, options)
+    # @return [String] the JSON string representing the struct
+    def to_json(**args)
+      as_json.to_json(**args)
+    end
+
+    # @api private
+    def as_json
+      raise NotImplementedError, 'Subclasses are expected to overload'
     end
   end
 end

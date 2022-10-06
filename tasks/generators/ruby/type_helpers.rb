@@ -5,15 +5,15 @@ module Generators
     module TypeHelpers
       def json_schema_type_map
         @json_schema_type_map ||= {
-          'string' => { gobl: 'GOBL::Types::String', ruby: 'String' },
-          'number' => { gobl: 'GOBL::Types::Double', ruby: 'Float' },
-          'integer' => { gobl: 'GOBL::Types::Int', ruby: 'Integer' },
-          'boolean' => { gobl: 'GOBL::Types::Bool', ruby: 'Boolean' },
-          'object' => { gobl: 'GOBL::Types::Hash', ruby: 'Hash' },
-          'array' => { gobl: 'GOBL::Types::Array', ruby: 'Array' },
-          'null' => { gobl: 'GOBL::Types::Nil', ruby: 'NilClass' }
+          'string' => 'String',
+          'number' => 'Float',
+          'integer' => 'Integer',
+          'boolean' => 'Boolean',
+          'object' => 'Hash',
+          'array' => 'Array',
+          'null' => 'NilClass'
         }.tap do |map|
-          map.default = { gobl: 'GOBL::Types::Any', ruby: 'Object' }
+          map.default = 'Object'
         end
       end
 
@@ -24,40 +24,21 @@ module Generators
         }
       end
 
-      # Provide a safe property symbol from the name, as Ruby and specifically
-      # Dry::Struct doesn't play nice with `$` in symbols
-      def safe_property_name(name)
-        name.gsub(/^\$/, '')
-      end
-
-      def gobl_type_string(property)
-        type_string property, {
-          custom_ref: -> { "GOBL::Types.Constructor(#{gobl_custom_ref_map[property.ref.to_s]})" },
-          array: -> { "GOBL::Types::Array.of(#{gobl_type_string(property.items)})" },
-          type: -> { json_schema_type_map[property.type.to_s][:gobl] }
-        }
-      end
-
-      def ruby_type_string(property)
-        type_string property, {
-          custom_ref: -> { gobl_custom_ref_map[property.ref.to_s] },
-          array: -> { "Array<#{ruby_type_string(property.items)}>" },
-          type: -> { json_schema_type_map[property.type.to_s][:ruby] }
-        }
-      end
-
-      # Template pattern customised by the procs in the `builders` argument
-      def type_string(property, builders = {})
+      def type_string(property, for_yard: false)
         if property.ref.present?
           if gobl_custom_ref_map.key?(property.ref.to_s)
-            builders[:custom_ref].call
+            gobl_custom_ref_map[property.ref.to_s]
           else
             gobl_type_from_reference(property.ref)
           end
         elsif property.type.array?
-          builders[:array].call
+          if for_yard
+            "Array<#{type_string(property.items, for_yard: false)}>"
+          else
+            "[#{type_string(property.items, for_yard: true)}]"
+          end
         else
-          builders[:type].call
+          json_schema_type_map[property.type.to_s]
         end
       end
 

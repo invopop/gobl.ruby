@@ -21,6 +21,13 @@ RSpec.describe 'Generated Object' do
     expect(JSON.parse(json)).to eq(JSON.parse(orig_json).except('$schema'))
   end
 
+  it 'validates the presence of mandatory and non-calculated fields' do
+    invoice = object_class.new
+    expect(invoice).not_to be_valid
+    expect(invoice.errors.full_messages).to include("Code can't be blank") # `code` is mandatory and not calculated
+    expect(invoice.errors.full_messages).not_to include("Totals can't be blank") # `totals` is mandatory but calculated
+  end
+
   it 'instatiates from an ‘enhanced’ hash' do
     invoice = object_class.new(
       code: 'SAMPLE-001',
@@ -34,6 +41,8 @@ RSpec.describe 'Generated Object' do
         taxes: [{ cat: 'VAT', rate: :standard }]
       }]
     )
+
+    expect(invoice).to be_valid
 
     expect(invoice.code).to eq('SAMPLE-001')
     expect(invoice.currency).to eq(GOBL::Currency::Code.new('EUR'))

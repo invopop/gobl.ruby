@@ -59,8 +59,8 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an invalid document is given' do
       invalid_docs = [
-        GOBL::Document.from_gobl!({}),
-        GOBL::Document.from_gobl!('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Document.new({}),
+        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|
@@ -99,8 +99,8 @@ RSpec.describe GOBL::Operations do
 
     it 'validates invalid documents' do
       invalid_docs = [
-        GOBL::Document.from_gobl!({}),
-        GOBL::Document.from_gobl!('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Document.new({}),
+        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|
@@ -141,8 +141,8 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an invalid document is given' do
       invalid_docs = [
-        GOBL::Document.from_gobl!({}),
-        GOBL::Document.from_gobl!('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Document.new({}),
+        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|

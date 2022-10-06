@@ -10,7 +10,7 @@ module GOBL
   #   GOBL.config.service_host = 'localhost'
   #   GOBL.config.service_port = 8080
   #
-  #   doc = GOBL::Document.from_gobl!(
+  #   doc = GOBL::Document.new(
   #     '$schema' => 'https://gobl.org/draft-0/bill/invoice',
   #     'code' => 'SAMPLE-001',
   #     'currency' => 'EUR',
@@ -70,7 +70,7 @@ module GOBL
 
       raise ServiceError, response['error'] if response['error'].present?
 
-      GOBL::Struct.from_gobl! response['payload']
+      GOBL::Struct.from_data response['payload']
     end
 
     # Checks whether or not a document or envelope is valid according to the GOBL schema
@@ -125,7 +125,7 @@ module GOBL
 
       raise ServiceError, response['error'] if response['error'].present?
 
-      GOBL::Struct.from_gobl! response['payload']
+      GOBL::Struct.from_data response['payload']
     end
 
     private

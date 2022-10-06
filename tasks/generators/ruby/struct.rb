@@ -4,10 +4,9 @@ module Generators
   class Ruby
     STRUCT_VALUE_NAME = 'value'
 
-    # Struct represents a dry-struct implementation meant to
-    # be re-used by the different type use-cases.
-    # A struct is meant to have it's methods overidden to cope
-    # with a complete scenario according to the object type.
+    # Struct represents a struct implementation meant to be re-used by the different type
+    # use-cases. A struct is meant to have it's methods overidden to cope with a complete
+    # scenario according to the object type.
     class Struct < Base
       protected
 
@@ -29,60 +28,22 @@ module Generators
         out
       end
 
-      def parent_class
-        'GOBL::Struct'
+      def class_content
+        [schema_id_constant, additional_content].flatten.compact.join("\n")
       end
 
-      def schema_id_const
-        <<~EOFCONST
+      def schema_id_constant
+        <<~EOFSCH
           # The Schema ID of the GOBL #{name} structure
           SCHEMA_ID = '#{parent.definition_schema_id(name)}'
-        EOFCONST
+        EOFSCH
       end
 
-      def class_content
-        [
-          includes,
-          schema_id_const,
-          constants,
-          attributes,
-          from_gobl_method,
-          from_json_method,
-          to_gobl_method,
-          to_json_method,
-          additional_methods
-        ].flatten.reject(&:blank?).join("\n")
+      def parent_class
+        raise NotImplementedError
       end
 
-      def includes
-        ''
-      end
-
-      def constants
-        ''
-      end
-
-      def attributes
-        ''
-      end
-
-      def from_gobl_method
-        ''
-      end
-
-      def to_gobl_method
-        ''
-      end
-
-      def from_json_method
-        ''
-      end
-
-      def to_json_method
-        ''
-      end
-
-      def additional_methods
+      def additional_content
         ''
       end
     end

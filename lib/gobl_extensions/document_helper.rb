@@ -7,7 +7,7 @@ module GOBLExtensions
     #
     # @return [GOBL::ID] the Schema ID
     def schema
-      @schema ||= GOBL::ID.new(_value['$schema'])
+      @schema ||= GOBL::ID.new(_map['$schema'])
     end
 
     # Extracts the GOBL struct embedded in the document. It determines the type of document
@@ -28,7 +28,7 @@ module GOBLExtensions
       # Sanity check
       raise "#{klass.name}::SCHEMA_ID expected to be '#{schema}'" unless schema == klass::SCHEMA_ID
 
-      klass.from_gobl!(_value.except('$schema'))
+      klass.new _map.except('$schema')
     end
 
     module ClassMethods
@@ -36,7 +36,7 @@ module GOBLExtensions
       #
       # @return [Document] the document embedding the given struct
       def embed(struct)
-        from_gobl! struct.to_gobl.merge(
+        new struct.as_json.merge(
           '$schema' => struct.class::SCHEMA_ID
         )
       end
