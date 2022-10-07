@@ -21,8 +21,8 @@ module GOBL
     end
 
     # @api private
-    def as_json(**args)
-      _map.as_json(**args)
+    def as_json(...)
+      _map.as_json(...)
     end
 
     # @!method [](key)

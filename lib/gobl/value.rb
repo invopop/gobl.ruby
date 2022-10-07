@@ -47,8 +47,8 @@ module GOBL
     end
 
     # @api private
-    def as_json(**args)
-      _value.as_json(**args)
+    def as_json(...)
+      _value.as_json(...)
     end
 
     protected
