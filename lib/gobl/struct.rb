@@ -36,8 +36,8 @@ module GOBL
     # Serializes the current GOBL struct into a JSON string
     #
     # @return [String] the JSON string representing the struct
-    def to_json(**args)
-      as_json.to_json(**args)
+    def to_json(...)
+      as_json.to_json(...)
     end
 
     # @api private
