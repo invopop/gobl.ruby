@@ -6,6 +6,7 @@ gemspec
 
 gem 'json-schema', '~> 2.8'
 gem 'multi_json', '~> 1.15'
+gem 'rake', '~> 13.0'
 gem 'redcarpet', '~> 3.5'
 gem 'rspec', '~> 3.11'
 gem 'rubocop', '~> 1.34'
