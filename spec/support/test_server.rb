@@ -9,6 +9,7 @@
 # path.
 module TestServer
   GOBL_CLI_PATH = 'spec/support/bin/gobl'
+  GOBL_JWK_PATH = 'spec/support/keys/id_es256.jwk'
 
   START_TIMEOUT = 5
   RETRY_WAIT = 0.1
@@ -31,7 +32,7 @@ module TestServer
   def launch_server
     @ts_process = fork do
       $stdout.reopen '/dev/null', 'w'
-      exec GOBL_CLI_PATH, 'serve', '-p', PORT.to_s
+      exec GOBL_CLI_PATH, 'serve', '-p', PORT.to_s, '-k', GOBL_JWK_PATH
     end
   end
 
