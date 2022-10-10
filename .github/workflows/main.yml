@@ -22,5 +22,7 @@ jobs:
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
+    - name: Fetch GOBL CLI
+      run: bin/fetch_gobl_cli
     - name: Run the default RSpec task
       run: bundle exec rake spec
