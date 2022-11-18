@@ -20,6 +20,14 @@ RSpec.describe GOBL::Num::Amount do
     a = described_class.new('-10.25')
     expect(a.value).to eq(-1025)
     expect(a.exp).to eq(2)
+
+    a = described_class.new('0.0966')
+    expect(a.value).to eq(966)
+    expect(a.exp).to eq(4)
+
+    a = described_class.new('-0.0966')
+    expect(a.value).to eq(-966)
+    expect(a.exp).to eq(4)
   end
 
   it 'rescales' do
@@ -52,5 +60,11 @@ RSpec.describe GOBL::Num::Amount do
 
     a = described_class.new('-3.5')
     expect(a.to_s).to eq('-3.5')
+
+    a = described_class.new('0.0966')
+    expect(a.to_s).to eq('0.0966')
+
+    a = described_class.new('-0.0966')
+    expect(a.to_s).to eq('-0.0966')
   end
 end

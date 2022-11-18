@@ -50,11 +50,9 @@ module GOBL
         raise 'exponent too high' if exp > 100
 
         p = 10**exp
-        v1 = value.abs / p
-        v1 = -v1 if value.negative?
-        v2 = value - (v1 * p)
-        v2 = -v2 if v2.negative?
-        format('%d.%0*d', v1, exp, v2)
+        v1, v2 = value.abs.divmod(p)
+        sign = value.negative? ? '-' : ''
+        format('%s%d.%0*d', sign, v1, exp, v2)
       end
 
       # Rescales each {Amount} in the pair ensuring both have the same exponent
@@ -209,7 +207,7 @@ module GOBL
           v2 = x[1].to_i
           e = x[1].length
           v *= 10**e
-          v += v.positive? ? v2 : -v2
+          v += x[0].match?(/^-/) ? -v2 : v2
         end
 
         @value = v
