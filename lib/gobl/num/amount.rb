@@ -207,7 +207,7 @@ module GOBL
           v2 = x[1].to_i
           e = x[1].length
           v *= 10**e
-          v += x[0].match?(/^-/) ? -v2 : v2
+          v += x[0].start_with?('-') ? -v2 : v2
         end
 
         @value = v
