@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.4
+## Generated with GOBL v0.31.0
 ##
 
 module GOBL
@@ -18,25 +18,25 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
+      # @!attribute [r] series
+      # Series identification code
+      # @return [String]
+      property :series, String
+
       # @!attribute [r] code
-      # Identity code of the previous invoice.
+      # Code of the previous document.
       # @return [String]
       property :code, String
       validates :code, presence: true
 
-      # @!attribute [r] series
-      # Additional identification details
-      # @return [String]
-      property :series, String
-
       # @!attribute [r] issue_date
-      # When the preceding invoice was issued.
+      # The issue date if the previous document.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
       validates :issue_date, presence: true
 
       # @!attribute [r] period
-      # Tax period in which the previous invoice has an effect.
+      # Tax period in which the previous invoice had an effect.
       # @return [GOBL::Cal::Period]
       property :period, GOBL::Cal::Period
 
