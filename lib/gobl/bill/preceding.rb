@@ -50,6 +50,11 @@ module GOBL
       # @return [String]
       property :correction_method, String
 
+      # @!attribute [r] stamps
+      # Seals of approval from other organisations.
+      # @return [Array<GOBL::Org::Stamp>]
+      property :stamps, [GOBL::Org::Stamp]
+
       # @!attribute [r] notes
       # Additional details regarding preceding invoice
       # @return [String]

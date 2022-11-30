@@ -14,7 +14,7 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity'
 
       # @!attribute [r] uuid
-      # Unique universal identity code.
+      # Unique universal identity code for this tax identity.
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
@@ -25,17 +25,17 @@ module GOBL
       validates :country, presence: true
 
       # @!attribute [r] locality
-      # Where inside a country the Tax ID was issued, if required.
+      # Where inside a country the identity holder is based for tax purposes, like a city, county, province, state, or combination of various.
       # @return [GOBL::L10n::Code]
       property :locality, GOBL::L10n::Code
 
       # @!attribute [r] source
-      # What is the source document of this tax identity.
+      # What is the source document of the tax identity.
       # @return [SourceKey]
       property :source, SourceKey
 
       # @!attribute [r] code
-      # Tax identity Code
+      # Normalized code shown on the original identity document.
       # @return [String]
       property :code, String
 

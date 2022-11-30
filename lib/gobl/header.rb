@@ -26,8 +26,8 @@ module GOBL
 
     # @!attribute [r] stamps
     # Seals of approval from other organisations.
-    # @return [Array<Stamp>]
-    property :stamps, [Stamp]
+    # @return [Array<GOBL::Org::Stamp>]
+    property :stamps, [GOBL::Org::Stamp]
 
     # @!attribute [r] tags
     # Set of labels that describe but have no influence on the data.
