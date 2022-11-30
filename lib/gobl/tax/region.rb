@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.4
+## Generated with GOBL v0.32.0
 ##
 
 module GOBL
@@ -32,8 +32,8 @@ module GOBL
 
       # @!attribute [r] localities
       # List of sub-localities inside a region.
-      # @return [Localities]
-      property :localities, Localities
+      # @return [Array<Locality>]
+      property :localities, [Locality]
 
       # @!attribute [r] currency
       # Currency used by the region for tax purposes.

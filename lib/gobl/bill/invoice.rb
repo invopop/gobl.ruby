@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.30.4
+## Generated with GOBL v0.32.0
 ##
 
 module GOBL
@@ -51,9 +51,9 @@ module GOBL
       property :tax, Tax
 
       # @!attribute [r] preceding
-      # Key information regarding a previous invoice and potentially details as to why it was corrected.
-      # @return [Preceding]
-      property :preceding, Preceding
+      # Key information regarding previous invoices and potentially details as to why they were corrected.
+      # @return [Array<Preceding>]
+      property :preceding, [Preceding]
 
       # @!attribute [r] issue_date
       # When the invoice was created.
