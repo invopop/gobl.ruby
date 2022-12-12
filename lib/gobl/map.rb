@@ -48,6 +48,10 @@ module GOBL
     #   Returns the number of entries in the map
     #   @return [Integer] the number of entries in the map
     #
+    # @!method values
+    #   Returns an array with the values in the map
+    #   @return [Array] the values in the map
+    #
     # @!method each_key
     #   Iterates over each key in the map
     #   @overload each(&block)
@@ -57,6 +61,6 @@ module GOBL
     #   @overload each
     #     Returns an Enumerator that iterates over the keys in the map
     #     @return [Enumerator] the enumerator of the keys
-    def_delegators :_map, :[], :each, :empty?, :length, :each_key
+    def_delegators :_map, :[], :each, :empty?, :length, :each_key, :values
   end
 end
