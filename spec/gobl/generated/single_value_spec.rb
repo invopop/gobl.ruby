@@ -48,6 +48,26 @@ RSpec.describe 'Generated Single Value' do
       expect(value).to eq(:code_0001_a)
       expect(value).not_to eq(:code_0001_b)
     end
+
+    describe 'eql?' do
+      it 'implements equality without coercion' do
+        value = string_value_class.new('CODE0001')
+
+        expect(value).not_to be_eql('CODE0001')
+        expect(value).not_to be_eql(:code0001)
+        expect(value).not_to be_eql(string_value_class.new('CODE0002'))
+
+        expect(value).to be_eql(string_value_class.new('CODE0001'))
+      end
+    end
+
+    describe 'hash' do
+      it 'returns the same hash for two objects when eql? would be true' do
+        value = string_value_class.new('CODE0001')
+
+        expect(value.hash).to eq(string_value_class.new('CODE0001').hash)
+      end
+    end
   end
 
   describe 'Enum String' do
