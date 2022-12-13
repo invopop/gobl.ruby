@@ -46,6 +46,25 @@ module GOBL
       end
     end
 
+    # Returns whether the current value is equal to a given one, unlike `#==`, without
+    # doing any coercion. That is, the other object must be of the same class to return
+    # true.
+    #
+    # @param other [Object] the other value to compare with
+    #
+    # @return [Boolean] `true` if the values are equal, `false` otherwise
+    def eql?(other)
+      self.class == other.class && _value.eql?(other._value)
+    end
+
+    # Returns a integer hash code of the current value that respects the following
+    # property: Given objects `a` and `b`. If `a.eql?(b)`, then `a.hash == b.hash`.
+    #
+    # @return [Integer] hash code of the current value
+    def hash
+      [self.class.name, _value].hash
+    end
+
     # @api private
     def as_json(...)
       _value.as_json(...)
