@@ -11,12 +11,12 @@ module GOBL
     # Rate defines a single rate inside a category
     class Rate < GOBL::Object
       # The Schema ID of the GOBL Rate structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Rate'
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Rate'
 
       # @!attribute [r] key
       # Key identifies this rate within the system
-      # @return [GOBL::Org::Key]
-      property :key, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
       validates :key, presence: true
 
       # @!attribute [r] name

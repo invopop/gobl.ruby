@@ -62,8 +62,8 @@ module GOBL
 
       # @!attribute [r] notes
       # Set of specific notes for this line that may be required for clarification.
-      # @return [Array<GOBL::Org::Note>]
-      property :notes, [GOBL::Org::Note]
+      # @return [Array<GOBL::CBC::Note>]
+      property :notes, [GOBL::CBC::Note]
     end
   end
 end

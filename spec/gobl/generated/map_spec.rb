@@ -3,7 +3,7 @@
 require './lib/gobl'
 
 RSpec.describe 'Generated Map' do
-  let(:map_class) { GOBL::Org::Meta }
+  let(:map_class) { GOBL::CBC::Meta }
 
   it 'provides access to map values' do
     map = map_class.new({ 'key1' => 'value1' })

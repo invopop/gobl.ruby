@@ -46,8 +46,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Data about the data.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

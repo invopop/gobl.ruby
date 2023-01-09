@@ -7,11 +7,11 @@
 ##
 
 module GOBL
-  module Org
+  module CBC
     # Note represents a free text of additional information that may be added to a document.
     class Note < GOBL::Object
       # The Schema ID of the GOBL Note structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/note'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/note'
 
       # @!attribute [r] key
       # Key specifying subject of the text

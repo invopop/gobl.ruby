@@ -7,11 +7,11 @@
 ##
 
 module GOBL
-  module Org
+  module CBC
     # Text identifier to be used instead of a code for a more verbose but readable identifier.
     class Key < GOBL::Value
       # The Schema ID of the GOBL Key structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/key'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/key'
     end
   end
 end

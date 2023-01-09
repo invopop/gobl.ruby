@@ -15,14 +15,14 @@ module GOBL
 
       # @!attribute [r] cat
       # Tax category code from those available inside a region.
-      # @return [GOBL::Org::Code]
-      property :cat, GOBL::Org::Code
+      # @return [GOBL::CBC::Code]
+      property :cat, GOBL::CBC::Code
       validates :cat, presence: true
 
       # @!attribute [r] rate
       # Rate within a category to apply.
-      # @return [GOBL::Org::Key]
-      property :rate, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :rate, GOBL::CBC::Key
 
       # @!attribute [r] percent
       # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).

@@ -9,4 +9,4 @@ GOBL::I18n::String.include GOBLExtensions::I18n::ValueKeysHelper
 GOBL::Document.include GOBLExtensions::DocumentHelper
 GOBL::Document.extend GOBLExtensions::DocumentHelper::ClassMethods
 GOBL::Envelope.include GOBLExtensions::EnvelopeHelper
-GOBL::Tax::Region.extend GOBLExtensions::Tax::RegionHelper::ClassMethods
+GOBL::Tax::Regime.extend GOBLExtensions::Tax::RegimeHelper::ClassMethods

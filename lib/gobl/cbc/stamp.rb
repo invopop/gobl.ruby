@@ -7,16 +7,16 @@
 ##
 
 module GOBL
-  module Org
+  module CBC
     # Stamp defines an official seal of approval from a third party like a governmental agency or intermediary and should thus be included in any official envelopes.
     class Stamp < GOBL::Object
       # The Schema ID of the GOBL Stamp structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/stamp'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/stamp'
 
       # @!attribute [r] prv
       # Identity of the agency used to create the stamp usually defined by each region.
-      # @return [GOBL::Org::Key]
-      property :prv, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :prv, GOBL::CBC::Key
       validates :prv, presence: true
 
       # @!attribute [r] val

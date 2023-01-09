@@ -19,7 +19,8 @@ loader.inflector.inflect(
   'item_id' => 'ItemID',
   'tax_id' => 'TaxID',
   'dsig' => 'DSig',
-  'id' => 'ID'
+  'id' => 'ID',
+  'cbc' => 'CBC'
 )
 loader.setup
 

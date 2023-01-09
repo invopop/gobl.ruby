@@ -15,8 +15,8 @@ module GOBL
 
       # @!attribute [r] prices_include
       # Category of the tax already included in the line item prices, especially useful for B2C retailers with customers who prefer final prices inclusive of tax.
-      # @return [GOBL::Org::Code]
-      property :prices_include, GOBL::Org::Code
+      # @return [GOBL::CBC::Code]
+      property :prices_include, GOBL::CBC::Code
 
       # @!attribute [r] schemes
       # Special tax schemes that apply to this invoice according to local requirements.
@@ -25,8 +25,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Any additional data that may be required for processing, but should never be relied upon by recipients.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

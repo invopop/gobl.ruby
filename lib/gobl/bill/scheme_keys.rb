@@ -9,6 +9,6 @@
 module GOBL
   module Bill
     # SchemeKeys stores a list of keys that makes it easier to perform matches.
-    SchemeKeys = [GOBL::Org::Key] # rubocop:disable Naming/ConstantName, Style/MutableConstant
+    SchemeKeys = [GOBL::CBC::Key] # rubocop:disable Naming/ConstantName, Style/MutableConstant
   end
 end

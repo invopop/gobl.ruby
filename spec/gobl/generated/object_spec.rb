@@ -70,8 +70,8 @@ RSpec.describe 'Generated Object' do
 
       line.taxes.first.tap do |tax|
         expect(tax).to be_a(GOBL::Tax::Combo)
-        expect(tax.cat).to eq(GOBL::Org::Code.new('VAT'))
-        expect(tax.rate).to eq(GOBL::Org::Key.new('standard'))
+        expect(tax.cat).to eq(GOBL::CBC::Code.new('VAT'))
+        expect(tax.rate).to eq(GOBL::CBC::Key.new('standard'))
       end
     end
   end

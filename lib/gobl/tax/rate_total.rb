@@ -14,8 +14,8 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotal'
 
       # @!attribute [r] key
-      # @return [GOBL::Org::Key]
-      property :key, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] base
       # @return [GOBL::Num::Amount]

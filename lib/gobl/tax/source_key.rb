@@ -7,11 +7,11 @@
 ##
 
 module GOBL
-  module Org
+  module Tax
     # SourceKey identifies the source of a tax identity
     class SourceKey < GOBL::Enum
       # The Schema ID of the GOBL SourceKey structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity#/$defs/SourceKey'
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/identity#/$defs/SourceKey'
 
       # The enumeration of values of the object and their descriptions (Values different to these are not allowed)
       ENUM = {
