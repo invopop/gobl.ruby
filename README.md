@@ -32,7 +32,7 @@ Ruby library for reading, producing, manipulating and operating over [GOBL][3] d
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gobl', git: 'https://github.com/invopop/gobl.ruby', branch: 'main'
+gem 'gobl'
 ```
 
 And then execute:
