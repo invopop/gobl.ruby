@@ -3,15 +3,15 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
-  module Org
-    # TaxIdentity stores the details required to identify an entity for tax purposes.
-    class TaxIdentity < GOBL::Object
-      # The Schema ID of the GOBL TaxIdentity structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/tax-identity'
+  module Tax
+    # Identity stores the details required to identify an entity for tax purposes.
+    class Identity < GOBL::Object
+      # The Schema ID of the GOBL Identity structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/identity'
 
       # @!attribute [r] uuid
       # Unique universal identity code for this tax identity.
@@ -24,10 +24,10 @@ module GOBL
       property :country, GOBL::L10n::CountryCode
       validates :country, presence: true
 
-      # @!attribute [r] locality
-      # Where inside a country the identity holder is based for tax purposes, like a city, county, province, state, or combination of various.
+      # @!attribute [r] zone
+      # Where inside the country the tax identity holder is based for tax purposes like a village, town, district, city, county, state or province. For some areas, this could be a regular post or zip code. See the regime packages for specific validation rules.
       # @return [GOBL::L10n::Code]
-      property :locality, GOBL::L10n::Code
+      property :zone, GOBL::L10n::Code
 
       # @!attribute [r] source
       # What is the source document of the tax identity.
@@ -41,8 +41,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Additional details that may be required.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

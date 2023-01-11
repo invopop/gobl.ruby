@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -60,8 +60,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Additional semi-structured information.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

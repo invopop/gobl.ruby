@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -25,8 +25,8 @@ module GOBL
 
       # @!attribute [r] tax_id
       # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.
-      # @return [GOBL::Org::TaxIdentity]
-      property :tax_id, GOBL::Org::TaxIdentity
+      # @return [GOBL::Tax::Identity]
+      property :tax_id, GOBL::Tax::Identity
 
       # @!attribute [r] name
       # Legal name or representation of the organization.
@@ -71,8 +71,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Any additional semi-structured information that does not fit into the rest of the party.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

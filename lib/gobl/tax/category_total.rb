@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -14,8 +14,8 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/CategoryTotal'
 
       # @!attribute [r] code
-      # @return [GOBL::Org::Code]
-      property :code, GOBL::Org::Code
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
       validates :code, presence: true
 
       # @!attribute [r] retained

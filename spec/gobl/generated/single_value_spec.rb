@@ -4,7 +4,7 @@ require_relative '../../../lib/gobl'
 
 RSpec.describe 'Generated Single Value' do
   describe 'String Value' do
-    let(:string_value_class) { GOBL::Org::Code }
+    let(:string_value_class) { GOBL::CBC::Code }
 
     it 'instantiates from JSON' do
       value = string_value_class.from_json!('CODE001'.to_json)

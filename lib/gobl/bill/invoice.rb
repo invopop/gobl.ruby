@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -121,13 +121,13 @@ module GOBL
 
       # @!attribute [r] notes
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
-      # @return [Array<GOBL::Org::Note>]
-      property :notes, [GOBL::Org::Note]
+      # @return [Array<GOBL::CBC::Note>]
+      property :notes, [GOBL::CBC::Note]
 
       # @!attribute [r] meta
       # Additional semi-structured data that doesn't fit into the body of the invoice.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

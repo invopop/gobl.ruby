@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -11,11 +11,11 @@ module GOBL
     # Category contains the definition of a general type of tax inside a region.
     class Category < GOBL::Object
       # The Schema ID of the GOBL Category structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region#/$defs/Category'
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Category'
 
       # @!attribute [r] code
-      # @return [GOBL::Org::Code]
-      property :code, GOBL::Org::Code
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
       validates :code, presence: true
 
       # @!attribute [r] name

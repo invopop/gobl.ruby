@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -26,8 +26,8 @@ module GOBL
 
     # @!attribute [r] stamps
     # Seals of approval from other organisations.
-    # @return [Array<GOBL::Org::Stamp>]
-    property :stamps, [GOBL::Org::Stamp]
+    # @return [Array<GOBL::CBC::Stamp>]
+    property :stamps, [GOBL::CBC::Stamp]
 
     # @!attribute [r] tags
     # Set of labels that describe but have no influence on the data.
@@ -36,8 +36,8 @@ module GOBL
 
     # @!attribute [r] meta
     # Additional semi-structured information about this envelope.
-    # @return [GOBL::Org::Meta]
-    property :meta, GOBL::Org::Meta
+    # @return [GOBL::CBC::Meta]
+    property :meta, GOBL::CBC::Meta
 
     # @!attribute [r] notes
     # Any information that may be relevant to other humans about this envelope

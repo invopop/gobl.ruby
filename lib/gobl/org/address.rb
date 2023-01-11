@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -59,16 +59,15 @@ module GOBL
       property :street_extra, String
 
       # @!attribute [r] locality
-      # The village, town, district, or city.
+      # Village, town, district, or city, typically inside a region.
       # @return [String]
       property :locality, String
       validates :locality, presence: true
 
       # @!attribute [r] region
-      # Province, County, or State.
+      # Province, county, or state, inside a country.
       # @return [String]
       property :region, String
-      validates :region, presence: true
 
       # @!attribute [r] code
       # Post or ZIP code.
@@ -87,8 +86,8 @@ module GOBL
 
       # @!attribute [r] meta
       # Any additional semi-structure details about the address.
-      # @return [GOBL::Org::Meta]
-      property :meta, GOBL::Org::Meta
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

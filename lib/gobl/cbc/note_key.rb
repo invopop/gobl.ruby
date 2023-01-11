@@ -3,15 +3,15 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
-  module Org
+  module CBC
     # NoteKey identifies the type of note being edited
     class NoteKey < GOBL::Enum
       # The Schema ID of the GOBL NoteKey structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/note#/$defs/NoteKey'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/note#/$defs/NoteKey'
 
       # The enumeration of values of the object and their descriptions (Values different to these are not allowed)
       ENUM = {

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
@@ -20,14 +20,14 @@ module GOBL
 
       # @!attribute [r] key
       # Type of inbox being defined.
-      # @return [GOBL::Org::Key]
-      property :key, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
       validates :key, presence: true
 
       # @!attribute [r] role
       # Role assigned to this inbox that may be relevant for the consumer.
-      # @return [GOBL::Org::Key]
-      property :role, GOBL::Org::Key
+      # @return [GOBL::CBC::Key]
+      property :role, GOBL::CBC::Key
 
       # @!attribute [r] name
       # Human name for the inbox.

@@ -3,18 +3,18 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.32.0
+## Generated with GOBL v0.34.1
 ##
 
 module GOBL
   module Tax
-    # Region defines the holding structure for a regions categories and subsequent Rates and Values.
-    class Region < GOBL::Object
-      # The Schema ID of the GOBL Region structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/region'
+    # Regime defines the holding structure for the definitions of taxes inside a country or territory.
+    class Regime < GOBL::Object
+      # The Schema ID of the GOBL Regime structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime'
 
       # @!attribute [r] name
-      # Name of the region
+      # Name of the country
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates :name, presence: true
@@ -25,18 +25,18 @@ module GOBL
       property :country, GOBL::L10n::CountryCode
       validates :country, presence: true
 
-      # @!attribute [r] locality
-      # Locality, city, province, county, or similar code inside the country, if needed.
+      # @!attribute [r] zone
+      # Specific Locality, region, city, province, county, or similar code inside the country, if needed.
       # @return [GOBL::L10n::Code]
-      property :locality, GOBL::L10n::Code
+      property :zone, GOBL::L10n::Code
 
-      # @!attribute [r] localities
-      # List of sub-localities inside a region.
-      # @return [Array<Locality>]
-      property :localities, [Locality]
+      # @!attribute [r] zones
+      # List of sub-zones inside a country.
+      # @return [Array<Zone>]
+      property :zones, [Zone]
 
       # @!attribute [r] currency
-      # Currency used by the region for tax purposes.
+      # Currency used by the country.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
       validates :currency, presence: true
