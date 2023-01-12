@@ -10,7 +10,7 @@ require 'hashme'
 
 require_relative 'ext/hashme'
 
-loader = Zeitwerk::Loader.for_gem
+loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
 loader.inflector.inflect(
   'gobl' => 'GOBL',
   'gobl_extensions' => 'GOBLExtensions',
