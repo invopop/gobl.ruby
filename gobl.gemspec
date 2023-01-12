@@ -21,8 +21,7 @@ Gem::Specification.new do |spec|
     'rubygems_mfa_required' => 'true'
   }
 
-  spec.add_dependency('activesupport', '~> 6.1')
-  spec.add_dependency('hashme', '~> 0.2.6')
-  spec.add_dependency('json', '~> 2.6.1')
-  spec.add_dependency('zeitwerk', '~> 2.5.1')
+  spec.add_dependency('activesupport', '>= 4')
+  spec.add_dependency('hashme', '>= 0.2.6')
+  spec.add_dependency('zeitwerk', '>= 1')
 end
