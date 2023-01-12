@@ -86,7 +86,7 @@ message = document.extract #=> #<GOBL::Note::Message title=nil content="Hello Wo
 message.content #=> "Hello World!"
 ```
 
-Note that, in the previous example, we parsed the JSON fragment as a document. A [document](https://docs.gobl.org/core/documents) is one of the fundamental entities of GOBL, and it represents a business document in an abstract way. To get the specific document type instantiated –a message, in the example above–, we needed to call the [`#extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBLExtensions%2FDocumentHelper:extract) method of the document object.
+Note that, in the previous example, we parsed the JSON fragment as a document. A [document](https://docs.gobl.org/core/documents) is one of the fundamental entities of GOBL, and it represents a business document in an abstract way. To get the specific document type instantiated –a message, in the example above–, we needed to call the [`#extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper:extract) method of the document object.
 
 The previous instantiation method is useful if you don't know the document type in advance. If you do, you could also instantiate the object in this more direct way:
 
@@ -103,7 +103,7 @@ message = GOBL::Note::Message.new(content: 'Hello World!')
 message.to_json #=> "{\"content\":\"Hello World!\"}"
 ```
 
-Note that, in the previous example, the generated JSON doesn't include a `$schema` attribute. This is because the GOBL schema doesn't require that attribute in a standalone message structure. If you want to use that structure as a document, you will need a `$schema` to be present. You can get that from your Ruby code by simply [_embedding_](https://rubydoc.info/github/invopop/gobl.ruby/GOBLExtensions%2FDocumentHelper%2FClassMethods:embed) the struct in a document:
+Note that, in the previous example, the generated JSON doesn't include a `$schema` attribute. This is because the GOBL schema doesn't require that attribute in a standalone message structure. If you want to use that structure as a document, you will need a `$schema` to be present. You can get that from your Ruby code by simply [_embedding_](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper%2FClassMethods:embed) the struct in a document:
 
 ```ruby
 message = GOBL::Note::Message.new(content: 'Hello World!')
@@ -111,7 +111,7 @@ document = GOBL::Document.embed(message)
 document.to_json #=> "{\"content\":\"Hello World!\",\"$schema\":\"https://gobl.org/draft-0/note/message\"}"
 ```
 
-_See also [`GOBL::Struct.from_json!`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct%2Efrom_json!), [`GOBL::Struct#to_json`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct:to_json), [`GOBL::Document#embed`](https://rubydoc.info/github/invopop/gobl.ruby/GOBLExtensions%2FDocumentHelper%2FClassMethods:embed), [`GOBL::Document.extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBLExtensions%2FDocumentHelper:extract)_
+_See also [`GOBL::Struct.from_json!`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct%2Efrom_json!), [`GOBL::Struct#to_json`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct:to_json), [`GOBL::Document#embed`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper%2FClassMethods:embed), [`GOBL::Document.extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper:extract)_
 
 ### Handling value objects and enumerations
 

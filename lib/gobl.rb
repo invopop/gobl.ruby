@@ -10,10 +10,9 @@ require 'hashme'
 
 require_relative 'ext/hashme'
 
-loader = Zeitwerk::Loader.for_gem(warn_on_extra_files: false)
+loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect(
   'gobl' => 'GOBL',
-  'gobl_extensions' => 'GOBLExtensions',
   'uuid' => 'UUID',
   'url' => 'URL',
   'item_id' => 'ItemID',
@@ -22,6 +21,7 @@ loader.inflector.inflect(
   'id' => 'ID',
   'cbc' => 'CBC'
 )
+loader.ignore("#{__dir__}/ext")
 loader.setup
 
 # Main GOBL namespace. It provides direct access to the library's configuration (see
@@ -41,4 +41,13 @@ module GOBL
   end
 end
 
-require_relative 'extensions'
+# Extensions are all defined here so they are auto-loaded by Zeitwerk.
+#
+# Both the instance and class method modules need to be included/extended explicitly here
+# to get YARD parsing them properly.
+
+GOBL::I18n::String.include GOBL::Extensions::I18n::ValueKeysHelper
+GOBL::Document.include GOBL::Extensions::DocumentHelper
+GOBL::Document.extend GOBL::Extensions::DocumentHelper::ClassMethods
+GOBL::Envelope.include GOBL::Extensions::EnvelopeHelper
+GOBL::Tax::Regime.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
