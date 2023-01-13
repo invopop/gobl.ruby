@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   }
 
   spec.add_dependency('activesupport', '>= 4')
-  spec.add_dependency('hashme', '>= 0.2.6')
+  spec.add_dependency('hashme', '>= 0.3.0')
   spec.add_dependency('zeitwerk', '>= 1')
 end
