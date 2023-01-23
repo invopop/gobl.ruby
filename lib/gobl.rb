@@ -8,8 +8,6 @@ require 'net/http'
 require 'base64'
 require 'hashme'
 
-require_relative 'ext/hashme'
-
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect(
   'gobl' => 'GOBL',
