@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.7'
   spec.required_rubygems_version = '>= 3.1.4'
 
-  spec.files = Dir['lib/**/*', 'data/regimes/**/*']
+  spec.files = Dir['lib/**/*', 'data/regimes/**/*', 'README.md']
   spec.require_path = 'lib'
 
   spec.metadata = {
