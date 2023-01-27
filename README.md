@@ -249,9 +249,9 @@ The command `mage console` spins up an IRB session with the library required.
 
 The library is fully documented using YARD. You can spin up a YARD server with the command `mage yardserver`.
 
-[1]: https://rubydoc.info/github/invopop/gobl.ruby
+[1]: https://www.rubydoc.info/gems/gobl
 [2]: https://docs.gobl.org/
 [3]: https://gobl.org/
 [4]: https://github.com/invopop/gobl.cli
-[5]: https://rubydoc.info/github/invopop/gobl.ruby/GOBL/Operations
-[6]: https://rubydoc.info/github/invopop/gobl.ruby/index
+[5]: https://www.rubydoc.info/gems/gobl/GOBL/Operations
+[6]: https://www.rubydoc.info/gems/gobl/index
