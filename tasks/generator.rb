@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
-require_relative 'parser'
-require_relative 'generators/ruby'
+require_relative "parser"
+require_relative "generators/ruby"
+require_relative "generators/markdown"
 
 # Generator - Helper class to export Ruby structures from a JSON schema.
 class Generator
@@ -18,9 +19,16 @@ class Generator
     return unless path
 
     @parser.each_schema do |schema|
-      # TODO: Support language selection here
-      rb = Generators::Ruby.new(schema)
-      rb.export_to(path)
+      case @lang
+      when :ruby
+        rb = Generators::Ruby.new(schema)
+        rb.export_to(path)
+      when :markdown
+        rb = Generators::Markdown.new(schema)
+        rb.export_to(path)
+      else
+        raise ArgumentError, "Unsupported generator language #{@lang}"
+      end
     end
   end
 end

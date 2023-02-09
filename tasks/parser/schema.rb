@@ -71,8 +71,12 @@ module Parser
       composition_data.present? ? Composition.new(*composition_data) : nil
     end
 
-    def calculated?
-      @data['calculated'] || false
+    def calculated?(property_name = nil)
+      if property_name
+        properties[property_name].calculated?
+      else
+        @data["calculated"] || false
+      end
     end
 
     def optional?(property_name)

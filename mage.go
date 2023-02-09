@@ -19,7 +19,12 @@ func Setup() error {
 
 // Generate uses the schema to generate the ruby structures
 func Generate() error {
-	return dockerRunCmd(name, "", "rake", "generate")
+	return dockerRunCmd(name, "", "rake", "generate[ruby,lib/gobl]")
+}
+
+// Generate uses the schema to generate the ruby structures
+func GenerateDocs() error {
+	return dockerRunCmd(name, "", "rake", "generate[markdown,docs]")
 }
 
 // Runs gem's rspec tests.
