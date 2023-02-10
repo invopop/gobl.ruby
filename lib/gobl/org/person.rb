@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -43,6 +43,11 @@ module GOBL
       # Regular phone or mobile numbers
       # @return [Array<GOBL::Org::Telephone>]
       property :telephones, [GOBL::Org::Telephone]
+
+      # @!attribute [r] avatars
+      # Avatars provider links to images or photos or the person.
+      # @return [Array<GOBL::Org::Image>]
+      property :avatars, [GOBL::Org::Image]
 
       # @!attribute [r] meta
       # Data about the data.

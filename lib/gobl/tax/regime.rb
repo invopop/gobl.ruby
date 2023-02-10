@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -43,8 +43,8 @@ module GOBL
 
       # @!attribute [r] schemes
       # Set of specific scheme definitions inside the region.
-      # @return [Schemes]
-      property :schemes, Schemes
+      # @return [Array<Scheme>]
+      property :schemes, [Scheme]
 
       # @!attribute [r] categories
       # List of tax categories.

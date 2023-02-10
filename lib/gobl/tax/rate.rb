@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -29,7 +29,7 @@ module GOBL
       property :desc, GOBL::I18n::String
 
       # @!attribute [r] values
-      # Values contains a list of Value objects that contain the current and historical percentage values for the rate; order is important, newer values should come before older values.
+      # Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values.
       # @return [Array<RateValue>]
       property :values, [RateValue]
       validates :values, presence: true
