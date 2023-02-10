@@ -3,12 +3,12 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
   module Pay
-    # Instructions holds a set of instructions that determine how the payment has or should be made.
+    # Instructions determine how the payment has or should be made.
     class Instructions < GOBL::Object
       # The Schema ID of the GOBL Instructions structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions'
