@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -20,8 +20,8 @@ module GOBL
 
       # @!attribute [r] schemes
       # Special tax schemes that apply to this invoice according to local requirements.
-      # @return [SchemeKeys]
-      property :schemes, SchemeKeys
+      # @return [Array<GOBL::CBC::Key>]
+      property :schemes, [GOBL::CBC::Key]
 
       # @!attribute [r] meta
       # Any additional data that may be required for processing, but should never be relied upon by recipients.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -18,16 +18,16 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
+      # @!attribute [r] series
+      # Used as a prefix to group codes.
+      # @return [String]
+      property :series, String
+
       # @!attribute [r] code
       # Sequential code used to identify this invoice in tax declarations.
       # @return [String]
       property :code, String
       validates :code, presence: true
-
-      # @!attribute [r] series
-      # Used in addition to the Code in some regions.
-      # @return [String]
-      property :series, String
 
       # @!attribute [r] type
       # Optional invoice type, leave empty unless needed for a specific situation.
@@ -42,8 +42,8 @@ module GOBL
 
       # @!attribute [r] exchange_rates
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      # @return [ExchangeRates]
-      property :exchange_rates, ExchangeRates
+      # @return [Array<GOBL::Currency::ExchangeRate>]
+      property :exchange_rates, [GOBL::Currency::ExchangeRate]
 
       # @!attribute [r] tax
       # Special tax configuration for billing.
@@ -103,14 +103,17 @@ module GOBL
       property :outlays, [Outlay]
 
       # @!attribute [r] ordering
+      # Ordering details including document references and buyer or seller parties.
       # @return [Ordering]
       property :ordering, Ordering
 
       # @!attribute [r] payment
+      # Information on when, how, and to whom the invoice should be paid.
       # @return [Payment]
       property :payment, Payment
 
       # @!attribute [r] delivery
+      # Specific details on delivery of the goods referenced in the invoice.
       # @return [Delivery]
       property :delivery, Delivery
 

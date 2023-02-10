@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -17,8 +17,8 @@ module GOBL
       ENUM = {
         'any' => 'Any method available, no preference',
         'card' => 'Credit or debit card',
-        'credit-transfer' => 'Send initiated bank or wire transfer',
-        'debit-transfer' => 'Receive initiated bank or wire transfer',
+        'credit-transfer' => 'Sender initiated bank or wire transfer',
+        'debit-transfer' => 'Receiver initiated bank or wire transfer',
         'cash' => 'Cash',
         'direct-debit' => 'Direct debit',
         'online' => 'Online or web payment'

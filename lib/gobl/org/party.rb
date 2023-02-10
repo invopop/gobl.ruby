@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -59,6 +59,11 @@ module GOBL
       # @return [Array<GOBL::Org::Email>]
       property :emails, [GOBL::Org::Email]
 
+      # @!attribute [r] websites
+      # Public websites that provide further information about the party.
+      # @return [Array<Website>]
+      property :websites, [Website]
+
       # @!attribute [r] telephones
       # Regular telephone numbers
       # @return [Array<GOBL::Org::Telephone>]
@@ -68,6 +73,11 @@ module GOBL
       # Additional registration details about the company that may need to be included in a document.
       # @return [GOBL::Org::Registration]
       property :registration, GOBL::Org::Registration
+
+      # @!attribute [r] logos
+      # Images that can be used to identify the party visually.
+      # @return [Array<GOBL::Org::Image>]
+      property :logos, [GOBL::Org::Image]
 
       # @!attribute [r] meta
       # Any additional semi-structured information that does not fit into the rest of the party.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.34.1
+## Generated with GOBL v0.36.0
 ##
 
 module GOBL
@@ -24,12 +24,12 @@ module GOBL
       property :date, GOBL::Cal::Date
 
       # @!attribute [r] start_date
-      # Start of a n invoicing or delivery period
+      # Start of an invoicing or delivery period
       # @return [GOBL::Cal::Date]
       property :start_date, GOBL::Cal::Date
 
       # @!attribute [r] end_date
-      # End of a n invoicing or delivery period
+      # End of an invoicing or delivery period
       # @return [GOBL::Cal::Date]
       property :end_date, GOBL::Cal::Date
     end
