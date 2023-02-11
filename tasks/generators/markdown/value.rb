@@ -4,9 +4,6 @@ module Generators
   class Markdown
     # Base generator of a json schema of type nil or string
     class Value < Struct
-      def parent_class
-        enum? ? "GOBL::Enum" : "GOBL::Value"
-      end
 
       def additional_content
         enum_constant
@@ -23,7 +20,6 @@ module Generators
 
         <<~EOFCONST
           ## Values
-          The enumeration of values of the object and their descriptions (Values different to these are #{strict_enum? ? "not" : "also"} allowed)
 
           #{table.to_s}
         EOFCONST

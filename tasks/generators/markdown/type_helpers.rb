@@ -6,21 +6,21 @@ module Generators
       def json_schema_type_map
         @json_schema_type_map ||=
           {
-            "string" => "String",
-            "number" => "Float",
-            "integer" => "Integer",
-            "boolean" => "Boolean",
-            "object" => "Hash",
-            "array" => "Array",
-            "null" => "NilClass",
-          }.tap { |map| map.default = "Object" }
+            "string" => "string",
+            "number" => "number",
+            "integer" => "integer",
+            "boolean" => "boolean",
+            "object" => "object",
+            "array" => "array",
+            "null" => "null",
+          }.tap { |map| map.default = "object" }
       end
 
       def gobl_custom_ref_map
-        @gobl_custom_ref_map ||= {
-          "https://gobl.org/draft-0/num/amount" => "GOBL::Num::Amount",
-          "https://gobl.org/draft-0/num/percentage" => "GOBL::Num::Percentage",
-        }
+        @gobl_custom_ref_map ||= { }
+        #  "https://gobl.org/draft-0/num/amount" => "num/amount",
+        #  "https://gobl.org/draft-0/num/percentage" => "num/percentage",
+        #}
       end
 
       def type_string(property, for_yard: false)
@@ -28,26 +28,31 @@ module Generators
           if gobl_custom_ref_map.key?(property.ref.to_s)
             gobl_custom_ref_map[property.ref.to_s]
           else
-            "[#{gobl_type_from_reference(property.ref)}](/draft-0/#{gobl_type_from_reference(property.ref).gsub("GOBL::", "").gsub("::", "/").downcase})"
+            "[#{gobl_type_from_reference(property.ref)}](/draft-0/#{gobl_type_path(property.ref)})"
           end
         elsif property.type.array?
           if for_yard
-            "#{type_string(property.items, for_yard: false)}[]"
+            "array of #{type_string(property.items, for_yard: false)}"
           else
-            "#{type_string(property.items, for_yard: true)}[]"
+            "array of #{type_string(property.items, for_yard: true)}"
           end
         else
           json_schema_type_map[property.type.to_s]
         end
       end
 
-      def gobl_type_from_reference(ref)
+      def gobl_type_path(ref)
+        gobl_type_from_reference(ref).underscore
+      end
+
+      def gobl_type_from_reference(ref) # ref is URL
         c = gobl_custom_ref_map[ref.to_s]
         if c.present?
           c
         elsif ref.fragment.present?
+          # in same module
           m = ref.fragment.match(%r{^/\$defs/(.+)})
-          "GOBL::" + m[1] # already in CamelCase
+          (modules + [m[1]]).join("/") # already in CamelCase
         elsif ref.gobl?
           gobl_type_from_id(ref)
         else
@@ -57,12 +62,12 @@ module Generators
 
       def gobl_type_from_id(ref)
         # extract from URL
-        mods = ["GOBL"]
+        mods = []
         if ref.module.present?
-          ref.module.split("/").each { |m| mods << m.underscore.camelize }
+          ref.module.split("/").each { |m| mods << m.underscore }
           mods << ref.name.underscore.camelize
         end
-        mods.join("::")
+        mods.join("/")
       end
     end
   end

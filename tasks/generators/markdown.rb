@@ -33,7 +33,7 @@ module Generators
     def export_to(path)
       path += "/#{schema.id.module}" if schema.id.module.present?
       schema.definitions.each do |name, sub_schema|
-        mods = "gobl/#{schema.id.module}".split("/")
+        mods = schema.id.module.split("/")
         data = schema_to_markdown(mods, name, sub_schema, schema).to_s
         FileUtils.mkdir_p(path)
         dest = "#{path}/#{name.underscore}.mdx"

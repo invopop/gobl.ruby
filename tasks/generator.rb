@@ -22,13 +22,12 @@ class Generator
       case @lang
       when :ruby
         rb = Generators::Ruby.new(schema)
-        rb.export_to(path)
       when :markdown
         rb = Generators::Markdown.new(schema)
-        rb.export_to(path)
       else
         raise ArgumentError, "Unsupported generator language #{@lang}"
       end
+      rb.export_to(path)
     end
   end
 end

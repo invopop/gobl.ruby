@@ -6,19 +6,15 @@ module Generators
     class Object < Struct
       protected
 
-      def parent_class
-        "GOBL::Object"
-      end
-
       def additional_content
         table = Terminal::Table.new
-        table.headings = %w[Property Type Required Calculated Description]
+        table.headings = %w[Property Type Req. Description]
         table.style = { border: :markdown }
         table.rows = attributes
         table.to_s
 
         <<~EOFMOD
-        ## Attributes
+        ## Properties
 
         #{table.to_s}
         EOFMOD
@@ -32,8 +28,7 @@ module Generators
         [
           "`#{name}`",
           type_string(property),
-          !schema.optional?(name),
-          schema.calculated?(name),
+          !schema.optional?(name) ? 'true' : '',
           property.description&.split&.join(" "),
         ]
       end
