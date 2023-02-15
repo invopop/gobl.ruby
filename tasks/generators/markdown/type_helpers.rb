@@ -42,7 +42,7 @@ module Generators
       end
 
       def gobl_type_path(ref)
-        gobl_type_from_reference(ref).underscore
+        gobl_type_from_reference(ref).gsub('.', '/').underscore
       end
 
       def gobl_type_from_reference(ref) # ref is URL
@@ -52,7 +52,7 @@ module Generators
         elsif ref.fragment.present?
           # in same module
           m = ref.fragment.match(%r{^/\$defs/(.+)})
-          (modules + [m[1]]).join("/") # already in CamelCase
+          (modules + [m[1]]).join(".") # already in CamelCase
         elsif ref.gobl?
           gobl_type_from_id(ref)
         else
@@ -67,7 +67,7 @@ module Generators
           ref.module.split("/").each { |m| mods << m.underscore }
           mods << ref.name.underscore.camelize
         end
-        mods.join("/")
+        mods.join(".")
       end
     end
   end

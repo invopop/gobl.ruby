@@ -15,7 +15,9 @@ module Generators
         table = Terminal::Table.new
         table.headings = %w[Value Description]
         table.style = { border: :markdown }
-        table.rows = enum_hash.map { |key, value| ["`#{key}`", value] }
+        table.rows = enum_hash.map do |key, value|
+          [key.blank? ? "": "`#{key}`", value]
+        end
         table.to_s
 
         <<~EOFCONST
