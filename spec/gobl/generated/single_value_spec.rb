@@ -83,18 +83,20 @@ RSpec.describe 'Generated Single Value' do
       expect(value.to_s).to eq('credit-note')
     end
 
-    it 'doesn’t instantiate with an unenumerated value' do
-      expect { enum_value_class.new('another-value') }.to raise_error(TypeError)
-    end
-
     it 'instantiates from a symbol' do
       value = enum_value_class.new(:credit_note)
       expect(value.to_s).to eq('credit-note')
     end
 
-    it 'doesn’t instantiate from an unenumerated symbol' do
-      expect { enum_value_class.new(:another_value) }.to raise_error(TypeError)
-      expect { enum_value_class.new(:CREDIT_NOTE) }.to raise_error(TypeError)
+    it 'is valid if the value is within the allowed ones' do
+      value = enum_value_class.new('credit-note')
+      expect(value).to be_valid
+    end
+
+    it 'isn’t valid if the value isn’t within the allowed ones' do
+      value = enum_value_class.new('another-value')
+      expect(value).not_to be_valid
+      expect(value.errors.full_messages).to include('Value "another-value" is not within the allowed values of the enumeration')
     end
 
     it 'returns its description' do

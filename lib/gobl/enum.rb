@@ -4,6 +4,8 @@ module GOBL
   # Base class for single value structures in the GOBL schema that have a controlled set
   # of values associated to them (i.e., an enumeration) that may constrain them
   class Enum < Value
+    include ActiveModel::Validations
+
     # Returns an enum value object that corresponds to a given value. The value can be a
     # `Symbol`, a `String` or anything coercible into one (via `#to_s`)
     #
@@ -61,18 +63,6 @@ module GOBL
     end
 
     private
-
-    def _value=(value)
-      if strict_enum? && !self.class::ENUM.key?(value)
-        raise TypeError, "\"#{value}\" is not within the valid values of the enumeration"
-      end
-
-      super
-    end
-
-    def strict_enum?
-      false
-    end
 
     def value_from_sym(sym)
       self.class.find_by_sym(sym)&.to_s

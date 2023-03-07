@@ -266,9 +266,7 @@ module GOBL
         'ZW' => 'Zimbabwe'
       }.freeze
 
-      def strict_enum?
-        true
-      end
+      validates_inclusion_of :_value, in: ENUM.keys, message: '"%{value}" is not within the allowed values of the enumeration'
     end
   end
 end

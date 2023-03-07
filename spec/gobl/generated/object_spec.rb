@@ -28,6 +28,17 @@ RSpec.describe 'Generated Object' do
     expect(invoice.errors.full_messages).not_to include("Totals can't be blank") # `totals` is mandatory but calculated
   end
 
+  it 'validates nested objects' do
+    invoice = object_class.new(supplier: {}, currency: 'XXX')
+    expect(invoice).not_to be_valid
+
+    expect(invoice.errors.full_messages).to include('Supplier is invalid') # `supplier` is a nested struct
+    expect(invoice.supplier.errors.full_messages).to include("Name can't be blank")
+
+    expect(invoice.errors.full_messages).to include('Currency is invalid') # `currency` is an enumerated value
+    expect(invoice.currency.errors.full_messages).to include('Value "XXX" is not within the allowed values of the enumeration')
+  end
+
   it 'instatiates from an ‘enhanced’ hash' do
     invoice = object_class.new(
       code: 'SAMPLE-001',

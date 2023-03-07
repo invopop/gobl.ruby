@@ -9,7 +9,7 @@ module Generators
       end
 
       def additional_content
-        [enum_constant, strict_enum]
+        [enum_constant, enum_validation]
       end
 
       def enum_constant
@@ -23,13 +23,11 @@ module Generators
         EOFCONST
       end
 
-      def strict_enum
+      def enum_validation
         return unless strict_enum?
 
         <<~EOFADD
-          def strict_enum?
-            true
-          end
+          validates_inclusion_of :_value, in: ENUM.keys, message: '"%{value}" is not within the allowed values of the enumeration'
         EOFADD
       end
 
