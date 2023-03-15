@@ -3,11 +3,11 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
-  # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
+  # Envelope wraps around a document adding headers and digital signatures.
   class Envelope < GOBL::Object
     # The Schema ID of the GOBL Envelope structure
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope'

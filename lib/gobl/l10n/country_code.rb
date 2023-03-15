@@ -3,15 +3,17 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module L10n
     # Defines an ISO 3166-2 country code
-    class CountryCode < GOBL::Enum
+    class CountryCode < GOBL::Value
       # The Schema ID of the GOBL CountryCode structure
       SCHEMA_ID = 'https://gobl.org/draft-0/l10n/country-code'
+
+      include GOBL::Enum
 
       # The enumeration of values of the object and their descriptions (Values different to these are not allowed)
       ENUM = {
@@ -266,7 +268,9 @@ module GOBL
         'ZW' => 'Zimbabwe'
       }.freeze
 
-      validates_inclusion_of :_value, in: ENUM.keys, message: '"%{value}" is not within the allowed values of the enumeration'
+      def strict_enum?
+        true
+      end
     end
   end
 end

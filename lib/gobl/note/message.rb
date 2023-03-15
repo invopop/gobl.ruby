@@ -3,12 +3,12 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module Note
-    # Message represents the minimum possible contents for a GoBL document type.
+    # Message represents a simple message object with a title and some content meant.
     class Message < GOBL::Object
       # The Schema ID of the GOBL Message structure
       SCHEMA_ID = 'https://gobl.org/draft-0/note/message'
@@ -19,7 +19,7 @@ module GOBL
       property :title, String
 
       # @!attribute [r] content
-      # Details of what exactly this message wants to communicate
+      # Details of what exactly this message wants to communicate.
       # @return [String]
       property :content, String
       validates :content, presence: true

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -41,10 +41,20 @@ module GOBL
       property :currency, GOBL::Currency::Code
       validates :currency, presence: true
 
-      # @!attribute [r] schemes
-      # Set of specific scheme definitions inside the region.
-      # @return [Array<Scheme>]
-      property :schemes, [Scheme]
+      # @!attribute [r] tags
+      # Tags that can be applied at the document level to identify additional considerations.
+      # @return [Array<Tag>]
+      property :tags, [Tag]
+
+      # @!attribute [r] scenarios
+      # Sets of scenario definitions for the regime.
+      # @return [Array<ScenarioSet>]
+      property :scenarios, [ScenarioSet]
+
+      # @!attribute [r] preceding
+      # Configuration details for preceding options.
+      # @return [PrecedingDefinitions]
+      property :preceding, PrecedingDefinitions
 
       # @!attribute [r] categories
       # List of tax categories.

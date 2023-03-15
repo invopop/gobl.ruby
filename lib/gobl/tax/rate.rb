@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -20,11 +20,13 @@ module GOBL
       validates :key, presence: true
 
       # @!attribute [r] name
+      # Human name of the rate
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates :name, presence: true
 
       # @!attribute [r] desc
+      # Useful description of the rate.
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
 
@@ -33,6 +35,11 @@ module GOBL
       # @return [Array<RateValue>]
       property :values, [RateValue]
       validates :values, presence: true
+
+      # @!attribute [r] meta
+      # Meta contains additional information about the rate that is relevant for local frequently used implementations.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

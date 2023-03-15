@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -12,11 +12,6 @@ module GOBL
     class Party < GOBL::Object
       # The Schema ID of the GOBL Party structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/party'
-
-      # @!attribute [r] id
-      # Internal ID used to identify the party inside a document.
-      # @return [String]
-      property :id, String
 
       # @!attribute [r] uuid
       # Unique identity code
@@ -27,6 +22,11 @@ module GOBL
       # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.
       # @return [GOBL::Tax::Identity]
       property :tax_id, GOBL::Tax::Identity
+
+      # @!attribute [r] identities
+      # Set of codes used to identify the party in other systems.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
 
       # @!attribute [r] name
       # Legal name or representation of the organization.

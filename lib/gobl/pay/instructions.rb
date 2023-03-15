@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -13,10 +13,32 @@ module GOBL
       # The Schema ID of the GOBL Instructions structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions'
 
+      # Inline enum type for the `key` property
+      class KeyEnum < GOBL::CBC::Key
+        include GOBL::Enum
+
+        ENUM = {
+          'any' => 'Any method available, no preference',
+          'card' => 'Credit or debit card',
+          'credit-transfer' => 'Sender initiated bank or wire transfer',
+          'debit-transfer' => 'Receiver initiated bank or wire transfer',
+          'cash' => 'Cash',
+          'cheque' => 'Cheque',
+          'credit' => 'Credit',
+          'bank-draft' => 'Bankers Draft or Bank Cheque',
+          'direct-debit' => 'Direct debit',
+          'online' => 'Online or web payment'
+        }.freeze
+
+        def strict_enum?
+          true
+        end
+      end
+
       # @!attribute [r] key
       # How payment is expected or has been arranged to be collected
-      # @return [MethodKey]
-      property :key, MethodKey
+      # @return [KeyEnum]
+      property :key, KeyEnum
       validates :key, presence: true
 
       # @!attribute [r] detail

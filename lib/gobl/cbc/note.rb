@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -15,8 +15,8 @@ module GOBL
 
       # @!attribute [r] key
       # Key specifying subject of the text
-      # @return [NoteKey]
-      property :key, NoteKey
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] code
       # Code used for additional data that may be required to identify the note.
@@ -25,8 +25,8 @@ module GOBL
 
       # @!attribute [r] src
       # Source of this note, especially useful when auto-generated.
-      # @return [String]
-      property :src, String
+      # @return [GOBL::CBC::Key]
+      property :src, GOBL::CBC::Key
 
       # @!attribute [r] text
       # The contents of the note

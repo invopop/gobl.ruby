@@ -3,15 +3,17 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module Org
     # Unit describes how the quantity of the product should be interpreted.
-    class Unit < GOBL::Enum
+    class Unit < GOBL::Value
       # The Schema ID of the GOBL Unit structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/unit'
+
+      include GOBL::Enum
 
       # The enumeration of values of the object and their descriptions (Values different to these are also allowed)
       ENUM = {
@@ -64,6 +66,10 @@ module GOBL
         'sheet' => 'Sheets',
         'envelope' => 'Envelopes'
       }.freeze
+
+      def strict_enum?
+        false
+      end
     end
   end
 end

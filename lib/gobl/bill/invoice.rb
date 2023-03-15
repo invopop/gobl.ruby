@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -29,10 +29,28 @@ module GOBL
       property :code, String
       validates :code, presence: true
 
+      # Inline enum type for the `type` property
+      class TypeEnum < GOBL::CBC::Key
+        include GOBL::Enum
+
+        ENUM = {
+          'standard' => 'A regular commercial invoice document between a supplier and customer.',
+          'proforma' => 'For a clients validation before sending a final invoice.',
+          'corrective' => 'Corrected invoice that completely replaces the preceding document.',
+          'credit-note' => 'Reflects a refund either partial or complete of the preceding document.',
+          'debit-note' => 'An additional set of charges to be added to the preceding document.'
+        }.freeze
+
+        def strict_enum?
+          true
+        end
+      end
+
       # @!attribute [r] type
-      # Optional invoice type, leave empty unless needed for a specific situation.
-      # @return [InvoiceType]
-      property :type, InvoiceType
+      # Type of invoice document subject to the requirements of the local tax regime.
+      # @return [TypeEnum]
+      property :type, TypeEnum
+      validates :type, presence: true
 
       # @!attribute [r] currency
       # Currency for all invoice totals.
