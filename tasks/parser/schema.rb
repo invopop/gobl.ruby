@@ -85,5 +85,20 @@ module Parser
 
       ID.new([id, pointer].join)
     end
+
+    def enum
+      @enum ||= composition
+        &.entries
+        &.filter(&:const?)
+        &.to_h { |e| [e.const, e.description] }
+    end
+
+    def enum?
+      enum.present?
+    end
+
+    def strict_enum?
+      enum? && composition.entries.all?(&:const?)
+    end
   end
 end

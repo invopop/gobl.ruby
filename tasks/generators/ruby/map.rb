@@ -6,14 +6,11 @@ module Generators
     # fixed properties, i.e. a hash. This is only currently meant for very simple maps
     # of keys to primitive types.
     class Map < Struct
-      def module_content
-        out = ''
-        out += "# #{schema.description}\n" if schema.description.present?
-        out += <<~EOFMOD
-          class #{class_name} < GOBL::Map
-          end
-        EOFMOD
-        out
+      def parent_class
+        'GOBL::Map'
+      end
+
+      def class_content
       end
     end
   end

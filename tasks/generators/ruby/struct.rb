@@ -19,12 +19,12 @@ module Generators
 
       def module_content
         out = ''
-        out += "# #{schema.description}\n" if schema.description.present?
-        out += <<~EOFMOD
-          class #{class_name} < #{parent_class}
-          #{indent(class_content, 1).chomp}
-          end
-        EOFMOD
+        schema.description.split("\n").each do |line|
+          out += "# #{line}\n"
+        end if schema.description.present?
+        out += "class #{class_name} < #{parent_class}\n"
+        out += indent(class_content, 1)
+        out += "end\n"
         out
       end
 
