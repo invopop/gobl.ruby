@@ -71,7 +71,7 @@ RSpec.describe 'Generated Single Value' do
   end
 
   describe 'Enum String' do
-    let(:enum_value_class) { GOBL::Bill::InvoiceType }
+    let(:enum_value_class) { GOBL::Bill::Invoice::TypeEnum }
 
     it 'instantiates from JSON' do
       value = enum_value_class.from_json!('credit-note'.to_json)
@@ -102,8 +102,8 @@ RSpec.describe 'Generated Single Value' do
     it 'returns its description' do
       value = enum_value_class.new('credit-note')
 
-      expect(value.description).to eq('Credit note')
-      expect(enum_value_class::ENUM['credit-note']).to eq('Credit note')
+      expect(value.description).to eq('Reflects a refund either partial or complete of the preceding document.')
+      expect(enum_value_class::ENUM['credit-note']).to eq('Reflects a refund either partial or complete of the preceding document.')
     end
 
     it 'compares with a string' do
@@ -125,10 +125,10 @@ RSpec.describe 'Generated Single Value' do
       value = enum_value_class.new('credit-note')
 
       expect(value.credit_note?).to be(true)
-      expect(value.corrected?).to be(false)
+      expect(value.corrective?).to be(false)
 
       expect(value).to respond_to(:credit_note?)
-      expect(value).to respond_to(:corrected?)
+      expect(value).to respond_to(:corrective?)
       expect(value).not_to respond_to(:another?)
     end
   end
@@ -141,6 +141,11 @@ RSpec.describe 'Generated Single Value' do
 
       expect(value.to_s).to eq('pts')
       expect(value.description).to eq('pts')
+    end
+
+    it 'is valid even if the value is not within the allowed ones' do
+      value = enum_value_class.new('pts')
+      expect(value).to be_valid
     end
 
     it 'reponds to inquiries about enumerated values' do
@@ -166,7 +171,7 @@ RSpec.describe 'Generated Single Value' do
   end
 
   describe 'Enum With Empty Option' do
-    let(:enum_value_class) { GOBL::Pay::TermKey }
+    let(:enum_value_class) { GOBL::Pay::Terms::KeyEnum }
 
     it 'instantiates from an empty string' do
       value = enum_value_class.new('')

@@ -22,11 +22,30 @@ module Generators
 
       def attribute(name, property)
         out = []
+
+        if property.enum?
+          type_string = "#{name.camelize}Enum"
+          out << <<~EOFCONST
+            # Inline enum type for the `#{name}` property
+            class #{type_string} < #{type_string(property)}
+              include GOBL::Enum
+
+              ENUM = {
+                #{property.enum.map { |key, value| "#{serialize_str(key)} => #{serialize_str(value)}" }.join(",\n    ")}
+              }.freeze
+
+              def strict_enum?
+                #{property.strict_enum?}
+              end
+            end
+          EOFCONST
+        end
+
         desc = property.description&.split&.join(' ')
         out << "# @!attribute [r] #{name}"
         out << "# #{desc}" if desc.present?
-        out << "# @return [#{type_string(property, for_yard: true)}]"
-        out << "property :#{name}, #{type_string(property)}"
+        out << "# @return [#{type_string || type_string(property, for_yard: true)}]"
+        out << "property :#{name}, #{type_string || type_string(property)}"
         out << "validates :#{name}, presence: true" unless schema.optional?(name)
         out.join("\n")
       end

@@ -42,6 +42,7 @@ RSpec.describe 'Generated Object' do
   it 'instatiates from an ‘enhanced’ hash' do
     invoice = object_class.new(
       code: 'SAMPLE-001',
+      type: 'standard',
       currency: :eur,
       issue_date: Date.new(2021, 1, 1),
       supplier: { tax_id: { country: :es, code: '54387763P' }, name: 'Provide One S.L.' },
