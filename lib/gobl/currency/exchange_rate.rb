@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,13 +17,13 @@ module GOBL
       # ISO currency code this rate represents.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
-      validates :currency, presence: true
+      validates_presence_of :currency
 
       # @!attribute [r] amount
       # How much is 1.00 of this currency worth in the documents currency.
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
-      validates :amount, presence: true
+      validates_presence_of :amount
     end
   end
 end

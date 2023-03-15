@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -32,7 +32,7 @@ module GOBL
       # Person's given or first name
       # @return [String]
       property :given, String
-      validates :given, presence: true
+      validates_presence_of :given
 
       # @!attribute [r] middle
       # Middle names or initials
@@ -43,7 +43,7 @@ module GOBL
       # Second or Family name.
       # @return [String]
       property :surname, String
-      validates :surname, presence: true
+      validates_presence_of :surname
 
       # @!attribute [r] surname2
       # Additional second of family name.

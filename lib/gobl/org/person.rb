@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -12,11 +12,6 @@ module GOBL
     class Person < GOBL::Object
       # The Schema ID of the GOBL Person structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/person'
-
-      # @!attribute [r] id
-      # Internal ID used to identify the person inside a document.
-      # @return [String]
-      property :id, String
 
       # @!attribute [r] uuid
       # Unique identity code
@@ -27,7 +22,7 @@ module GOBL
       # Complete details on the name of the person
       # @return [GOBL::Org::Name]
       property :name, GOBL::Org::Name
-      validates :name, presence: true
+      validates_presence_of :name
 
       # @!attribute [r] role
       # What they do within an organization

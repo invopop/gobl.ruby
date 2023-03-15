@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -16,12 +16,12 @@ module GOBL
       # @!attribute [r] code
       # @return [GOBL::CBC::Code]
       property :code, GOBL::CBC::Code
-      validates :code, presence: true
+      validates_presence_of :code
 
       # @!attribute [r] name
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
-      validates :name, presence: true
+      validates_presence_of :name
 
       # @!attribute [r] desc
       # @return [GOBL::I18n::String]
@@ -36,7 +36,17 @@ module GOBL
       # Specific tax definitions inside this category.
       # @return [Array<Rate>]
       property :rates, [Rate]
-      validates :rates, presence: true
+      validates_presence_of :rates
+
+      # @!attribute [r] tags
+      # Tags contains a set of tag definitions that can be applied for this tax category.
+      # @return [Array<Tag>]
+      property :tags, [Tag]
+
+      # @!attribute [r] meta
+      # Meta contains additional information about the category that is relevant for local frequently used formats.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

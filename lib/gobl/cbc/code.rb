@@ -3,13 +3,13 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module CBC
-    # Short upper-case identifier.
-    class Code < GOBL::Value
+    # Alphanumerical text identifier with upper-case letters, no whitespace, nor symbols.
+    class Code < String
       # The Schema ID of the GOBL Code structure
       SCHEMA_ID = 'https://gobl.org/draft-0/cbc/code'
     end

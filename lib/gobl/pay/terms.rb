@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -13,11 +13,26 @@ module GOBL
       # The Schema ID of the GOBL Terms structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/terms'
 
+      # Enumeration of possible values for {#key} with their corresponding descriptions
+      KEY_ENUM = {
+        '' => 'Not yet defined',
+        'end-of-month' => 'End of month',
+        'due-date' => 'Due on a specific date',
+        'deferred' => 'Deferred until after the due date',
+        'proximo' => 'Month after the present',
+        'instant' => 'On receipt of invoice',
+        'elective' => 'Chosen by the buyer',
+        'pending' => 'Seller to advise buyer in separate transaction',
+        'advance' => 'Payment made in advance',
+        'delivery' => 'Payment on Delivery'
+      }.freeze
+
       # @!attribute [r] key
       # Type of terms to be applied.
-      # @return [TermKey]
-      property :key, TermKey
-      validates :key, presence: true
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+      validates_presence_of :key
+      validates_inclusion_of :key, in: KEY_ENUM.keys
 
       # @!attribute [r] detail
       # Text detail of the chosen payment terms.

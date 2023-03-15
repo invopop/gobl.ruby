@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -27,18 +27,29 @@ module GOBL
       # Sequential code used to identify this invoice in tax declarations.
       # @return [String]
       property :code, String
-      validates :code, presence: true
+      validates_presence_of :code
+
+      # Enumeration of possible values for {#type} with their corresponding descriptions
+      TYPE_ENUM = {
+        'standard' => 'A regular commercial invoice document between a supplier and customer.',
+        'proforma' => 'For a clients validation before sending a final invoice.',
+        'corrective' => 'Corrected invoice that completely replaces the preceding document.',
+        'credit-note' => 'Reflects a refund either partial or complete of the preceding document.',
+        'debit-note' => 'An additional set of charges to be added to the preceding document.'
+      }.freeze
 
       # @!attribute [r] type
-      # Optional invoice type, leave empty unless needed for a specific situation.
-      # @return [InvoiceType]
-      property :type, InvoiceType
+      # Type of invoice document subject to the requirements of the local tax regime.
+      # @return [GOBL::CBC::Key]
+      property :type, GOBL::CBC::Key
+      validates_presence_of :type
+      validates_inclusion_of :type, in: TYPE_ENUM.keys
 
       # @!attribute [r] currency
       # Currency for all invoice totals.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
-      validates :currency, presence: true
+      validates_presence_of :currency
 
       # @!attribute [r] exchange_rates
       # Exchange rates to be used when converting the invoices monetary values into other currencies.
@@ -59,7 +70,7 @@ module GOBL
       # When the invoice was created.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
-      validates :issue_date, presence: true
+      validates_presence_of :issue_date
 
       # @!attribute [r] op_date
       # Date when the operation defined by the invoice became effective.
@@ -75,7 +86,7 @@ module GOBL
       # The taxable entity supplying the goods or services.
       # @return [GOBL::Org::Party]
       property :supplier, GOBL::Org::Party
-      validates :supplier, presence: true
+      validates_presence_of :supplier
 
       # @!attribute [r] customer
       # Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices.

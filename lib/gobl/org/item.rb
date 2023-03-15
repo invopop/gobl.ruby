@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -14,12 +14,12 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/item'
 
       # @!attribute [r] uuid
-      # Unique identify of this item independent of the Supplier IDs
+      # Unique identity of this item
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
       # @!attribute [r] ref
-      # Primary reference code that identifies this item. Additional codes can be provided in the 'codes' field.
+      # Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property.
       # @return [String]
       property :ref, String
 
@@ -27,7 +27,12 @@ module GOBL
       # Brief name of the item
       # @return [String]
       property :name, String
-      validates :name, presence: true
+      validates_presence_of :name
+
+      # @!attribute [r] identities
+      # List of additional codes, IDs, or SKUs which can be used to identify the item. They should be agreed upon between supplier and customer.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
 
       # @!attribute [r] desc
       # Detailed description
@@ -43,17 +48,12 @@ module GOBL
       # Base price of a single unit to be sold.
       # @return [GOBL::Num::Amount]
       property :price, GOBL::Num::Amount
-      validates :price, presence: true
+      validates_presence_of :price
 
       # @!attribute [r] unit
       # Unit of measure.
       # @return [GOBL::Org::Unit]
       property :unit, GOBL::Org::Unit
-
-      # @!attribute [r] codes
-      # List of additional codes, IDs, or SKUs which can be used to identify the item. The should be agreed upon between supplier and customer.
-      # @return [Array<ItemCode>]
-      property :codes, [ItemCode]
 
       # @!attribute [r] origin
       # Country code of where this item was from originally.

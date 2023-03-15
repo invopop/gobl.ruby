@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -62,7 +62,7 @@ module GOBL
       # Village, town, district, or city, typically inside a region.
       # @return [String]
       property :locality, String
-      validates :locality, presence: true
+      validates_presence_of :locality
 
       # @!attribute [r] region
       # Province, county, or state, inside a country.

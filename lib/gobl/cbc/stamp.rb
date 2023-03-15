@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,13 +17,13 @@ module GOBL
       # Identity of the agency used to create the stamp usually defined by each region.
       # @return [GOBL::CBC::Key]
       property :prv, GOBL::CBC::Key
-      validates :prv, presence: true
+      validates_presence_of :prv
 
       # @!attribute [r] val
       # The serialized stamp value generated for or by the external agency
       # @return [String]
       property :val, String
-      validates :val, presence: true
+      validates_presence_of :val
     end
   end
 end

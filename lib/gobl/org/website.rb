@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -32,7 +32,7 @@ module GOBL
       # URL for the website.
       # @return [String]
       property :url, String
-      validates :url, presence: true
+      validates_presence_of :url
     end
   end
 end

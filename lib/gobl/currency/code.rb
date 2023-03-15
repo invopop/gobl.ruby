@@ -3,17 +3,18 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module Currency
     # ISO Currency Code
-    class Code < GOBL::Enum
+    class Code < String
       # The Schema ID of the GOBL Code structure
       SCHEMA_ID = 'https://gobl.org/draft-0/currency/code'
 
-      # The enumeration of values of the object and their descriptions (Values different to these are not allowed)
+      include GOBL::Enum
+
       ENUM = {
         'AED' => 'UAE Dirham',
         'AFN' => 'Afghani',
@@ -183,7 +184,9 @@ module GOBL
         'ZWL' => 'Zimbabwe Dollar'
       }.freeze
 
-      validates_inclusion_of :_value, in: ENUM.keys, message: '"%{value}" is not within the allowed values of the enumeration'
+      def strict_enum?
+        true
+      end
     end
   end
 end

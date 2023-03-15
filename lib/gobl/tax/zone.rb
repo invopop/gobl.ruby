@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,7 +17,7 @@ module GOBL
       # Unique zone code.
       # @return [GOBL::L10n::Code]
       property :code, GOBL::L10n::Code
-      validates :code, presence: true
+      validates_presence_of :code
 
       # @!attribute [r] name
       # Name of the zone to be use if a locality or region is not applicable.

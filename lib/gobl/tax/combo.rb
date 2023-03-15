@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,7 +17,7 @@ module GOBL
       # Tax category code from those available inside a region.
       # @return [GOBL::CBC::Code]
       property :cat, GOBL::CBC::Code
-      validates :cat, presence: true
+      validates_presence_of :cat
 
       # @!attribute [r] rate
       # Rate within a category to apply.
@@ -33,6 +33,11 @@ module GOBL
       # Some countries require an additional surcharge (calculated if rate present).
       # @return [GOBL::Num::Percentage]
       property :surcharge, GOBL::Num::Percentage
+
+      # @!attribute [r] tags
+      # Additional data may be required in some regimes, the tags property helps reference them.
+      # @return [Array<GOBL::CBC::Key>]
+      property :tags, [GOBL::CBC::Key]
     end
   end
 end

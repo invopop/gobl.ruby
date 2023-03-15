@@ -3,17 +3,18 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
   module Org
     # Unit describes how the quantity of the product should be interpreted.
-    class Unit < GOBL::Enum
+    class Unit < String
       # The Schema ID of the GOBL Unit structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/unit'
 
-      # The enumeration of values of the object and their descriptions (Values different to these are also allowed)
+      include GOBL::Enum
+
       ENUM = {
         'g' => 'Metric grams',
         'kg' => 'Metric kilograms',
@@ -64,6 +65,10 @@ module GOBL
         'sheet' => 'Sheets',
         'envelope' => 'Envelopes'
       }.freeze
+
+      def strict_enum?
+        false
+      end
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -42,7 +42,7 @@ module GOBL
       # Details on what the outlay was.
       # @return [String]
       property :desc, String
-      validates :desc, presence: true
+      validates_presence_of :desc
 
       # @!attribute [r] supplier
       # Who was the supplier of the outlay
@@ -53,7 +53,7 @@ module GOBL
       # Amount paid by the supplier.
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
-      validates :amount, presence: true
+      validates_presence_of :amount
     end
   end
 end
