@@ -9,6 +9,7 @@ require 'base64'
 require 'hashme'
 
 loader = Zeitwerk::Loader.for_gem
+loader.push_dir("#{__dir__}/generated")
 loader.inflector.inflect(
   'gobl' => 'GOBL',
   'uuid' => 'UUID',

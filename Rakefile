@@ -10,10 +10,14 @@ task :lint do
 end
 
 task :generate do
+  GENERATION_PATH = 'lib/generated/gobl'
+
   require_relative 'tasks/generator'
 
   generator = Generator.new(path: 'data/schemas', lang: 'ruby')
-  generator.export_to('lib/gobl')
+
+  sh "rm -rf #{GENERATION_PATH}"
+  generator.export_to(GENERATION_PATH)
 end
 
 RSpec::Core::RakeTask.new('spec')

@@ -215,24 +215,11 @@ The command `mage setup` fetches and installs all the required dependencies to u
 
 #### Code generation
 
-Ensure all the GOBL JSON Schema files are available by manually copying the base GOBL project's `build/schemas` path to the `data/schemas` path in this repository. Schemas are _.gitignored_, and you must copy them every time you want to update the generated code:
+Ensure all the GOBL JSON Schema and Regime files are available by manually copying the base GOBL project's `build/` path to the `data/` path in this repository. Schemas are _.gitignored_, and you must copy them every time you want to update the generated code:
 
 ```bash
-rm -rf ./data/schemas
-cp -r ../gobl/build/schemas ./data
-```
-
-You can also update the regimes’ data with:
-
-```bash
-rm -rf ./data/regimes
-cp -r ../gobl/build/regimes ./data
-```
-
-Now you can delete any previously generated code with
-
-```bash
-find lib -name "*.rb" -exec grep -l "Generated with GOBL" {} \; | xargs rm
+rm -rf ./data/*
+cp -r ../gobl/build/* ./data
 ```
 
 The command `mage -v generate` generates the Ruby files from the JSON Schema. If the schema is updated, it will update the Ruby files.
