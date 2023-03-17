@@ -3,11 +3,11 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
-  # Header defines the meta data of the body.
+  # Header defines the metadata of the body.
   class Header < GOBL::Object
     # The Schema ID of the GOBL Header structure
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope#/$defs/Header'
@@ -16,13 +16,13 @@ module GOBL
     # Unique UUIDv1 identifier for the envelope.
     # @return [GOBL::UUID::UUID]
     property :uuid, GOBL::UUID::UUID
-    validates :uuid, presence: true
+    validates_presence_of :uuid
 
     # @!attribute [r] dig
     # Digest of the canonical JSON body.
     # @return [GOBL::DSig::Digest]
     property :dig, GOBL::DSig::Digest
-    validates :dig, presence: true
+    validates_presence_of :dig
 
     # @!attribute [r] stamps
     # Seals of approval from other organisations.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -22,7 +22,7 @@ module GOBL
       # Total value of all the taxes applied.
       # @return [GOBL::Num::Amount]
       property :sum, GOBL::Num::Amount
-      validates :sum, presence: true
+      validates_presence_of :sum
     end
   end
 end

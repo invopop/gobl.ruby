@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -27,7 +27,7 @@ module GOBL
       # Percent rate that should be applied
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
-      validates :percent, presence: true
+      validates_presence_of :percent
 
       # @!attribute [r] surcharge
       # An additional surcharge to apply.

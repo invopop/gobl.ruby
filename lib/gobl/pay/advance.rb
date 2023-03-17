@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -37,7 +37,7 @@ module GOBL
       # Details about the advance.
       # @return [String]
       property :desc, String
-      validates :desc, presence: true
+      validates_presence_of :desc
 
       # @!attribute [r] percent
       # How much as a percentage of the total with tax was paid
@@ -48,7 +48,7 @@ module GOBL
       # How much was paid.
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
-      validates :amount, presence: true
+      validates_presence_of :amount
 
       # @!attribute [r] currency
       # If different from the parent document's base currency.

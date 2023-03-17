@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,13 +17,13 @@ module GOBL
       # Name of the country
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
-      validates :name, presence: true
+      validates_presence_of :name
 
       # @!attribute [r] country
       # Country code for the region
       # @return [GOBL::L10n::CountryCode]
       property :country, GOBL::L10n::CountryCode
-      validates :country, presence: true
+      validates_presence_of :country
 
       # @!attribute [r] zone
       # Specific Locality, region, city, province, county, or similar code inside the country, if needed.
@@ -39,18 +39,28 @@ module GOBL
       # Currency used by the country.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
-      validates :currency, presence: true
+      validates_presence_of :currency
 
-      # @!attribute [r] schemes
-      # Set of specific scheme definitions inside the region.
-      # @return [Array<Scheme>]
-      property :schemes, [Scheme]
+      # @!attribute [r] tags
+      # Tags that can be applied at the document level to identify additional considerations.
+      # @return [Array<Tag>]
+      property :tags, [Tag]
+
+      # @!attribute [r] scenarios
+      # Sets of scenario definitions for the regime.
+      # @return [Array<ScenarioSet>]
+      property :scenarios, [ScenarioSet]
+
+      # @!attribute [r] preceding
+      # Configuration details for preceding options.
+      # @return [PrecedingDefinitions]
+      property :preceding, PrecedingDefinitions
 
       # @!attribute [r] categories
       # List of tax categories.
       # @return [Array<Category>]
       property :categories, [Category]
-      validates :categories, presence: true
+      validates_presence_of :categories
     end
   end
 end

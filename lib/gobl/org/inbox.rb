@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -22,7 +22,7 @@ module GOBL
       # Type of inbox being defined.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
-      validates :key, presence: true
+      validates_presence_of :key
 
       # @!attribute [r] role
       # Role assigned to this inbox that may be relevant for the consumer.
@@ -38,7 +38,7 @@ module GOBL
       # Actual Code or ID that identifies the Inbox.
       # @return [String]
       property :code, String
-      validates :code, presence: true
+      validates_presence_of :code
     end
   end
 end

@@ -3,6 +3,7 @@
 require 'active_support/inflector'
 
 require_relative 'ruby/type_helpers'
+require_relative 'ruby/enum_helpers'
 require_relative 'ruby/base'
 require_relative 'ruby/struct'
 require_relative 'ruby/value'

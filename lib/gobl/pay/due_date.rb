@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,7 +17,7 @@ module GOBL
       # When the payment is due.
       # @return [GOBL::Cal::Date]
       property :date, GOBL::Cal::Date
-      validates :date, presence: true
+      validates_presence_of :date
 
       # @!attribute [r] notes
       # Other details to take into account for the due date.
@@ -28,7 +28,7 @@ module GOBL
       # How much needs to be paid by the date.
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
-      validates :amount, presence: true
+      validates_presence_of :amount
 
       # @!attribute [r] percent
       # Percentage of the total that should be paid by the date.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,7 +17,7 @@ module GOBL
       # Sum of all line item sums
       # @return [GOBL::Num::Amount]
       property :sum, GOBL::Num::Amount
-      validates :sum, presence: true
+      validates_presence_of :sum
 
       # @!attribute [r] discount
       # Sum of all document level discounts
@@ -38,7 +38,7 @@ module GOBL
       # Sum of all line sums minus the discounts, plus the charges, without tax.
       # @return [GOBL::Num::Amount]
       property :total, GOBL::Num::Amount
-      validates :total, presence: true
+      validates_presence_of :total
 
       # @!attribute [r] taxes
       # Summary of all the taxes included in the invoice.
@@ -54,7 +54,7 @@ module GOBL
       # Grand total after all taxes have been applied.
       # @return [GOBL::Num::Amount]
       property :total_with_tax, GOBL::Num::Amount
-      validates :total_with_tax, presence: true
+      validates_presence_of :total_with_tax
 
       # @!attribute [r] outlays
       # Total paid in outlays that need to be reimbursed
@@ -65,7 +65,7 @@ module GOBL
       # Total amount to be paid after applying taxes and outlays.
       # @return [GOBL::Num::Amount]
       property :payable, GOBL::Num::Amount
-      validates :payable, presence: true
+      validates_presence_of :payable
 
       # @!attribute [r] advance
       # Total amount already paid in advance.

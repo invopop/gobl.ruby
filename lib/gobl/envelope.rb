@@ -3,11 +3,11 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
-  # Envelope wraps around a gobl document and provides support for digest creation and digital signatures.
+  # Envelope wraps around a document adding headers and digital signatures.
   class Envelope < GOBL::Object
     # The Schema ID of the GOBL Envelope structure
     SCHEMA_ID = 'https://gobl.org/draft-0/envelope'
@@ -16,19 +16,19 @@ module GOBL
     # Schema identifies the schema that should be used to understand this document
     # @return [String]
     property :$schema, String
-    validates :$schema, presence: true
+    validates_presence_of :$schema
 
     # @!attribute [r] head
     # Details on what the contents are
     # @return [Header]
     property :head, Header
-    validates :head, presence: true
+    validates_presence_of :head
 
     # @!attribute [r] doc
     # The data inside the envelope
     # @return [Document]
     property :doc, Document
-    validates :doc, presence: true
+    validates_presence_of :doc
 
     # @!attribute [r] sigs
     # JSON Web Signatures of the header

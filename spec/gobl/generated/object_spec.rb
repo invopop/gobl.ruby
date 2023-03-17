@@ -28,6 +28,12 @@ RSpec.describe 'Generated Object' do
     expect(invoice.errors.full_messages).not_to include("Totals can't be blank") # `totals` is mandatory but calculated
   end
 
+  it 'validates the inclusion of enumerated keys in the allowed values' do
+    invoice = object_class.new(type: 'strange-type')
+    expect(invoice).not_to be_valid
+    expect(invoice.errors.full_messages).to include('Type is not included in the list')
+  end
+
   it 'validates nested objects' do
     invoice = object_class.new(supplier: {}, currency: 'XXX')
     expect(invoice).not_to be_valid
@@ -42,14 +48,15 @@ RSpec.describe 'Generated Object' do
   it 'instatiates from an ‘enhanced’ hash' do
     invoice = object_class.new(
       code: 'SAMPLE-001',
-      currency: :eur,
-      issue_date: Date.new(2021, 1, 1),
-      supplier: { tax_id: { country: :es, code: '54387763P' }, name: 'Provide One S.L.' },
-      customer: { tax_id: { country: :es, code: '54387763P' }, name: 'Sample Consumer' },
+      type: 'standard',
+      currency: 'EUR',
+      issue_date: Date.new(2021, 1, 1).to_s, # FIXME: Add extensions
+      supplier: { tax_id: { country: 'ES', code: '54387763P' }, name: 'Provide One S.L.' },
+      customer: { tax_id: { country: 'ES', code: '54387763P' }, name: 'Sample Consumer' },
       lines: [{
         quantity: 20,
         item: { name: 'Development services', price: 90.0 },
-        taxes: [{ cat: 'VAT', rate: :standard }]
+        taxes: [{ cat: 'VAT', rate: 'standard' }]
       }]
     )
 

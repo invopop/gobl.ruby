@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -13,11 +13,26 @@ module GOBL
       # The Schema ID of the GOBL Instructions structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions'
 
+      # Enumeration of possible values for {#key} with their corresponding descriptions
+      KEY_ENUM = {
+        'any' => 'Any method available, no preference',
+        'card' => 'Credit or debit card',
+        'credit-transfer' => 'Sender initiated bank or wire transfer',
+        'debit-transfer' => 'Receiver initiated bank or wire transfer',
+        'cash' => 'Cash',
+        'cheque' => 'Cheque',
+        'credit' => 'Credit',
+        'bank-draft' => 'Bankers Draft or Bank Cheque',
+        'direct-debit' => 'Direct debit',
+        'online' => 'Online or web payment'
+      }.freeze
+
       # @!attribute [r] key
       # How payment is expected or has been arranged to be collected
-      # @return [MethodKey]
-      property :key, MethodKey
-      validates :key, presence: true
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+      validates_presence_of :key
+      validates_inclusion_of :key, in: KEY_ENUM.keys
 
       # @!attribute [r] detail
       # Optional text description of the payment method

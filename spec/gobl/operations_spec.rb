@@ -84,7 +84,7 @@ RSpec.describe GOBL::Operations do
       result = GOBL.validate(doc)
 
       expect(result).not_to be_valid
-      expect(result.errors).to include('totals: cannot be blank.')
+      expect(result.errors).to include('totals: cannot be blank')
     end
 
     it 'validates a valid envelope' do

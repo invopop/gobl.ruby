@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -16,12 +16,12 @@ module GOBL
       # @!attribute [r] percent
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
-      validates :percent, presence: true
+      validates_presence_of :percent
 
       # @!attribute [r] amount
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
-      validates :amount, presence: true
+      validates_presence_of :amount
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -16,12 +16,12 @@ module GOBL
       # @!attribute [r] start
       # @return [GOBL::Cal::Date]
       property :start, GOBL::Cal::Date
-      validates :start, presence: true
+      validates_presence_of :start
 
       # @!attribute [r] end
       # @return [GOBL::Cal::Date]
       property :end, GOBL::Cal::Date
-      validates :end, presence: true
+      validates_presence_of :end
     end
   end
 end

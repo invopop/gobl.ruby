@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -17,13 +17,13 @@ module GOBL
       # Last 4 digits of the card's Primary Account Number (PAN).
       # @return [String]
       property :last4, String
-      validates :last4, presence: true
+      validates_presence_of :last4
 
       # @!attribute [r] holder
       # Name of the person whom the card belongs to.
       # @return [String]
       property :holder, String
-      validates :holder, presence: true
+      validates_presence_of :holder
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.36.0
+## Generated with GOBL v0.38.0
 ##
 
 module GOBL
@@ -27,13 +27,13 @@ module GOBL
       # Number of items
       # @return [GOBL::Num::Amount]
       property :quantity, GOBL::Num::Amount
-      validates :quantity, presence: true
+      validates_presence_of :quantity
 
       # @!attribute [r] item
       # Details about what is being sold
       # @return [GOBL::Org::Item]
       property :item, GOBL::Org::Item
-      validates :item, presence: true
+      validates_presence_of :item
 
       # @!attribute [r] sum
       # Result of quantity multiplied by the item's price (calculated)
