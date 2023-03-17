@@ -17,11 +17,6 @@ func Setup() error {
 	return dockerRunCmd(name+"-install", "", "bin/setup")
 }
 
-// Generate uses the schema to generate the ruby structures
-func Generate() error {
-	return dockerRunCmd(name, "", "rake", "generate")
-}
-
 // Runs gem's rspec tests.
 func Spec() error {
 	return dockerRunCmd(name, "", "bundle", "exec", "rake", "spec")
