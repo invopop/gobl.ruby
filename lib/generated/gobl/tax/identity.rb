@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.38.0
+## Generated with GOBL v0.39.0
 ##
 
 module GOBL
@@ -29,20 +29,10 @@ module GOBL
       # @return [GOBL::L10n::Code]
       property :zone, GOBL::L10n::Code
 
-      # Enumeration of possible values for {#source} with their corresponding descriptions
-      SOURCE_ENUM = {
-        'tax-agency' => 'Sourced directly from a tax agency',
-        'passport' => 'A passport document',
-        'national' => 'National ID Card or similar',
-        'permit' => 'Residential or similar permit',
-        'other' => 'An other type of source not listed'
-      }.freeze
-
-      # @!attribute [r] source
-      # What is the source document of the tax identity.
+      # @!attribute [r] type
+      # Type is set according the requirements of each regime, some have a single tax document type code, others require a choice to be made.
       # @return [GOBL::CBC::Key]
-      property :source, GOBL::CBC::Key
-      validates_inclusion_of :source, in: SOURCE_ENUM.keys, allow_blank: true
+      property :type, GOBL::CBC::Key
 
       # @!attribute [r] code
       # Normalized code shown on the original identity document.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.38.0
+## Generated with GOBL v0.39.0
 ##
 
 module GOBL
@@ -40,6 +40,11 @@ module GOBL
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
       validates_presence_of :currency
+
+      # @!attribute [r] identity_types
+      # Identity types specific for the regime and may be validated against.
+      # @return [Array<IdentityType>]
+      property :identity_types, [IdentityType]
 
       # @!attribute [r] tags
       # Tags that can be applied at the document level to identify additional considerations.

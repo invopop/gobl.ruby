@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.38.0
+## Generated with GOBL v0.39.0
 ##
 
 module GOBL
@@ -13,10 +13,40 @@ module GOBL
       # The Schema ID of the GOBL Note structure
       SCHEMA_ID = 'https://gobl.org/draft-0/cbc/note'
 
+      # Enumeration of possible values for {#key} with their corresponding descriptions
+      KEY_ENUM = {
+        'goods' => 'Goods Description',
+        'payment' => 'Terms of Payment',
+        'legal' => 'Legal or regulatory information',
+        'dangerous-goods' => 'Dangerous goods additional information',
+        'ack' => 'Acknowledgement Description',
+        'rate' => 'Rate additional information',
+        'reason' => 'Reason',
+        'dispute' => 'Dispute',
+        'customer' => 'Customer remarks',
+        'glossary' => 'Glossary',
+        'customs' => 'Customs declaration information',
+        'general' => 'General information',
+        'handling' => 'Handling instructions',
+        'packaging' => 'Packaging information',
+        'loading' => 'Loading instructions',
+        'price' => 'Price conditions',
+        'priority' => 'Priority information',
+        'regulatory' => 'Regulatory information',
+        'safety' => 'Safety instructions',
+        'ship-line' => 'Ship line',
+        'supplier' => 'Supplier remarks',
+        'transport' => 'Transportation information',
+        'delivery' => 'Delivery information',
+        'quarantine' => 'Quarantine information',
+        'tax' => 'Tax declaration'
+      }.freeze
+
       # @!attribute [r] key
       # Key specifying subject of the text
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
+      validates_inclusion_of :key, in: KEY_ENUM.keys, allow_blank: true
 
       # @!attribute [r] code
       # Code used for additional data that may be required to identify the note.

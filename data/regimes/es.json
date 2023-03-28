@@ -503,6 +503,58 @@
     }
   ],
   "currency": "EUR",
+  "identity_types": [
+    {
+      "key": "fiscal",
+      "name": {
+        "en": "National Tax Identity",
+        "es": "Número de Identificación Fiscal"
+      },
+      "meta": {
+        "ticketbai-id-type": "02"
+      }
+    },
+    {
+      "key": "passport",
+      "name": {
+        "en": "Passport",
+        "es": "Pasaporte"
+      },
+      "meta": {
+        "ticketbai-id-type": "03"
+      }
+    },
+    {
+      "key": "foreign",
+      "name": {
+        "en": "National ID Card or similar from a foreign country",
+        "es": "Documento oficial de identificación expedido por el país o territorio de residencia"
+      },
+      "meta": {
+        "ticketbai-id-type": "04"
+      }
+    },
+    {
+      "key": "resident",
+      "name": {
+        "en": "Residential permit",
+        "es": "Certificado de residencia"
+      },
+      "meta": {
+        "ticketbai-id-type": "05"
+      }
+    },
+    {
+      "key": "other",
+      "name": {
+        "en": "An other type of source not listed",
+        "es": "Otro documento probatorio"
+      },
+      "meta": {
+        "ticketbai-id-type": "06"
+      }
+    }
+  ],
   "tags": [
     {
       "key": "simplified",
@@ -1171,10 +1223,10 @@
       ],
       "tags": [
         {
-          "key": "provider",
+          "key": "resale",
           "name": {
-            "en": "Operation in equivalence surcharge or simplified regime",
-            "es": "Operacion en recargo de equivalencia o regimen simplificado"
+            "en": "Resale of goods without modification by vendor in the simplified regime",
+            "es": "Reventa de bienes sin modificación por vendedor en regimen simplificado"
           }
         },
         {

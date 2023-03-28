@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.38.0
+## Generated with GOBL v0.39.0
 ##
 
 module GOBL
@@ -33,7 +33,6 @@ module GOBL
       # The issue date of the previous document.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
-      validates_presence_of :issue_date
 
       # @!attribute [r] reason
       # Human readable description on why the preceding invoice is being replaced.
