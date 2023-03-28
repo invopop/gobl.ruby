@@ -8,24 +8,24 @@
 
 module GOBL
   module Tax
-    # Tag describes a tax tag that can be used to identify additional requirements in an electronic invoice.
-    class Tag < GOBL::Object
-      # The Schema ID of the GOBL Tag structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Tag'
+    # IdentityType describes a single possible value for a tax identity type.
+    class IdentityType < GOBL::Object
+      # The Schema ID of the GOBL IdentityType structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/IdentityType'
 
       # @!attribute [r] key
-      # Key used to identify the tag
+      # Key used to identify the type
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
       validates_presence_of :key
 
       # @!attribute [r] name
-      # Name of this tag.
+      # Name for the identity type
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
 
       # @!attribute [r] meta
-      # Additional local
+      # Additional regime specific meta data
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
     end
