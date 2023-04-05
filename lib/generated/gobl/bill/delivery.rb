@@ -19,19 +19,19 @@ module GOBL
       property :receiver, GOBL::Org::Party
 
       # @!attribute [r] date
-      # When the goods should be expected
+      # When the goods should be expected.
       # @return [GOBL::Cal::Date]
       property :date, GOBL::Cal::Date
 
-      # @!attribute [r] start_date
-      # Start of an invoicing or delivery period
-      # @return [GOBL::Cal::Date]
-      property :start_date, GOBL::Cal::Date
+      # @!attribute [r] period
+      # Period of time in which to expect delivery if a specific date is not available.
+      # @return [GOBL::Cal::Period]
+      property :period, GOBL::Cal::Period
 
-      # @!attribute [r] end_date
-      # End of an invoicing or delivery period
-      # @return [GOBL::Cal::Date]
-      property :end_date, GOBL::Cal::Date
+      # @!attribute [r] meta
+      # Additional custom data.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

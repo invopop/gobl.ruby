@@ -18,6 +18,11 @@ module GOBL
       # @return [String]
       property :code, String
 
+      # @!attribute [r] period
+      # Period of time that the invoice document refers to often used in addition to the details provided in the individual line items.
+      # @return [GOBL::Cal::Period]
+      property :period, GOBL::Cal::Period
+
       # @!attribute [r] project
       # Project this invoice refers to.
       # @return [DocumentReference]
