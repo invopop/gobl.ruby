@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL
@@ -16,6 +16,14 @@ module GOBL
       # @!attribute [r] uuid
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
+
+      # @!attribute [r] social_capital
+      # @return [GOBL::Num::Amount]
+      property :social_capital, GOBL::Num::Amount
+
+      # @!attribute [r] currency
+      # @return [GOBL::Currency::Code]
+      property :currency, GOBL::Currency::Code
 
       # @!attribute [r] office
       # @return [String]
