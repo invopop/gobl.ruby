@@ -12,18 +12,18 @@ Ruby library for reading, producing, manipulating and operating over [GOBL][3] d
 
 ### Features
 
-* Dedicated Ruby classes for each GOBL structure with typed attributes
-* [Object instantiation from nested hashes and arrays of attributes](#instantiating-structures)
-* [Object serialization/deserialization to/from JSON GOBL data](#serializing-to-and-deserializing-from-json)
-* [Idiomatic value objects with enumerations support](#handling-value-objects-and-enumerations)
-* Access to operations in the [GOBL CLI][4] service: [build, validate and sign](#running-operations)
-* [Full API reference documentation][1]
+- Dedicated Ruby classes for each GOBL structure with typed attributes
+- [Object instantiation from nested hashes and arrays of attributes](#instantiating-structures)
+- [Object serialization/deserialization to/from JSON GOBL data](#serializing-to-and-deserializing-from-json)
+- [Idiomatic value objects with enumerations support](#handling-value-objects-and-enumerations)
+- Access to operations in the [GOBL CLI][4] service: [build, validate and sign](#running-operations)
+- [Full API reference documentation][1]
 
 ### Documentation
 
-* [User guide](#user-guide)
-* [API reference][6]
-* [GOBL documentation][2]
+- [User guide](#user-guide)
+- [API reference][6]
+- [GOBL documentation][2]
 
 ## User guide
 
@@ -249,3 +249,10 @@ The library is fully documented using YARD. You can spin up a YARD server with t
 [4]: https://github.com/invopop/gobl.cli
 [5]: https://www.rubydoc.info/gems/gobl/GOBL/Operations
 [6]: https://www.rubydoc.info/gems/gobl/index
+
+### Releases
+
+When releasing a new version of the GOBL Ruby library:
+
+1.  Update lib/gobl/version.rb and commit the change (no need to push)
+2.  Run rake release which generates the tag, pushes everything to github and rubygems
