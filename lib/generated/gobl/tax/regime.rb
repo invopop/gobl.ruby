@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL
@@ -45,6 +45,11 @@ module GOBL
       # Identity types specific for the regime and may be validated against.
       # @return [Array<IdentityType>]
       property :identity_types, [IdentityType]
+
+      # @!attribute [r] charge_types
+      # Charge types specific for the regime and may be validated or used in the UI as suggestions
+      # @return [Array<KeyDefinition>]
+      property :charge_types, [KeyDefinition]
 
       # @!attribute [r] tags
       # Tags that can be applied at the document level to identify additional considerations.

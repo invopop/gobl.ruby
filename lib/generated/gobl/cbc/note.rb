@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL
@@ -21,10 +21,10 @@ module GOBL
         'dangerous-goods' => 'Dangerous goods additional information',
         'ack' => 'Acknowledgement Description',
         'rate' => 'Rate additional information',
-        'reason' => 'Reason',
-        'dispute' => 'Dispute',
+        'reason' => 'Explanation of something relevant to the document',
+        'dispute' => 'Details on a dispute.',
         'customer' => 'Customer remarks',
-        'glossary' => 'Glossary',
+        'glossary' => 'Glossary of terms',
         'customs' => 'Customs declaration information',
         'general' => 'General information',
         'handling' => 'Handling instructions',
@@ -63,6 +63,11 @@ module GOBL
       # @return [String]
       property :text, String
       validates_presence_of :text
+
+      # @!attribute [r] meta
+      # Additional information about the note
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

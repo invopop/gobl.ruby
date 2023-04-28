@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL
@@ -15,16 +15,16 @@ module GOBL
 
       # Enumeration of possible values for {#key} with their corresponding descriptions
       KEY_ENUM = {
-        'any' => 'Any method available, no preference',
-        'card' => 'Credit or debit card',
-        'credit-transfer' => 'Sender initiated bank or wire transfer',
-        'debit-transfer' => 'Receiver initiated bank or wire transfer',
-        'cash' => 'Cash',
-        'cheque' => 'Cheque',
-        'credit' => 'Credit',
-        'bank-draft' => 'Bankers Draft or Bank Cheque',
-        'direct-debit' => 'Direct debit',
-        'online' => 'Online or web payment'
+        'any' => 'Any method available, no preference.',
+        'card' => 'Credit or debit card.',
+        'credit-transfer' => 'Sender initiated bank or wire transfer.',
+        'debit-transfer' => 'Receiver initiated bank or wire transfer.',
+        'cash' => 'Cash in hand.',
+        'cheque' => 'Cheque from bank.',
+        'credit' => 'Using credit from previous transactions with the supplier.',
+        'bank-draft' => 'Bankers Draft or Bank Cheque.',
+        'direct-debit' => 'Direct debit from the customers bank account.',
+        'online' => 'Online or web payment.'
       }.freeze
 
       # @!attribute [r] key

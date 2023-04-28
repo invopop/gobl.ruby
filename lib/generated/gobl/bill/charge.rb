@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.0
+## Generated with GOBL v0.42.4
 ##
 
 module GOBL
@@ -17,6 +17,11 @@ module GOBL
       # Unique identifying for the discount entry
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
+
+      # @!attribute [r] key
+      # Key for grouping or identifying charges for tax purposes.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] i
       # Line number inside the list of discounts (calculated).
