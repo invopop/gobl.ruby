@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.summary = 'Minimalist ruby version of the GOBL library'
   spec.homepage = 'https://github.com/invopop/gobl.ruby'
   spec.license = 'Apache-2.0'
-  spec.authors = ['David Lilue', 'Sam Lown', 'Juanjo Molinero']
+  spec.authors = ['Luismi Cavalle', 'Sam Lown', 'David Lilue', 'Juanjo Molinero']
 
   spec.required_ruby_version = '>= 2.7'
   spec.required_rubygems_version = '>= 3.1.4'
