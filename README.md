@@ -255,4 +255,4 @@ The library is fully documented using YARD. You can spin up a YARD server with t
 When releasing a new version of the GOBL Ruby library:
 
 1.  Update lib/gobl/version.rb and commit the change (no need to push)
-2.  Run rake release which generates the tag, pushes everything to github and rubygems
+2.  Run `rake release` which generates the tag, pushes everything to github and rubygems
