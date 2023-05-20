@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.4
+## Generated with GOBL v0.42.8
 ##
 
 module GOBL
@@ -25,7 +25,7 @@ module GOBL
     validates_presence_of :dig
 
     # @!attribute [r] stamps
-    # Seals of approval from other organisations.
+    # Seals of approval from other organisations that can only be added to non-draft envelopes.
     # @return [Array<GOBL::CBC::Stamp>]
     property :stamps, [GOBL::CBC::Stamp]
 

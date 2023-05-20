@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.4
+## Generated with GOBL v0.42.8
 ##
 
 module GOBL
@@ -23,7 +23,7 @@ module GOBL
         'instant' => 'On receipt of invoice',
         'elective' => 'Chosen by the buyer',
         'pending' => 'Seller to advise buyer in separate transaction',
-        'advance' => 'Payment made in advance',
+        'advanced' => 'Payment made in advance',
         'delivery' => 'Payment on Delivery'
       }.freeze
 
