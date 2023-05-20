@@ -25,7 +25,7 @@ module GOBL
     validates_presence_of :dig
 
     # @!attribute [r] stamps
-    # Seals of approval from other organisations.
+    # Seals of approval from other organisations that can only be added to non-draft envelopes.
     # @return [Array<GOBL::CBC::Stamp>]
     property :stamps, [GOBL::CBC::Stamp]
 
