@@ -50,3 +50,4 @@ GOBL::Document.include GOBL::Extensions::DocumentHelper
 GOBL::Document.extend GOBL::Extensions::DocumentHelper::ClassMethods
 GOBL::Envelope.include GOBL::Extensions::EnvelopeHelper
 GOBL::Tax::Regime.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
+GOBL::Bill::Invoice.include GOBL::Extensions::Bill::InvoiceHelper
