@@ -41,20 +41,30 @@ module GOBL
       property :currency, GOBL::Currency::Code
       validates_presence_of :currency
 
+      # @!attribute [r] tags
+      # Tags that can be applied at the document level to identify additional considerations.
+      # @return [Array<KeyDefinition>]
+      property :tags, [KeyDefinition]
+
       # @!attribute [r] identity_types
       # Identity types specific for the regime and may be validated against.
-      # @return [Array<IdentityType>]
-      property :identity_types, [IdentityType]
+      # @return [Array<KeyDefinition>]
+      property :identity_types, [KeyDefinition]
 
       # @!attribute [r] charge_types
       # Charge types specific for the regime and may be validated or used in the UI as suggestions
       # @return [Array<KeyDefinition>]
       property :charge_types, [KeyDefinition]
 
-      # @!attribute [r] tags
-      # Tags that can be applied at the document level to identify additional considerations.
-      # @return [Array<Tag>]
-      property :tags, [Tag]
+      # @!attribute [r] payment_means
+      # PaymentMeansKeys specific for the regime that extend the original base payment means keys.
+      # @return [Array<KeyDefinition>]
+      property :payment_means, [KeyDefinition]
+
+      # @!attribute [r] item_keys
+      # ItemKeys specific for the regime that need to be added to `org.Item` data in line rows.
+      # @return [Array<KeyDefinition>]
+      property :item_keys, [KeyDefinition]
 
       # @!attribute [r] scenarios
       # Sets of scenario definitions for the regime.

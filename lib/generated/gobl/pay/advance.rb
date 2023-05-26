@@ -23,6 +23,27 @@ module GOBL
       # @return [GOBL::Cal::Date]
       property :date, GOBL::Cal::Date
 
+      # Enumeration of possible values for {#key} with their corresponding descriptions
+      KEY_ENUM = {
+        'any' => 'Any method available, no preference.',
+        'card' => 'Payment card.',
+        'credit-transfer' => 'Sender initiated bank or wire transfer.',
+        'debit-transfer' => 'Receiver initiated bank or wire transfer.',
+        'cash' => 'Cash in hand.',
+        'cheque' => 'Cheque from bank.',
+        'bank-draft' => 'Bankers Draft or Bank Cheque.',
+        'direct-debit' => 'Direct debit from the customers bank account.',
+        'online' => 'Online or web payment.',
+        'promissory-note' => 'Promissory note contract.',
+        'netting' => 'Intercompany clearing or clearing between partners.',
+        'other' => 'Other or mutually defined means of payment.'
+      }.freeze
+
+      # @!attribute [r] key
+      # The payment means used to make the advance.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+
       # @!attribute [r] ref
       # ID or reference for the advance.
       # @return [String]

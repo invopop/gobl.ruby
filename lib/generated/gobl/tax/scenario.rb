@@ -23,10 +23,20 @@ module GOBL
       # @return [Array<GOBL::CBC::Key>]
       property :tags, [GOBL::CBC::Key]
 
+      # @!attribute [r] name
+      # Name of the scenario for further information.
+      # @return [GOBL::I18n::String]
+      property :name, GOBL::I18n::String
+
       # @!attribute [r] note
       # A note to be added to the document if the scenario is applied.
       # @return [GOBL::CBC::Note]
       property :note, GOBL::CBC::Note
+
+      # @!attribute [r] codes
+      # Codes is used to define additional codes for regime specific situations.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
 
       # @!attribute [r] meta
       # Any additional local meta data that may be useful in integrations.

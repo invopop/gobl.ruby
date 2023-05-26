@@ -16,23 +16,24 @@ module GOBL
       # Enumeration of possible values for {#key} with their corresponding descriptions
       KEY_ENUM = {
         'any' => 'Any method available, no preference.',
-        'card' => 'Credit or debit card.',
+        'card' => 'Payment card.',
         'credit-transfer' => 'Sender initiated bank or wire transfer.',
         'debit-transfer' => 'Receiver initiated bank or wire transfer.',
         'cash' => 'Cash in hand.',
         'cheque' => 'Cheque from bank.',
-        'credit' => 'Using credit from previous transactions with the supplier.',
         'bank-draft' => 'Bankers Draft or Bank Cheque.',
         'direct-debit' => 'Direct debit from the customers bank account.',
-        'online' => 'Online or web payment.'
+        'online' => 'Online or web payment.',
+        'promissory-note' => 'Promissory note contract.',
+        'netting' => 'Intercompany clearing or clearing between partners.',
+        'other' => 'Other or mutually defined means of payment.'
       }.freeze
 
       # @!attribute [r] key
-      # How payment is expected or has been arranged to be collected
+      # The payment means expected or that have been arranged to be used to make the payment.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
       validates_presence_of :key
-      validates_inclusion_of :key, in: KEY_ENUM.keys
 
       # @!attribute [r] detail
       # Optional text description of the payment method
@@ -40,7 +41,7 @@ module GOBL
       property :detail, String
 
       # @!attribute [r] ref
-      # Remittance information, a text value used to link the payment with the invoice.
+      # Remittance information or concept, a text value used to link the payment with the invoice.
       # @return [String]
       property :ref, String
 

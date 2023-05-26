@@ -33,11 +33,6 @@ module GOBL
       # Some countries require an additional surcharge (calculated if rate present).
       # @return [GOBL::Num::Percentage]
       property :surcharge, GOBL::Num::Percentage
-
-      # @!attribute [r] tags
-      # Additional data may be required in some regimes, the tags property helps reference them.
-      # @return [Array<GOBL::CBC::Key>]
-      property :tags, [GOBL::CBC::Key]
     end
   end
 end

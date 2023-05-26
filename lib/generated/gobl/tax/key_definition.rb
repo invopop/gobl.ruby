@@ -29,8 +29,13 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
 
+      # @!attribute [r] codes
+      # Codes defines a set of codes that may be used within a given regime or format that will help identify which key definition to use.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
+
       # @!attribute [r] meta
-      # Any additional data that might be relevant in some regimes?
+      # Any additional data that might be relevant in some regimes.
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
     end

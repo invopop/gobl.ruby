@@ -23,6 +23,11 @@ module GOBL
       # @return [String]
       property :ref, String
 
+      # @!attribute [r] key
+      # Special key used to classify the item sometimes required by some regimes.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+
       # @!attribute [r] name
       # Brief name of the item
       # @return [String]

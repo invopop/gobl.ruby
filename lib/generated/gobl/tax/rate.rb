@@ -30,11 +30,20 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
 
+      # @!attribute [r] exempt
+      # Exempt when true implies that the rate when used in a tax Combo should not define a percent value.
+      # @return [Boolean]
+      property :exempt, Boolean
+
       # @!attribute [r] values
       # Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values.
       # @return [Array<RateValue>]
       property :values, [RateValue]
-      validates_presence_of :values
+
+      # @!attribute [r] codes
+      # Codes defines a set of regime specific code mappings.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
 
       # @!attribute [r] meta
       # Meta contains additional information about the rate that is relevant for local frequently used implementations.

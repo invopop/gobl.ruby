@@ -17,9 +17,9 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
-      # @!attribute [r] social_capital
+      # @!attribute [r] capital
       # @return [GOBL::Num::Amount]
-      property :social_capital, GOBL::Num::Amount
+      property :capital, GOBL::Num::Amount
 
       # @!attribute [r] currency
       # @return [GOBL::Currency::Code]

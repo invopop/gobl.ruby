@@ -27,11 +27,6 @@ module GOBL
       property :rates, [RateTotal]
       validates_presence_of :rates
 
-      # @!attribute [r] base
-      # @return [GOBL::Num::Amount]
-      property :base, GOBL::Num::Amount
-      validates_presence_of :base
-
       # @!attribute [r] amount
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount

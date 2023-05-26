@@ -34,6 +34,11 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :region, GOBL::I18n::String
 
+      # @!attribute [r] codes
+      # Codes defines a set of regime specific code mappings.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
+
       # @!attribute [r] meta
       # Any additional information
       # @return [GOBL::CBC::Meta]
