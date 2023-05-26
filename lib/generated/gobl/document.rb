@@ -3,12 +3,12 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
   # Contains the document payload to be included inside an Envelope.
-  # 
+  #
   # The document must contain a `$schema` property that identifies
   # the data's structure otherwise it will be rejected.
   class Document < GOBL::Map
