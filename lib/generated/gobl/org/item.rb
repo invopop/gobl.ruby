@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
@@ -22,6 +22,11 @@ module GOBL
       # Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property.
       # @return [String]
       property :ref, String
+
+      # @!attribute [r] key
+      # Special key used to classify the item sometimes required by some regimes.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] name
       # Brief name of the item

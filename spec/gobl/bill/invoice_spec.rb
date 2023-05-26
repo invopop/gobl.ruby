@@ -23,8 +23,8 @@ RSpec.describe GOBL::Bill::Invoice do
           type: 'credit-note',
           tax: { tags: ['unknown-tag', 'simplified', 'minimum-tax-payers'] }
         )
-        expect(invoice.scenario_summary.meta['fatturapa-tipo-documento']).to eq('TD08')
-        expect(invoice.scenario_summary.meta['fatturapa-regime-fiscale']).to eq('RF02')
+        expect(invoice.scenario_summary.codes['fatturapa-tipo-documento']).to eq('TD08')
+        expect(invoice.scenario_summary.codes['fatturapa-regime-fiscale']).to eq('RF02')
       end
     end
   end

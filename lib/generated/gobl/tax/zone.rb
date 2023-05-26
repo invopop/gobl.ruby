@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
@@ -33,6 +33,11 @@ module GOBL
       # Province, county, or state which should match address data.
       # @return [GOBL::I18n::String]
       property :region, GOBL::I18n::String
+
+      # @!attribute [r] codes
+      # Codes defines a set of regime specific code mappings.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
 
       # @!attribute [r] meta
       # Any additional information

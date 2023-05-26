@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
@@ -32,16 +32,20 @@ module GOBL
       # @return [Boolean]
       property :retained, Boolean
 
+      # @!attribute [r] rate_required
+      # RateRequired when true implies that when a tax combo is defined using this category that one of the rates must be defined.
+      # @return [Boolean]
+      property :rate_required, Boolean
+
       # @!attribute [r] rates
       # Specific tax definitions inside this category.
       # @return [Array<Rate>]
       property :rates, [Rate]
-      validates_presence_of :rates
 
-      # @!attribute [r] tags
-      # Tags contains a set of tag definitions that can be applied for this tax category.
-      # @return [Array<Tag>]
-      property :tags, [Tag]
+      # @!attribute [r] codes
+      # Codes defines a set of regime specific code mappings.
+      # @return [GOBL::CBC::CodeSet]
+      property :codes, GOBL::CBC::CodeSet
 
       # @!attribute [r] meta
       # Meta contains additional information about the category that is relevant for local frequently used formats.

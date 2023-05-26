@@ -9,10 +9,10 @@ module GOBL
           @scenarios = scenarios
         end
 
-        # Returns the aggregated metadata of the scenarios
-        def meta
-          scenarios.inject({}) do |meta, scenario|
-            meta.merge(scenario.meta.to_h)
+        # Returns the aggregated codes of the scenarios
+        def codes
+          scenarios.inject({}) do |codes, scenario|
+            codes.merge(scenario.codes.to_h)
           end
         end
 

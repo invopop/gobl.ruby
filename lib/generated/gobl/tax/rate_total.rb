@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
@@ -14,28 +14,31 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotal'
 
       # @!attribute [r] key
+      # Optional rate key is required when grouping.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
 
       # @!attribute [r] base
+      # Base amount that the percentage is applied to.
       # @return [GOBL::Num::Amount]
       property :base, GOBL::Num::Amount
       validates_presence_of :base
 
       # @!attribute [r] percent
+      # Percentage of the rate, which may be nil for exempt rates.
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
-      validates_presence_of :percent
+
+      # @!attribute [r] surcharge
+      # Surcharge applied to the rate.
+      # @return [RateTotalSurcharge]
+      property :surcharge, RateTotalSurcharge
 
       # @!attribute [r] amount
       # Total amount of rate, excluding surcharges
       # @return [GOBL::Num::Amount]
       property :amount, GOBL::Num::Amount
       validates_presence_of :amount
-
-      # @!attribute [r] surcharge
-      # @return [RateTotalSurcharge]
-      property :surcharge, RateTotalSurcharge
     end
   end
 end

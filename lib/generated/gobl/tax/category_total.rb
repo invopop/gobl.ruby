@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.42.8
+## Generated with GOBL v0.50.1
 ##
 
 module GOBL
@@ -26,11 +26,6 @@ module GOBL
       # @return [Array<RateTotal>]
       property :rates, [RateTotal]
       validates_presence_of :rates
-
-      # @!attribute [r] base
-      # @return [GOBL::Num::Amount]
-      property :base, GOBL::Num::Amount
-      validates_presence_of :base
 
       # @!attribute [r] amount
       # @return [GOBL::Num::Amount]
