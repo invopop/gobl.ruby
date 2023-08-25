@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -31,8 +31,7 @@ module GOBL
       # Type of terms to be applied.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
-      validates_presence_of :key
-      validates_inclusion_of :key, in: KEY_ENUM.keys
+      validates_inclusion_of :key, in: KEY_ENUM.keys, allow_blank: true
 
       # @!attribute [r] detail
       # Text detail of the chosen payment terms.

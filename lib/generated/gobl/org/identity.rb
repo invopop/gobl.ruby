@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -24,7 +24,7 @@ module GOBL
       property :label, String
 
       # @!attribute [r] type
-      # The type of Code being represented and usually specific for a particular context, country, or tax regime.
+      # The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key.
       # @return [GOBL::CBC::Code]
       property :type, GOBL::CBC::Code
 
@@ -33,6 +33,11 @@ module GOBL
       # @return [GOBL::CBC::Code]
       property :code, GOBL::CBC::Code
       validates_presence_of :code
+
+      # @!attribute [r] description
+      # Description adds details about what the code could mean or imply
+      # @return [String]
+      property :description, String
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -51,15 +51,15 @@ module GOBL
       property :currency, GOBL::Currency::Code
       validates_presence_of :currency
 
-      # @!attribute [r] exchange_rates
-      # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      # @return [Array<GOBL::Currency::ExchangeRate>]
-      property :exchange_rates, [GOBL::Currency::ExchangeRate]
-
       # @!attribute [r] tax
       # Special tax configuration for billing.
       # @return [Tax]
       property :tax, Tax
+
+      # @!attribute [r] exchange_rates
+      # Exchange rates to be used when converting the invoices monetary values into other currencies.
+      # @return [Array<GOBL::Currency::ExchangeRate>]
+      property :exchange_rates, [GOBL::Currency::ExchangeRate]
 
       # @!attribute [r] preceding
       # Key information regarding previous invoices and potentially details as to why they were corrected.

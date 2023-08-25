@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -37,6 +37,9 @@ module GOBL
         'h' => 'Hours',
         'min' => 'Minutes',
         'piece' => 'Pieces',
+        'item' => 'Items',
+        'service' => 'Service Units',
+        'activity' => 'Activity',
         'bag' => 'Bags',
         'box' => 'Boxes',
         'bin' => 'Bins',

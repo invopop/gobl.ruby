@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -40,10 +40,15 @@ module GOBL
       # @return [Array<RateValue>]
       property :values, [RateValue]
 
-      # @!attribute [r] codes
-      # Codes defines a set of regime specific code mappings.
-      # @return [GOBL::CBC::CodeSet]
-      property :codes, GOBL::CBC::CodeSet
+      # @!attribute [r] extensions
+      # Extensions defines a list of keys for codes that can or must be associated with the tax rate for it to be validated. Every key must be defined in the Regime's extensions.
+      # @return [Array<GOBL::CBC::Key>]
+      property :extensions, [GOBL::CBC::Key]
+
+      # @!attribute [r] map
+      # Map is used to associate specific codes with the chosen rate.
+      # @return [GOBL::CBC::CodeMap]
+      property :map, GOBL::CBC::CodeMap
 
       # @!attribute [r] meta
       # Meta contains additional information about the rate that is relevant for local frequently used implementations.

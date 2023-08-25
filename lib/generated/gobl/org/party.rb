@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -18,16 +18,6 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
-      # @!attribute [r] tax_id
-      # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.
-      # @return [GOBL::Tax::Identity]
-      property :tax_id, GOBL::Tax::Identity
-
-      # @!attribute [r] identities
-      # Set of codes used to identify the party in other systems.
-      # @return [Array<GOBL::Org::Identity>]
-      property :identities, [GOBL::Org::Identity]
-
       # @!attribute [r] name
       # Legal name or representation of the organization.
       # @return [String]
@@ -38,6 +28,16 @@ module GOBL
       # Alternate short name.
       # @return [String]
       property :alias, String
+
+      # @!attribute [r] tax_id
+      # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.
+      # @return [GOBL::Tax::Identity]
+      property :tax_id, GOBL::Tax::Identity
+
+      # @!attribute [r] identities
+      # Set of codes used to identify the party in other systems.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
 
       # @!attribute [r] people
       # Details of physical people who represent the party.
@@ -61,8 +61,8 @@ module GOBL
 
       # @!attribute [r] websites
       # Public websites that provide further information about the party.
-      # @return [Array<Website>]
-      property :websites, [Website]
+      # @return [Array<GOBL::Org::Website>]
+      property :websites, [GOBL::Org::Website]
 
       # @!attribute [r] telephones
       # Regular telephone numbers
@@ -78,6 +78,11 @@ module GOBL
       # Images that can be used to identify the party visually.
       # @return [Array<GOBL::Org::Image>]
       property :logos, [GOBL::Org::Image]
+
+      # @!attribute [r] ext
+      # Extension code map for any additional regime specific codes that may be required.
+      # @return [GOBL::CBC::CodeMap]
+      property :ext, GOBL::CBC::CodeMap
 
       # @!attribute [r] meta
       # Any additional semi-structured information that does not fit into the rest of the party.

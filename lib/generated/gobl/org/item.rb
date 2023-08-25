@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -46,8 +46,8 @@ module GOBL
 
       # @!attribute [r] currency
       # Currency used for the item's price.
-      # @return [String]
-      property :currency, String
+      # @return [GOBL::Currency::Code]
+      property :currency, GOBL::Currency::Code
 
       # @!attribute [r] price
       # Base price of a single unit to be sold.
@@ -64,6 +64,11 @@ module GOBL
       # Country code of where this item was from originally.
       # @return [GOBL::L10n::CountryCode]
       property :origin, GOBL::L10n::CountryCode
+
+      # @!attribute [r] ext
+      # Extension code map for any additional regime specific codes that may be required.
+      # @return [GOBL::CBC::CodeMap]
+      property :ext, GOBL::CBC::CodeMap
 
       # @!attribute [r] meta
       # Additional meta information that may be useful

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.54.0
 ##
 
 module GOBL
@@ -33,6 +33,11 @@ module GOBL
       # Some countries require an additional surcharge (calculated if rate present).
       # @return [GOBL::Num::Percentage]
       property :surcharge, GOBL::Num::Percentage
+
+      # @!attribute [r] ext
+      # Local codes that apply for a given rate or percentage that need to be identified and validated.
+      # @return [GOBL::CBC::CodeMap]
+      property :ext, GOBL::CBC::CodeMap
     end
   end
 end
