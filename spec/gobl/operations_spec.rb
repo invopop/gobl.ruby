@@ -39,24 +39,6 @@ RSpec.describe GOBL::Operations do
       expect(invoice.totals).to be_present
     end
 
-    it 'builds a document and wraps it in a non-draft envelop' do
-      gobl = File.read('spec/example/uncalculated_invoice.json')
-      doc = GOBL::Document.from_json!(gobl)
-
-      envelope = GOBL.build(doc, envelop: true, draft: false)
-
-      expect(envelope.head.draft).to be_falsy
-    end
-
-    it 'builds an envelope and makes it a non-draft' do
-      gobl = File.read('spec/example/draft_envelope.json')
-      envelope = GOBL::Envelope.from_json!(gobl)
-
-      built_envelope = GOBL.build(envelope, draft: false)
-
-      expect(built_envelope.head.draft).to be_falsy
-    end
-
     it 'fails when an invalid document is given' do
       invalid_docs = [
         GOBL::Document.new({}),

@@ -61,12 +61,11 @@ module GOBL
     # @example Build an envelope forcing it to be a non-draft.
     #   envelope = GOBL::Envelop.from_json!(File.read('draft_envelope.json'))
     #   GOBL.build(envelope, draft: false) #=> A new, non-draft GOBL::Envelope
-    def build(struct, envelop: nil, draft: nil)
+    def build(struct, envelop: nil)
       check_struct_type struct, BUILDABLE_TYPES
 
       response = request_action(:build, struct: struct,
-                                        envelop: envelop,
-                                        draft: draft)
+                                        envelop: envelop)
 
       raise ServiceError, response['error'] if response['error'].present?
 
