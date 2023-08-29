@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -35,8 +35,8 @@ module GOBL
 
       # @!attribute [r] codes
       # Codes is used to define additional codes for regime specific situations.
-      # @return [GOBL::CBC::CodeSet]
-      property :codes, GOBL::CBC::CodeSet
+      # @return [GOBL::CBC::CodeMap]
+      property :codes, GOBL::CBC::CodeMap
 
       # @!attribute [r] meta
       # Any additional local meta data that may be useful in integrations.

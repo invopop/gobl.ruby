@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -30,14 +30,14 @@ module GOBL
       property :desc, GOBL::I18n::String
 
       # @!attribute [r] codes
-      # Codes defines a set of codes that may be used within a given regime or format that will help identify which key definition to use.
-      # @return [GOBL::CBC::CodeSet]
-      property :codes, GOBL::CBC::CodeSet
+      # Codes describes the list of codes that can be used alongside the Key, for example with identities.
+      # @return [Array<CodeDefinition>]
+      property :codes, [CodeDefinition]
 
-      # @!attribute [r] meta
-      # Any additional data that might be relevant in some regimes.
-      # @return [GOBL::CBC::Meta]
-      property :meta, GOBL::CBC::Meta
+      # @!attribute [r] map
+      # Map helps map local keys to specific codes, useful for converting the described key into a local code.
+      # @return [GOBL::CBC::CodeMap]
+      property :map, GOBL::CBC::CodeMap
     end
   end
 end

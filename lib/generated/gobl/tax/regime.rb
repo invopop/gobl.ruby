@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -18,6 +18,12 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates_presence_of :name
+
+      # @!attribute [r] time_zone
+      # Location name for the country's central time zone. Accepted values from IANA Time Zone Database (https://iana.org/time-zones).
+      # @return [String]
+      property :time_zone, String
+      validates_presence_of :time_zone
 
       # @!attribute [r] country
       # Country code for the region
@@ -50,6 +56,11 @@ module GOBL
       # Identity types specific for the regime and may be validated against.
       # @return [Array<KeyDefinition>]
       property :identity_types, [KeyDefinition]
+
+      # @!attribute [r] extensions
+      # Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates.
+      # @return [Array<KeyDefinition>]
+      property :extensions, [KeyDefinition]
 
       # @!attribute [r] charge_types
       # Charge types specific for the regime and may be validated or used in the UI as suggestions

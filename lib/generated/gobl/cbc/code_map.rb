@@ -8,8 +8,8 @@
 
 module GOBL
   module CBC
-    # Meta defines a structure for data about the data being defined.
-    class Meta < GOBL::Map
+    # CodeMap is a map of keys to specific codes, useful to determine regime specific codes from their key counterparts.
+    class CodeMap < GOBL::Map
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -11,7 +11,7 @@ module GOBL
     # Website describes what is expected for a web address.
     class Website < GOBL::Object
       # The Schema ID of the GOBL Website structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/org/party#/$defs/Website'
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/website'
 
       # @!attribute [r] uuid
       # Unique identity code

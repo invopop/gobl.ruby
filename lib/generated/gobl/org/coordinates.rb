@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -24,7 +24,7 @@ module GOBL
       property :lon, Float
 
       # @!attribute [r] w3w
-      # Text coordinates compose of three words.
+      # What 3 Words text coordinates.
       # @return [String]
       property :w3w, String
 

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -18,17 +18,6 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
-      # @!attribute [r] series
-      # Used as a prefix to group codes.
-      # @return [String]
-      property :series, String
-
-      # @!attribute [r] code
-      # Sequential code used to identify this invoice in tax declarations.
-      # @return [String]
-      property :code, String
-      validates_presence_of :code
-
       # Enumeration of possible values for {#type} with their corresponding descriptions
       TYPE_ENUM = {
         'standard' => 'A regular commercial invoice document between a supplier and customer.',
@@ -42,35 +31,23 @@ module GOBL
       # Type of invoice document subject to the requirements of the local tax regime.
       # @return [GOBL::CBC::Key]
       property :type, GOBL::CBC::Key
-      validates_presence_of :type
-      validates_inclusion_of :type, in: TYPE_ENUM.keys
+      validates_inclusion_of :type, in: TYPE_ENUM.keys, allow_blank: true
 
-      # @!attribute [r] currency
-      # Currency for all invoice totals.
-      # @return [GOBL::Currency::Code]
-      property :currency, GOBL::Currency::Code
-      validates_presence_of :currency
+      # @!attribute [r] series
+      # Used as a prefix to group codes.
+      # @return [String]
+      property :series, String
 
-      # @!attribute [r] exchange_rates
-      # Exchange rates to be used when converting the invoices monetary values into other currencies.
-      # @return [Array<GOBL::Currency::ExchangeRate>]
-      property :exchange_rates, [GOBL::Currency::ExchangeRate]
-
-      # @!attribute [r] tax
-      # Special tax configuration for billing.
-      # @return [Tax]
-      property :tax, Tax
-
-      # @!attribute [r] preceding
-      # Key information regarding previous invoices and potentially details as to why they were corrected.
-      # @return [Array<Preceding>]
-      property :preceding, [Preceding]
+      # @!attribute [r] code
+      # Sequential code used to identify this invoice in tax declarations.
+      # @return [String]
+      property :code, String
+      validates_presence_of :code
 
       # @!attribute [r] issue_date
       # When the invoice was created.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
-      validates_presence_of :issue_date
 
       # @!attribute [r] op_date
       # Date when the operation defined by the invoice became effective.
@@ -81,6 +58,26 @@ module GOBL
       # When the taxes of this invoice become accountable, if none set, the issue date is used.
       # @return [GOBL::Cal::Date]
       property :value_date, GOBL::Cal::Date
+
+      # @!attribute [r] currency
+      # Currency for all invoice totals.
+      # @return [GOBL::Currency::Code]
+      property :currency, GOBL::Currency::Code
+
+      # @!attribute [r] exchange_rates
+      # Exchange rates to be used when converting the invoices monetary values into other currencies.
+      # @return [Array<GOBL::Currency::ExchangeRate>]
+      property :exchange_rates, [GOBL::Currency::ExchangeRate]
+
+      # @!attribute [r] preceding
+      # Key information regarding previous invoices and potentially details as to why they were corrected.
+      # @return [Array<Preceding>]
+      property :preceding, [Preceding]
+
+      # @!attribute [r] tax
+      # Special tax configuration for billing.
+      # @return [Tax]
+      property :tax, Tax
 
       # @!attribute [r] supplier
       # The taxable entity supplying the goods or services.

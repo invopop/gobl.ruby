@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -36,8 +36,8 @@ module GOBL
 
       # @!attribute [r] codes
       # Codes defines a set of regime specific code mappings.
-      # @return [GOBL::CBC::CodeSet]
-      property :codes, GOBL::CBC::CodeSet
+      # @return [GOBL::CBC::CodeMap]
+      property :codes, GOBL::CBC::CodeMap
 
       # @!attribute [r] meta
       # Any additional information

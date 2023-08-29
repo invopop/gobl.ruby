@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.50.5
+## Generated with GOBL v0.55.0
 ##
 
 module GOBL
@@ -17,6 +17,11 @@ module GOBL
       # Optional rate key is required when grouping.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
+
+      # @!attribute [r] ext
+      # If the rate is defined with extensions, they'll be used to group by also.
+      # @return [GOBL::CBC::CodeMap]
+      property :ext, GOBL::CBC::CodeMap
 
       # @!attribute [r] base
       # Base amount that the percentage is applied to.
