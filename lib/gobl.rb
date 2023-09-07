@@ -46,8 +46,8 @@ end
 # to get YARD parsing them properly.
 
 GOBL::I18n::String.include GOBL::Extensions::I18n::ValueKeysHelper
-GOBL::Document.include GOBL::Extensions::DocumentHelper
-GOBL::Document.extend GOBL::Extensions::DocumentHelper::ClassMethods
+GOBL::Schema::Object.include GOBL::Extensions::Schema::ObjectHelper
+GOBL::Schema::Object.extend GOBL::Extensions::Schema::ObjectHelper::ClassMethods
 GOBL::Envelope.include GOBL::Extensions::EnvelopeHelper
 GOBL::Tax::Regime.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
 GOBL::Bill::Invoice.include GOBL::Extensions::Bill::InvoiceHelper

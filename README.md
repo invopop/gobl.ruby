@@ -81,12 +81,12 @@ GOBL is a JSON format. So, you'll probably need to read or produce valid GOBL JS
 
 ```ruby
 json = '{"$schema":"https://gobl.org/draft-0/note/message", "content":"Hello World!"}'
-document = GOBL::Document.from_json!(json) #=> #<GOBL::Document _value={"$schema"=>"https://gobl.org/draft-0/note/message", "content"=>"Hello World!"}>
+document = GOBL::Schema::Object.from_json!(json) #=> #<GOBL::Schema::Object _value={"$schema"=>"https://gobl.org/draft-0/note/message", "content"=>"Hello World!"}>
 message = document.extract #=> #<GOBL::Note::Message title=nil content="Hello World!" meta=nil>
 message.content #=> "Hello World!"
 ```
 
-Note that, in the previous example, we parsed the JSON fragment as a document. A [document](https://docs.gobl.org/core/documents) is one of the fundamental entities of GOBL, and it represents a business document in an abstract way. To get the specific document type instantiated –a message, in the example above–, we needed to call the [`#extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper:extract) method of the document object.
+Note that, in the previous example, we parsed the JSON fragment as a document. A [document](https://docs.gobl.org/core/documents) is one of the fundamental entities of GOBL, and it represents a business document in an abstract way. To get the specific document type instantiated –a message, in the example above–, we needed to call the [`#extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FSchema%2FObjectHelper:extract) method of the document object.
 
 The previous instantiation method is useful if you don't know the document type in advance. If you do, you could also instantiate the object in this more direct way:
 
@@ -103,15 +103,15 @@ message = GOBL::Note::Message.new(content: 'Hello World!')
 message.to_json #=> "{\"content\":\"Hello World!\"}"
 ```
 
-Note that, in the previous example, the generated JSON doesn't include a `$schema` attribute. This is because the GOBL schema doesn't require that attribute in a standalone message structure. If you want to use that structure as a document, you will need a `$schema` to be present. You can get that from your Ruby code by simply [_embedding_](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper%2FClassMethods:embed) the struct in a document:
+Note that, in the previous example, the generated JSON doesn't include a `$schema` attribute. This is because the GOBL schema doesn't require that attribute in a standalone message structure. If you want to use that structure as a document, you will need a `$schema` to be present. You can get that from your Ruby code by simply [_embedding_](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FSchema%2FObjectHelper%2FClassMethods:embed) the struct in a document:
 
 ```ruby
 message = GOBL::Note::Message.new(content: 'Hello World!')
-document = GOBL::Document.embed(message)
+document = GOBL::Schema::Object.embed(message)
 document.to_json #=> "{\"content\":\"Hello World!\",\"$schema\":\"https://gobl.org/draft-0/note/message\"}"
 ```
 
-_See also [`GOBL::Struct.from_json!`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct%2Efrom_json!), [`GOBL::Struct#to_json`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct:to_json), [`GOBL::Document#embed`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper%2FClassMethods:embed), [`GOBL::Document.extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FDocumentHelper:extract)_
+_See also [`GOBL::Struct.from_json!`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct%2Efrom_json!), [`GOBL::Struct#to_json`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FStruct:to_json), [`GOBL::Schema::Object#embed`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FSchema%2FObjectHelper%2FClassMethods:embed), [`GOBL::Schema::Object.extract`](https://rubydoc.info/github/invopop/gobl.ruby/GOBL%2FExtensions%2FSchema%2FObjectHelper:extract)_
 
 ### Handling value objects and enumerations
 
@@ -179,7 +179,7 @@ invoice = GOBL::Bill::Invoice.new(
     taxes: [ { cat: 'VAT', rate: :standard } ]
   }]
 )
-document = GOBL::Document.embed(invoice)
+document = GOBL::Schema::Object.embed(invoice)
 calculated_document = GOBL.build(document)
 calculated_invoice = calculated_document.extract
 calculated_invoice.totals.total_with_tax #=> "2178.00"
@@ -212,6 +212,8 @@ You can avoid mage and the docker container if you prefer so. Take a look at the
 #### Installation
 
 The command `mage setup` fetches and installs all the required dependencies to use the gem.
+
+If you run into any problems with dependencies, don't forget this is a library, so the Gemfile.lock is not included. Delete any local versions you may already have and re-run.
 
 #### Code generation
 

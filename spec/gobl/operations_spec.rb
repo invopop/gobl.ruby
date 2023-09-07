@@ -17,7 +17,7 @@ RSpec.describe GOBL::Operations do
   describe '#build' do
     it 'builds a document' do
       gobl = File.read('spec/example/uncalculated_invoice.json')
-      doc = GOBL::Document.from_json!(gobl)
+      doc = GOBL::Schema::Object.from_json!(gobl)
 
       built_doc = GOBL.build(doc)
 
@@ -29,7 +29,7 @@ RSpec.describe GOBL::Operations do
 
     it 'builds a document and envelops it' do
       gobl = File.read('spec/example/uncalculated_invoice.json')
-      doc = GOBL::Document.from_json!(gobl)
+      doc = GOBL::Schema::Object.from_json!(gobl)
 
       envelope = GOBL.build(doc, envelop: true)
 
@@ -41,8 +41,8 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an invalid document is given' do
       invalid_docs = [
-        GOBL::Document.new({}),
-        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Schema::Object.new({}),
+        GOBL::Schema::Object.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|
@@ -52,7 +52,7 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an unsupported struct is given' do
       gobl = File.read('spec/example/basic_header.json')
-      header = GOBL::Header.from_json!(gobl)
+      header = GOBL::Head::Header.from_json!(gobl)
 
       expect { GOBL.build(header) }.to raise_error(ArgumentError)
     end
@@ -61,7 +61,7 @@ RSpec.describe GOBL::Operations do
   describe '#validate' do
     it 'validates an invalid document' do
       gobl = File.read('spec/example/uncalculated_invoice.json')
-      doc = GOBL::Document.from_json!(gobl)
+      doc = GOBL::Schema::Object.from_json!(gobl)
 
       result = GOBL.validate(doc)
 
@@ -81,8 +81,8 @@ RSpec.describe GOBL::Operations do
 
     it 'validates invalid documents' do
       invalid_docs = [
-        GOBL::Document.new({}),
-        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Schema::Object.new({}),
+        GOBL::Schema::Object.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|
@@ -93,7 +93,7 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an unsupported struct is given' do
       gobl = File.read('spec/example/basic_header.json')
-      header = GOBL::Header.from_json!(gobl)
+      header = GOBL::Head::Header.from_json!(gobl)
 
       expect { GOBL.validate(header) }.to raise_error(ArgumentError)
     end
@@ -111,7 +111,7 @@ RSpec.describe GOBL::Operations do
 
     it 'signs a document' do
       gobl = File.read('spec/example/uncalculated_invoice.json')
-      doc = GOBL::Document.from_json!(gobl)
+      doc = GOBL::Schema::Object.from_json!(gobl)
 
       envelope = GOBL.sign(doc)
 
@@ -123,8 +123,8 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an invalid document is given' do
       invalid_docs = [
-        GOBL::Document.new({}),
-        GOBL::Document.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
+        GOBL::Schema::Object.new({}),
+        GOBL::Schema::Object.new('$schema' => 'https://gobl.org/draft-0/bill/invoice')
       ]
 
       invalid_docs.each do |struct|
@@ -134,7 +134,7 @@ RSpec.describe GOBL::Operations do
 
     it 'fails when an unsupported struct is given' do
       gobl = File.read('spec/example/basic_header.json')
-      header = GOBL::Header.from_json!(gobl)
+      header = GOBL::Head::Header.from_json!(gobl)
 
       expect { GOBL.sign(header) }.to raise_error(ArgumentError)
     end

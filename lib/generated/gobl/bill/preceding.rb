@@ -41,8 +41,8 @@ module GOBL
 
       # @!attribute [r] stamps
       # Seals of approval from other organisations that may need to be listed.
-      # @return [Array<GOBL::CBC::Stamp>]
-      property :stamps, [GOBL::CBC::Stamp]
+      # @return [Array<GOBL::Head::Stamp>]
+      property :stamps, [GOBL::Head::Stamp]
 
       # @!attribute [r] corrections
       # Tax regime specific keys reflecting why the preceding invoice is being replaced.

@@ -20,7 +20,7 @@ module GOBL
       if schema.name == 'envelope'
         GOBL::Envelope.new data
       else
-        GOBL::Document.new data
+        GOBL::Schema::Object.new data
       end
     end
 

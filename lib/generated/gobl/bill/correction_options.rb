@@ -20,8 +20,8 @@ module GOBL
 
       # @!attribute [r] stamps
       # Stamps of the previous document to include in the preceding data.
-      # @return [Array<GOBL::CBC::Stamp>]
-      property :stamps, [GOBL::CBC::Stamp]
+      # @return [Array<GOBL::Head::Stamp>]
+      property :stamps, [GOBL::Head::Stamp]
 
       # @!attribute [r] credit
       # Credit when true indicates that the corrective document should cancel the previous document.
