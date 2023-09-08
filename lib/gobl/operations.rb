@@ -10,7 +10,7 @@ module GOBL
   #   GOBL.config.service_host = 'localhost'
   #   GOBL.config.service_port = 8080
   #
-  #   doc = GOBL::Document.new(
+  #   doc = GOBL::Schema::Object.new(
   #     '$schema' => 'https://gobl.org/draft-0/bill/invoice',
   #     'code' => 'SAMPLE-001',
   #     'currency' => 'EUR',
@@ -27,31 +27,31 @@ module GOBL
   module Operations
     # @api private
     VALIDATABLE_TYPES = SIGNABLE_TYPES = BUILDABLE_TYPES = [
-      GOBL::Document,
-      GOBL::Envelope
+      GOBL::Envelope,
+      GOBL::Schema::Object
     ].freeze
 
     # Calculates and validates an envelope or document, wrapping it in an envelope if
     # requested.
     #
-    # @param struct [GOBL::Document, GOBL::Envelope] the document or envelope to build.
+    # @param struct [GOBL::Schema::Object, GOBL::Envelope] the document or envelope to build.
     # @param envelop [Boolean] whether the operation should envelop the document.
     # @param draft [Boolean] whether the envelope should be flagged as a draft.
     #
-    # @return [GOBL::Envelope, GOBL::Document] a built envelope or document.
+    # @return [GOBL::Envelope, GOBL::Schema::Object] a built envelope or document.
     #
     # @raise [GOBL::Operations::ServiceError] if the service returns any errors.
     #
     # @example Build a document without enveloping it.
-    #   invoice = GOBL::Document.from_json!(File.read('invoice.json'))
-    #   GOBL.build(invoice) #=> A new, calculated `GOBL::Document`
+    #   invoice = GOBL::Schema::Object.from_json!(File.read('invoice.json'))
+    #   GOBL.build(invoice) #=> A new, calculated `GOBL::Schema::Object`
     #
     # @example Build a document and wrap in a draft envelope.
-    #   invoice = GOBL::Document.from_json!(File.read('invoice.json'))
+    #   invoice = GOBL::Schema::Object.from_json!(File.read('invoice.json'))
     #   GOBL.build(invoice, envelop: true) #=> A calculated, draft `GOBL::Envelope`
     #
     # @example Build a document and wrap in a non-draft envelope.
-    #   invoice = GOBL::Document.from_json!(File.read('invoice.json'))
+    #   invoice = GOBL::Schema::Object.from_json!(File.read('invoice.json'))
     #   GOBL.build(invoice, envelop: true, draft: false) #=> A calculated, non-draft `GOBL::Envelope`
     #
     # @example Build an envelope.
@@ -75,13 +75,13 @@ module GOBL
     # Checks whether or not a document or envelope is valid according to the GOBL schema
     #   and rules.
     #
-    # @param struct [GOBL::Document, GOBL::Envelope] the document or the envelope to
+    # @param struct [GOBL::Schema::Object, GOBL::Envelope] the document or the envelope to
     #   validate.
     #
     # @return [GOBL::ValidationResult] the result of the validations.
     #
     # @example Validate an invalid document.
-    #   document =  GOBL::Document.from_json!(File.read('invalid_invoice.json'))
+    #   document =  GOBL::Schema::Object.from_json!(File.read('invalid_invoice.json'))
     #   result = GOBL.validate(document)
     #   result.valid? #=> false
     #   result.errors #=> ['code: cannot be blank', 'totals: cannot be blank']
@@ -108,7 +108,7 @@ module GOBL
     # Signs a document or envelope, calculating, enveloping and validating it first if
     #   needed. The signing key will be the one configured in the server.
     #
-    # @param struct [GOBL::Document, GOBL::Envelope] the envelop or document to sign.
+    # @param struct [GOBL::Schema::Object, GOBL::Envelope] the envelop or document to sign.
     #
     # @return [GOBL::Envelope] a signed envelope.
     #

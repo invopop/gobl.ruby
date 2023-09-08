@@ -52,6 +52,11 @@ module GOBL
       # @return [GOBL::CBC::CodeMap]
       property :map, GOBL::CBC::CodeMap
 
+      # @!attribute [r] sources
+      # List of sources for the information contained in this category.
+      # @return [Array<Source>]
+      property :sources, [Source]
+
       # @!attribute [r] meta
       # Meta contains additional information about the category that is relevant for local frequently used formats.
       # @return [GOBL::CBC::Meta]

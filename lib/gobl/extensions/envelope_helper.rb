@@ -11,7 +11,7 @@ module GOBL
 
       # Extracts the GOBL struct embedded in the envelope's document
       #
-      # @see GOBL::Extensions::DocumentHelper#extract
+      # @see GOBL::Extensions::Schema::ObjectHelper#extract
       #
       # @return [GOBL::Struct] the GOBL struct embedded in the envelope's document
       def extract

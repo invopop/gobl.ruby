@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/gobl'
+require_relative '../../../lib/gobl'
 
-RSpec.describe GOBL::Document do
+RSpec.describe GOBL::Schema::Object do
   describe 'extensions' do
     it 'extracts documents without calculated fields' do
       gobl = File.read('spec/example/uncalculated_invoice.json')

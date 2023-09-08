@@ -135,6 +135,11 @@ module GOBL
       # @return [Array<GOBL::CBC::Note>]
       property :notes, [GOBL::CBC::Note]
 
+      # @!attribute [r] complements
+      # Additional complementary objects that add relevant information to the invoice.
+      # @return [Array<GOBL::Schema::Object>]
+      property :complements, [GOBL::Schema::Object]
+
       # @!attribute [r] meta
       # Additional semi-structured data that doesn't fit into the body of the invoice.
       # @return [GOBL::CBC::Meta]

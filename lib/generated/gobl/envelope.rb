@@ -20,14 +20,14 @@ module GOBL
 
     # @!attribute [r] head
     # Details on what the contents are
-    # @return [Header]
-    property :head, Header
+    # @return [GOBL::Head::Header]
+    property :head, GOBL::Head::Header
     validates_presence_of :head
 
     # @!attribute [r] doc
     # The data inside the envelope
-    # @return [Document]
-    property :doc, Document
+    # @return [GOBL::Schema::Object]
+    property :doc, GOBL::Schema::Object
     validates_presence_of :doc
 
     # @!attribute [r] sigs
