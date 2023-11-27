@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -17,6 +17,11 @@ module GOBL
       # Identifier assigned by the customer or buyer for internal routing purposes.
       # @return [String]
       property :code, String
+
+      # @!attribute [r] identities
+      # Any additional Codes, IDs, SKUs, or other regional or custom identifiers that may be used to identify the order.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
 
       # @!attribute [r] period
       # Period of time that the invoice document refers to often used in addition to the details provided in the individual line items.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -14,16 +14,24 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Category'
 
       # @!attribute [r] code
+      # Code to be used in documents
       # @return [GOBL::CBC::Code]
       property :code, GOBL::CBC::Code
       validates_presence_of :code
 
       # @!attribute [r] name
+      # Short name of the category to be used instead of code in output
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates_presence_of :name
 
+      # @!attribute [r] title
+      # Human name for the code to use for titles
+      # @return [GOBL::I18n::String]
+      property :title, GOBL::I18n::String
+
       # @!attribute [r] desc
+      # Useful description of the category.
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
 

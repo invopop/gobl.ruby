@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -62,6 +62,11 @@ module GOBL
       # Digest can be used to ensure the image contained at the URL is the same one as originally intended.
       # @return [GOBL::DSig::Digest]
       property :digest, GOBL::DSig::Digest
+
+      # @!attribute [r] meta
+      # Meta contains additional information about the image.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

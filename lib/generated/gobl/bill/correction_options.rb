@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -38,15 +38,15 @@ module GOBL
       # @return [String]
       property :reason, String
 
-      # @!attribute [r] correction_method
+      # @!attribute [r] method
       # Correction method as defined by the tax regime.
       # @return [GOBL::CBC::Key]
-      property :correction_method, GOBL::CBC::Key
+      property :method, GOBL::CBC::Key
 
-      # @!attribute [r] corrections
-      # Correction keys that describe the specific changes according to the tax regime.
+      # @!attribute [r] changes
+      # Changes keys that describe the specific changes according to the tax regime.
       # @return [Array<GOBL::CBC::Key>]
-      property :corrections, [GOBL::CBC::Key]
+      property :changes, [GOBL::CBC::Key]
     end
   end
 end

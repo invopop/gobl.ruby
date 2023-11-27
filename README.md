@@ -221,7 +221,9 @@ Ensure all the GOBL JSON Schema and Regime files are available by manually copyi
 
 ```bash
 rm -rf ./data/*
-cp -r ../gobl/build/* ./data
+cd ../gobl
+find ./data -name '*.json' -type f | cpio -pdm ../gobl.ruby/
+cd ../gobl.ruby
 ```
 
 Please note that `schemas` is _.gitignored_ as we only need it to generate the code. However, the previous command also copies `regimes` which content is used by the library and so, it is part of the git repo and the gem.
