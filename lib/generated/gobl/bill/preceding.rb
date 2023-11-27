@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -44,15 +44,15 @@ module GOBL
       # @return [Array<GOBL::Head::Stamp>]
       property :stamps, [GOBL::Head::Stamp]
 
-      # @!attribute [r] corrections
-      # Tax regime specific keys reflecting why the preceding invoice is being replaced.
-      # @return [Array<GOBL::CBC::Key>]
-      property :corrections, [GOBL::CBC::Key]
-
       # @!attribute [r] correction_method
-      # Tax regime specific keys reflecting the method used to correct the preceding invoice.
+      # Tax regime specific key reflecting the method used to correct the preceding invoice.
       # @return [GOBL::CBC::Key]
       property :correction_method, GOBL::CBC::Key
+
+      # @!attribute [r] changes
+      # Tax regime specific keys reflecting what has been changed from the previous invoice.
+      # @return [Array<GOBL::CBC::Key>]
+      property :changes, [GOBL::CBC::Key]
 
       # @!attribute [r] period
       # Tax period in which the previous invoice had an effect required by some tax regimes and formats.

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -20,9 +20,10 @@ module GOBL
       validates_presence_of :key
 
       # @!attribute [r] name
-      # Short name for the key, if relevant.
+      # Short name for the key.
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
+      validates_presence_of :name
 
       # @!attribute [r] desc
       # Description offering more details about when the key should be used.

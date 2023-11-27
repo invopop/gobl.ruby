@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -22,6 +22,11 @@ module GOBL
       # Optional label useful for non-standard identities to give a bit more context.
       # @return [String]
       property :label, String
+
+      # @!attribute [r] key
+      # Uniquely classify this identity using a key instead of a code.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] type
       # The type of Code being represented and usually specific for a particular context, country, or tax regime, and cannot be used alongside the key.

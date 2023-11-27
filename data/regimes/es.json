@@ -6,6 +6,990 @@
   },
   "time_zone": "Europe/Madrid",
   "country": "ES",
+  "currency": "EUR",
+  "tags": [
+    {
+      "key": "simplified",
+      "name": {
+        "de": "Vereinfachte Rechnung",
+        "en": "Simplified Invoice",
+        "es": "Factura Simplificada",
+        "it": "Fattura Semplificata"
+      },
+      "desc": {
+        "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
+        "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
+        "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
+        "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
+      }
+    },
+    {
+      "key": "reverse-charge",
+      "name": {
+        "de": "Umkehr der Steuerschuld",
+        "en": "Reverse Charge",
+        "es": "Inversión del Sujeto Pasivo",
+        "it": "Inversione del soggetto passivo"
+      }
+    },
+    {
+      "key": "self-billed",
+      "name": {
+        "de": "Rechnung durch den Leistungsempfänger",
+        "en": "Self-billed",
+        "es": "Facturación por el destinatario",
+        "it": "Autofattura"
+      }
+    },
+    {
+      "key": "customer-rates",
+      "name": {
+        "de": "Kundensätze",
+        "en": "Customer rates",
+        "es": "Tarifas aplicables al destinatario",
+        "it": "Aliquote applicabili al destinatario"
+      }
+    },
+    {
+      "key": "copy",
+      "name": {
+        "en": "Copy",
+        "es": "Copia"
+      }
+    },
+    {
+      "key": "summary",
+      "name": {
+        "en": "Summary",
+        "es": "Recapitulativa"
+      }
+    },
+    {
+      "key": "simplified-scheme",
+      "name": {
+        "en": "Simplified tax scheme",
+        "es": "Contribuyente en régimen simplificado"
+      }
+    },
+    {
+      "key": "travel-agency",
+      "name": {
+        "en": "Special scheme for travel agencies",
+        "es": "Régimen especial de las agencias de viajes"
+      }
+    },
+    {
+      "key": "second-hand-goods",
+      "name": {
+        "en": "Special scheme for second-hand goods",
+        "es": "Régimen especial de los bienes usados"
+      }
+    },
+    {
+      "key": "art",
+      "name": {
+        "en": "Special scheme of works of art",
+        "es": "Régimen especial de los objetos de arte"
+      }
+    },
+    {
+      "key": "antiques",
+      "name": {
+        "en": "Special scheme of antiques and collectables",
+        "es": "Régimen especial de las antigüedades y objetos de colección"
+      }
+    },
+    {
+      "key": "cash-basis",
+      "name": {
+        "en": "Special scheme on cash basis",
+        "es": "Régimen especial del criterio de caja"
+      }
+    }
+  ],
+  "identity_types": [
+    {
+      "key": "fiscal",
+      "name": {
+        "en": "National Tax Identity",
+        "es": "Número de Identificación Fiscal"
+      },
+      "map": {
+        "ticketbai-id-type": "02"
+      }
+    },
+    {
+      "key": "passport",
+      "name": {
+        "en": "Passport",
+        "es": "Pasaporte"
+      },
+      "map": {
+        "ticketbai-id-type": "03"
+      }
+    },
+    {
+      "key": "foreign",
+      "name": {
+        "en": "National ID Card or similar from a foreign country",
+        "es": "Documento oficial de identificación expedido por el país o territorio de residencia"
+      },
+      "map": {
+        "ticketbai-id-type": "04"
+      }
+    },
+    {
+      "key": "resident",
+      "name": {
+        "en": "Residential permit",
+        "es": "Certificado de residencia"
+      },
+      "map": {
+        "ticketbai-id-type": "05"
+      }
+    },
+    {
+      "key": "other",
+      "name": {
+        "en": "An other type of source not listed",
+        "es": "Otro documento probatorio"
+      },
+      "map": {
+        "ticketbai-id-type": "06"
+      }
+    }
+  ],
+  "extensions": [
+    {
+      "key": "es-tbai-exemption",
+      "name": {
+        "en": "TicketBAI Exemption code",
+        "es": "Código de Exención de TicketBAI"
+      },
+      "codes": [
+        {
+          "code": "E1",
+          "name": {
+            "en": "Exempt pursuant to Article 20 of the Foral VAT Law",
+            "es": "Exenta por el artículo 20 de la Norma Foral del IVA"
+          }
+        },
+        {
+          "code": "E2",
+          "name": {
+            "en": "Exempt pursuant to Article 21 of the Foral VAT Law",
+            "es": "Exenta por el artículo 21 de la Norma Foral del IVA"
+          }
+        },
+        {
+          "code": "E3",
+          "name": {
+            "en": "Exempt pursuant to Article 22 of the Foral VAT Law",
+            "es": "Exenta por el artículo 22 de la Norma Foral del IVA"
+          }
+        },
+        {
+          "code": "E4",
+          "name": {
+            "en": "Exempt pursuant to Articles 23 and 24 of the Foral VAT Law",
+            "es": "Exenta por el artículos 23 y 24 de la Norma Foral del IVA"
+          }
+        },
+        {
+          "code": "E5",
+          "name": {
+            "en": "Exempt pursuant to Article 25 of the Foral VAT law",
+            "es": "Exenta por el artículo 25 de la Norma Foral del IVA"
+          }
+        },
+        {
+          "code": "E6",
+          "name": {
+            "en": "Exempt pursuant to other reasons",
+            "es": "Exenta por otra causa"
+          }
+        }
+      ]
+    }
+  ],
+  "item_keys": [
+    {
+      "key": "resale",
+      "name": {
+        "en": "Resale of goods without modification by vendor in the simplified regime",
+        "es": "Reventa de bienes sin modificación por vendedor en regimen simplificado"
+      }
+    },
+    {
+      "key": "services",
+      "name": {
+        "en": "Provision of services",
+        "es": "Prestacion de servicios"
+      }
+    },
+    {
+      "key": "goods",
+      "name": {
+        "en": "Delivery of goods",
+        "es": "Entrega de bienes"
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "schema": "bill/invoice",
+      "list": [
+        {
+          "type": [
+            "standard",
+            "corrective"
+          ],
+          "codes": {
+            "facturae-invoice-document-type": "FC"
+          }
+        },
+        {
+          "tags": [
+            "simplified"
+          ],
+          "codes": {
+            "facturae-invoice-document-type": "FA"
+          }
+        },
+        {
+          "tags": [
+            "self-billed"
+          ],
+          "codes": {
+            "facturae-invoice-document-type": "AF"
+          }
+        },
+        {
+          "type": [
+            "standard"
+          ],
+          "codes": {
+            "facturae-invoice-class": "OO"
+          }
+        },
+        {
+          "type": [
+            "corrective"
+          ],
+          "codes": {
+            "facturae-invoice-class": "OR"
+          }
+        },
+        {
+          "tags": [
+            "summary"
+          ],
+          "codes": {
+            "facturae-invoice-class": "OC"
+          }
+        },
+        {
+          "type": [
+            "standard"
+          ],
+          "tags": [
+            "copy"
+          ],
+          "codes": {
+            "facturae-invoice-class": "CO"
+          }
+        },
+        {
+          "type": [
+            "corrective"
+          ],
+          "tags": [
+            "copy"
+          ],
+          "codes": {
+            "facturae-invoice-class": "CR"
+          }
+        },
+        {
+          "type": [
+            "standard"
+          ],
+          "tags": [
+            "copy",
+            "summary"
+          ],
+          "codes": {
+            "facturae-invoice-class": "CC"
+          }
+        },
+        {
+          "tags": [
+            "reverse-charge"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "reverse-charge",
+            "text": "Reverse Charge / Inversión del sujeto pasivo."
+          }
+        },
+        {
+          "tags": [
+            "simplified-scheme"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "simplified-scheme",
+            "text": "Factura expedida por contibuyente en régimen simplificado."
+          }
+        },
+        {
+          "tags": [
+            "self-billed"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "self-billed",
+            "text": "Facturación por el destinatario."
+          }
+        },
+        {
+          "tags": [
+            "travel-agency"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "travel-agency",
+            "text": "Régimen especial de las agencias de viajes."
+          }
+        },
+        {
+          "tags": [
+            "second-hand-goods"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "second-hand-goods",
+            "text": "Régimen especial de los bienes usados."
+          }
+        },
+        {
+          "tags": [
+            "art"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "art",
+            "text": "Régimen especial de los objetos de arte."
+          }
+        },
+        {
+          "tags": [
+            "antiques"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "antiques",
+            "text": "Régimen especial de las antigüedades y objetos de colección."
+          }
+        },
+        {
+          "tags": [
+            "cash-basis"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "cash-basis",
+            "text": "Régimen especial del criterio de caja."
+          }
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "schema": "bill/invoice",
+      "types": [
+        "corrective"
+      ],
+      "methods": [
+        {
+          "key": "complete",
+          "name": {
+            "en": "Complete",
+            "es": "Rectificaticón íntegra"
+          },
+          "map": {
+            "facturae": "01"
+          }
+        },
+        {
+          "key": "partial",
+          "name": {
+            "en": "Corrected items only",
+            "es": "Rectificación por diferencias"
+          },
+          "map": {
+            "facturae": "02"
+          }
+        },
+        {
+          "key": "discount",
+          "name": {
+            "en": "Bulk deal in a given period",
+            "es": "Rectificación por descuento por volumen de operaciones durante un periodo"
+          },
+          "map": {
+            "facturae": "03"
+          }
+        },
+        {
+          "key": "authorized",
+          "name": {
+            "en": "Authorized by the Tax Agency",
+            "es": "Autorizadas por la Agencia Tributaria"
+          },
+          "map": {
+            "facturae": "04"
+          }
+        }
+      ],
+      "changes": [
+        {
+          "key": "code",
+          "name": {
+            "en": "Invoice code",
+            "es": "Número de la factura"
+          },
+          "map": {
+            "facturae": "01"
+          }
+        },
+        {
+          "key": "series",
+          "name": {
+            "en": "Invoice series",
+            "es": "Serie de la factura"
+          },
+          "map": {
+            "facturae": "02"
+          }
+        },
+        {
+          "key": "issue-date",
+          "name": {
+            "en": "Issue date",
+            "es": "Fecha expedición"
+          },
+          "map": {
+            "facturae": "03"
+          }
+        },
+        {
+          "key": "supplier-name",
+          "name": {
+            "en": "Name and surnames/Corporate name - Issuer (Sender)",
+            "es": "Nombre y apellidos/Razón Social-Emisor"
+          },
+          "map": {
+            "facturae": "04"
+          }
+        },
+        {
+          "key": "customer-name",
+          "name": {
+            "en": "Name and surnames/Corporate name - Receiver",
+            "es": "Nombre y apellidos/Razón Social-Receptor"
+          },
+          "map": {
+            "facturae": "05"
+          }
+        },
+        {
+          "key": "supplier-tax-id",
+          "name": {
+            "en": "Issuer's Tax Identification Number",
+            "es": "Identificación fiscal Emisor/obligado"
+          },
+          "map": {
+            "facturae": "06"
+          }
+        },
+        {
+          "key": "customer-tax-id",
+          "name": {
+            "en": "Receiver's Tax Identification Number",
+            "es": "Identificación fiscal Receptor"
+          },
+          "map": {
+            "facturae": "07"
+          }
+        },
+        {
+          "key": "supplier-addr",
+          "name": {
+            "en": "Issuer's address",
+            "es": "Domicilio Emisor/Obligado"
+          },
+          "map": {
+            "facturae": "08"
+          }
+        },
+        {
+          "key": "customer-addr",
+          "name": {
+            "en": "Receiver's address",
+            "es": "Domicilio Receptor"
+          },
+          "map": {
+            "facturae": "09"
+          }
+        },
+        {
+          "key": "line",
+          "name": {
+            "en": "Item line",
+            "es": "Detalle Operación"
+          },
+          "map": {
+            "facturae": "10"
+          }
+        },
+        {
+          "key": "tax-rate",
+          "name": {
+            "en": "Applicable Tax Rate",
+            "es": "Porcentaje impositivo a aplicar"
+          },
+          "map": {
+            "facturae": "11"
+          }
+        },
+        {
+          "key": "tax-amount",
+          "name": {
+            "en": "Applicable Tax Amount",
+            "es": "Cuota tributaria a aplicar"
+          },
+          "map": {
+            "facturae": "12"
+          }
+        },
+        {
+          "key": "period",
+          "name": {
+            "en": "Applicable Date/Period",
+            "es": "Fecha/Periodo a aplicar"
+          },
+          "map": {
+            "facturae": "13"
+          }
+        },
+        {
+          "key": "type",
+          "name": {
+            "en": "Invoice Class",
+            "es": "Clase de factura"
+          },
+          "map": {
+            "facturae": "14"
+          }
+        },
+        {
+          "key": "legal-details",
+          "name": {
+            "en": "Legal literals",
+            "es": "Literales legales"
+          },
+          "map": {
+            "facturae": "15"
+          }
+        },
+        {
+          "key": "tax-base",
+          "name": {
+            "en": "Taxable Base",
+            "es": "Base imponible"
+          },
+          "map": {
+            "facturae": "16"
+          }
+        },
+        {
+          "key": "tax",
+          "name": {
+            "en": "Calculation of tax outputs",
+            "es": "Cálculo de cuotas repercutidas"
+          },
+          "map": {
+            "facturae": "80"
+          }
+        },
+        {
+          "key": "tax-retained",
+          "name": {
+            "en": "Calculation of tax inputs",
+            "es": "Cálculo de cuotas retenidas"
+          },
+          "map": {
+            "facturae": "81"
+          }
+        },
+        {
+          "key": "refund",
+          "name": {
+            "en": "Taxable Base modified due to return of packages and packaging materials",
+            "es": "Base imponible modificada por devolución de envases / embalajes"
+          },
+          "map": {
+            "facturae": "82"
+          }
+        },
+        {
+          "key": "discount",
+          "name": {
+            "en": "Taxable Base modified due to discounts and rebates",
+            "es": "Base imponible modificada por descuentos y bonificaciones"
+          },
+          "map": {
+            "facturae": "83"
+          }
+        },
+        {
+          "key": "judicial",
+          "name": {
+            "en": "Taxable Base modified due to firm court ruling or administrative decision",
+            "es": "Base imponible modificada por resolución firme, judicial o administrativa"
+          },
+          "map": {
+            "facturae": "84"
+          }
+        },
+        {
+          "key": "insolvency",
+          "name": {
+            "en": "Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings",
+            "es": "Base imponible modificada cuotas repercutidas no satisfechas. Auto de declaración de concurso"
+          },
+          "map": {
+            "facturae": "85"
+          }
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "code": "VAT",
+      "name": {
+        "en": "VAT",
+        "es": "IVA"
+      },
+      "title": {
+        "en": "Value Added Tax",
+        "es": "Impuesto sobre el Valor Añadido"
+      },
+      "desc": {
+        "en": "Known in Spanish as \"Impuesto sobre el Valor Añadido\" (IVA), is a consumption tax\napplied to the purchase of goods and services. It's a tax on the value added at\neach stage of production or distribution. Spain, as a member of the European Union,\nfollows the EU's VAT Directive, but with specific rates and exemptions tailored\nto its local needs."
+      },
+      "rates": [
+        {
+          "key": "zero",
+          "name": {
+            "en": "Zero Rate",
+            "es": "Tipo Cero"
+          },
+          "desc": {
+            "en": "May be applied to exports and intra-community supplies."
+          },
+          "values": [
+            {
+              "percent": "0.0%"
+            }
+          ]
+        },
+        {
+          "key": "standard",
+          "name": {
+            "en": "Standard Rate",
+            "es": "Tipo General"
+          },
+          "values": [
+            {
+              "since": "2012-09-01",
+              "percent": "21.0%"
+            },
+            {
+              "since": "2010-07-01",
+              "percent": "18.0%"
+            },
+            {
+              "since": "1995-01-01",
+              "percent": "16.0%"
+            },
+            {
+              "since": "1993-01-01",
+              "percent": "15.0%"
+            }
+          ]
+        },
+        {
+          "key": "standard+eqs",
+          "name": {
+            "en": "Standard Rate + Equivalence Surcharge",
+            "es": "Tipo General + Recargo de Equivalencia"
+          },
+          "values": [
+            {
+              "since": "2012-09-01",
+              "percent": "21.0%",
+              "surcharge": "5.2%"
+            },
+            {
+              "since": "2010-07-01",
+              "percent": "18.0%",
+              "surcharge": "4.0%"
+            }
+          ]
+        },
+        {
+          "key": "reduced",
+          "name": {
+            "en": "Reduced Rate",
+            "es": "Tipo Reducido"
+          },
+          "values": [
+            {
+              "since": "2012-09-01",
+              "percent": "10.0%"
+            },
+            {
+              "since": "2010-07-01",
+              "percent": "8.0%"
+            },
+            {
+              "since": "1995-01-01",
+              "percent": "7.0%"
+            },
+            {
+              "since": "1993-01-01",
+              "percent": "6.0%"
+            }
+          ]
+        },
+        {
+          "key": "reduced+eqs",
+          "name": {
+            "en": "Reduced Rate + Equivalence Surcharge",
+            "es": "Tipo Reducido + Recargo de Equivalencia"
+          },
+          "values": [
+            {
+              "since": "2012-09-01",
+              "percent": "10.0%",
+              "surcharge": "1.4%"
+            },
+            {
+              "since": "2010-07-01",
+              "percent": "8.0%",
+              "surcharge": "1.0%"
+            }
+          ]
+        },
+        {
+          "key": "super-reduced",
+          "name": {
+            "en": "Super-Reduced Rate",
+            "es": "Tipo Superreducido"
+          },
+          "values": [
+            {
+              "since": "1995-01-01",
+              "percent": "4.0%"
+            },
+            {
+              "since": "1993-01-01",
+              "percent": "3.0%"
+            }
+          ]
+        },
+        {
+          "key": "super-reduced+eqs",
+          "name": {
+            "en": "Super-Reduced Rate + Equivalence Surcharge",
+            "es": "Tipo Superreducido + Recargo de Equivalencia"
+          },
+          "values": [
+            {
+              "since": "1995-01-01",
+              "percent": "4.0%",
+              "surcharge": "0.5%"
+            }
+          ]
+        },
+        {
+          "key": "exempt",
+          "name": {
+            "en": "Exempt",
+            "es": "Exenta"
+          },
+          "exempt": true,
+          "extensions": [
+            "es-tbai-exemption"
+          ]
+        }
+      ],
+      "map": {
+        "facturae-tax-type-code": "01"
+      }
+    },
+    {
+      "code": "IGIC",
+      "name": {
+        "en": "IGIC",
+        "es": "IGIC"
+      },
+      "title": {
+        "en": "Canary Island General Indirect Tax",
+        "es": "Impuesto General Indirecto Canario"
+      },
+      "rates": [
+        {
+          "key": "zero",
+          "name": {
+            "en": "Zero Rate",
+            "es": "Tipo Cero"
+          },
+          "values": [
+            {
+              "percent": "0.0%"
+            }
+          ]
+        },
+        {
+          "key": "standard",
+          "name": {
+            "en": "Standard Rate",
+            "es": "Tipo General"
+          },
+          "values": [
+            {
+              "percent": "7.0%"
+            }
+          ]
+        },
+        {
+          "key": "reduced",
+          "name": {
+            "en": "Reduced Rate",
+            "es": "Tipo Reducido"
+          },
+          "values": [
+            {
+              "percent": "3.0%"
+            }
+          ]
+        }
+      ],
+      "map": {
+        "facturae-tax-type-code": "03"
+      }
+    },
+    {
+      "code": "IPSI",
+      "name": {
+        "en": "IPSI",
+        "es": "IPSI"
+      },
+      "title": {
+        "en": "Production, Services, and Import Tax",
+        "es": "Impuesto sobre la Producción, los Servicios y la Importación"
+      },
+      "map": {
+        "facturae-tax-type-code": "02"
+      }
+    },
+    {
+      "code": "IRPF",
+      "name": {
+        "en": "IRPF",
+        "es": "IRPF"
+      },
+      "title": {
+        "en": "Personal income tax.",
+        "es": "Impuesto sobre la renta de las personas físicas."
+      },
+      "retained": true,
+      "rates": [
+        {
+          "key": "pro",
+          "name": {
+            "en": "Professional Rate",
+            "es": "Profesionales"
+          },
+          "values": [
+            {
+              "since": "2015-07-12",
+              "percent": "15.0%"
+            },
+            {
+              "since": "2015-01-01",
+              "percent": "19.0%"
+            },
+            {
+              "since": "2012-09-01",
+              "percent": "21.0%"
+            },
+            {
+              "since": "2007-01-01",
+              "percent": "15.0%"
+            }
+          ]
+        },
+        {
+          "key": "pro-start",
+          "name": {
+            "en": "Professional Starting Rate",
+            "es": "Profesionales Inicio"
+          },
+          "values": [
+            {
+              "since": "2007-01-01",
+              "percent": "7.0%"
+            }
+          ]
+        },
+        {
+          "key": "capital",
+          "name": {
+            "en": "Rental or Interest Capital",
+            "es": "Alquileres o Intereses de Capital"
+          },
+          "values": [
+            {
+              "since": "2007-01-01",
+              "percent": "19.0%"
+            }
+          ]
+        },
+        {
+          "key": "modules",
+          "name": {
+            "en": "Modules Rate",
+            "es": "Tipo Modulos"
+          },
+          "values": [
+            {
+              "since": "2007-01-01",
+              "percent": "1.0%"
+            }
+          ]
+        }
+      ],
+      "map": {
+        "facturae-tax-type-code": "04"
+      }
+    }
+  ],
   "zones": [
     {
       "code": "VI",
@@ -500,967 +1484,6 @@
       },
       "codes": {
         "post": "52"
-      }
-    }
-  ],
-  "currency": "EUR",
-  "tags": [
-    {
-      "key": "simplified",
-      "name": {
-        "en": "Simplified Invoice",
-        "es": "Factura Simplificada"
-      }
-    },
-    {
-      "key": "customer-rates",
-      "name": {
-        "en": "Customer rates",
-        "es": "Tarifas aplicables al destinatario"
-      }
-    },
-    {
-      "key": "reverse-charge",
-      "name": {
-        "en": "Reverse Charge",
-        "es": "Inversión del sujeto pasivo"
-      }
-    },
-    {
-      "key": "self-billed",
-      "name": {
-        "en": "Customer issued invoice",
-        "es": "Facturación por el destinatario"
-      }
-    },
-    {
-      "key": "copy",
-      "name": {
-        "en": "Copy",
-        "es": "Copia"
-      }
-    },
-    {
-      "key": "summary",
-      "name": {
-        "en": "Summary",
-        "es": "Recapitulativa"
-      }
-    },
-    {
-      "key": "simplified-scheme",
-      "name": {
-        "en": "Simplified tax scheme",
-        "es": "Contribuyente en régimen simplificado"
-      }
-    },
-    {
-      "key": "travel-agency",
-      "name": {
-        "en": "Special scheme for travel agencies",
-        "es": "Régimen especial de las agencias de viajes"
-      }
-    },
-    {
-      "key": "second-hand-goods",
-      "name": {
-        "en": "Special scheme for second-hand goods",
-        "es": "Régimen especial de los bienes usados"
-      }
-    },
-    {
-      "key": "art",
-      "name": {
-        "en": "Special scheme of works of art",
-        "es": "Régimen especial de los objetos de arte"
-      }
-    },
-    {
-      "key": "antiques",
-      "name": {
-        "en": "Special scheme of antiques and collectables",
-        "es": "Régimen especial de las antigüedades y objetos de colección"
-      }
-    },
-    {
-      "key": "cash-basis",
-      "name": {
-        "en": "Special scheme on cash basis",
-        "es": "Régimen especial del criterio de caja"
-      }
-    }
-  ],
-  "identity_types": [
-    {
-      "key": "fiscal",
-      "name": {
-        "en": "National Tax Identity",
-        "es": "Número de Identificación Fiscal"
-      },
-      "map": {
-        "ticketbai-id-type": "02"
-      }
-    },
-    {
-      "key": "passport",
-      "name": {
-        "en": "Passport",
-        "es": "Pasaporte"
-      },
-      "map": {
-        "ticketbai-id-type": "03"
-      }
-    },
-    {
-      "key": "foreign",
-      "name": {
-        "en": "National ID Card or similar from a foreign country",
-        "es": "Documento oficial de identificación expedido por el país o territorio de residencia"
-      },
-      "map": {
-        "ticketbai-id-type": "04"
-      }
-    },
-    {
-      "key": "resident",
-      "name": {
-        "en": "Residential permit",
-        "es": "Certificado de residencia"
-      },
-      "map": {
-        "ticketbai-id-type": "05"
-      }
-    },
-    {
-      "key": "other",
-      "name": {
-        "en": "An other type of source not listed",
-        "es": "Otro documento probatorio"
-      },
-      "map": {
-        "ticketbai-id-type": "06"
-      }
-    }
-  ],
-  "extensions": [
-    {
-      "key": "es-tbai-exemption",
-      "name": {
-        "en": "TicketBAI Exemption code",
-        "es": "Código de Exención de TicketBAI"
-      },
-      "codes": [
-        {
-          "code": "E1",
-          "name": {
-            "en": "Exempt pursuant to Article 20 of the Foral VAT Law",
-            "es": "Exenta por el artículo 20 de la Norma Foral del IVA"
-          }
-        },
-        {
-          "code": "E2",
-          "name": {
-            "en": "Exempt pursuant to Article 21 of the Foral VAT Law",
-            "es": "Exenta por el artículo 21 de la Norma Foral del IVA"
-          }
-        },
-        {
-          "code": "E3",
-          "name": {
-            "en": "Exempt pursuant to Article 22 of the Foral VAT Law",
-            "es": "Exenta por el artículo 22 de la Norma Foral del IVA"
-          }
-        },
-        {
-          "code": "E4",
-          "name": {
-            "en": "Exempt pursuant to Articles 23 and 24 of the Foral VAT Law",
-            "es": "Exenta por el artículos 23 y 24 de la Norma Foral del IVA"
-          }
-        },
-        {
-          "code": "E5",
-          "name": {
-            "en": "Exempt pursuant to Article 25 of the Foral VAT law",
-            "es": "Exenta por el artículo 25 de la Norma Foral del IVA"
-          }
-        },
-        {
-          "code": "E6",
-          "name": {
-            "en": "Exempt pursuant to other reasons",
-            "es": "Exenta por otra causa"
-          }
-        }
-      ]
-    }
-  ],
-  "item_keys": [
-    {
-      "key": "resale",
-      "name": {
-        "en": "Resale of goods without modification by vendor in the simplified regime",
-        "es": "Reventa de bienes sin modificación por vendedor en regimen simplificado"
-      }
-    },
-    {
-      "key": "services",
-      "name": {
-        "en": "Provision of services",
-        "es": "Prestacion de servicios"
-      }
-    },
-    {
-      "key": "goods",
-      "name": {
-        "en": "Delivery of goods",
-        "es": "Entrega de bienes"
-      }
-    }
-  ],
-  "scenarios": [
-    {
-      "schema": "bill/invoice",
-      "list": [
-        {
-          "type": [
-            "standard",
-            "corrective"
-          ],
-          "codes": {
-            "facturae-invoice-document-type": "FC"
-          }
-        },
-        {
-          "tags": [
-            "simplified"
-          ],
-          "codes": {
-            "facturae-invoice-document-type": "FA"
-          }
-        },
-        {
-          "tags": [
-            "self-billed"
-          ],
-          "codes": {
-            "facturae-invoice-document-type": "AF"
-          }
-        },
-        {
-          "type": [
-            "standard"
-          ],
-          "codes": {
-            "facturae-invoice-class": "OO"
-          }
-        },
-        {
-          "type": [
-            "corrective"
-          ],
-          "codes": {
-            "facturae-invoice-class": "OR"
-          }
-        },
-        {
-          "tags": [
-            "summary"
-          ],
-          "codes": {
-            "facturae-invoice-class": "OC"
-          }
-        },
-        {
-          "type": [
-            "standard"
-          ],
-          "tags": [
-            "copy"
-          ],
-          "codes": {
-            "facturae-invoice-class": "CO"
-          }
-        },
-        {
-          "type": [
-            "corrective"
-          ],
-          "tags": [
-            "copy"
-          ],
-          "codes": {
-            "facturae-invoice-class": "CR"
-          }
-        },
-        {
-          "type": [
-            "standard"
-          ],
-          "tags": [
-            "copy",
-            "summary"
-          ],
-          "codes": {
-            "facturae-invoice-class": "CC"
-          }
-        },
-        {
-          "tags": [
-            "reverse-charge"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "reverse-charge",
-            "text": "Reverse Charge / Inversión del sujeto pasivo."
-          }
-        },
-        {
-          "tags": [
-            "simplified-scheme"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "simplified-scheme",
-            "text": "Factura expedida por contibuyente en régimen simplificado."
-          }
-        },
-        {
-          "tags": [
-            "self-billed"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "self-billed",
-            "text": "Facturación por el destinatario."
-          }
-        },
-        {
-          "tags": [
-            "travel-agency"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "travel-agency",
-            "text": "Régimen especial de las agencias de viajes."
-          }
-        },
-        {
-          "tags": [
-            "second-hand-goods"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "second-hand-goods",
-            "text": "Régimen especial de los bienes usados."
-          }
-        },
-        {
-          "tags": [
-            "art"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "art",
-            "text": "Régimen especial de los objetos de arte."
-          }
-        },
-        {
-          "tags": [
-            "antiques"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "antiques",
-            "text": "Régimen especial de las antigüedades y objetos de colección."
-          }
-        },
-        {
-          "tags": [
-            "cash-basis"
-          ],
-          "note": {
-            "key": "legal",
-            "src": "cash-basis",
-            "text": "Régimen especial del criterio de caja."
-          }
-        }
-      ]
-    }
-  ],
-  "preceding": {
-    "types": [
-      "corrective"
-    ],
-    "corrections": [
-      {
-        "key": "code",
-        "desc": {
-          "en": "Invoice code",
-          "es": "Número de la factura"
-        },
-        "map": {
-          "facturae": "01"
-        }
-      },
-      {
-        "key": "series",
-        "desc": {
-          "en": "Invoice series",
-          "es": "Serie de la factura"
-        },
-        "map": {
-          "facturae": "02"
-        }
-      },
-      {
-        "key": "issue-date",
-        "desc": {
-          "en": "Issue date",
-          "es": "Fecha expedición"
-        },
-        "map": {
-          "facturae": "03"
-        }
-      },
-      {
-        "key": "supplier-name",
-        "desc": {
-          "en": "Name and surnames/Corporate name – Issuer (Sender)",
-          "es": "Nombre y apellidos/Razón Social-Emisor"
-        },
-        "map": {
-          "facturae": "04"
-        }
-      },
-      {
-        "key": "customer-name",
-        "desc": {
-          "en": "Name and surnames/Corporate name - Receiver",
-          "es": "Nombre y apellidos/Razón Social-Receptor"
-        },
-        "map": {
-          "facturae": "05"
-        }
-      },
-      {
-        "key": "supplier-tax-id",
-        "desc": {
-          "en": "Issuer's Tax Identification Number",
-          "es": "Identificación fiscal Emisor/obligado"
-        },
-        "map": {
-          "facturae": "06"
-        }
-      },
-      {
-        "key": "customer-tax-id",
-        "desc": {
-          "en": "Receiver's Tax Identification Number",
-          "es": "Identificación fiscal Receptor"
-        },
-        "map": {
-          "facturae": "07"
-        }
-      },
-      {
-        "key": "supplier-addr",
-        "desc": {
-          "en": "Issuer's address",
-          "es": "Domicilio Emisor/Obligado"
-        },
-        "map": {
-          "facturae": "08"
-        }
-      },
-      {
-        "key": "customer-addr",
-        "desc": {
-          "en": "Receiver's address",
-          "es": "Domicilio Receptor"
-        },
-        "map": {
-          "facturae": "09"
-        }
-      },
-      {
-        "key": "line",
-        "desc": {
-          "en": "Item line",
-          "es": "Detalle Operación"
-        },
-        "map": {
-          "facturae": "10"
-        }
-      },
-      {
-        "key": "tax-rate",
-        "desc": {
-          "en": "Applicable Tax Rate",
-          "es": "Porcentaje impositivo a aplicar"
-        },
-        "map": {
-          "facturae": "11"
-        }
-      },
-      {
-        "key": "tax-amount",
-        "desc": {
-          "en": "Applicable Tax Amount",
-          "es": "Cuota tributaria a aplicar"
-        },
-        "map": {
-          "facturae": "12"
-        }
-      },
-      {
-        "key": "period",
-        "desc": {
-          "en": "Applicable Date/Period",
-          "es": "Fecha/Periodo a aplicar"
-        },
-        "map": {
-          "facturae": "13"
-        }
-      },
-      {
-        "key": "type",
-        "desc": {
-          "en": "Invoice Class",
-          "es": "Clase de factura"
-        },
-        "map": {
-          "facturae": "14"
-        }
-      },
-      {
-        "key": "legal-details",
-        "desc": {
-          "en": "Legal literals",
-          "es": "Literales legales"
-        },
-        "map": {
-          "facturae": "15"
-        }
-      },
-      {
-        "key": "tax-base",
-        "desc": {
-          "en": "Taxable Base",
-          "es": "Base imponible"
-        },
-        "map": {
-          "facturae": "16"
-        }
-      },
-      {
-        "key": "tax",
-        "desc": {
-          "en": "Calculation of tax outputs",
-          "es": "Cálculo de cuotas repercutidas"
-        },
-        "map": {
-          "facturae": "80"
-        }
-      },
-      {
-        "key": "tax-retained",
-        "desc": {
-          "en": "Calculation of tax inputs",
-          "es": "Cálculo de cuotas retenidas"
-        },
-        "map": {
-          "facturae": "81"
-        }
-      },
-      {
-        "key": "refund",
-        "desc": {
-          "en": "Taxable Base modified due to return of packages and packaging materials",
-          "es": "Base imponible modificada por devolución de envases / embalajes"
-        },
-        "map": {
-          "facturae": "82"
-        }
-      },
-      {
-        "key": "discount",
-        "desc": {
-          "en": "Taxable Base modified due to discounts and rebates",
-          "es": "Base imponible modificada por descuentos y bonificaciones"
-        },
-        "map": {
-          "facturae": "83"
-        }
-      },
-      {
-        "key": "judicial",
-        "desc": {
-          "en": "Taxable Base modified due to firm court ruling or administrative decision",
-          "es": "Base imponible modificada por resolución firme, judicial o administrativa"
-        },
-        "map": {
-          "facturae": "84"
-        }
-      },
-      {
-        "key": "insolvency",
-        "desc": {
-          "en": "Taxable Base modified due to unpaid outputs where there is a judgement opening insolvency proceedings",
-          "es": "Base imponible modificada cuotas repercutidas no satisfechas. Auto de declaración de concurso"
-        },
-        "map": {
-          "facturae": "85"
-        }
-      }
-    ],
-    "correction_methods": [
-      {
-        "key": "complete",
-        "desc": {
-          "en": "Complete",
-          "es": "Rectificaticón íntegra"
-        },
-        "map": {
-          "facturae": "01"
-        }
-      },
-      {
-        "key": "partial",
-        "desc": {
-          "en": "Corrected items only",
-          "es": "Rectificación por diferencias"
-        },
-        "map": {
-          "facturae": "02"
-        }
-      },
-      {
-        "key": "discount",
-        "desc": {
-          "en": "Bulk deal in a given period",
-          "es": "Rectificación por descuento por volumen de operaciones durante un periodo"
-        },
-        "map": {
-          "facturae": "03"
-        }
-      },
-      {
-        "key": "authorized",
-        "desc": {
-          "en": "Authorized by the Tax Agency",
-          "es": "Autorizadas por la Agencia Tributaria"
-        },
-        "map": {
-          "facturae": "04"
-        }
-      }
-    ]
-  },
-  "categories": [
-    {
-      "code": "VAT",
-      "name": {
-        "en": "VAT",
-        "es": "IVA"
-      },
-      "desc": {
-        "en": "Value Added Tax",
-        "es": "Impuesto sobre el Valor Añadido"
-      },
-      "rates": [
-        {
-          "key": "zero",
-          "name": {
-            "en": "Zero Rate",
-            "es": "Tipo Cero"
-          },
-          "values": [
-            {
-              "percent": "0.0%"
-            }
-          ]
-        },
-        {
-          "key": "standard",
-          "name": {
-            "en": "Standard Rate",
-            "es": "Tipo General"
-          },
-          "values": [
-            {
-              "since": "2012-09-01",
-              "percent": "21.0%"
-            },
-            {
-              "since": "2010-07-01",
-              "percent": "18.0%"
-            },
-            {
-              "since": "1995-01-01",
-              "percent": "16.0%"
-            },
-            {
-              "since": "1993-01-01",
-              "percent": "15.0%"
-            }
-          ]
-        },
-        {
-          "key": "standard+eqs",
-          "name": {
-            "en": "Standard Rate + Equivalence Surcharge",
-            "es": "Tipo General + Recargo de Equivalencia"
-          },
-          "values": [
-            {
-              "since": "2012-09-01",
-              "percent": "21.0%",
-              "surcharge": "5.2%"
-            },
-            {
-              "since": "2010-07-01",
-              "percent": "18.0%",
-              "surcharge": "4.0%"
-            }
-          ]
-        },
-        {
-          "key": "reduced",
-          "name": {
-            "en": "Reduced Rate",
-            "es": "Tipo Reducido"
-          },
-          "values": [
-            {
-              "since": "2012-09-01",
-              "percent": "10.0%"
-            },
-            {
-              "since": "2010-07-01",
-              "percent": "8.0%"
-            },
-            {
-              "since": "1995-01-01",
-              "percent": "7.0%"
-            },
-            {
-              "since": "1993-01-01",
-              "percent": "6.0%"
-            }
-          ]
-        },
-        {
-          "key": "reduced+eqs",
-          "name": {
-            "en": "Reduced Rate + Equivalence Surcharge",
-            "es": "Tipo Reducido + Recargo de Equivalencia"
-          },
-          "values": [
-            {
-              "since": "2012-09-01",
-              "percent": "10.0%",
-              "surcharge": "1.4%"
-            },
-            {
-              "since": "2010-07-01",
-              "percent": "8.0%",
-              "surcharge": "1.0%"
-            }
-          ]
-        },
-        {
-          "key": "super-reduced",
-          "name": {
-            "en": "Super-Reduced Rate",
-            "es": "Tipo Superreducido"
-          },
-          "values": [
-            {
-              "since": "1995-01-01",
-              "percent": "4.0%"
-            },
-            {
-              "since": "1993-01-01",
-              "percent": "3.0%"
-            }
-          ]
-        },
-        {
-          "key": "super-reduced+eqs",
-          "name": {
-            "en": "Super-Reduced Rate + Equivalence Surcharge",
-            "es": "Tipo Superreducido + Recargo de Equivalencia"
-          },
-          "values": [
-            {
-              "since": "1995-01-01",
-              "percent": "4.0%",
-              "surcharge": "0.5%"
-            }
-          ]
-        },
-        {
-          "key": "exempt",
-          "name": {
-            "en": "Exempt",
-            "es": "Exenta"
-          },
-          "exempt": true,
-          "extensions": [
-            "es-tbai-exemption"
-          ]
-        }
-      ],
-      "map": {
-        "facturae-tax-type-code": "01"
-      }
-    },
-    {
-      "code": "IGIC",
-      "name": {
-        "en": "IGIC",
-        "es": "IGIC"
-      },
-      "desc": {
-        "en": "Canary Island General Indirect Tax",
-        "es": "Impuesto General Indirecto Canario"
-      },
-      "rates": [
-        {
-          "key": "zero",
-          "name": {
-            "en": "Zero Rate",
-            "es": "Tipo Cero"
-          },
-          "values": [
-            {
-              "percent": "0.0%"
-            }
-          ]
-        },
-        {
-          "key": "standard",
-          "name": {
-            "en": "Standard Rate",
-            "es": "Tipo General"
-          },
-          "values": [
-            {
-              "percent": "7.0%"
-            }
-          ]
-        },
-        {
-          "key": "reduced",
-          "name": {
-            "en": "Reduced Rate",
-            "es": "Tipo Reducido"
-          },
-          "values": [
-            {
-              "percent": "3.0%"
-            }
-          ]
-        }
-      ],
-      "map": {
-        "facturae-tax-type-code": "03"
-      }
-    },
-    {
-      "code": "IPSI",
-      "name": {
-        "en": "IPSI",
-        "es": "IPSI"
-      },
-      "desc": {
-        "en": "Production, Services, and Import Tax",
-        "es": "Impuesto sobre la Producción, los Servicios y la Importación"
-      },
-      "map": {
-        "facturae-tax-type-code": "02"
-      }
-    },
-    {
-      "code": "IRPF",
-      "name": {
-        "en": "IRPF",
-        "es": "IRPF"
-      },
-      "desc": {
-        "en": "Personal income tax.",
-        "es": "Impuesto sobre la renta de las personas físicas."
-      },
-      "retained": true,
-      "rates": [
-        {
-          "key": "pro",
-          "name": {
-            "en": "Professional Rate",
-            "es": "Profesionales"
-          },
-          "values": [
-            {
-              "since": "2015-07-12",
-              "percent": "15.0%"
-            },
-            {
-              "since": "2015-01-01",
-              "percent": "19.0%"
-            },
-            {
-              "since": "2012-09-01",
-              "percent": "21.0%"
-            },
-            {
-              "since": "2007-01-01",
-              "percent": "15.0%"
-            }
-          ]
-        },
-        {
-          "key": "pro-start",
-          "name": {
-            "en": "Professional Starting Rate",
-            "es": "Profesionales Inicio"
-          },
-          "values": [
-            {
-              "since": "2007-01-01",
-              "percent": "7.0%"
-            }
-          ]
-        },
-        {
-          "key": "capital",
-          "name": {
-            "en": "Rental or Interest Capital",
-            "es": "Alquileres o Intereses de Capital"
-          },
-          "values": [
-            {
-              "since": "2007-01-01",
-              "percent": "19.0%"
-            }
-          ]
-        },
-        {
-          "key": "modules",
-          "name": {
-            "en": "Modules Rate",
-            "es": "Tipo Modulos"
-          },
-          "values": [
-            {
-              "since": "2007-01-01",
-              "percent": "1.0%"
-            }
-          ]
-        }
-      ],
-      "map": {
-        "facturae-tax-type-code": "04"
       }
     }
   ]

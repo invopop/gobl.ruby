@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -55,6 +55,11 @@ module GOBL
       # @return [GOBL::Num::Amount]
       property :total_with_tax, GOBL::Num::Amount
       validates_presence_of :total_with_tax
+
+      # @!attribute [r] rounding
+      # Rounding amount to apply to the invoice in case the total and payable amounts don't quite match.
+      # @return [GOBL::Num::Amount]
+      property :rounding, GOBL::Num::Amount
 
       # @!attribute [r] outlays
       # Total paid in outlays that need to be reimbursed

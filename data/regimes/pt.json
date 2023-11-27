@@ -6,210 +6,63 @@
   },
   "time_zone": "Europe/Lisbon",
   "country": "PT",
-  "zones": [
-    {
-      "code": "01",
-      "region": {
-        "pt": "Aveiro"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "02",
-      "region": {
-        "pt": "Beja"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "03",
-      "region": {
-        "pt": "Braga"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "04",
-      "region": {
-        "pt": "Bragança"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "05",
-      "region": {
-        "pt": "Castelo Branco"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "06",
-      "region": {
-        "pt": "Coimbra"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "07",
-      "region": {
-        "pt": "Évora"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "08",
-      "region": {
-        "pt": "Faro"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "09",
-      "region": {
-        "pt": "Guarda"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "10",
-      "region": {
-        "pt": "Leiria"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "11",
-      "region": {
-        "pt": "Lisboa"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "12",
-      "region": {
-        "pt": "Portalegre"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "13",
-      "region": {
-        "pt": "Porto"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "14",
-      "region": {
-        "pt": "Santarém"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "15",
-      "region": {
-        "pt": "Setúbal"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "16",
-      "region": {
-        "pt": "Viana do Castelo"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "17",
-      "region": {
-        "pt": "Vila Real"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "18",
-      "region": {
-        "pt": "Viseu"
-      },
-      "codes": {
-        "at-tax-country-region": "PT"
-      }
-    },
-    {
-      "code": "20",
-      "region": {
-        "pt": "Região Autónoma dos Açores"
-      },
-      "codes": {
-        "at-tax-country-region": "PT-AC"
-      }
-    },
-    {
-      "code": "30",
-      "region": {
-        "pt": "Região Autónoma da Madeira"
-      },
-      "codes": {
-        "at-tax-country-region": "PT-MA"
-      }
-    }
-  ],
   "currency": "EUR",
   "tags": [
+    {
+      "key": "simplified",
+      "name": {
+        "de": "Vereinfachte Rechnung",
+        "en": "Simplified Invoice",
+        "es": "Factura Simplificada",
+        "it": "Fattura Semplificata"
+      },
+      "desc": {
+        "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
+        "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
+        "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
+        "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
+      }
+    },
+    {
+      "key": "reverse-charge",
+      "name": {
+        "de": "Umkehr der Steuerschuld",
+        "en": "Reverse Charge",
+        "es": "Inversión del Sujeto Pasivo",
+        "it": "Inversione del soggetto passivo"
+      }
+    },
+    {
+      "key": "self-billed",
+      "name": {
+        "de": "Rechnung durch den Leistungsempfänger",
+        "en": "Self-billed",
+        "es": "Facturación por el destinatario",
+        "it": "Autofattura"
+      }
+    },
+    {
+      "key": "customer-rates",
+      "name": {
+        "de": "Kundensätze",
+        "en": "Customer rates",
+        "es": "Tarifas aplicables al destinatario",
+        "it": "Aliquote applicabili al destinatario"
+      }
+    },
     {
       "key": "invoice-receipt",
       "name": {
         "en": "Invoice-receipt",
         "pt": "Fatura-recibo"
       }
-    },
-    {
-      "key": "simplified",
-      "name": {
-        "en": "Simplified invoice",
-        "pt": "Fatura simplificada"
-      }
     }
   ],
   "extensions": [
     {
-      "key": "pt-exemption-reason",
+      "key": "pt-exemption-code",
       "name": {
-        "en": "Tax exemption reason",
+        "en": "Tax exemption reason code",
         "pt": "Código do motivo de isenção de imposto"
       },
       "codes": [
@@ -454,15 +307,28 @@
           "codes": {
             "at-invoice-type": "NC"
           }
+        },
+        {
+          "tags": [
+            "reverse-charge"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "reverse-charge",
+            "text": "Reverse charge / Autoliquidação - Artigo 2.º n.º 1 alínea j) do Código do IVA"
+          }
         }
       ]
     }
   ],
-  "preceding": {
-    "types": [
-      "credit-note"
-    ]
-  },
+  "corrections": [
+    {
+      "schema": "bill/invoice",
+      "types": [
+        "credit-note"
+      ]
+    }
+  ],
   "categories": [
     {
       "code": "VAT",
@@ -470,7 +336,7 @@
         "en": "VAT",
         "pt": "IVA"
       },
-      "desc": {
+      "title": {
         "en": "Value Added Tax",
         "pt": "Imposto sobre o Valor Acrescentado"
       },
@@ -571,13 +437,195 @@
           "name": null,
           "exempt": true,
           "extensions": [
-            "pt-exemption-reason"
+            "pt-exemption-code"
           ],
           "map": {
             "at-tax-code": "ISE"
           }
         }
       ]
+    }
+  ],
+  "zones": [
+    {
+      "code": "01",
+      "region": {
+        "pt": "Aveiro"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "02",
+      "region": {
+        "pt": "Beja"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "03",
+      "region": {
+        "pt": "Braga"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "04",
+      "region": {
+        "pt": "Bragança"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "05",
+      "region": {
+        "pt": "Castelo Branco"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "06",
+      "region": {
+        "pt": "Coimbra"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "07",
+      "region": {
+        "pt": "Évora"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "08",
+      "region": {
+        "pt": "Faro"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "09",
+      "region": {
+        "pt": "Guarda"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "10",
+      "region": {
+        "pt": "Leiria"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "11",
+      "region": {
+        "pt": "Lisboa"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "12",
+      "region": {
+        "pt": "Portalegre"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "13",
+      "region": {
+        "pt": "Porto"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "14",
+      "region": {
+        "pt": "Santarém"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "15",
+      "region": {
+        "pt": "Setúbal"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "16",
+      "region": {
+        "pt": "Viana do Castelo"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "17",
+      "region": {
+        "pt": "Vila Real"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "18",
+      "region": {
+        "pt": "Viseu"
+      },
+      "codes": {
+        "at-tax-country-region": "PT"
+      }
+    },
+    {
+      "code": "20",
+      "region": {
+        "pt": "Região Autónoma dos Açores"
+      },
+      "codes": {
+        "at-tax-country-region": "PT-AC"
+      }
+    },
+    {
+      "code": "30",
+      "region": {
+        "pt": "Região Autónoma da Madeira"
+      },
+      "codes": {
+        "at-tax-country-region": "PT-MA"
+      }
     }
   ]
 }

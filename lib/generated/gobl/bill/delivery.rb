@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -17,6 +17,11 @@ module GOBL
       # The party who will receive delivery of the goods defined in the invoice and is not responsible for taxes.
       # @return [GOBL::Org::Party]
       property :receiver, GOBL::Org::Party
+
+      # @!attribute [r] identities
+      # Identities is used to define specific codes or IDs that may be used to identify the delivery.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
 
       # @!attribute [r] date
       # When the goods should be expected.

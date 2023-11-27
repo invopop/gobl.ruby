@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.55.0
+## Generated with GOBL v0.63.1
 ##
 
 module GOBL
@@ -18,6 +18,11 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates_presence_of :name
+
+      # @!attribute [r] description
+      # Introductory details about the regime.
+      # @return [GOBL::I18n::String]
+      property :description, GOBL::I18n::String
 
       # @!attribute [r] time_zone
       # Location name for the country's central time zone. Accepted values from IANA Time Zone Database (https://iana.org/time-zones).
@@ -35,11 +40,6 @@ module GOBL
       # Specific Locality, region, city, province, county, or similar code inside the country, if needed.
       # @return [GOBL::L10n::Code]
       property :zone, GOBL::L10n::Code
-
-      # @!attribute [r] zones
-      # List of sub-zones inside a country.
-      # @return [Array<Zone>]
-      property :zones, [Zone]
 
       # @!attribute [r] currency
       # Currency used by the country.
@@ -77,21 +77,31 @@ module GOBL
       # @return [Array<KeyDefinition>]
       property :item_keys, [KeyDefinition]
 
+      # @!attribute [r] inbox_keys
+      # InboxKeys specific to the regime that can be used to identify where a document should be forwarded to.
+      # @return [Array<KeyDefinition>]
+      property :inbox_keys, [KeyDefinition]
+
       # @!attribute [r] scenarios
       # Sets of scenario definitions for the regime.
       # @return [Array<ScenarioSet>]
       property :scenarios, [ScenarioSet]
 
-      # @!attribute [r] preceding
-      # Configuration details for preceding options.
-      # @return [PrecedingDefinitions]
-      property :preceding, PrecedingDefinitions
+      # @!attribute [r] corrections
+      # Configuration details for corrections to be used with correction options.
+      # @return [Array<CorrectionDefinition>]
+      property :corrections, [CorrectionDefinition]
 
       # @!attribute [r] categories
       # List of tax categories.
       # @return [Array<Category>]
       property :categories, [Category]
       validates_presence_of :categories
+
+      # @!attribute [r] zones
+      # List of zones to identify specific areas, regions, or provinces inside a country tha may be required for tax purposes.
+      # @return [Array<Zone>]
+      property :zones, [Zone]
     end
   end
 end

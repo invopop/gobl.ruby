@@ -6,671 +6,55 @@
   },
   "time_zone": "Europe/Rome",
   "country": "IT",
-  "zones": [
-    {
-      "code": "AG",
-      "region": {
-        "it": "Agrigento"
-      }
-    },
-    {
-      "code": "AL",
-      "region": {
-        "it": "Alessandria"
-      }
-    },
-    {
-      "code": "AN",
-      "region": {
-        "it": "Ancona"
-      }
-    },
-    {
-      "code": "AO",
-      "region": {
-        "it": "Aosta/Aoste"
-      }
-    },
-    {
-      "code": "AR",
-      "region": {
-        "it": "Arezzo"
-      }
-    },
-    {
-      "code": "AP",
-      "region": {
-        "it": "Ascoli Piceno"
-      }
-    },
-    {
-      "code": "AT",
-      "region": {
-        "it": "Asti"
-      }
-    },
-    {
-      "code": "AV",
-      "region": {
-        "it": "Avellino"
-      }
-    },
-    {
-      "code": "BA",
-      "region": {
-        "it": "Bari"
-      }
-    },
-    {
-      "code": "BT",
-      "region": {
-        "it": "Barletta-Andria-Trani"
-      }
-    },
-    {
-      "code": "BL",
-      "region": {
-        "it": "Belluno"
-      }
-    },
-    {
-      "code": "BN",
-      "region": {
-        "it": "Benevento"
-      }
-    },
-    {
-      "code": "BG",
-      "region": {
-        "it": "Bergamo"
-      }
-    },
-    {
-      "code": "BI",
-      "region": {
-        "it": "Biella"
-      }
-    },
-    {
-      "code": "BO",
-      "region": {
-        "it": "Bologna"
-      }
-    },
-    {
-      "code": "BZ",
-      "region": {
-        "it": "Bolzano"
-      }
-    },
-    {
-      "code": "BS",
-      "region": {
-        "it": "Brescia"
-      }
-    },
-    {
-      "code": "BR",
-      "region": {
-        "it": "Brindisi"
-      }
-    },
-    {
-      "code": "CA",
-      "region": {
-        "it": "Cagliari"
-      }
-    },
-    {
-      "code": "CL",
-      "region": {
-        "it": "Caltanissetta"
-      }
-    },
-    {
-      "code": "CB",
-      "region": {
-        "it": "Campobasso"
-      }
-    },
-    {
-      "code": "CE",
-      "region": {
-        "it": "Caserta"
-      }
-    },
-    {
-      "code": "CT",
-      "region": {
-        "it": "Catania"
-      }
-    },
-    {
-      "code": "CZ",
-      "region": {
-        "it": "Catanzaro"
-      }
-    },
-    {
-      "code": "CH",
-      "region": {
-        "it": "Chieti"
-      }
-    },
-    {
-      "code": "CO",
-      "region": {
-        "it": "Como"
-      }
-    },
-    {
-      "code": "CS",
-      "region": {
-        "it": "Cosenza"
-      }
-    },
-    {
-      "code": "CR",
-      "region": {
-        "it": "Cremona"
-      }
-    },
-    {
-      "code": "KR",
-      "region": {
-        "it": "Crotone"
-      }
-    },
-    {
-      "code": "CN",
-      "region": {
-        "it": "Cuneo"
-      }
-    },
-    {
-      "code": "EN",
-      "region": {
-        "it": "Enna"
-      }
-    },
-    {
-      "code": "FM",
-      "region": {
-        "it": "Fermo"
-      }
-    },
-    {
-      "code": "FE",
-      "region": {
-        "it": "Ferrara"
-      }
-    },
-    {
-      "code": "FI",
-      "region": {
-        "it": "Firenze"
-      }
-    },
-    {
-      "code": "FG",
-      "region": {
-        "it": "Foggia"
-      }
-    },
-    {
-      "code": "FC",
-      "region": {
-        "it": "Forlì-Cesena"
-      }
-    },
-    {
-      "code": "FR",
-      "region": {
-        "it": "Frosinone"
-      }
-    },
-    {
-      "code": "GE",
-      "region": {
-        "it": "Genova"
-      }
-    },
-    {
-      "code": "GO",
-      "region": {
-        "it": "Gorizia"
-      }
-    },
-    {
-      "code": "GR",
-      "region": {
-        "it": "Grosseto"
-      }
-    },
-    {
-      "code": "IM",
-      "region": {
-        "it": "Imperia"
-      }
-    },
-    {
-      "code": "IS",
-      "region": {
-        "it": "Isernia"
-      }
-    },
-    {
-      "code": "AQ",
-      "region": {
-        "it": "L'Aquila"
-      }
-    },
-    {
-      "code": "SP",
-      "region": {
-        "it": "La Spezia"
-      }
-    },
-    {
-      "code": "LT",
-      "region": {
-        "it": "Latina"
-      }
-    },
-    {
-      "code": "LE",
-      "region": {
-        "it": "Lecce"
-      }
-    },
-    {
-      "code": "LC",
-      "region": {
-        "it": "Lecco"
-      }
-    },
-    {
-      "code": "LI",
-      "region": {
-        "it": "Livorno"
-      }
-    },
-    {
-      "code": "LO",
-      "region": {
-        "it": "Lodi"
-      }
-    },
-    {
-      "code": "LU",
-      "region": {
-        "it": "Lucca"
-      }
-    },
-    {
-      "code": "MC",
-      "region": {
-        "it": "Macerata"
-      }
-    },
-    {
-      "code": "MN",
-      "region": {
-        "it": "Mantova"
-      }
-    },
-    {
-      "code": "MS",
-      "region": {
-        "it": "Massa-Carrara"
-      }
-    },
-    {
-      "code": "MT",
-      "region": {
-        "it": "Matera"
-      }
-    },
-    {
-      "code": "ME",
-      "region": {
-        "it": "Messina"
-      }
-    },
-    {
-      "code": "MI",
-      "region": {
-        "it": "Milano"
-      }
-    },
-    {
-      "code": "MO",
-      "region": {
-        "it": "Modena"
-      }
-    },
-    {
-      "code": "MB",
-      "region": {
-        "it": "Monza e Brianza"
-      }
-    },
-    {
-      "code": "NA",
-      "region": {
-        "it": "Napoli"
-      }
-    },
-    {
-      "code": "NO",
-      "region": {
-        "it": "Novara"
-      }
-    },
-    {
-      "code": "NU",
-      "region": {
-        "it": "Nuoro"
-      }
-    },
-    {
-      "code": "OR",
-      "region": {
-        "it": "Oristano"
-      }
-    },
-    {
-      "code": "PD",
-      "region": {
-        "it": "Padova"
-      }
-    },
-    {
-      "code": "PA",
-      "region": {
-        "it": "Palermo"
-      }
-    },
-    {
-      "code": "PR",
-      "region": {
-        "it": "Parma"
-      }
-    },
-    {
-      "code": "PV",
-      "region": {
-        "it": "Pavia"
-      }
-    },
-    {
-      "code": "PG",
-      "region": {
-        "it": "Perugia"
-      }
-    },
-    {
-      "code": "PU",
-      "region": {
-        "it": "Pesaro e Urbino"
-      }
-    },
-    {
-      "code": "PE",
-      "region": {
-        "it": "Pescara"
-      }
-    },
-    {
-      "code": "PC",
-      "region": {
-        "it": "Piacenza"
-      }
-    },
-    {
-      "code": "PI",
-      "region": {
-        "it": "Pisa"
-      }
-    },
-    {
-      "code": "PT",
-      "region": {
-        "it": "Pistoia"
-      }
-    },
-    {
-      "code": "PN",
-      "region": {
-        "it": "Pordenone"
-      }
-    },
-    {
-      "code": "PZ",
-      "region": {
-        "it": "Potenza"
-      }
-    },
-    {
-      "code": "PO",
-      "region": {
-        "it": "Prato"
-      }
-    },
-    {
-      "code": "RG",
-      "region": {
-        "it": "Ragusa"
-      }
-    },
-    {
-      "code": "RA",
-      "region": {
-        "it": "Ravenna"
-      }
-    },
-    {
-      "code": "RC",
-      "region": {
-        "it": "Reggio Calabria"
-      }
-    },
-    {
-      "code": "RE",
-      "region": {
-        "it": "Reggio Emilia"
-      }
-    },
-    {
-      "code": "RI",
-      "region": {
-        "it": "Rieti"
-      }
-    },
-    {
-      "code": "RN",
-      "region": {
-        "it": "Rimini"
-      }
-    },
-    {
-      "code": "RM",
-      "region": {
-        "it": "Roma"
-      }
-    },
-    {
-      "code": "RO",
-      "region": {
-        "it": "Rovigo"
-      }
-    },
-    {
-      "code": "SA",
-      "region": {
-        "it": "Salerno"
-      }
-    },
-    {
-      "code": "SS",
-      "region": {
-        "it": "Sassari"
-      }
-    },
-    {
-      "code": "SV",
-      "region": {
-        "it": "Savona"
-      }
-    },
-    {
-      "code": "SI",
-      "region": {
-        "it": "Siena"
-      }
-    },
-    {
-      "code": "SR",
-      "region": {
-        "it": "Siracusa"
-      }
-    },
-    {
-      "code": "SO",
-      "region": {
-        "it": "Sondrio"
-      }
-    },
-    {
-      "code": "SU",
-      "region": {
-        "it": "Sud Sardegna"
-      }
-    },
-    {
-      "code": "TA",
-      "region": {
-        "it": "Taranto"
-      }
-    },
-    {
-      "code": "TE",
-      "region": {
-        "it": "Teramo"
-      }
-    },
-    {
-      "code": "TR",
-      "region": {
-        "it": "Terni"
-      }
-    },
-    {
-      "code": "TO",
-      "region": {
-        "it": "Torino"
-      }
-    },
-    {
-      "code": "TP",
-      "region": {
-        "it": "Trapani"
-      }
-    },
-    {
-      "code": "TN",
-      "region": {
-        "it": "Trento"
-      }
-    },
-    {
-      "code": "TV",
-      "region": {
-        "it": "Treviso"
-      }
-    },
-    {
-      "code": "TS",
-      "region": {
-        "it": "Trieste"
-      }
-    },
-    {
-      "code": "UD",
-      "region": {
-        "it": "Udine"
-      }
-    },
-    {
-      "code": "VA",
-      "region": {
-        "it": "Varese"
-      }
-    },
-    {
-      "code": "VE",
-      "region": {
-        "it": "Venezia"
-      }
-    },
-    {
-      "code": "VB",
-      "region": {
-        "it": "Verbano-Cusio-Ossola"
-      }
-    },
-    {
-      "code": "VC",
-      "region": {
-        "it": "Vercelli"
-      }
-    },
-    {
-      "code": "VR",
-      "region": {
-        "it": "Verona"
-      }
-    },
-    {
-      "code": "VV",
-      "region": {
-        "it": "Vibo Valentia"
-      }
-    },
-    {
-      "code": "VI",
-      "region": {
-        "it": "Vicenza"
-      }
-    },
-    {
-      "code": "VT",
-      "region": {
-        "it": "Viterbo"
-      }
-    }
-  ],
   "currency": "EUR",
   "tags": [
     {
-      "key": "freelance",
+      "key": "simplified",
       "name": {
-        "en": "Freelancer",
-        "it": "Parcella"
+        "de": "Vereinfachte Rechnung",
+        "en": "Simplified Invoice",
+        "es": "Factura Simplificada",
+        "it": "Fattura Semplificata"
+      },
+      "desc": {
+        "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
+        "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
+        "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
+        "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
       }
     },
     {
       "key": "reverse-charge",
       "name": {
+        "de": "Umkehr der Steuerschuld",
         "en": "Reverse Charge",
+        "es": "Inversión del Sujeto Pasivo",
         "it": "Inversione del soggetto passivo"
       }
     },
     {
       "key": "self-billed",
       "name": {
+        "de": "Rechnung durch den Leistungsempfänger",
         "en": "Self-billed",
+        "es": "Facturación por el destinatario",
         "it": "Autofattura"
+      }
+    },
+    {
+      "key": "customer-rates",
+      "name": {
+        "de": "Kundensätze",
+        "en": "Customer rates",
+        "es": "Tarifas aplicables al destinatario",
+        "it": "Aliquote applicabili al destinatario"
+      }
+    },
+    {
+      "key": "freelance",
+      "name": {
+        "en": "Freelancer",
+        "it": "Parcella"
       }
     },
     {
@@ -782,109 +166,127 @@
         {
           "code": "RF01",
           "name": {
-            "en": "Ordinary"
+            "en": "Ordinary",
+            "it": "Regime Ordinario"
           }
         },
         {
           "code": "RF02",
           "name": {
-            "en": "Minimum taxpayers (Art. 1, section 96-117, Italian Law 244/07)"
+            "en": "Minimum taxpayers (Art. 1, section 96-117, Italian Law 244/07)",
+            "it": "Regime dei contribuenti minimi (art. 1,c.96-117, L. 244/2007)"
           }
         },
         {
           "code": "RF04",
           "name": {
-            "en": "Agriculture and connected activities and fishing (Arts. 34 and 34-bis, Italian Presidential Decree 633/72)"
+            "en": "Agriculture and connected activities and fishing (Arts. 34 and 34-bis, Italian Presidential Decree 633/72)",
+            "it": "Agricoltura e attività connesse e pesca (artt. 34 e 34-bis, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF05",
           "name": {
-            "en": "Sale of salts and tobaccos (Art. 74, section 1, Italian Presidential Decree 633/72)"
+            "en": "Sale of salts and tobaccos (Art. 74, section 1, Italian Presidential Decree 633/72)",
+            "it": "Vendita sali e tabacchi (art. 74, c.1, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF06",
           "name": {
-            "en": "Match sales (Art. 74, section 1, Italian Presidential Decree 633/72)"
+            "en": "Match sales (Art. 74, section 1, Italian Presidential Decree 633/72)",
+            "it": "Commercio dei fiammiferi (art. 74, c.1, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF07",
           "name": {
-            "en": "Publishing (Art. 74, section 1, Italian Presidential Decree 633/72)"
+            "en": "Publishing (Art. 74, section 1, Italian Presidential Decree 633/72)",
+            "it": "Editoria (art. 74, c.1, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF08",
           "name": {
-            "en": "Management of public telephone services (Art. 74, section 1, Italian Presidential Decree 633/72)"
+            "en": "Management of public telephone services (Art. 74, section 1, Italian Presidential Decree 633/72)",
+            "it": "Gestione di servizi di telefonia pubblica (art. 74, c.1, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF09",
           "name": {
-            "en": "Resale of public transport and parking documents (Art. 74, section 1, Italian Presidential Decree 633/72)"
+            "en": "Resale of public transport and parking documents (Art. 74, section 1, Italian Presidential Decree 633/72)",
+            "it": "Rivendita di documenti di trasporto pubblico e di sosta (art. 74, c.1, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF10",
           "name": {
-            "en": "Entertainment, gaming and other activities referred to by the tariff attached to Italian Presidential Decree 640/72 (Art. 74, section 6, Italian Presidential Decree 633/72)"
+            "en": "Entertainment, gaming and other activities referred to by the tariff attached to Italian Presidential Decree 640/72 (Art. 74, section 6, Italian Presidential Decree 633/72)",
+            "it": "Intrattenimenti, giochi e altre attività di cui alla tariffa allegata al D.P.R. 640/72 (art. 74, c.6, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF11",
           "name": {
-            "en": "Travel and tourism agencies (Art. 74-ter, Italian Presidential Decree 633/72)"
+            "en": "Travel and tourism agencies (Art. 74-ter, Italian Presidential Decree 633/72)",
+            "it": "Agenzie di viaggi e turismo (art. 74-ter, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF12",
           "name": {
-            "en": "Farmhouse accommodation/restaurants (Art. 5, section 2, Italian law 413/91)"
+            "en": "Farmhouse accommodation/restaurants (Art. 5, section 2, Italian law 413/91)",
+            "it": "Agriturismo (art. 5, c.2, L. 413/1991)"
           }
         },
         {
           "code": "RF13",
           "name": {
-            "en": "Door-to-door sales (Art. 25-bis, section 6, Italian Presidential Decree 600/73)"
+            "en": "Door-to-door sales (Art. 25-bis, section 6, Italian Presidential Decree 600/73)",
+            "it": "Vendite a domicilio (art. 25-bis, c.6, D.P.R. 600/1973)"
           }
         },
         {
           "code": "RF14",
           "name": {
-            "en": "Resale of used goods, artworks, antiques or collector's items (Art. 36, Italian Decree Law 41/95)"
+            "en": "Resale of used goods, artworks, antiques or collector's items (Art. 36, Italian Decree Law 41/95)",
+            "it": "Rivendita di beni usati, di oggetti d’arte, d’antiquariato o da collezione (art. 36, D.L. 41/1995)"
           }
         },
         {
           "code": "RF15",
           "name": {
-            "en": "Artwork, antiques or collector's items auction agencies (Art. 40-bis, Italian Decree Law 41/95)"
+            "en": "Artwork, antiques or collector's items auction agencies (Art. 40-bis, Italian Decree Law 41/95)",
+            "it": "Agenzie di vendite all’asta di oggetti d’arte, antiquariato o da collezione (art. 40-bis, D.L. 41/1995)"
           }
         },
         {
           "code": "RF16",
           "name": {
-            "en": "VAT paid in cash by P.A. (Art. 6, section 5, Italian Presidential Decree 633/72)"
+            "en": "VAT paid in cash by P.A. (Art. 6, section 5, Italian Presidential Decree 633/72)",
+            "it": "IVA per cassa P.A. (art. 6, c.5, D.P.R. 633/1972)"
           }
         },
         {
           "code": "RF17",
           "name": {
-            "en": "VAT paid in cash by subjects with business turnover below Euro 200,000 (Art. 7, Italian Decree Law 185/2008)"
-          }
-        },
-        {
-          "code": "RF18",
-          "name": {
-            "en": "Other"
+            "en": "VAT paid in cash by subjects with business turnover below Euro 200,000 (Art. 7, Italian Decree Law 185/2008)",
+            "it": "IVA per cassa (art. 32-bis, D.L. 83/2012)"
           }
         },
         {
           "code": "RF19",
           "name": {
-            "en": "Flat rate (Art. 1, section 54-89, Italian Law 190/2014)"
+            "en": "Flat rate (Art. 1, section 54-89, Italian Law 190/2014)",
+            "it": "Regime forfettario"
+          }
+        },
+        {
+          "code": "RF18",
+          "name": {
+            "en": "Other",
+            "it": "Altro"
           }
         }
       ]
@@ -1544,6 +946,22 @@
       }
     }
   ],
+  "inbox_keys": [
+    {
+      "key": "it-sdi-code",
+      "name": {
+        "en": "SDI Destination Code",
+        "it": "Codice Destinatario SDI"
+      }
+    },
+    {
+      "key": "it-sdi-pec",
+      "name": {
+        "en": "SDI PEC Destination",
+        "it": "PEC Destinatario SDI"
+      }
+    }
+  ],
   "scenarios": [
     {
       "schema": "bill/invoice",
@@ -1902,7 +1320,7 @@
         "en": "VAT",
         "it": "IVA"
       },
-      "desc": {
+      "title": {
         "en": "Value Added Tax",
         "it": "Imposta sul Valore Aggiunto"
       },
@@ -1986,7 +1404,7 @@
         "en": "IRPEF",
         "it": "IRPEF"
       },
-      "desc": {
+      "title": {
         "en": "Personal Income Tax",
         "it": "Imposta sul Reddito delle Persone Fisiche"
       },
@@ -2004,7 +1422,7 @@
         "en": "IRES",
         "it": "IRES"
       },
-      "desc": {
+      "title": {
         "en": "Corporate Income Tax",
         "it": "Imposta sul Reddito delle Società"
       },
@@ -2022,7 +1440,7 @@
         "en": "INPS Contribution",
         "it": "Contributo INPS"
       },
-      "desc": {
+      "title": {
         "en": "Contribution to the National Social Security Institute",
         "it": "Contributo Istituto Nazionale della Previdenza Sociale"
       },
@@ -2040,7 +1458,7 @@
         "en": "ENASARCO Contribution",
         "it": "Contributo ENASARCO"
       },
-      "desc": {
+      "title": {
         "en": "Contribution to the National Welfare Board for Sales Agents and Representatives",
         "it": "Contributo Ente Nazionale Assistenza Agenti e Rappresentanti di Commercio"
       },
@@ -2058,7 +1476,7 @@
         "en": "ENPAM Contribution",
         "it": "Contributo ENPAM"
       },
-      "desc": {
+      "title": {
         "en": "Contribution to the National Pension and Welfare Board for Doctors",
         "it": "Contributo - Ente Nazionale Previdenza e Assistenza Medici"
       },
@@ -2068,6 +1486,650 @@
       ],
       "map": {
         "fatturapa-tipo-ritenuta": "RT05"
+      }
+    }
+  ],
+  "zones": [
+    {
+      "code": "AG",
+      "region": {
+        "it": "Agrigento"
+      }
+    },
+    {
+      "code": "AL",
+      "region": {
+        "it": "Alessandria"
+      }
+    },
+    {
+      "code": "AN",
+      "region": {
+        "it": "Ancona"
+      }
+    },
+    {
+      "code": "AO",
+      "region": {
+        "it": "Aosta/Aoste"
+      }
+    },
+    {
+      "code": "AR",
+      "region": {
+        "it": "Arezzo"
+      }
+    },
+    {
+      "code": "AP",
+      "region": {
+        "it": "Ascoli Piceno"
+      }
+    },
+    {
+      "code": "AT",
+      "region": {
+        "it": "Asti"
+      }
+    },
+    {
+      "code": "AV",
+      "region": {
+        "it": "Avellino"
+      }
+    },
+    {
+      "code": "BA",
+      "region": {
+        "it": "Bari"
+      }
+    },
+    {
+      "code": "BT",
+      "region": {
+        "it": "Barletta-Andria-Trani"
+      }
+    },
+    {
+      "code": "BL",
+      "region": {
+        "it": "Belluno"
+      }
+    },
+    {
+      "code": "BN",
+      "region": {
+        "it": "Benevento"
+      }
+    },
+    {
+      "code": "BG",
+      "region": {
+        "it": "Bergamo"
+      }
+    },
+    {
+      "code": "BI",
+      "region": {
+        "it": "Biella"
+      }
+    },
+    {
+      "code": "BO",
+      "region": {
+        "it": "Bologna"
+      }
+    },
+    {
+      "code": "BZ",
+      "region": {
+        "it": "Bolzano"
+      }
+    },
+    {
+      "code": "BS",
+      "region": {
+        "it": "Brescia"
+      }
+    },
+    {
+      "code": "BR",
+      "region": {
+        "it": "Brindisi"
+      }
+    },
+    {
+      "code": "CA",
+      "region": {
+        "it": "Cagliari"
+      }
+    },
+    {
+      "code": "CL",
+      "region": {
+        "it": "Caltanissetta"
+      }
+    },
+    {
+      "code": "CB",
+      "region": {
+        "it": "Campobasso"
+      }
+    },
+    {
+      "code": "CE",
+      "region": {
+        "it": "Caserta"
+      }
+    },
+    {
+      "code": "CT",
+      "region": {
+        "it": "Catania"
+      }
+    },
+    {
+      "code": "CZ",
+      "region": {
+        "it": "Catanzaro"
+      }
+    },
+    {
+      "code": "CH",
+      "region": {
+        "it": "Chieti"
+      }
+    },
+    {
+      "code": "CO",
+      "region": {
+        "it": "Como"
+      }
+    },
+    {
+      "code": "CS",
+      "region": {
+        "it": "Cosenza"
+      }
+    },
+    {
+      "code": "CR",
+      "region": {
+        "it": "Cremona"
+      }
+    },
+    {
+      "code": "KR",
+      "region": {
+        "it": "Crotone"
+      }
+    },
+    {
+      "code": "CN",
+      "region": {
+        "it": "Cuneo"
+      }
+    },
+    {
+      "code": "EN",
+      "region": {
+        "it": "Enna"
+      }
+    },
+    {
+      "code": "FM",
+      "region": {
+        "it": "Fermo"
+      }
+    },
+    {
+      "code": "FE",
+      "region": {
+        "it": "Ferrara"
+      }
+    },
+    {
+      "code": "FI",
+      "region": {
+        "it": "Firenze"
+      }
+    },
+    {
+      "code": "FG",
+      "region": {
+        "it": "Foggia"
+      }
+    },
+    {
+      "code": "FC",
+      "region": {
+        "it": "Forlì-Cesena"
+      }
+    },
+    {
+      "code": "FR",
+      "region": {
+        "it": "Frosinone"
+      }
+    },
+    {
+      "code": "GE",
+      "region": {
+        "it": "Genova"
+      }
+    },
+    {
+      "code": "GO",
+      "region": {
+        "it": "Gorizia"
+      }
+    },
+    {
+      "code": "GR",
+      "region": {
+        "it": "Grosseto"
+      }
+    },
+    {
+      "code": "IM",
+      "region": {
+        "it": "Imperia"
+      }
+    },
+    {
+      "code": "IS",
+      "region": {
+        "it": "Isernia"
+      }
+    },
+    {
+      "code": "AQ",
+      "region": {
+        "it": "L'Aquila"
+      }
+    },
+    {
+      "code": "SP",
+      "region": {
+        "it": "La Spezia"
+      }
+    },
+    {
+      "code": "LT",
+      "region": {
+        "it": "Latina"
+      }
+    },
+    {
+      "code": "LE",
+      "region": {
+        "it": "Lecce"
+      }
+    },
+    {
+      "code": "LC",
+      "region": {
+        "it": "Lecco"
+      }
+    },
+    {
+      "code": "LI",
+      "region": {
+        "it": "Livorno"
+      }
+    },
+    {
+      "code": "LO",
+      "region": {
+        "it": "Lodi"
+      }
+    },
+    {
+      "code": "LU",
+      "region": {
+        "it": "Lucca"
+      }
+    },
+    {
+      "code": "MC",
+      "region": {
+        "it": "Macerata"
+      }
+    },
+    {
+      "code": "MN",
+      "region": {
+        "it": "Mantova"
+      }
+    },
+    {
+      "code": "MS",
+      "region": {
+        "it": "Massa-Carrara"
+      }
+    },
+    {
+      "code": "MT",
+      "region": {
+        "it": "Matera"
+      }
+    },
+    {
+      "code": "ME",
+      "region": {
+        "it": "Messina"
+      }
+    },
+    {
+      "code": "MI",
+      "region": {
+        "it": "Milano"
+      }
+    },
+    {
+      "code": "MO",
+      "region": {
+        "it": "Modena"
+      }
+    },
+    {
+      "code": "MB",
+      "region": {
+        "it": "Monza e Brianza"
+      }
+    },
+    {
+      "code": "NA",
+      "region": {
+        "it": "Napoli"
+      }
+    },
+    {
+      "code": "NO",
+      "region": {
+        "it": "Novara"
+      }
+    },
+    {
+      "code": "NU",
+      "region": {
+        "it": "Nuoro"
+      }
+    },
+    {
+      "code": "OR",
+      "region": {
+        "it": "Oristano"
+      }
+    },
+    {
+      "code": "PD",
+      "region": {
+        "it": "Padova"
+      }
+    },
+    {
+      "code": "PA",
+      "region": {
+        "it": "Palermo"
+      }
+    },
+    {
+      "code": "PR",
+      "region": {
+        "it": "Parma"
+      }
+    },
+    {
+      "code": "PV",
+      "region": {
+        "it": "Pavia"
+      }
+    },
+    {
+      "code": "PG",
+      "region": {
+        "it": "Perugia"
+      }
+    },
+    {
+      "code": "PU",
+      "region": {
+        "it": "Pesaro e Urbino"
+      }
+    },
+    {
+      "code": "PE",
+      "region": {
+        "it": "Pescara"
+      }
+    },
+    {
+      "code": "PC",
+      "region": {
+        "it": "Piacenza"
+      }
+    },
+    {
+      "code": "PI",
+      "region": {
+        "it": "Pisa"
+      }
+    },
+    {
+      "code": "PT",
+      "region": {
+        "it": "Pistoia"
+      }
+    },
+    {
+      "code": "PN",
+      "region": {
+        "it": "Pordenone"
+      }
+    },
+    {
+      "code": "PZ",
+      "region": {
+        "it": "Potenza"
+      }
+    },
+    {
+      "code": "PO",
+      "region": {
+        "it": "Prato"
+      }
+    },
+    {
+      "code": "RG",
+      "region": {
+        "it": "Ragusa"
+      }
+    },
+    {
+      "code": "RA",
+      "region": {
+        "it": "Ravenna"
+      }
+    },
+    {
+      "code": "RC",
+      "region": {
+        "it": "Reggio Calabria"
+      }
+    },
+    {
+      "code": "RE",
+      "region": {
+        "it": "Reggio Emilia"
+      }
+    },
+    {
+      "code": "RI",
+      "region": {
+        "it": "Rieti"
+      }
+    },
+    {
+      "code": "RN",
+      "region": {
+        "it": "Rimini"
+      }
+    },
+    {
+      "code": "RM",
+      "region": {
+        "it": "Roma"
+      }
+    },
+    {
+      "code": "RO",
+      "region": {
+        "it": "Rovigo"
+      }
+    },
+    {
+      "code": "SA",
+      "region": {
+        "it": "Salerno"
+      }
+    },
+    {
+      "code": "SS",
+      "region": {
+        "it": "Sassari"
+      }
+    },
+    {
+      "code": "SV",
+      "region": {
+        "it": "Savona"
+      }
+    },
+    {
+      "code": "SI",
+      "region": {
+        "it": "Siena"
+      }
+    },
+    {
+      "code": "SR",
+      "region": {
+        "it": "Siracusa"
+      }
+    },
+    {
+      "code": "SO",
+      "region": {
+        "it": "Sondrio"
+      }
+    },
+    {
+      "code": "SU",
+      "region": {
+        "it": "Sud Sardegna"
+      }
+    },
+    {
+      "code": "TA",
+      "region": {
+        "it": "Taranto"
+      }
+    },
+    {
+      "code": "TE",
+      "region": {
+        "it": "Teramo"
+      }
+    },
+    {
+      "code": "TR",
+      "region": {
+        "it": "Terni"
+      }
+    },
+    {
+      "code": "TO",
+      "region": {
+        "it": "Torino"
+      }
+    },
+    {
+      "code": "TP",
+      "region": {
+        "it": "Trapani"
+      }
+    },
+    {
+      "code": "TN",
+      "region": {
+        "it": "Trento"
+      }
+    },
+    {
+      "code": "TV",
+      "region": {
+        "it": "Treviso"
+      }
+    },
+    {
+      "code": "TS",
+      "region": {
+        "it": "Trieste"
+      }
+    },
+    {
+      "code": "UD",
+      "region": {
+        "it": "Udine"
+      }
+    },
+    {
+      "code": "VA",
+      "region": {
+        "it": "Varese"
+      }
+    },
+    {
+      "code": "VE",
+      "region": {
+        "it": "Venezia"
+      }
+    },
+    {
+      "code": "VB",
+      "region": {
+        "it": "Verbano-Cusio-Ossola"
+      }
+    },
+    {
+      "code": "VC",
+      "region": {
+        "it": "Vercelli"
+      }
+    },
+    {
+      "code": "VR",
+      "region": {
+        "it": "Verona"
+      }
+    },
+    {
+      "code": "VV",
+      "region": {
+        "it": "Vibo Valentia"
+      }
+    },
+    {
+      "code": "VI",
+      "region": {
+        "it": "Vicenza"
+      }
+    },
+    {
+      "code": "VT",
+      "region": {
+        "it": "Viterbo"
       }
     }
   ]
