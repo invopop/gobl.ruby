@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -36,8 +36,8 @@ module GOBL
 
       # @!attribute [r] ext
       # Local codes that apply for a given rate or percentage that need to be identified and validated.
-      # @return [GOBL::CBC::CodeMap]
-      property :ext, GOBL::CBC::CodeMap
+      # @return [GOBL::Tax::ExtMap]
+      property :ext, GOBL::Tax::ExtMap
     end
   end
 end

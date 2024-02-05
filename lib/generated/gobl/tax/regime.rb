@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -72,18 +72,12 @@ module GOBL
       # @return [Array<KeyDefinition>]
       property :payment_means, [KeyDefinition]
 
-      # @!attribute [r] item_keys
-      # ItemKeys specific for the regime that need to be added to `org.Item` data in line rows.
-      # @return [Array<KeyDefinition>]
-      property :item_keys, [KeyDefinition]
-
       # @!attribute [r] inbox_keys
       # InboxKeys specific to the regime that can be used to identify where a document should be forwarded to.
       # @return [Array<KeyDefinition>]
       property :inbox_keys, [KeyDefinition]
 
       # @!attribute [r] scenarios
-      # Sets of scenario definitions for the regime.
       # @return [Array<ScenarioSet>]
       property :scenarios, [ScenarioSet]
 

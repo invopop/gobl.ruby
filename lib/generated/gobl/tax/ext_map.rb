@@ -7,9 +7,9 @@
 ##
 
 module GOBL
-  module Schema
-    # Data object whose type is determined from the <code>$schema</code> property.
-    class Object < GOBL::Map
+  module Tax
+    # ExtMap is a map of extension keys to either a code or a key.
+    class ExtMap < GOBL::Map
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -38,11 +38,11 @@ module GOBL
       # @return [String]
       property :series, String
 
-      # @!attribute [r] desc
+      # @!attribute [r] description
       # Details on what the outlay was.
       # @return [String]
-      property :desc, String
-      validates_presence_of :desc
+      property :description, String
+      validates_presence_of :description
 
       # @!attribute [r] supplier
       # Who was the supplier of the outlay

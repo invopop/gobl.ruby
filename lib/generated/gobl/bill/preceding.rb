@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -17,6 +17,11 @@ module GOBL
       # Preceding document's UUID if available can be useful for tracing.
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
+
+      # @!attribute [r] type
+      # Type of the preceding document
+      # @return [GOBL::CBC::Key]
+      property :type, GOBL::CBC::Key
 
       # @!attribute [r] series
       # Series identification code
@@ -44,20 +49,15 @@ module GOBL
       # @return [Array<GOBL::Head::Stamp>]
       property :stamps, [GOBL::Head::Stamp]
 
-      # @!attribute [r] correction_method
-      # Tax regime specific key reflecting the method used to correct the preceding invoice.
-      # @return [GOBL::CBC::Key]
-      property :correction_method, GOBL::CBC::Key
-
-      # @!attribute [r] changes
-      # Tax regime specific keys reflecting what has been changed from the previous invoice.
-      # @return [Array<GOBL::CBC::Key>]
-      property :changes, [GOBL::CBC::Key]
-
       # @!attribute [r] period
       # Tax period in which the previous invoice had an effect required by some tax regimes and formats.
       # @return [GOBL::Cal::Period]
       property :period, GOBL::Cal::Period
+
+      # @!attribute [r] ext
+      # Extensions for region specific requirements.
+      # @return [GOBL::Tax::ExtMap]
+      property :ext, GOBL::Tax::ExtMap
 
       # @!attribute [r] meta
       # Additional semi-structured data that may be useful in specific regions

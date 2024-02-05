@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -24,15 +24,10 @@ module GOBL
       # @return [Array<GOBL::CBC::Key>]
       property :types, [GOBL::CBC::Key]
 
-      # @!attribute [r] methods
-      # Methods describe the methods used to correct an invoice.
-      # @return [Array<KeyDefinition>]
-      property :methods, [KeyDefinition]
-
-      # @!attribute [r] changes
-      # List of change keys that can be used to describe what has been corrected.
-      # @return [Array<KeyDefinition>]
-      property :changes, [KeyDefinition]
+      # @!attribute [r] extensions
+      # Extension keys that can be included
+      # @return [Array<GOBL::CBC::Key>]
+      property :extensions, [GOBL::CBC::Key]
 
       # @!attribute [r] reason_required
       # ReasonRequired when true implies that a reason must be provided

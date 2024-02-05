@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -12,6 +12,12 @@ module GOBL
     class CorrectionOptions < GOBL::Object
       # The Schema ID of the GOBL CorrectionOptions structure
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/correction-options'
+
+      # @!attribute [r] type
+      # The type of corrective invoice to produce.
+      # @return [GOBL::CBC::Key]
+      property :type, GOBL::CBC::Key
+      validates_presence_of :type
 
       # @!attribute [r] issue_date
       # When the new corrective invoice's issue date should be set to.
@@ -23,30 +29,15 @@ module GOBL
       # @return [Array<GOBL::Head::Stamp>]
       property :stamps, [GOBL::Head::Stamp]
 
-      # @!attribute [r] credit
-      # Credit when true indicates that the corrective document should cancel the previous document.
-      # @return [Boolean]
-      property :credit, Boolean
-
-      # @!attribute [r] debit
-      # Debit when true indicates that the corrective document should add new items to the previous document.
-      # @return [Boolean]
-      property :debit, Boolean
-
       # @!attribute [r] reason
       # Human readable reason for the corrective operation.
       # @return [String]
       property :reason, String
 
-      # @!attribute [r] method
-      # Correction method as defined by the tax regime.
-      # @return [GOBL::CBC::Key]
-      property :method, GOBL::CBC::Key
-
-      # @!attribute [r] changes
-      # Changes keys that describe the specific changes according to the tax regime.
-      # @return [Array<GOBL::CBC::Key>]
-      property :changes, [GOBL::CBC::Key]
+      # @!attribute [r] ext
+      # Extensions for region specific requirements.
+      # @return [GOBL::Tax::ExtMap]
+      property :ext, GOBL::Tax::ExtMap
     end
   end
 end
