@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -34,6 +34,11 @@ module GOBL
       # Codes describes the list of codes that can be used alongside the Key, for example with identities.
       # @return [Array<CodeDefinition>]
       property :codes, [CodeDefinition]
+
+      # @!attribute [r] keys
+      # Keys is used instead of codes to define a further sub-set of keys that can be used alongside this one.
+      # @return [Array<KeyDefinition>]
+      property :keys, [KeyDefinition]
 
       # @!attribute [r] map
       # Map helps map local keys to specific codes, useful for converting the described key into a local code.

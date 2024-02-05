@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -20,8 +20,8 @@ module GOBL
 
       # @!attribute [r] ext
       # If the rate is defined with extensions, they'll be used to group by also.
-      # @return [GOBL::CBC::CodeMap]
-      property :ext, GOBL::CBC::CodeMap
+      # @return [GOBL::Tax::ExtMap]
+      property :ext, GOBL::Tax::ExtMap
 
       # @!attribute [r] base
       # Base amount that the percentage is applied to.

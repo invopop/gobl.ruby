@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -54,11 +54,11 @@ module GOBL
       # @return [Boolean]
       property :grant, Boolean
 
-      # @!attribute [r] desc
+      # @!attribute [r] description
       # Details about the advance.
       # @return [String]
-      property :desc, String
-      validates_presence_of :desc
+      property :description, String
+      validates_presence_of :description
 
       # @!attribute [r] percent
       # How much as a percentage of the total with tax was paid
@@ -75,6 +75,21 @@ module GOBL
       # If different from the parent document's base currency.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
+
+      # @!attribute [r] card
+      # Details of the payment that was made via a credit or debit card.
+      # @return [Card]
+      property :card, Card
+
+      # @!attribute [r] credit_transfer
+      # Details about how the payment was made by credit (bank) transfer.
+      # @return [CreditTransfer]
+      property :credit_transfer, CreditTransfer
+
+      # @!attribute [r] meta
+      # Additional details useful for the parties involved.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -41,7 +41,7 @@ module GOBL
       property :retained, Boolean
 
       # @!attribute [r] rate_required
-      # RateRequired when true implies that when a tax combo is defined using this category that one of the rates must be defined.
+      # RateRequired when true implies that when a tax combo is defined using this category that one of the rate's keys must be defined. This is normally needed for regimes that categorize taxes in local document formats as opposed to grouping by percentage values.
       # @return [Boolean]
       property :rate_required, Boolean
 
@@ -51,7 +51,7 @@ module GOBL
       property :rates, [Rate]
 
       # @!attribute [r] extensions
-      # Extensions defines a list of keys for codes to use as an alternative to choosing a rate for the tax category. Every key must be defined in the Regime's extensions table.
+      # Extensions defines a list of extension keys that may be used or required as an alternative or alongside choosing a rate for the tax category. Every key must be defined in the Regime's extensions table.
       # @return [Array<GOBL::CBC::Key>]
       property :extensions, [GOBL::CBC::Key]
 

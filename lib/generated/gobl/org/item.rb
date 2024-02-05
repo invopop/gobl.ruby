@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.63.1
+## Generated with GOBL v0.67.0
 ##
 
 module GOBL
@@ -39,10 +39,10 @@ module GOBL
       # @return [Array<GOBL::Org::Identity>]
       property :identities, [GOBL::Org::Identity]
 
-      # @!attribute [r] desc
-      # Detailed description
+      # @!attribute [r] description
+      # Detailed description of the item.
       # @return [String]
-      property :desc, String
+      property :description, String
 
       # @!attribute [r] currency
       # Currency used for the item's price.
@@ -67,8 +67,8 @@ module GOBL
 
       # @!attribute [r] ext
       # Extension code map for any additional regime specific codes that may be required.
-      # @return [GOBL::CBC::CodeMap]
-      property :ext, GOBL::CBC::CodeMap
+      # @return [GOBL::Tax::ExtMap]
+      property :ext, GOBL::Tax::ExtMap
 
       # @!attribute [r] meta
       # Additional meta information that may be useful
