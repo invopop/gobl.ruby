@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -18,10 +18,21 @@ module GOBL
       # @return [GOBL::UUID::UUID]
       property :uuid, GOBL::UUID::UUID
 
+      # Enumeration of possible values for {#type} with their corresponding descriptions
+      TYPE_ENUM = {
+        'standard' => 'A regular commercial invoice document between a supplier and customer.',
+        'proforma' => 'For a clients validation before sending a final invoice.',
+        'corrective' => 'Corrected invoice that completely *replaces* the preceding document.',
+        'credit-note' => 'Reflects a refund either partial or complete of the preceding document. A 
+      credit note effectively *extends* the previous document.',
+        'debit-note' => 'An additional set of charges to be added to the preceding document.'
+      }.freeze
+
       # @!attribute [r] type
       # Type of the preceding document
       # @return [GOBL::CBC::Key]
       property :type, GOBL::CBC::Key
+      validates_inclusion_of :type, in: TYPE_ENUM.keys, allow_blank: true
 
       # @!attribute [r] series
       # Series identification code
@@ -56,8 +67,8 @@ module GOBL
 
       # @!attribute [r] ext
       # Extensions for region specific requirements.
-      # @return [GOBL::Tax::ExtMap]
-      property :ext, GOBL::Tax::ExtMap
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Additional semi-structured data that may be useful in specific regions

@@ -3,15 +3,15 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
-  module Tax
+  module CBC
     # KeyDefinition defines properties of a key that is specific for a regime.
     class KeyDefinition < GOBL::Object
       # The Schema ID of the GOBL KeyDefinition structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/KeyDefinition'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/key-definition'
 
       # @!attribute [r] key
       # Actual key value.
@@ -30,15 +30,25 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
 
+      # @!attribute [r] meta
+      # Meta defines any additional details that may be useful or associated with the key.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
+
       # @!attribute [r] codes
       # Codes describes the list of codes that can be used alongside the Key, for example with identities.
-      # @return [Array<CodeDefinition>]
-      property :codes, [CodeDefinition]
+      # @return [Array<GOBL::CBC::CodeDefinition>]
+      property :codes, [GOBL::CBC::CodeDefinition]
 
       # @!attribute [r] keys
       # Keys is used instead of codes to define a further sub-set of keys that can be used alongside this one.
-      # @return [Array<KeyDefinition>]
-      property :keys, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :keys, [GOBL::CBC::KeyDefinition]
+
+      # @!attribute [r] pattern
+      # Pattern is used to validate the key value instead of using a fixed value from the code or key definitions.
+      # @return [String]
+      property :pattern, String
 
       # @!attribute [r] map
       # Map helps map local keys to specific codes, useful for converting the described key into a local code.

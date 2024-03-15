@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -23,11 +23,6 @@ module GOBL
       # @return [GOBL::L10n::CountryCode]
       property :country, GOBL::L10n::CountryCode
       validates_presence_of :country
-
-      # @!attribute [r] zone
-      # Where inside the country the tax identity holder is based for tax purposes like a village, town, district, city, county, state or province. For some areas, this could be a regular post or zip code. See the regime packages for specific validation rules.
-      # @return [GOBL::L10n::Code]
-      property :zone, GOBL::L10n::Code
 
       # @!attribute [r] type
       # Type is set according the requirements of each regime, some have a single tax document type code, others require a choice to be made.

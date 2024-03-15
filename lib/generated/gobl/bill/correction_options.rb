@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -36,8 +36,8 @@ module GOBL
 
       # @!attribute [r] ext
       # Extensions for region specific requirements.
-      # @return [GOBL::Tax::ExtMap]
-      property :ext, GOBL::Tax::ExtMap
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
     end
   end
 end

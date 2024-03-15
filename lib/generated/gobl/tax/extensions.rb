@@ -3,13 +3,13 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
   module Tax
-    # ExtMap is a map of extension keys to either a code or a key.
-    class ExtMap < GOBL::Map
+    # Extensions is a map of extension keys to values.
+    class Extensions < GOBL::Map
     end
   end
 end

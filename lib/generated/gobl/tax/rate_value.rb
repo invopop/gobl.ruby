@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -13,10 +13,10 @@ module GOBL
       # The Schema ID of the GOBL RateValue structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/RateValue'
 
-      # @!attribute [r] zones
-      # Only use this value if one of the zones matches.
-      # @return [Array<GOBL::L10n::Code>]
-      property :zones, [GOBL::L10n::Code]
+      # @!attribute [r] tags
+      # Only apply this rate if one of the tags is present in the invoice.
+      # @return [Array<GOBL::CBC::Key>]
+      property :tags, [GOBL::CBC::Key]
 
       # @!attribute [r] since
       # Date from which this value should be applied.
