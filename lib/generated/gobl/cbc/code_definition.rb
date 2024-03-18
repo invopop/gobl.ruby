@@ -3,15 +3,15 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
-  module Tax
+  module CBC
     # CodeDefinition describes a specific code and how it maps to a human name and description if appropriate.
     class CodeDefinition < GOBL::Object
       # The Schema ID of the GOBL CodeDefinition structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/CodeDefinition'
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/code-definition'
 
       # @!attribute [r] code
       # Code for which the definition is for.
@@ -28,6 +28,11 @@ module GOBL
       # Description offering more details about when the code should be used.
       # @return [GOBL::I18n::String]
       property :desc, GOBL::I18n::String
+
+      # @!attribute [r] meta
+      # Meta defines any additional details that may be useful or associated with the code.
+      # @return [GOBL::CBC::Meta]
+      property :meta, GOBL::CBC::Meta
     end
   end
 end

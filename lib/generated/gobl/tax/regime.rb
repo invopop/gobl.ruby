@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -49,33 +49,33 @@ module GOBL
 
       # @!attribute [r] tags
       # Tags that can be applied at the document level to identify additional considerations.
-      # @return [Array<KeyDefinition>]
-      property :tags, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :tags, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] identity_types
       # Identity types specific for the regime and may be validated against.
-      # @return [Array<KeyDefinition>]
-      property :identity_types, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :identity_types, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] extensions
       # Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates.
-      # @return [Array<KeyDefinition>]
-      property :extensions, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :extensions, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] charge_types
       # Charge types specific for the regime and may be validated or used in the UI as suggestions
-      # @return [Array<KeyDefinition>]
-      property :charge_types, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :charge_types, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] payment_means
       # PaymentMeansKeys specific for the regime that extend the original base payment means keys.
-      # @return [Array<KeyDefinition>]
-      property :payment_means, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :payment_means, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] inbox_keys
       # InboxKeys specific to the regime that can be used to identify where a document should be forwarded to.
-      # @return [Array<KeyDefinition>]
-      property :inbox_keys, [KeyDefinition]
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :inbox_keys, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] scenarios
       # @return [Array<ScenarioSet>]
@@ -91,11 +91,6 @@ module GOBL
       # @return [Array<Category>]
       property :categories, [Category]
       validates_presence_of :categories
-
-      # @!attribute [r] zones
-      # List of zones to identify specific areas, regions, or provinces inside a country tha may be required for tax purposes.
-      # @return [Array<Zone>]
-      property :zones, [Zone]
     end
   end
 end

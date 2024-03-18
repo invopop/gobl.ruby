@@ -3,7 +3,7 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.67.0
+## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -67,8 +67,8 @@ module GOBL
 
       # @!attribute [r] ext
       # Extension code map for any additional regime specific codes that may be required.
-      # @return [GOBL::Tax::ExtMap]
-      property :ext, GOBL::Tax::ExtMap
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Additional meta information that may be useful

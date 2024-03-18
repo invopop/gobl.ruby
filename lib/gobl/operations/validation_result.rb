@@ -4,8 +4,6 @@ module GOBL
   module Operations
     # The result of a GOBL validation over a GOBL structure
     class ValidationResult
-      SERVICE_ERROR_REGEX = /^code=(?<code>\d+), message=(?<msg>.+)$/.freeze # @api private
-
       def initialize(errors)
         @errors = errors
       end
@@ -30,7 +28,7 @@ module GOBL
       # @param service_error [String]
       # @return [ValidationResult]
       def self.from_service_error(service_error)
-        message = service_error.match(SERVICE_ERROR_REGEX)[:msg]
+        message = service_error["message"] || service_error["key"]
         errors = message.split('; ')
         new errors
       end
