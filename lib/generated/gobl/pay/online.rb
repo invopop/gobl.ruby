@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -13,16 +12,21 @@ module GOBL
       # The Schema ID of the GOBL Online structure
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/instructions#/$defs/Online'
 
-      # @!attribute [r] name
-      # Descriptive name given to the online provider.
-      # @return [String]
-      property :name, String
+      # @!attribute [r] key
+      # Key identifier for this online payment method.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
-      # @!attribute [r] addr
-      # Full URL to be used for payment.
+      # @!attribute [r] label
+      # Descriptive label for the online provider.
       # @return [String]
-      property :addr, String
-      validates_presence_of :addr
+      property :label, String
+
+      # @!attribute [r] url
+      # URL to be used for payment.
+      # @return [String]
+      property :url, String
+      validates_presence_of :url
     end
   end
 end

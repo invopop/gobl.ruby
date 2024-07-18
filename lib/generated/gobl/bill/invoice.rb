@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,16 +13,16 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice'
 
       # @!attribute [r] uuid
-      # Unique document ID. Not required, but always recommended in addition to the Code.
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # Enumeration of possible values for {#type} with their corresponding descriptions
       TYPE_ENUM = {
         'standard' => 'A regular commercial invoice document between a supplier and customer.',
         'proforma' => 'For a clients validation before sending a final invoice.',
         'corrective' => 'Corrected invoice that completely *replaces* the preceding document.',
-        'credit-note' => 'Reflects a refund either partial or complete of the preceding document. A 
+        'credit-note' => 'Reflects a refund either partial or complete of the preceding document. A
       credit note effectively *extends* the previous document.',
         'debit-note' => 'An additional set of charges to be added to the preceding document.'
       }.freeze

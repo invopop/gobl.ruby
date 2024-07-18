@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -23,6 +22,11 @@ module GOBL
       # When the new corrective invoice's issue date should be set to.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
+
+      # @!attribute [r] series
+      # Series to assign to the new corrective invoice.
+      # @return [String]
+      property :series, String
 
       # @!attribute [r] stamps
       # Stamps of the previous document to include in the preceding data.

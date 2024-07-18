@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -15,8 +14,8 @@ module GOBL
 
       # @!attribute [r] uuid
       # Unique UUIDv1 identifier for the envelope.
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # @return [String]
+      property :uuid, String
       validates_presence_of :uuid
 
       # @!attribute [r] dig

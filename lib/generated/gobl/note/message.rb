@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -12,6 +11,11 @@ module GOBL
     class Message < GOBL::Object
       # The Schema ID of the GOBL Message structure
       SCHEMA_ID = 'https://gobl.org/draft-0/note/message'
+
+      # @!attribute [r] uuid
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] title
       # Summary of the message content

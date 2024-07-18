@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -52,25 +51,30 @@ module GOBL
       # @return [Array<GOBL::CBC::KeyDefinition>]
       property :tags, [GOBL::CBC::KeyDefinition]
 
-      # @!attribute [r] identity_types
-      # Identity types specific for the regime and may be validated against.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :identity_types, [GOBL::CBC::KeyDefinition]
-
       # @!attribute [r] extensions
       # Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates.
       # @return [Array<GOBL::CBC::KeyDefinition>]
       property :extensions, [GOBL::CBC::KeyDefinition]
 
-      # @!attribute [r] charge_types
-      # Charge types specific for the regime and may be validated or used in the UI as suggestions
+      # @!attribute [r] tax_identity_type_keys
+      # Tax Identity types specific for the regime and may be validated against.
       # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :charge_types, [GOBL::CBC::KeyDefinition]
+      property :tax_identity_type_keys, [GOBL::CBC::KeyDefinition]
 
-      # @!attribute [r] payment_means
+      # @!attribute [r] identity_keys
+      # Identity keys used in addition to regular tax identities and specific for the regime that may be validated against.
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :identity_keys, [GOBL::CBC::KeyDefinition]
+
+      # @!attribute [r] charge_keys
+      # Charge keys specific for the regime and may be validated or used in the UI as suggestions
+      # @return [Array<GOBL::CBC::KeyDefinition>]
+      property :charge_keys, [GOBL::CBC::KeyDefinition]
+
+      # @!attribute [r] payment_means_keys
       # PaymentMeansKeys specific for the regime that extend the original base payment means keys.
       # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :payment_means, [GOBL::CBC::KeyDefinition]
+      property :payment_means_keys, [GOBL::CBC::KeyDefinition]
 
       # @!attribute [r] inbox_keys
       # InboxKeys specific to the regime that can be used to identify where a document should be forwarded to.

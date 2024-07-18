@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/pay/advance'
 
       # @!attribute [r] uuid
-      # Unique identifier for this advance.
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] date
       # When the advance was made.

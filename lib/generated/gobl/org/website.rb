@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,12 +13,12 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/website'
 
       # @!attribute [r] uuid
-      # Unique identity code
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] label
-      # Identifier for this number.
+      # Label for the website to show alongside the URL.
       # @return [String]
       property :label, String
 

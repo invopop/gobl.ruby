@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -17,6 +16,11 @@ module GOBL
       # Only apply this rate if one of the tags is present in the invoice.
       # @return [Array<GOBL::CBC::Key>]
       property :tags, [GOBL::CBC::Key]
+
+      # @!attribute [r] ext
+      # Ext map of keys that can be used to filter to determine if the rate applies.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] since
       # Date from which this value should be applied.

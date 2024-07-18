@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -60,7 +59,6 @@ module GOBL
         # Result of quantity multiplied by the unit price (maps to `Importe`).
         # @return [GOBL::Num::Amount]
         property :total, GOBL::Num::Amount
-        validates_presence_of :total
 
         # @!attribute [r] taxes
         # Map of taxes applied to the purchase (maps to `Traslados`).

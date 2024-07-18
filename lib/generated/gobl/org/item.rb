@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/item'
 
       # @!attribute [r] uuid
-      # Unique identity of this item
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] ref
       # Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property.
@@ -54,6 +53,11 @@ module GOBL
       # @return [GOBL::Num::Amount]
       property :price, GOBL::Num::Amount
       validates_presence_of :price
+
+      # @!attribute [r] alt_prices
+      # AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price.
+      # @return [Array<GOBL::Currency::Amount>]
+      property :alt_prices, [GOBL::Currency::Amount]
 
       # @!attribute [r] unit
       # Unit of measure.

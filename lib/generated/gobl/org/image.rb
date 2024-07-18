@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/image'
 
       # @!attribute [r] uuid
-      # Unique ID of the image
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] label
       # Label to help identify the image.

@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -22,6 +21,11 @@ module GOBL
       # Special tax tags that apply to this invoice according to local requirements.
       # @return [Array<GOBL::CBC::Key>]
       property :tags, [GOBL::CBC::Key]
+
+      # @!attribute [r] ext
+      # Additional extensions that are applied to the invoice as a whole as opposed to specific sections.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Any additional data that may be required for processing, but should never be relied upon by recipients.

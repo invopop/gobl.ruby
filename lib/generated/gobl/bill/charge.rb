@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Charge'
 
       # @!attribute [r] uuid
-      # Unique identifying for the discount entry
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] key
       # Key for grouping or identifying charges for tax purposes.
@@ -24,7 +23,7 @@ module GOBL
       property :key, GOBL::CBC::Key
 
       # @!attribute [r] i
-      # Line number inside the list of discounts (calculated).
+      # Line number inside the list of charges (calculated).
       # @return [Integer]
       property :i, Integer
 
@@ -34,12 +33,12 @@ module GOBL
       property :ref, String
 
       # @!attribute [r] base
-      # Base represents the value used as a base for percent calculations. If not already provided, we'll take the invoices sum before discounts.
+      # Base represents the value used as a base for percent calculations instead of the invoice's sum of lines.
       # @return [GOBL::Num::Amount]
       property :base, GOBL::Num::Amount
 
       # @!attribute [r] percent
-      # Percentage to apply to the invoice's Sum
+      # Percentage to apply to the Base or Invoice Sum
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
 

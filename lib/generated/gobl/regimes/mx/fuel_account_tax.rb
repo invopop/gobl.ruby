@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,23 +13,26 @@ module GOBL
         # The Schema ID of the GOBL FuelAccountTax structure
         SCHEMA_ID = 'https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/FuelAccountTax'
 
-        # @!attribute [r] code
-        # Code that identifies the tax ("IVA" or "IEPS", maps to `Impuesto`)
+        # @!attribute [r] cat
+        # Category that identifies the tax ("VAT" or "IEPS", maps to `Impuesto`)
         # @return [GOBL::CBC::Code]
-        property :code, GOBL::CBC::Code
-        validates_presence_of :code
+        property :cat, GOBL::CBC::Code
+        validates_presence_of :cat
+
+        # @!attribute [r] percent
+        # Percent applicable to the line total (tasa) to use instead of Rate (maps to `TasaoCuota`)
+        # @return [GOBL::Num::Percentage]
+        property :percent, GOBL::Num::Percentage
 
         # @!attribute [r] rate
-        # Rate applicable to either the line total (tasa) or the line quantity (cuota) (maps to `TasaOCuota`).
+        # Rate is a fixed fee to apply to the line quantity (cuota) (maps to `TasaOCuota`)
         # @return [GOBL::Num::Amount]
         property :rate, GOBL::Num::Amount
-        validates_presence_of :rate
 
         # @!attribute [r] amount
-        # Total amount of the tax once the rate has been applied (maps to `Importe`).
+        # Total amount of the tax once the percent or rate has been applied (maps to `Importe`).
         # @return [GOBL::Num::Amount]
         property :amount, GOBL::Num::Amount
-        validates_presence_of :amount
       end
     end
   end
