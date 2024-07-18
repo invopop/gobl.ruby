@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -14,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/org/party'
 
       # @!attribute [r] uuid
-      # Unique identity code
-      # @return [GOBL::UUID::UUID]
-      property :uuid, GOBL::UUID::UUID
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # @!attribute [r] name
       # Legal name or representation of the organization.
@@ -28,6 +27,11 @@ module GOBL
       # Alternate short name.
       # @return [String]
       property :alias, String
+
+      # @!attribute [r] label
+      # Label can be used to provide a custom label for the party in a given context in a single language, for example "Supplier", "Host", or similar.
+      # @return [String]
+      property :label, String
 
       # @!attribute [r] tax_id
       # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.

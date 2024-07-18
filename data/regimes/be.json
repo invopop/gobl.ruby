@@ -1,11 +1,11 @@
 {
   "$schema": "https://gobl.org/draft-0/tax/regime",
   "name": {
-    "en": "United Kingdom"
+    "en": "Belgium"
   },
-  "time_zone": "Europe/London",
-  "country": "GB",
-  "currency": "GBP",
+  "time_zone": "Europe/Brussels",
+  "country": "BE",
+  "currency": "EUR",
   "tags": [
     {
       "key": "simplified",
@@ -95,6 +95,51 @@
       },
       "rates": [
         {
+          "key": "standard",
+          "name": {
+            "de": "Standardsatz",
+            "en": "Standard Rate",
+            "fr": "Taux standard",
+            "nl": "Standaardtarief"
+          },
+          "values": [
+            {
+              "since": "2011-01-04",
+              "percent": "21.0%"
+            }
+          ]
+        },
+        {
+          "key": "intermediate",
+          "name": {
+            "de": "Mittlerer Satz",
+            "en": "Intermediate Rate",
+            "fr": "Taux intermédiaire",
+            "nl": "Tussentarief"
+          },
+          "values": [
+            {
+              "since": "2011-01-01",
+              "percent": "12.0%"
+            }
+          ]
+        },
+        {
+          "key": "reduced",
+          "name": {
+            "de": "Ermäßigter Satz",
+            "en": "Reduced Rate",
+            "fr": "Taux réduit",
+            "nl": "Verlaagd Tarief"
+          },
+          "values": [
+            {
+              "since": "2011-01-04",
+              "percent": "6.0%"
+            }
+          ]
+        },
+        {
           "key": "zero",
           "name": {
             "en": "Zero Rate"
@@ -104,30 +149,14 @@
               "percent": "0.0%"
             }
           ]
-        },
+        }
+      ],
+      "sources": [
         {
-          "key": "standard",
-          "name": {
-            "en": "Standard Rate"
+          "title": {
+            "en": "VAT rates | FPS Finance"
           },
-          "values": [
-            {
-              "since": "2011-01-04",
-              "percent": "20.0%"
-            }
-          ]
-        },
-        {
-          "key": "reduced",
-          "name": {
-            "en": "Reduced Rate"
-          },
-          "values": [
-            {
-              "since": "2011-01-04",
-              "percent": "5.0%"
-            }
-          ]
+          "url": "https://finance.belgium.be/en/enterprises/vat/vat-obligation/rates-and-calculation/vat-rates#q1"
         }
       ]
     }

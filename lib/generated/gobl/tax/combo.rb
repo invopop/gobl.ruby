@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -25,7 +24,7 @@ module GOBL
       property :rate, GOBL::CBC::Key
 
       # @!attribute [r] percent
-      # Percent defines the percentage set manually or determined from the rate key (calculated if rate present).
+      # Percent defines the percentage set manually or determined from the rate key (calculated if rate present). A nil percent implies that this tax combo is **exempt** from tax.
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
 

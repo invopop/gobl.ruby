@@ -222,7 +222,7 @@ Ensure all the GOBL JSON Schema and Regime files are available by manually copyi
 ```bash
 rm -rf ./data/*
 cd ../gobl
-mage schema
+go generate .
 find ./data -name '*.json' -type f | cpio -pdm ../gobl.ruby/
 cd ../gobl.ruby
 ```

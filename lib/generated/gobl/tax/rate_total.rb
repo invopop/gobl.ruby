@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -30,7 +29,7 @@ module GOBL
       validates_presence_of :base
 
       # @!attribute [r] percent
-      # Percentage of the rate, which may be nil for exempt rates.
+      # Percentage of the rate. Will be nil when taxes are **exempt**.
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
 

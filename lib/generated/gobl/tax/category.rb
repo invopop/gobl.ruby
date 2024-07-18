@@ -3,7 +3,6 @@
 ##
 ## DO NOT EDIT - This file was generated automatically.
 ##
-## Generated with GOBL v0.69.0
 ##
 
 module GOBL
@@ -41,7 +40,7 @@ module GOBL
       property :retained, Boolean
 
       # @!attribute [r] rate_required
-      # RateRequired when true implies that when a tax combo is defined using this category that one of the rate's keys must be defined. This is normally needed for regimes that categorize taxes in local document formats as opposed to grouping by percentage values.
+      # RateRequired when true implies that when a tax combo is defined using this category that one of the rate's keys must be defined. This is normally needed for regimes that categorize taxes in local document formats as opposed to grouping by percentage values. Try to avoid using this. It is better for rates to be determined by the percentage and conditions, not the rate key.
       # @return [Boolean]
       property :rate_required, Boolean
 
