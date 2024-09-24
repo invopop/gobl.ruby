@@ -17,6 +17,11 @@ module GOBL
       # @return [String]
       property :uuid, String
 
+      # @!attribute [r] label
+      # Label can be used to identify the person in a given context in a single language, for example "Attn", "Contact", "Responsible", etc.
+      # @return [String]
+      property :label, String
+
       # @!attribute [r] name
       # Complete details on the name of the person
       # @return [GOBL::Org::Name]

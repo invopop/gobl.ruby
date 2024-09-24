@@ -31,7 +31,6 @@ module GOBL
       # Person's given or first name
       # @return [String]
       property :given, String
-      validates_presence_of :given
 
       # @!attribute [r] middle
       # Middle names or initials
@@ -42,7 +41,6 @@ module GOBL
       # Second or Family name.
       # @return [String]
       property :surname, String
-      validates_presence_of :surname
 
       # @!attribute [r] surname2
       # Additional second of family name.

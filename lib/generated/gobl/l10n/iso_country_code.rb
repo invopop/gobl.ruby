@@ -8,9 +8,9 @@
 module GOBL
   module L10n
     # Defines an ISO 3166-2 country code
-    class CountryCode < String
-      # The Schema ID of the GOBL CountryCode structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/l10n/country-code'
+    class ISOCountryCode < String
+      # The Schema ID of the GOBL ISOCountryCode structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/l10n/iso-country-code'
 
       include GOBL::Enum
 

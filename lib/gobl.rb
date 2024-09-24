@@ -18,7 +18,8 @@ loader.inflector.inflect(
   'tax_id' => 'TaxID',
   'dsig' => 'DSig',
   'id' => 'ID',
-  'cbc' => 'CBC'
+  'cbc' => 'CBC',
+  'iso_country_code' => 'ISOCountryCode'
 )
 loader.ignore("#{__dir__}/ext")
 loader.setup
@@ -49,5 +50,5 @@ GOBL::I18n::String.include GOBL::Extensions::I18n::ValueKeysHelper
 GOBL::Schema::Object.include GOBL::Extensions::Schema::ObjectHelper
 GOBL::Schema::Object.extend GOBL::Extensions::Schema::ObjectHelper::ClassMethods
 GOBL::Envelope.include GOBL::Extensions::EnvelopeHelper
-GOBL::Tax::Regime.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
+GOBL::Tax::RegimeDef.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
 GOBL::Bill::Invoice.include GOBL::Extensions::Bill::InvoiceHelper

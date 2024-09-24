@@ -7,10 +7,10 @@
 
 module GOBL
   module Tax
-    # RateValue contains a percentage rate or fixed amount for a given date range.
-    class RateValue < GOBL::Object
-      # The Schema ID of the GOBL RateValue structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/RateValue'
+    # RateValueDef contains a percentage rate or fixed amount for a given date range.
+    class RateValueDef < GOBL::Object
+      # The Schema ID of the GOBL RateValueDef structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def#/$defs/RateValueDef'
 
       # @!attribute [r] tags
       # Only apply this rate if one of the tags is present in the invoice.

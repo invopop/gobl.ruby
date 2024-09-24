@@ -34,15 +34,10 @@ module GOBL
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
 
-      # @!attribute [r] codes
-      # Codes describes the list of codes that can be used alongside the Key, for example with identities.
-      # @return [Array<GOBL::CBC::CodeDefinition>]
-      property :codes, [GOBL::CBC::CodeDefinition]
-
-      # @!attribute [r] keys
-      # Keys is used instead of codes to define a further sub-set of keys that can be used alongside this one.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :keys, [GOBL::CBC::KeyDefinition]
+      # @!attribute [r] values
+      # Values defines the possible values associated with the key.
+      # @return [Array<GOBL::CBC::ValueDefinition>]
+      property :values, [GOBL::CBC::ValueDefinition]
 
       # @!attribute [r] pattern
       # Pattern is used to validate the key value instead of using a fixed value from the code or key definitions.

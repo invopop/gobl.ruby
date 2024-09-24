@@ -13,9 +13,9 @@ module GOBL
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/identity'
 
       # @!attribute [r] country
-      # ISO country code for Where the tax identity was issued.
-      # @return [GOBL::L10n::CountryCode]
-      property :country, GOBL::L10n::CountryCode
+      # Tax country code for Where the tax identity was issued.
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :country, GOBL::L10n::TaxCountryCode
       validates_presence_of :country
 
       # @!attribute [r] code

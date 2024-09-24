@@ -17,6 +17,10 @@ module GOBL
       # @return [String]
       property :uuid, String
 
+      # @!attribute [r] label
+      # @return [String]
+      property :label, String
+
       # @!attribute [r] capital
       # @return [GOBL::Num::Amount]
       property :capital, GOBL::Num::Amount

@@ -69,6 +69,11 @@ module GOBL
       # @return [String]
       property :notes, String
 
+      # @!attribute [r] ext
+      # Extension key-pairs values defined by a tax regime.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
+
       # @!attribute [r] meta
       # Non-structured additional data that may be useful.
       # @return [GOBL::CBC::Meta]

@@ -29,6 +29,11 @@ module GOBL
       # @return [Array<GOBL::Head::Stamp>]
       property :stamps, [GOBL::Head::Stamp]
 
+      # @!attribute [r] links
+      # Links provide URLs to other resources that are related to this envelope and unlike stamps can be added even in the draft state.
+      # @return [Array<GOBL::Head::Link>]
+      property :links, [GOBL::Head::Link]
+
       # @!attribute [r] tags
       # Set of labels that describe but have no influence on the data.
       # @return [Array<String>]
@@ -43,11 +48,6 @@ module GOBL
       # Any information that may be relevant to other humans about this envelope
       # @return [String]
       property :notes, String
-
-      # @!attribute [r] draft
-      # When true, implies that this document should not be considered final. Digital signatures are optional.
-      # @return [Boolean]
-      property :draft, Boolean
     end
   end
 end

@@ -25,8 +25,8 @@ module GOBL
 
       # @!attribute [r] series
       # Series to assign to the new corrective invoice.
-      # @return [String]
-      property :series, String
+      # @return [GOBL::CBC::Code]
+      property :series, GOBL::CBC::Code
 
       # @!attribute [r] stamps
       # Stamps of the previous document to include in the preceding data.

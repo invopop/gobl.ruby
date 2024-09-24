@@ -35,11 +35,12 @@ RSpec.describe 'Generated Object' do
   end
 
   it 'validates nested objects' do
-    invoice = object_class.new(supplier: {}, currency: 'XXX')
+    invoice = object_class.new(payment: { instructions: {} }, currency: 'XXX')
     expect(invoice).not_to be_valid
 
-    expect(invoice.errors.full_messages).to include('Supplier is invalid') # `supplier` is a nested struct
-    expect(invoice.supplier.errors.full_messages).to include("Name can't be blank")
+    expect(invoice.errors.full_messages).to include('Payment is invalid') # `payment` is a nested struct
+    expect(invoice.payment.errors.full_messages).to include('Instructions is invalid')
+    expect(invoice.payment.instructions.errors.full_messages).to include("Key can't be blank")
 
     expect(invoice.errors.full_messages).to include('Currency is invalid') # `currency` is an enumerated value
     expect(invoice.currency.errors.full_messages).to include('Value "XXX" is not within the allowed values of the enumeration')
@@ -69,14 +70,14 @@ RSpec.describe 'Generated Object' do
     invoice.supplier.tap do |supplier|
       expect(supplier).to be_a(GOBL::Org::Party)
       expect(supplier.name).to eq('Provide One S.L.')
-      expect(supplier.tax_id.country).to eq(GOBL::L10n::CountryCode.new('ES'))
+      expect(supplier.tax_id.country).to eq(GOBL::L10n::TaxCountryCode.new('ES'))
       expect(supplier.tax_id.code).to eq('54387763P')
     end
 
     invoice.customer.tap do |customer|
       expect(customer).to be_a(GOBL::Org::Party)
       expect(customer.name).to eq('Sample Consumer')
-      expect(customer.tax_id.country).to eq(GOBL::L10n::CountryCode.new('ES'))
+      expect(customer.tax_id.country).to eq(GOBL::L10n::TaxCountryCode.new('ES'))
       expect(customer.tax_id.code).to eq('54387763P')
     end
 

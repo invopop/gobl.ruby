@@ -17,6 +17,11 @@ module GOBL
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
 
+      # @!attribute [r] country
+      # Country code override when issuing with taxes applied from different countries, it'd be very strange to mix rates from different countries, but in theory this would be possible.
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :country, GOBL::L10n::TaxCountryCode
+
       # @!attribute [r] ext
       # If the rate is defined with extensions, they'll be used to group by also.
       # @return [GOBL::Tax::Extensions]

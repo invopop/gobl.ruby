@@ -61,7 +61,6 @@ module GOBL
       # Village, town, district, or city, typically inside a region.
       # @return [String]
       property :locality, String
-      validates_presence_of :locality
 
       # @!attribute [r] region
       # Province, county, or state, inside a country.
@@ -75,8 +74,8 @@ module GOBL
 
       # @!attribute [r] country
       # ISO country code.
-      # @return [GOBL::L10n::CountryCode]
-      property :country, GOBL::L10n::CountryCode
+      # @return [GOBL::L10n::ISOCountryCode]
+      property :country, GOBL::L10n::ISOCountryCode
 
       # @!attribute [r] coords
       # When the postal address is not sufficient, coordinates help locate the address more precisely.

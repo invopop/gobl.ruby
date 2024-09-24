@@ -7,10 +7,10 @@
 
 module GOBL
   module Tax
-    # Rate defines a single rate inside a category
-    class Rate < GOBL::Object
-      # The Schema ID of the GOBL Rate structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Rate'
+    # RateDef defines a single rate inside a category
+    class RateDef < GOBL::Object
+      # The Schema ID of the GOBL RateDef structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def#/$defs/RateDef'
 
       # @!attribute [r] key
       # Key identifies this rate within the system
@@ -36,18 +36,13 @@ module GOBL
 
       # @!attribute [r] values
       # Values contains a list of Value objects that contain the current and historical percentage values for the rate and additional filters. Order is important, newer values should come before older values.
-      # @return [Array<RateValue>]
-      property :values, [RateValue]
+      # @return [Array<RateValueDef>]
+      property :values, [RateValueDef]
 
-      # @!attribute [r] extensions
-      # Extensions defines a list of keys for codes that can or must be associated with the tax rate for it to be validated. Every key must be defined in the Regime's extensions.
-      # @return [Array<GOBL::CBC::Key>]
-      property :extensions, [GOBL::CBC::Key]
-
-      # @!attribute [r] map
-      # Map is used to associate specific codes with the chosen rate.
-      # @return [GOBL::CBC::CodeMap]
-      property :map, GOBL::CBC::CodeMap
+      # @!attribute [r] ext
+      # Extensions key-value pair that will be copied to the tax combo if this rate is used.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Meta contains additional information about the rate that is relevant for local frequently used implementations.

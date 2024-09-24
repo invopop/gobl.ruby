@@ -10,7 +10,7 @@ module GOBL
     # CorrectionDefinition contains details about what can be defined in .
     class CorrectionDefinition < GOBL::Object
       # The Schema ID of the GOBL CorrectionDefinition structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/CorrectionDefinition'
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def#/$defs/CorrectionDefinition'
 
       # @!attribute [r] schema
       # Partial or complete schema URL for the document type supported by correction.
