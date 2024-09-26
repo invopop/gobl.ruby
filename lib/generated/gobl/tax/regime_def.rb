@@ -7,13 +7,13 @@
 
 module GOBL
   module Tax
-    # Regime defines the holding structure for the definitions of taxes inside a country or territory.
-    class Regime < GOBL::Object
-      # The Schema ID of the GOBL Regime structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime'
+    # RegimeDef defines the holding structure for the definitions of taxes inside a country or territory.
+    class RegimeDef < GOBL::Object
+      # The Schema ID of the GOBL RegimeDef structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def'
 
       # @!attribute [r] name
-      # Name of the country
+      # Name of the tax regime.
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
       validates_presence_of :name
@@ -31,9 +31,14 @@ module GOBL
 
       # @!attribute [r] country
       # Country code for the region
-      # @return [GOBL::L10n::CountryCode]
-      property :country, GOBL::L10n::CountryCode
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :country, GOBL::L10n::TaxCountryCode
       validates_presence_of :country
+
+      # @!attribute [r] alt_country_codes
+      # Alternative localization codes that may be used to identify the tax regime in specific circumstances.
+      # @return [Array<GOBL::L10n::Code>]
+      property :alt_country_codes, [GOBL::L10n::Code]
 
       # @!attribute [r] zone
       # Specific Locality, region, city, province, county, or similar code inside the country, if needed.
@@ -46,10 +51,15 @@ module GOBL
       property :currency, GOBL::Currency::Code
       validates_presence_of :currency
 
+      # @!attribute [r] calculator_rounding_rule
+      # Rounding rule to use when calculating the tax totals, default is always `sum-then-round`.
+      # @return [String]
+      property :calculator_rounding_rule, String
+
       # @!attribute [r] tags
       # Tags that can be applied at the document level to identify additional considerations.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :tags, [GOBL::CBC::KeyDefinition]
+      # @return [Array<TagSet>]
+      property :tags, [TagSet]
 
       # @!attribute [r] extensions
       # Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates.
@@ -87,13 +97,13 @@ module GOBL
 
       # @!attribute [r] corrections
       # Configuration details for corrections to be used with correction options.
-      # @return [Array<CorrectionDefinition>]
-      property :corrections, [CorrectionDefinition]
+      # @return [CorrectionSet]
+      property :corrections, CorrectionSet
 
       # @!attribute [r] categories
       # List of tax categories.
-      # @return [Array<Category>]
-      property :categories, [Category]
+      # @return [Array<CategoryDef>]
+      property :categories, [CategoryDef]
       validates_presence_of :categories
     end
   end

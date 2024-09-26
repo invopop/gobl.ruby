@@ -66,8 +66,8 @@ module GOBL
 
       # @!attribute [r] origin
       # Country code of where this item was from originally.
-      # @return [GOBL::L10n::CountryCode]
-      property :origin, GOBL::L10n::CountryCode
+      # @return [GOBL::L10n::ISOCountryCode]
+      property :origin, GOBL::L10n::ISOCountryCode
 
       # @!attribute [r] ext
       # Extension code map for any additional regime specific codes that may be required.

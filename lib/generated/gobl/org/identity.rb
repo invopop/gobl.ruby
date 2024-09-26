@@ -22,6 +22,11 @@ module GOBL
       # @return [String]
       property :label, String
 
+      # @!attribute [r] country
+      # Country from which the identity was issued.
+      # @return [GOBL::L10n::ISOCountryCode]
+      property :country, GOBL::L10n::ISOCountryCode
+
       # @!attribute [r] key
       # Uniquely classify this identity using a key instead of a code.
       # @return [GOBL::CBC::Key]

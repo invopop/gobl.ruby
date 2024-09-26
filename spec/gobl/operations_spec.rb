@@ -33,7 +33,7 @@ RSpec.describe GOBL::Operations do
 
       envelope = GOBL.build(doc, envelop: true)
 
-      expect(envelope.head.draft).to be true
+      expect(envelope).not_to be_signed
 
       invoice = envelope.extract
       expect(invoice.totals).to be_present

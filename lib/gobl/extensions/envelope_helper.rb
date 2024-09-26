@@ -17,6 +17,10 @@ module GOBL
       def extract
         doc.extract
       end
+
+      def signed?
+        sigs.present?
+      end
     end
   end
 end

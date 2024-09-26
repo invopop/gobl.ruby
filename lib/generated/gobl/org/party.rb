@@ -17,21 +17,20 @@ module GOBL
       # @return [String]
       property :uuid, String
 
+      # @!attribute [r] label
+      # Label can be used to provide a custom label for the party in a given context in a single language, for example "Supplier", "Host", or similar.
+      # @return [String]
+      property :label, String
+
       # @!attribute [r] name
       # Legal name or representation of the organization.
       # @return [String]
       property :name, String
-      validates_presence_of :name
 
       # @!attribute [r] alias
       # Alternate short name.
       # @return [String]
       property :alias, String
-
-      # @!attribute [r] label
-      # Label can be used to provide a custom label for the party in a given context in a single language, for example "Supplier", "Host", or similar.
-      # @return [String]
-      property :label, String
 
       # @!attribute [r] tax_id
       # The entity's legal ID code used for tax purposes. They may have other numbers, but we're only interested in those valid for tax purposes.

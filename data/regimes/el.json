@@ -1,11 +1,16 @@
 {
   "$schema": "https://gobl.org/draft-0/tax/regime-def",
   "name": {
-    "en": "Belgium"
+    "el": "Ελλάδα",
+    "en": "Greece"
   },
-  "time_zone": "Europe/Brussels",
-  "country": "BE",
+  "time_zone": "Europe/Athens",
+  "country": "EL",
+  "alt_country_codes": [
+    "GR"
+  ],
   "currency": "EUR",
+  "calculator_rounding_rule": "round-then-sum",
   "tags": [
     {
       "schema": "bill/invoice",
@@ -75,7 +80,7 @@
           "note": {
             "key": "legal",
             "src": "reverse-charge",
-            "text": "Reverse charge: Customer to account for VAT to the relevant tax authority."
+            "text": "Reverse Charge / Αντίστροφη φόρτιση"
           }
         }
       ]
@@ -86,6 +91,9 @@
       "schema": "bill/invoice",
       "types": [
         "credit-note"
+      ],
+      "stamps": [
+        "iapr-mark"
       ]
     }
   ],
@@ -93,75 +101,102 @@
     {
       "code": "VAT",
       "name": {
+        "el": "ΦΠΑ",
         "en": "VAT"
       },
       "title": {
+        "el": "Φόρος προστιθέμενης αξίας",
         "en": "Value Added Tax"
       },
       "rates": [
         {
           "key": "standard",
           "name": {
-            "de": "Standardsatz",
-            "en": "Standard Rate",
-            "fr": "Taux standard",
-            "nl": "Standaardtarief"
+            "el": "Κανονικός συντελεστής",
+            "en": "Standard rate"
           },
           "values": [
             {
-              "since": "2011-01-04",
-              "percent": "21.0%"
-            }
-          ]
-        },
-        {
-          "key": "intermediate",
-          "name": {
-            "de": "Mittlerer Satz",
-            "en": "Intermediate Rate",
-            "fr": "Taux intermédiaire",
-            "nl": "Tussentarief"
-          },
-          "values": [
-            {
-              "since": "2011-01-01",
-              "percent": "12.0%"
+              "percent": "24%"
             }
           ]
         },
         {
           "key": "reduced",
           "name": {
-            "de": "Ermäßigter Satz",
-            "en": "Reduced Rate",
-            "fr": "Taux réduit",
-            "nl": "Verlaagd Tarief"
+            "el": "Μειωμένος συντελεστής",
+            "en": "Reduced rate"
           },
           "values": [
             {
-              "since": "2011-01-04",
-              "percent": "6.0%"
+              "percent": "13%"
             }
           ]
         },
         {
-          "key": "zero",
+          "key": "super-reduced",
           "name": {
-            "en": "Zero Rate"
+            "el": "Υπερμειωμένος συντελεστής",
+            "en": "Super-reduced rate"
           },
           "values": [
             {
-              "percent": "0.0%"
+              "percent": "6%"
             }
           ]
+        },
+        {
+          "key": "standard+island",
+          "name": {
+            "el": "Κανονικός συντελεστής (Νησί)",
+            "en": "Standard rate (Island)"
+          },
+          "values": [
+            {
+              "percent": "17%"
+            }
+          ]
+        },
+        {
+          "key": "reduced+island",
+          "name": {
+            "el": "Μειωμένος συντελεστής (Νησί)",
+            "en": "Reduced rate (Island)"
+          },
+          "values": [
+            {
+              "percent": "9%"
+            }
+          ]
+        },
+        {
+          "key": "super-reduced+island",
+          "name": {
+            "el": "Υπερμειωμένος συντελεστής (Νησί)",
+            "en": "Super-reduced rate (Island)"
+          },
+          "values": [
+            {
+              "percent": "4%"
+            }
+          ]
+        },
+        {
+          "key": "exempt",
+          "name": {
+            "el": "Απαλλαγή",
+            "en": "Exempt"
+          },
+          "exempt": true
         }
       ],
       "sources": [
         {
           "title": {
-            "en": "VAT rates | FPS Finance"
+            "el": "Φόρος Προστιθέμενης Αξίας/Φόρος Αγαθών και Υπηρεσιών (ΦΠΑ/GST) (1976-2023)",
+            "en": "Value Added Tax/Goods and Services Tax (VAT/GST) (1976-2023)"
           },
-          "url": "https://finance.belgium.be/en/enterprises/vat/vat-obligation/rates-and-calculation/vat-rates#q1"
+          "url": "https://www.oecd.org/tax/tax-policy/tax-database/"
         }
       ]
     }

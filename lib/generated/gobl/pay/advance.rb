@@ -85,6 +85,11 @@ module GOBL
       # @return [CreditTransfer]
       property :credit_transfer, CreditTransfer
 
+      # @!attribute [r] ext
+      # Tax extensions required by tax regimes or addons.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
+
       # @!attribute [r] meta
       # Additional details useful for the parties involved.
       # @return [GOBL::CBC::Meta]

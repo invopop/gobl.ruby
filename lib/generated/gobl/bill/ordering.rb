@@ -14,8 +14,8 @@ module GOBL
 
       # @!attribute [r] code
       # Identifier assigned by the customer or buyer for internal routing purposes.
-      # @return [String]
-      property :code, String
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
 
       # @!attribute [r] identities
       # Any additional Codes, IDs, SKUs, or other regional or custom identifiers that may be used to identify the order.
@@ -27,41 +27,6 @@ module GOBL
       # @return [GOBL::Cal::Period]
       property :period, GOBL::Cal::Period
 
-      # @!attribute [r] project
-      # Project this invoice refers to.
-      # @return [DocumentReference]
-      property :project, DocumentReference
-
-      # @!attribute [r] contract
-      # The identification of a contract.
-      # @return [DocumentReference]
-      property :contract, DocumentReference
-
-      # @!attribute [r] purchase
-      # Purchase order issued by the customer or buyer.
-      # @return [DocumentReference]
-      property :purchase, DocumentReference
-
-      # @!attribute [r] sale
-      # Sales order issued by the supplier or seller.
-      # @return [DocumentReference]
-      property :sale, DocumentReference
-
-      # @!attribute [r] receiving
-      # Receiving Advice.
-      # @return [DocumentReference]
-      property :receiving, DocumentReference
-
-      # @!attribute [r] despatch
-      # Despatch advice.
-      # @return [DocumentReference]
-      property :despatch, DocumentReference
-
-      # @!attribute [r] tender
-      # Tender advice, the identification of the call for tender or lot the invoice relates to.
-      # @return [DocumentReference]
-      property :tender, DocumentReference
-
       # @!attribute [r] buyer
       # Party who is responsible for making the purchase, but is not responsible for handling taxes.
       # @return [GOBL::Org::Party]
@@ -71,6 +36,41 @@ module GOBL
       # Party who is selling the goods but is not responsible for taxes like the supplier.
       # @return [GOBL::Org::Party]
       property :seller, GOBL::Org::Party
+
+      # @!attribute [r] projects
+      # Projects this invoice refers to.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :projects, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] contracts
+      # The identification of contracts.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :contracts, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] purchases
+      # Purchase orders issued by the customer or buyer.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :purchases, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] sales
+      # Sales orders issued by the supplier or seller.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :sales, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] receiving
+      # Receiving Advice.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :receiving, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] despatch
+      # Despatch advice.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :despatch, [GOBL::Org::DocumentRef]
+
+      # @!attribute [r] tender
+      # Tender advice, the identification of the call for tender or lot the invoice relates to.
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :tender, [GOBL::Org::DocumentRef]
     end
   end
 end

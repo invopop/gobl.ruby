@@ -17,11 +17,6 @@ module GOBL
       # @return [GOBL::CBC::Code]
       property :prices_include, GOBL::CBC::Code
 
-      # @!attribute [r] tags
-      # Special tax tags that apply to this invoice according to local requirements.
-      # @return [Array<GOBL::CBC::Key>]
-      property :tags, [GOBL::CBC::Key]
-
       # @!attribute [r] ext
       # Additional extensions that are applied to the invoice as a whole as opposed to specific sections.
       # @return [GOBL::Tax::Extensions]

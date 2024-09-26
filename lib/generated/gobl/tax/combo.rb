@@ -18,6 +18,11 @@ module GOBL
       property :cat, GOBL::CBC::Code
       validates_presence_of :cat
 
+      # @!attribute [r] country
+      # Country code override when issuing with taxes applied from different countries.
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :country, GOBL::L10n::TaxCountryCode
+
       # @!attribute [r] rate
       # Rate within a category to apply.
       # @return [GOBL::CBC::Key]

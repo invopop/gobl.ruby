@@ -49,7 +49,7 @@ RSpec.describe 'Generated Single Value' do
   end
 
   describe 'Enum String' do
-    let(:enum_value_class) { GOBL::L10n::CountryCode }
+    let(:enum_value_class) { GOBL::L10n::TaxCountryCode }
 
     it 'instantiates from a string' do
       value = enum_value_class.new('AF')

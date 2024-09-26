@@ -7,10 +7,10 @@
 
 module GOBL
   module Tax
-    # Category contains the definition of a general type of tax inside a region.
-    class Category < GOBL::Object
-      # The Schema ID of the GOBL Category structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime#/$defs/Category'
+    # CategoryDef contains the definition of a general type of tax inside a region.
+    class CategoryDef < GOBL::Object
+      # The Schema ID of the GOBL CategoryDef structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def#/$defs/CategoryDef'
 
       # @!attribute [r] code
       # Code to be used in documents
@@ -39,15 +39,10 @@ module GOBL
       # @return [Boolean]
       property :retained, Boolean
 
-      # @!attribute [r] rate_required
-      # RateRequired when true implies that when a tax combo is defined using this category that one of the rate's keys must be defined. This is normally needed for regimes that categorize taxes in local document formats as opposed to grouping by percentage values. Try to avoid using this. It is better for rates to be determined by the percentage and conditions, not the rate key.
-      # @return [Boolean]
-      property :rate_required, Boolean
-
       # @!attribute [r] rates
       # Specific tax definitions inside this category.
-      # @return [Array<Rate>]
-      property :rates, [Rate]
+      # @return [Array<RateDef>]
+      property :rates, [RateDef]
 
       # @!attribute [r] extensions
       # Extensions defines a list of extension keys that may be used or required as an alternative or alongside choosing a rate for the tax category. Every key must be defined in the Regime's extensions table.
@@ -63,6 +58,11 @@ module GOBL
       # List of sources for the information contained in this category.
       # @return [Array<Source>]
       property :sources, [Source]
+
+      # @!attribute [r] ext
+      # Extensions key-value pairs that will be copied to the tax combo if this category is used.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Meta contains additional information about the category that is relevant for local frequently used formats.

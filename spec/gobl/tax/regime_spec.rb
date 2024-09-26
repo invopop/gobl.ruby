@@ -2,7 +2,7 @@
 
 require_relative '../../../lib/gobl'
 
-RSpec.describe GOBL::Tax::Regime do
+RSpec.describe GOBL::Tax::RegimeDef do
   describe 'extensions' do
     it 'loads regime data' do
       regime = described_class.fetch('ES')

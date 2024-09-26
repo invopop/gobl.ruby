@@ -12,6 +12,41 @@ module GOBL
       # The Schema ID of the GOBL Invoice structure
       SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice'
 
+      # Enumeration of possible values for {#$regime} with their corresponding descriptions
+      $REGIME_ENUM = {
+        'AT' => 'Austria',
+        'BE' => 'Belgium',
+        'CA' => 'Canada',
+        'CH' => 'Switzerland',
+        'CO' => 'Colombia',
+        'DE' => 'Germany',
+        'EL' => 'Greece',
+        'ES' => 'Spain',
+        'FR' => 'France',
+        'GB' => 'United Kingdom',
+        'IT' => 'Italy',
+        'MX' => 'Mexico',
+        'NL' => 'The Netherlands',
+        'PL' => 'Poland',
+        'PT' => 'Portugal',
+        'US' => 'United States of America'
+      }.freeze
+
+      # @!attribute [r] $regime
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :$regime, GOBL::L10n::TaxCountryCode
+      validates_inclusion_of :$regime, in: $REGIME_ENUM.keys, allow_blank: true
+
+      # @!attribute [r] $addons
+      # Addons defines a list of keys used to identify tax addons that apply special normalization, scenarios, and validation rules to a document.
+      # @return [Array<GOBL::CBC::Key>]
+      property :$addons, [GOBL::CBC::Key]
+
+      # @!attribute [r] $tags
+      # Tags are used to help identify specific tax scenarios or requirements that will apply changes to the contents of the invoice. Tags by design should always be optional, it should always be possible to build a valid invoice without any tags.
+      # @return [Array<GOBL::CBC::Key>]
+      property :$tags, [GOBL::CBC::Key]
+
       # @!attribute [r] uuid
       # Universally Unique Identifier.
       # @return [String]
@@ -22,9 +57,14 @@ module GOBL
         'standard' => 'A regular commercial invoice document between a supplier and customer.',
         'proforma' => 'For a clients validation before sending a final invoice.',
         'corrective' => 'Corrected invoice that completely *replaces* the preceding document.',
-        'credit-note' => 'Reflects a refund either partial or complete of the preceding document. A
+        'credit-note' => 'Reflects a refund either partial or complete of the preceding document. A 
       credit note effectively *extends* the previous document.',
-        'debit-note' => 'An additional set of charges to be added to the preceding document.'
+        'debit-note' => 'An additional set of charges to be added to the preceding document.',
+        'other' => 'Any other type of invoice that does not fit into the standard categories and implies
+      that any scenarios defined in tax regimes or addons will not be applied.
+
+      This is useful for being able to create invoices with custom types in extensions,
+      but is not recommend for general use.'
       }.freeze
 
       # @!attribute [r] type
@@ -35,13 +75,13 @@ module GOBL
 
       # @!attribute [r] series
       # Used as a prefix to group codes.
-      # @return [String]
-      property :series, String
+      # @return [GOBL::CBC::Code]
+      property :series, GOBL::CBC::Code
 
       # @!attribute [r] code
       # Sequential code used to identify this invoice in tax declarations.
-      # @return [String]
-      property :code, String
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
       validates_presence_of :code
 
       # @!attribute [r] issue_date
@@ -71,8 +111,8 @@ module GOBL
 
       # @!attribute [r] preceding
       # Key information regarding previous invoices and potentially details as to why they were corrected.
-      # @return [Array<Preceding>]
-      property :preceding, [Preceding]
+      # @return [Array<GOBL::Org::DocumentRef>]
+      property :preceding, [GOBL::Org::DocumentRef]
 
       # @!attribute [r] tax
       # Special tax configuration for billing.
@@ -86,7 +126,7 @@ module GOBL
       validates_presence_of :supplier
 
       # @!attribute [r] customer
-      # Legal entity receiving the goods or services, may be empty in certain circumstances such as simplified invoices.
+      # Legal entity receiving the goods or services, may be nil in certain circumstances such as simplified invoices.
       # @return [GOBL::Org::Party]
       property :customer, GOBL::Org::Party
 
