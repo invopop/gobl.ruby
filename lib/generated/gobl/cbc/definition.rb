@@ -7,16 +7,20 @@
 
 module GOBL
   module CBC
-    # KeyDefinition defines properties of a key that is specific for a regime.
-    class KeyDefinition < GOBL::Object
-      # The Schema ID of the GOBL KeyDefinition structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/key-definition'
+    # Definition defines properties of a key, code, or other value that has a specific meaning or utility.
+    class Definition < GOBL::Object
+      # The Schema ID of the GOBL Definition structure
+      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/definition'
 
       # @!attribute [r] key
-      # Actual key value.
+      # Key being defined.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
-      validates_presence_of :key
+
+      # @!attribute [r] code
+      # Code this definition represents.
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
 
       # @!attribute [r] name
       # Short name for the key.
@@ -34,10 +38,15 @@ module GOBL
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
 
+      # @!attribute [r] sources
+      # Where the information was sourced from.
+      # @return [Array<GOBL::CBC::Source>]
+      property :sources, [GOBL::CBC::Source]
+
       # @!attribute [r] values
-      # Values defines the possible values associated with the key.
-      # @return [Array<GOBL::CBC::ValueDefinition>]
-      property :values, [GOBL::CBC::ValueDefinition]
+      # Values defines the possible values associated with the key, which themselves will either be keys or codes depending on the context.
+      # @return [Array<GOBL::CBC::Definition>]
+      property :values, [GOBL::CBC::Definition]
 
       # @!attribute [r] pattern
       # Pattern is used to validate the key value instead of using a fixed value from the code or key definitions.

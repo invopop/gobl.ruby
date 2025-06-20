@@ -13,6 +13,11 @@ module GOBL
         # The Schema ID of the GOBL FuelAccountLine structure
         SCHEMA_ID = 'https://gobl.org/draft-0/regimes/mx/fuel-account-balance#/$defs/FuelAccountLine'
 
+        # @!attribute [r] i
+        # Index of the line starting from 1 (calculated)
+        # @return [Integer]
+        property :i, Integer
+
         # @!attribute [r] e_wallet_id
         # Identifier of the e-wallet used to make the purchase (maps to `Identificador`).
         # @return [GOBL::CBC::Code]

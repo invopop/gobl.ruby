@@ -17,11 +17,13 @@ module GOBL
         'any' => 'Any method available, no preference.',
         'card' => 'Payment card.',
         'credit-transfer' => 'Sender initiated bank or wire transfer.',
+        'credit-transfer+sepa' => 'Sender initiated bank or wire transfer via SEPA.',
         'debit-transfer' => 'Receiver initiated bank or wire transfer.',
         'cash' => 'Cash in hand.',
         'cheque' => 'Cheque from bank.',
         'bank-draft' => 'Bankers Draft or Bank Cheque.',
         'direct-debit' => 'Direct debit from the customers bank account.',
+        'direct-debit+sepa' => 'Direct debit from the customers bank account via SEPA.',
         'online' => 'Online or web payment.',
         'promissory-note' => 'Promissory note contract.',
         'netting' => 'Intercompany clearing or clearing between partners.',
@@ -40,9 +42,9 @@ module GOBL
       property :detail, String
 
       # @!attribute [r] ref
-      # Remittance information or concept, a text value used to link the payment with the invoice.
-      # @return [String]
-      property :ref, String
+      # Remittance information or concept, a code value used to link the payment with the invoice.
+      # @return [GOBL::CBC::Code]
+      property :ref, GOBL::CBC::Code
 
       # @!attribute [r] credit_transfer
       # Instructions for sending payment via a bank transfer.

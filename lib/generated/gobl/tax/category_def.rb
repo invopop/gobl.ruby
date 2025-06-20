@@ -40,7 +40,7 @@ module GOBL
       property :retained, Boolean
 
       # @!attribute [r] rates
-      # Specific tax definitions inside this category.
+      # Specific tax definitions inside this category. Order is important.
       # @return [Array<RateDef>]
       property :rates, [RateDef]
 
@@ -56,11 +56,11 @@ module GOBL
 
       # @!attribute [r] sources
       # List of sources for the information contained in this category.
-      # @return [Array<Source>]
-      property :sources, [Source]
+      # @return [Array<GOBL::CBC::Source>]
+      property :sources, [GOBL::CBC::Source]
 
       # @!attribute [r] ext
-      # Extensions key-value pairs that will be copied to the tax combo if this category is used.
+      # Extension key-value pairs that will be copied to the tax combo if this category is used.
       # @return [GOBL::Tax::Extensions]
       property :ext, GOBL::Tax::Extensions
 
