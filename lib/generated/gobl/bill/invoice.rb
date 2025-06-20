@@ -14,8 +14,10 @@ module GOBL
 
       # Enumeration of possible values for {#$regime} with their corresponding descriptions
       $REGIME_ENUM = {
+        'AE' => 'United Arab Emirates',
         'AT' => 'Austria',
         'BE' => 'Belgium',
+        'BR' => 'Brazil',
         'CA' => 'Canada',
         'CH' => 'Switzerland',
         'CO' => 'Colombia',
@@ -24,6 +26,7 @@ module GOBL
         'ES' => 'Spain',
         'FR' => 'France',
         'GB' => 'United Kingdom',
+        'IN' => 'India',
         'IT' => 'Italy',
         'MX' => 'Mexico',
         'NL' => 'The Netherlands',
@@ -68,26 +71,30 @@ module GOBL
       }.freeze
 
       # @!attribute [r] type
-      # Type of invoice document subject to the requirements of the local tax regime.
+      # Type of invoice document. May be restricted by local tax regime requirements.
       # @return [GOBL::CBC::Key]
       property :type, GOBL::CBC::Key
       validates_inclusion_of :type, in: TYPE_ENUM.keys, allow_blank: true
 
       # @!attribute [r] series
-      # Used as a prefix to group codes.
+      # Series is used to identify groups of invoices by date, business area, project, type of document, customer type, a combination of any or other company specific data. If the output format does not support the series as a separate field, it will be prepended to the code for presentation with a dash (`-`) for separation.
       # @return [GOBL::CBC::Code]
       property :series, GOBL::CBC::Code
 
       # @!attribute [r] code
-      # Sequential code used to identify this invoice in tax declarations.
+      # Code is a sequential identifier that uniquely identifies the invoice. The code can be left empty initially, but is **required** to **sign** the invoice.
       # @return [GOBL::CBC::Code]
       property :code, GOBL::CBC::Code
-      validates_presence_of :code
 
       # @!attribute [r] issue_date
-      # When the invoice was created.
+      # Issue date for when the invoice was created and issued. Todays date is used if none is set. There are often legal restrictions on how far back or in the future an invoice can be issued.
       # @return [GOBL::Cal::Date]
       property :issue_date, GOBL::Cal::Date
+
+      # @!attribute [r] issue_time
+      # IssueTime is an optional field that may be useful to indicate the time of day when the invoice was issued. Some regions and formats may require this field to be set. An empty string will be automatically updated to reflect the current time, otherwise the field can be left with a nil value.
+      # @return [GOBL::Cal::Time]
+      property :issue_time, GOBL::Cal::Time
 
       # @!attribute [r] op_date
       # Date when the operation defined by the invoice became effective.
@@ -100,7 +107,7 @@ module GOBL
       property :value_date, GOBL::Cal::Date
 
       # @!attribute [r] currency
-      # Currency for all invoice totals.
+      # Currency for all invoice amounts and totals, unless explicitly stated otherwise.
       # @return [GOBL::Currency::Code]
       property :currency, GOBL::Currency::Code
 
@@ -110,17 +117,17 @@ module GOBL
       property :exchange_rates, [GOBL::Currency::ExchangeRate]
 
       # @!attribute [r] preceding
-      # Key information regarding previous invoices and potentially details as to why they were corrected.
+      # Document references for previous invoices that this document replaces or extends.
       # @return [Array<GOBL::Org::DocumentRef>]
       property :preceding, [GOBL::Org::DocumentRef]
 
       # @!attribute [r] tax
-      # Special tax configuration for billing.
-      # @return [Tax]
-      property :tax, Tax
+      # Special billing tax configuration options.
+      # @return [GOBL::Bill::Tax]
+      property :tax, GOBL::Bill::Tax
 
       # @!attribute [r] supplier
-      # The taxable entity supplying the goods or services.
+      # The entity supplying the goods or services and usually responsible for paying taxes.
       # @return [GOBL::Org::Party]
       property :supplier, GOBL::Org::Party
       validates_presence_of :supplier
@@ -132,48 +139,43 @@ module GOBL
 
       # @!attribute [r] lines
       # List of invoice lines representing each of the items sold to the customer.
-      # @return [Array<Line>]
-      property :lines, [Line]
+      # @return [Array<GOBL::Bill::Line>]
+      property :lines, [GOBL::Bill::Line]
 
       # @!attribute [r] discounts
       # Discounts or allowances applied to the complete invoice
-      # @return [Array<Discount>]
-      property :discounts, [Discount]
+      # @return [Array<GOBL::Bill::Discount>]
+      property :discounts, [GOBL::Bill::Discount]
 
       # @!attribute [r] charges
       # Charges or surcharges applied to the complete invoice
-      # @return [Array<Charge>]
-      property :charges, [Charge]
-
-      # @!attribute [r] outlays
-      # Expenses paid for by the supplier but invoiced directly to the customer.
-      # @return [Array<Outlay>]
-      property :outlays, [Outlay]
+      # @return [Array<GOBL::Bill::Charge>]
+      property :charges, [GOBL::Bill::Charge]
 
       # @!attribute [r] ordering
       # Ordering details including document references and buyer or seller parties.
-      # @return [Ordering]
-      property :ordering, Ordering
+      # @return [GOBL::Bill::Ordering]
+      property :ordering, GOBL::Bill::Ordering
 
       # @!attribute [r] payment
       # Information on when, how, and to whom the invoice should be paid.
-      # @return [Payment]
-      property :payment, Payment
+      # @return [GOBL::Bill::PaymentDetails]
+      property :payment, GOBL::Bill::PaymentDetails
 
       # @!attribute [r] delivery
       # Specific details on delivery of the goods referenced in the invoice.
-      # @return [Delivery]
-      property :delivery, Delivery
+      # @return [GOBL::Bill::DeliveryDetails]
+      property :delivery, GOBL::Bill::DeliveryDetails
 
       # @!attribute [r] totals
       # Summary of all the invoice totals, including taxes (calculated).
-      # @return [Totals]
-      property :totals, Totals
+      # @return [GOBL::Bill::Totals]
+      property :totals, GOBL::Bill::Totals
 
       # @!attribute [r] notes
       # Unstructured information that is relevant to the invoice, such as correction or additional legal details.
-      # @return [Array<GOBL::CBC::Note>]
-      property :notes, [GOBL::CBC::Note]
+      # @return [Array<GOBL::Org::Note>]
+      property :notes, [GOBL::Org::Note]
 
       # @!attribute [r] complements
       # Additional complementary objects that add relevant information to the invoice.
@@ -184,6 +186,11 @@ module GOBL
       # Additional semi-structured data that doesn't fit into the body of the invoice.
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
+
+      # @!attribute [r] attachments
+      # Attachments provide additional information or supporting documents that are not included in the main document. It is important that attachments are not used for alternative versions of the PDF, for that, see "links" inside the envelope headers.
+      # @return [Array<GOBL::Org::Attachment>]
+      property :attachments, [GOBL::Org::Attachment]
     end
   end
 end

@@ -13,6 +13,11 @@ module GOBL
         # The Schema ID of the GOBL FoodVouchersLine structure
         SCHEMA_ID = 'https://gobl.org/draft-0/regimes/mx/food-vouchers#/$defs/FoodVouchersLine'
 
+        # @!attribute [r] i
+        # Line number starting from 1 (calculated).
+        # @return [Integer]
+        property :i, Integer
+
         # @!attribute [r] e_wallet_id
         # Identifier of the e-wallet that received the food voucher (maps to `Identificador`).
         # @return [GOBL::CBC::Code]

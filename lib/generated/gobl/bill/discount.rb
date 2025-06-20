@@ -10,7 +10,7 @@ module GOBL
     # Discount represents an allowance applied to the complete document independent from the individual lines.
     class Discount < GOBL::Object
       # The Schema ID of the GOBL Discount structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Discount'
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/discount'
 
       # @!attribute [r] uuid
       # Universally Unique Identifier.
@@ -22,10 +22,38 @@ module GOBL
       # @return [Integer]
       property :i, Integer
 
-      # @!attribute [r] ref
-      # Reference or ID for this Discount
+      # Enumeration of possible values for {#key} with their corresponding descriptions
+      KEY_ENUM = {
+        'early-completion' => 'Bonus for works ahead of schedule',
+        'military' => 'Military Discount',
+        'work-accident' => 'Work Accident Discount',
+        'special-agreement' => 'Special Agreement Discount',
+        'production-error' => 'Production Error Discount',
+        'new-outlet' => 'New Outlet Discount',
+        'sample' => 'Sample Discount',
+        'end-of-range' => 'End of Range Discount',
+        'incoterm' => 'Incoterm Discount',
+        'pos-threshold' => 'Point of Sale Threshold Discount',
+        'special-rebate' => 'Special Rebate',
+        'temporary' => 'Temporary',
+        'standard' => 'Standard',
+        'yearly-turnover' => 'Yearly Turnover'
+      }.freeze
+
+      # @!attribute [r] key
+      # Key for identifying the type of discount being applied.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+
+      # @!attribute [r] code
+      # Code to used to refer to the this discount by the issuer
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
+
+      # @!attribute [r] reason
+      # Text description as to why the discount was applied
       # @return [String]
-      property :ref, String
+      property :reason, String
 
       # @!attribute [r] base
       # Base represents the value used as a base for percent calculations instead of the invoice's sum of lines.
@@ -47,15 +75,10 @@ module GOBL
       # @return [GOBL::Tax::Set]
       property :taxes, GOBL::Tax::Set
 
-      # @!attribute [r] code
-      # Code for the reason this discount applied
-      # @return [String]
-      property :code, String
-
-      # @!attribute [r] reason
-      # Text description as to why the discount was applied
-      # @return [String]
-      property :reason, String
+      # @!attribute [r] ext
+      # Extension codes that apply to the discount
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
 
       # @!attribute [r] meta
       # Additional semi-structured information.

@@ -1,29 +1,29 @@
 {
-    "$schema": "https://gobl.org/draft-0/bill/invoice",
-    "code": "SAMPLE-001",
-    "currency": "EUR",
-    "issue_date": "2022-02-01",
-    "supplier": {
-        "tax_id": {
-            "country": "ES",
-            "code": "54387763P"
-        },
-        "name": "Provide One S.L."
-    },
-    "customer": {
-        "tax_id": {
-            "country": "ES",
-            "code": "54387763P"
-        },
-        "name": "Sample Consumer"
-    },
-    "lines": [
-        {
-            "quantity": "20",
-            "item": {
-                "name": "Development services",
-                "price": "90.00"
-            }
-        }
-    ]
+	"$schema": "https://gobl.org/draft-0/bill/invoice",
+	"code": "SAMPLE-001",
+	"currency": "EUR",
+	"issue_date": "2022-02-01",
+	"supplier": {
+		"tax_id": {
+			"country": "ES",
+			"code": "54387763P"
+		},
+		"name": "Provide One S.L."
+	},
+	"customer": {
+		"tax_id": {
+			"country": "ES",
+			"code": "54387763P"
+		},
+		"name": "Sample Consumer"
+	},
+	"lines": [
+		{
+			"quantity": "20",
+			"item": {
+				"name": "Development services",
+				"price": "90.00"
+			}
+		}
+	]
 }

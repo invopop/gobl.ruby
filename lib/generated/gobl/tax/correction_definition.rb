@@ -37,6 +37,11 @@ module GOBL
       # Stamps that must be copied from the preceding document.
       # @return [Array<GOBL::CBC::Key>]
       property :stamps, [GOBL::CBC::Key]
+
+      # @!attribute [r] copy_tax
+      # Copy tax from the preceding document to the document ref.
+      # @return [Boolean]
+      property :copy_tax, Boolean
     end
   end
 end

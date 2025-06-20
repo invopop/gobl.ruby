@@ -7,7 +7,7 @@
 
 module GOBL
   module Org
-    # Unit describes how the quantity of the product should be interpreted either using a GOBL key, or UN/ECE code.
+    # Unit defines how the quantity of the product should be interpreted either using a GOBL lower-case key (e.g. 'kg'), or UN/ECE code upper-case code (e.g. 'KGM').
     class Unit < String
       # The Schema ID of the GOBL Unit structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/unit'
@@ -53,6 +53,7 @@ module GOBL
         'kit' => 'A unit of count defining the number of kits (kit: tub, barrel or pail).',
         'basebox' => 'A unit of area of 112 sheets of tin mil products (tin plate, tin free steel or black plate) 14 by 20 inches, or 31,360 square inches.',
         'pk' => 'A unit of count defining the number of items per bulk pack.',
+        'one' => 'A single generic unit of a service or product.',
         'bag' => 'Bags',
         'box' => 'Boxes',
         'bin' => 'Bins',

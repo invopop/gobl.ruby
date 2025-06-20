@@ -23,6 +23,11 @@ module GOBL
       # @return [GOBL::CBC::Code]
       property :code, GOBL::CBC::Code
 
+      # @!attribute [r] scheme
+      # Scheme is an optional field that may be used to override the tax regime's default tax scheme. Many electronic formats such as UBL or CII define an equivalent field. Examples: `VAT`, `GST`, `ST`, etc.
+      # @return [GOBL::CBC::Code]
+      property :scheme, GOBL::CBC::Code
+
       # @!attribute [r] type
       # Type is set according to the requirements of each regime, some have a single tax document type code, others require a choice to be made. Deprecated: Tax Identities should only be used for VAT or similar codes for companies. Use the identities array for other types of identification.
       # @return [GOBL::CBC::Key]

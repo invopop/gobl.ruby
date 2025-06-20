@@ -39,9 +39,14 @@ module GOBL
       property :reason, String
 
       # @!attribute [r] ext
-      # Extensions for region specific requirements.
+      # Extensions for region specific requirements that may be added in the preceding or at the document level, according to the local rules.
       # @return [GOBL::Tax::Extensions]
       property :ext, GOBL::Tax::Extensions
+
+      # @!attribute [r] copy_tax
+      # CopyTax when true will copy the tax totals from the previous document to the preceding document data.
+      # @return [Boolean]
+      property :copy_tax, Boolean
     end
   end
 end

@@ -23,7 +23,7 @@ module GOBL
       property :label, String
 
       # @!attribute [r] num
-      # The number to be dialed in ITU E.164 international format.
+      # Free-text string that represents the telephone number.
       # @return [String]
       property :num, String
       validates_presence_of :num

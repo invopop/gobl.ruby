@@ -58,19 +58,24 @@ module GOBL
       property :street_extra, String
 
       # @!attribute [r] locality
-      # Village, town, district, or city, typically inside a region.
+      # Name of a village, town, district, or city, typically inside a region.
       # @return [String]
       property :locality, String
 
       # @!attribute [r] region
-      # Province, county, or state, inside a country.
+      # Name of a city, province, county, or state, inside a country.
       # @return [String]
       property :region, String
 
+      # @!attribute [r] state
+      # State or province code for countries that require it.
+      # @return [GOBL::CBC::Code]
+      property :state, GOBL::CBC::Code
+
       # @!attribute [r] code
       # Post or ZIP code.
-      # @return [String]
-      property :code, String
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
 
       # @!attribute [r] country
       # ISO country code.

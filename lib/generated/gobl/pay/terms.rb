@@ -14,7 +14,6 @@ module GOBL
 
       # Enumeration of possible values for {#key} with their corresponding descriptions
       KEY_ENUM = {
-        '' => 'Not yet defined',
         'end-of-month' => 'End of month',
         'due-date' => 'Due on a specific date',
         'deferred' => 'Deferred until after the due date',
@@ -23,7 +22,8 @@ module GOBL
         'elective' => 'Chosen by the buyer',
         'pending' => 'Seller to advise buyer in separate transaction',
         'advanced' => 'Payment made in advance',
-        'delivery' => 'Payment on Delivery'
+        'delivery' => 'Payment on Delivery',
+        'undefined' => 'Not yet defined'
       }.freeze
 
       # @!attribute [r] key
@@ -46,6 +46,11 @@ module GOBL
       # Description of the conditions for payment.
       # @return [String]
       property :notes, String
+
+      # @!attribute [r] ext
+      # Extensions to the terms for local codes.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
     end
   end
 end

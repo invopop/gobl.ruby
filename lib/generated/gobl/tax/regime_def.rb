@@ -51,10 +51,15 @@ module GOBL
       property :currency, GOBL::Currency::Code
       validates_presence_of :currency
 
+      # @!attribute [r] tax_scheme
+      # TaxScheme defines the principal scheme of consumption tax that should be applied to the regime and associated with Tax IDs in some export formats such as UBL or CII. Some regimes may not have a Tax Scheme and as a consequence will not use tax identities, like the US.
+      # @return [GOBL::CBC::Code]
+      property :tax_scheme, GOBL::CBC::Code
+
       # @!attribute [r] calculator_rounding_rule
       # Rounding rule to use when calculating the tax totals, default is always `sum-then-round`.
-      # @return [String]
-      property :calculator_rounding_rule, String
+      # @return [GOBL::CBC::Key]
+      property :calculator_rounding_rule, GOBL::CBC::Key
 
       # @!attribute [r] tags
       # Tags that can be applied at the document level to identify additional considerations.
@@ -63,33 +68,23 @@ module GOBL
 
       # @!attribute [r] extensions
       # Extensions defines the keys that can be used for extended or extra data inside the regime that is specific to the regime and cannot be easily determined from other GOBL structures. Typically these are used to define local codes for suppliers, customers, products, or tax rates.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :extensions, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :extensions, [GOBL::CBC::Definition]
 
-      # @!attribute [r] tax_identity_type_keys
-      # Tax Identity types specific for the regime and may be validated against.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :tax_identity_type_keys, [GOBL::CBC::KeyDefinition]
-
-      # @!attribute [r] identity_keys
-      # Identity keys used in addition to regular tax identities and specific for the regime that may be validated against.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :identity_keys, [GOBL::CBC::KeyDefinition]
-
-      # @!attribute [r] charge_keys
-      # Charge keys specific for the regime and may be validated or used in the UI as suggestions
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :charge_keys, [GOBL::CBC::KeyDefinition]
+      # @!attribute [r] identities
+      # Identities used in addition to regular tax identities and specific for the regime that may be validated against.
+      # @return [Array<GOBL::CBC::Definition>]
+      property :identities, [GOBL::CBC::Definition]
 
       # @!attribute [r] payment_means_keys
       # PaymentMeansKeys specific for the regime that extend the original base payment means keys.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :payment_means_keys, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :payment_means_keys, [GOBL::CBC::Definition]
 
       # @!attribute [r] inbox_keys
       # InboxKeys specific to the regime that can be used to identify where a document should be forwarded to.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :inbox_keys, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :inbox_keys, [GOBL::CBC::Definition]
 
       # @!attribute [r] scenarios
       # @return [Array<ScenarioSet>]

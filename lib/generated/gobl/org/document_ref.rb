@@ -38,10 +38,15 @@ module GOBL
       property :code, GOBL::CBC::Code
       validates_presence_of :code
 
-      # @!attribute [r] line
-      # Line index number inside the document, if relevant.
-      # @return [Integer]
-      property :line, Integer
+      # @!attribute [r] currency
+      # Currency used in the document, if different from the parent's currency.
+      # @return [GOBL::Currency::Code]
+      property :currency, GOBL::Currency::Code
+
+      # @!attribute [r] lines
+      # Line index numbers inside the document, if relevant.
+      # @return [Array<Integer>]
+      property :lines, [Integer]
 
       # @!attribute [r] identities
       # List of additional codes, IDs, or SKUs which can be used to identify the document or its contents, agreed upon by the supplier and customer.
@@ -64,7 +69,7 @@ module GOBL
       property :description, String
 
       # @!attribute [r] stamps
-      # Seals of approval from other organisations that may need to be listed.
+      # Seals of approval from other organizations that may need to be listed.
       # @return [Array<GOBL::Head::Stamp>]
       property :stamps, [GOBL::Head::Stamp]
 
@@ -72,6 +77,16 @@ module GOBL
       # Link to the source document.
       # @return [String]
       property :url, String
+
+      # @!attribute [r] tax
+      # Tax total breakdown from the original document in the provided currency. Should only be included if required by a specific tax regime or addon.
+      # @return [GOBL::Tax::Total]
+      property :tax, GOBL::Tax::Total
+
+      # @!attribute [r] payable
+      # Payable is the total amount that is payable in the referenced document. Only needed for specific tax regimes or addons. This may also be used in some scenarios to determine the proportion of the referenced document that has been paid, and calculate the remaining amount due and taxes.
+      # @return [GOBL::Num::Amount]
+      property :payable, GOBL::Num::Amount
 
       # @!attribute [r] ext
       # Extensions for additional codes that may be required.

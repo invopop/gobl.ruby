@@ -27,11 +27,13 @@ module GOBL
         'any' => 'Any method available, no preference.',
         'card' => 'Payment card.',
         'credit-transfer' => 'Sender initiated bank or wire transfer.',
+        'credit-transfer+sepa' => 'Sender initiated bank or wire transfer via SEPA.',
         'debit-transfer' => 'Receiver initiated bank or wire transfer.',
         'cash' => 'Cash in hand.',
         'cheque' => 'Cheque from bank.',
         'bank-draft' => 'Bankers Draft or Bank Cheque.',
         'direct-debit' => 'Direct debit from the customers bank account.',
+        'direct-debit+sepa' => 'Direct debit from the customers bank account via SEPA.',
         'online' => 'Online or web payment.',
         'promissory-note' => 'Promissory note contract.',
         'netting' => 'Intercompany clearing or clearing between partners.',
@@ -60,7 +62,7 @@ module GOBL
       validates_presence_of :description
 
       # @!attribute [r] percent
-      # How much as a percentage of the total with tax was paid
+      # Percentage of the total amount payable that was paid. Note that multiple advances with percentages may lead to rounding errors, especially when the total advances sums to 100%. We recommend only including one advance with a percent value per document.
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
 

@@ -6,11 +6,16 @@
 ##
 
 module GOBL
-  module CBC
+  module Org
     # Note represents a free text of additional information that may be added to a document.
     class Note < GOBL::Object
       # The Schema ID of the GOBL Note structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/cbc/note'
+      SCHEMA_ID = 'https://gobl.org/draft-0/org/note'
+
+      # @!attribute [r] uuid
+      # Universally Unique Identifier.
+      # @return [String]
+      property :uuid, String
 
       # Enumeration of possible values for {#key} with their corresponding descriptions
       KEY_ENUM = {
@@ -38,7 +43,8 @@ module GOBL
         'transport' => 'Transportation information',
         'delivery' => 'Delivery information',
         'quarantine' => 'Quarantine information',
-        'tax' => 'Tax declaration'
+        'tax' => 'Tax declaration',
+        'other' => 'Mutually defined'
       }.freeze
 
       # @!attribute [r] key
@@ -49,8 +55,8 @@ module GOBL
 
       # @!attribute [r] code
       # Code used for additional data that may be required to identify the note.
-      # @return [String]
-      property :code, String
+      # @return [GOBL::CBC::Code]
+      property :code, GOBL::CBC::Code
 
       # @!attribute [r] src
       # Source of this note, especially useful when auto-generated.
@@ -67,6 +73,11 @@ module GOBL
       # Additional information about the note
       # @return [GOBL::CBC::Meta]
       property :meta, GOBL::CBC::Meta
+
+      # @!attribute [r] ext
+      # Extension data
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
     end
   end
 end

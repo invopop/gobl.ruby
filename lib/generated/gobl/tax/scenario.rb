@@ -32,15 +32,15 @@ module GOBL
       # @return [GOBL::CBC::Key]
       property :ext_key, GOBL::CBC::Key
 
-      # @!attribute [r] ext_value
-      # Extension value that along side the key must be present for a match to happen. This cannot be used without an `ExtKey`. The value will be copied to the note code if needed.
-      # @return [String]
-      property :ext_value, String
+      # @!attribute [r] ext_code
+      # Extension code that along side the key must be present for a match to happen. This cannot be used without an `cbc.Code`. The value will be copied to the note code if needed.
+      # @return [GOBL::CBC::Code]
+      property :ext_code, GOBL::CBC::Code
 
       # @!attribute [r] note
       # A note to be added to the document if the scenario is applied.
-      # @return [GOBL::CBC::Note]
-      property :note, GOBL::CBC::Note
+      # @return [ScenarioNote]
+      property :note, ScenarioNote
 
       # @!attribute [r] codes
       # Codes is used to define additional codes for regime specific situations.
