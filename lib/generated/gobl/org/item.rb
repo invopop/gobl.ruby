@@ -19,8 +19,8 @@ module GOBL
 
       # @!attribute [r] ref
       # Primary reference code that identifies this item. Additional codes can be provided in the 'identities' property.
-      # @return [String]
-      property :ref, String
+      # @return [GOBL::CBC::Code]
+      property :ref, GOBL::CBC::Code
 
       # @!attribute [r] key
       # Special key used to classify the item sometimes required by some regimes.
@@ -52,7 +52,6 @@ module GOBL
       # Base price of a single unit to be sold.
       # @return [GOBL::Num::Amount]
       property :price, GOBL::Num::Amount
-      validates_presence_of :price
 
       # @!attribute [r] alt_prices
       # AltPrices defines a list of prices with their currencies that may be used as an alternative to the item's base price.

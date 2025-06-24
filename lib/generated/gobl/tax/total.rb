@@ -18,10 +18,15 @@ module GOBL
       property :categories, [CategoryTotal]
 
       # @!attribute [r] sum
-      # Total value of all the taxes applied.
+      # Total value of all non-retained or indirect taxes.
       # @return [GOBL::Num::Amount]
       property :sum, GOBL::Num::Amount
       validates_presence_of :sum
+
+      # @!attribute [r] retained
+      # Sum of retained or withheld tax amounts
+      # @return [GOBL::Num::Amount]
+      property :retained, GOBL::Num::Amount
     end
   end
 end

@@ -12,6 +12,10 @@ module GOBL
       # The Schema ID of the GOBL Party structure
       SCHEMA_ID = 'https://gobl.org/draft-0/org/party'
 
+      # @!attribute [r] $regime
+      # @return [GOBL::L10n::TaxCountryCode]
+      property :$regime, GOBL::L10n::TaxCountryCode
+
       # @!attribute [r] uuid
       # Universally Unique Identifier.
       # @return [String]

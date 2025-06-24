@@ -10,7 +10,7 @@ module GOBL
     # Ordering provides additional information about the ordering process including references to other documents and alternative parties involved in the order-to-delivery process.
     class Ordering < GOBL::Object
       # The Schema ID of the GOBL Ordering structure
-      SCHEMA_ID = 'https://gobl.org/draft-0/bill/invoice#/$defs/Ordering'
+      SCHEMA_ID = 'https://gobl.org/draft-0/bill/ordering'
 
       # @!attribute [r] code
       # Identifier assigned by the customer or buyer for internal routing purposes.
@@ -22,18 +22,23 @@ module GOBL
       # @return [Array<GOBL::Org::Identity>]
       property :identities, [GOBL::Org::Identity]
 
+      # @!attribute [r] cost
+      # Buyer accounting reference cost code associated with the document.
+      # @return [GOBL::CBC::Code]
+      property :cost, GOBL::CBC::Code
+
       # @!attribute [r] period
       # Period of time that the invoice document refers to often used in addition to the details provided in the individual line items.
       # @return [GOBL::Cal::Period]
       property :period, GOBL::Cal::Period
 
       # @!attribute [r] buyer
-      # Party who is responsible for making the purchase, but is not responsible for handling taxes.
+      # Party who is responsible for issuing payment, if not the same as the customer.
       # @return [GOBL::Org::Party]
       property :buyer, GOBL::Org::Party
 
       # @!attribute [r] seller
-      # Party who is selling the goods but is not responsible for taxes like the supplier.
+      # Seller is the party liable to pay taxes on the transaction if not the same as the supplier.
       # @return [GOBL::Org::Party]
       property :seller, GOBL::Org::Party
 

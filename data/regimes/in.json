@@ -1,0 +1,128 @@
+{
+  "$schema": "https://gobl.org/draft-0/tax/regime-def",
+  "name": {
+    "en": "India"
+  },
+  "time_zone": "Asia/Kolkata",
+  "country": "IN",
+  "currency": "INR",
+  "tax_scheme": "GST",
+  "scenarios": [
+    {
+      "schema": "bill/invoice",
+      "list": [
+        {
+          "tags": [
+            "reverse-charge"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "reverse-charge",
+            "text": "Reverse Charge"
+          }
+        },
+        {
+          "tags": [
+            "simplified"
+          ],
+          "note": {
+            "key": "legal",
+            "src": "simplified",
+            "text": "Simplified Tax Invoice"
+          }
+        }
+      ]
+    }
+  ],
+  "corrections": [
+    {
+      "schema": "bill/invoice",
+      "types": [
+        "credit-note",
+        "debit-note"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "code": "CGST",
+      "name": {
+        "en": "CGST",
+        "hi": "सीजीएसटी"
+      },
+      "title": {
+        "en": "Central Goods and Services Tax",
+        "hi": "केंद्रीय माल और सेवा कर"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "Central GST Regulations",
+            "hi": "केंद्रीय जीएसटी नियमावली"
+          },
+          "url": "https://gstcouncil.gov.in/central-gst"
+        }
+      ]
+    },
+    {
+      "code": "SGST",
+      "name": {
+        "en": "SGST",
+        "hi": "एसजीएसटी"
+      },
+      "title": {
+        "en": "State Goods and Services Tax",
+        "hi": "राज्य माल और सेवा कर"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "State GST Regulations",
+            "hi": "राज्य जीएसटी नियमावली"
+          },
+          "url": "https://gstcouncil.gov.in/sgst"
+        }
+      ]
+    },
+    {
+      "code": "IGST",
+      "name": {
+        "en": "IGST",
+        "hi": "आईजीएसटी"
+      },
+      "title": {
+        "en": "Integrated Goods and Services Tax",
+        "hi": "एकीकृत माल और सेवा कर"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "Integrated GST Regulations",
+            "hi": "एकीकृत जीएसटी नियमावली"
+          },
+          "url": "https://gstcouncil.gov.in/gst_council/igst"
+        }
+      ]
+    },
+    {
+      "code": "UTGST",
+      "name": {
+        "en": "UTGST",
+        "hi": "यूटीजीएसटी"
+      },
+      "title": {
+        "en": "Union Territory Goods and Services Tax",
+        "hi": "केंद्र शासित प्रदेश माल और सेवा कर"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "Union Territory GST Regulations",
+            "hi": "यूटीजीएसटी नियमावली"
+          },
+          "url": "https://gstcouncil.gov.in/utgst"
+        }
+      ]
+    }
+  ]
+}

@@ -18,6 +18,11 @@ module GOBL
       property :key, GOBL::CBC::Key
       validates_presence_of :key
 
+      # @!attribute [r] requires
+      # Requires defines any additional addons that this one depends on to operate correctly.
+      # @return [Array<GOBL::CBC::Key>]
+      property :requires, [GOBL::CBC::Key]
+
       # @!attribute [r] name
       # Name of the add-on
       # @return [GOBL::I18n::String]
@@ -29,10 +34,15 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :description, GOBL::I18n::String
 
+      # @!attribute [r] sources
+      # Sources is a list of sources that are used to provide the data for the add-on.
+      # @return [Array<GOBL::CBC::Source>]
+      property :sources, [GOBL::CBC::Source]
+
       # @!attribute [r] extensions
       # Extensions defines the list of extensions that are associated with an add-on.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :extensions, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :extensions, [GOBL::CBC::Definition]
       validates_presence_of :extensions
 
       # @!attribute [r] tags
@@ -46,10 +56,15 @@ module GOBL
       property :scenarios, [ScenarioSet]
       validates_presence_of :scenarios
 
+      # @!attribute [r] identities
+      # Identities that are specific for the add-on and may be validated against or used during conversion processes.
+      # @return [Array<GOBL::CBC::Definition>]
+      property :identities, [GOBL::CBC::Definition]
+
       # @!attribute [r] inboxes
       # Inboxes is a list of keys that are used to identify where copies of documents can be sent.
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :inboxes, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :inboxes, [GOBL::CBC::Definition]
 
       # @!attribute [r] corrections
       # Corrections is used to provide a map of correction definitions that are supported by the add-on.

@@ -20,8 +20,8 @@ module GOBL
 
       # @!attribute [r] list
       # List of tags for the schema
-      # @return [Array<GOBL::CBC::KeyDefinition>]
-      property :list, [GOBL::CBC::KeyDefinition]
+      # @return [Array<GOBL::CBC::Definition>]
+      property :list, [GOBL::CBC::Definition]
       validates_presence_of :list
     end
   end

@@ -4,6 +4,39 @@
   "name": {
     "en": "Portugal SAF-T"
   },
+  "description": {
+    "en": "Portugal doesn't have an e-invoicing format per se. Tax information is reported\nelectronically to the AT (Autoridade Tributária e Aduaneira) either periodically in\nbatches via a SAF-T (PT) report or individually in real time via a web service. This addon\nensures that the GOBL documents have all the required fields to be able to be reported to\nthe AT."
+  },
+  "sources": [
+    {
+      "title": {
+        "en": "Portaria n.o 302/2016 – SAF-T Data Structure \u0026 Taxonomies"
+      },
+      "url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/legislacao/diplomas_legislativos/Documents/Portaria_302_2016.pdf",
+      "content_type": "application/pdf"
+    },
+    {
+      "title": {
+        "en": "Portaria n.o 195/2020 – Comunicação de Séries Documentais, Aspetos Específicos"
+      },
+      "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Comunicacao_Series_ATCUD/Documents/Comunicacao_de_Series_Documentais_Manual_de_Integracao_de_SW_Aspetos_Genericos.pdf",
+      "content_type": "application/pdf"
+    },
+    {
+      "title": {
+        "en": "Portaria n.o 195/2020 – Especificações Técnicas Código QR"
+      },
+      "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Novas_regras_faturacao/Documents/Especificacoes_Tecnicas_Codigo_QR.pdf",
+      "content_type": "application/pdf"
+    },
+    {
+      "title": {
+        "en": "Comunicação dos elementos dos documentos de faturação à AT, por webservice"
+      },
+      "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Fatcorews/Documents/Comunicacao_dos_elementos_dos_documentos_de_faturacao.pdf",
+      "content_type": "application/pdf"
+    }
+  ],
   "extensions": [
     {
       "key": "pt-saft-invoice-type",
@@ -11,40 +44,81 @@
         "en": "Invoice Type",
         "pt": "Tipo de Fatura"
       },
+      "desc": {
+        "en": "SAF-T's `InvoiceType` (Tipo de documento) specifies the type of a sales invoice. In GOBL,\nthis type can be set using the `pt-saft-invoice-type` extension in the tax section. GOBL\nwill set the extension for you based on the type and the tax tags you set in your invoice.\n\nThe table below shows how this mapping is done:\n\n| Code | Name                | GOBL Type     | GOBL Tax Tag    |\n| ---- | ------------------- | ------------- | --------------- |\n| `FT` | Standard Invoice    | `standard`    |                 |\n| `FS` | Simplified Invoice  | `standard`    | `simplified`    |\n| `FR` | Invoice-Receipt     | `standard`    | `invoice-receipt` |\n| `ND` | Debit Note          | `debit-note`  |                 |\n| `NC` | Credit Note         | `credit-note` |                 |\n\nExample:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/invoice\",\n\t\"$tags\": [\n\t\t\"invoice-receipt\"\n\t],\n\t// ...\n\t\"type\": \"standard\",\n\t// ...\n\t\"tax\": {\n\t\t\"ext\": {\n\t\t\t\"pt-saft-invoice-type\": \"FR\"\n\t\t}\n\t},\n\t// ...\n```"
+      },
       "values": [
         {
-          "value": "FT",
+          "code": "FT",
           "name": {
             "en": "Standard Invoice",
             "pt": "Fatura"
+          },
+          "desc": {
+            "en": "Invoice issued under article 36 of the VAT code.",
+            "pt": "Fatura, emitida nos termos do artigo 36.o do Código do IVA"
           }
         },
         {
-          "value": "FS",
+          "code": "FS",
           "name": {
             "en": "Simplified Invoice",
             "pt": "Fatura Simplificada"
+          },
+          "desc": {
+            "en": "Simplified invoice issued under article 40 of the VAT code.",
+            "pt": "Fatura simplificada, emitida nos termos do artigo 40.o do Código do IVA"
           }
         },
         {
-          "value": "FR",
+          "code": "FR",
           "name": {
             "en": "Invoice-Receipt",
             "pt": "Fatura-Recibo"
+          },
+          "desc": {
+            "en": "Invoice issued after payment.",
+            "pt": "Fatura-recibo"
           }
         },
         {
-          "value": "ND",
+          "code": "ND",
           "name": {
             "en": "Debit Note",
             "pt": "Nota de Débito"
           }
         },
         {
-          "value": "NC",
+          "code": "NC",
           "name": {
             "en": "Credit Note",
             "pt": "Nota de Crédito"
+          }
+        }
+      ]
+    },
+    {
+      "key": "pt-saft-payment-type",
+      "name": {
+        "en": "Payment Type",
+        "pt": "Tipo de Pagamento"
+      },
+      "desc": {
+        "en": "To report payment receipts to the AT, GOBL provides conversion from `bill.Payment`\ndocuments. In a payment, the SAF-T's `PaymentType` (Tipo de documento) field specifies its\ntype. In GOBL, this type can be set using the `pt-saft-payment-type` extension. GOBL will\nset the extension automatically based on the type and the tax tags you set. The table\nbelow shows how this mapping is done:\n\n| Code | Name                                       | GOBL Type | GOBL Tax Tag |\n| ---- | ------------------------------------------ | --------- | ------------ |\n| RG   | Outro Recibo                               | `receipt` |              |\n| RC   | Recibo no âmbito do regime de IVA de Caixa | `receipt` | `vat-cash`   |\n\nFor example:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/payment\",\n\t// ...\n\t\"type\": \"receipt\",\n\t// ...\n\t\"ext\": {\n\t\t\"pt-saft-receipt-type\": \"RG\"\n\t},\n\t// ...\n```"
+      },
+      "values": [
+        {
+          "code": "RC",
+          "name": {
+            "en": "Receipt under the VAT Cash scheme",
+            "pt": "Recibo no âmbito do regime de IVA de Caixa"
+          }
+        },
+        {
+          "code": "RG",
+          "name": {
+            "en": "Other Receipt",
+            "pt": "Outro Recibo"
           }
         }
       ]
@@ -55,37 +129,40 @@
         "en": "Tax Rate Code",
         "pt": "Código da Taxa de Imposto"
       },
+      "desc": {
+        "en": "The SAF-T's `TaxCode` (Código do imposto) is required for invoice items that apply VAT.\nGOBL provides the `pt-saft-tax-rate` extension to set this code at line tax level. It also\ndetermines it automatically this code using the `rate` field (when present). The following\ntable lists the supported tax codes and how GOBL will map them:\n\n| Code   | Name            | GOBL Tax Rate  |\n| ------ | --------------- | -------------- |\n| `NOR`  | Tipo Geral      | `standard`     |\n| `INT`  | Taxa Intermédia | `intermediate` |\n| `RED`  | Taxa Reduzida   | `reduced`      |\n| `ISE`  | Isenta          | `exempt`       |"
+      },
       "values": [
         {
-          "value": "RED",
+          "code": "RED",
           "name": {
             "en": "Reduced",
             "pt": "Redução"
           }
         },
         {
-          "value": "INT",
+          "code": "INT",
           "name": {
             "en": "Intermediate",
             "pt": "Intermédio"
           }
         },
         {
-          "value": "NOR",
+          "code": "NOR",
           "name": {
             "en": "Normal",
             "pt": "Normal"
           }
         },
         {
-          "value": "ISE",
+          "code": "ISE",
           "name": {
             "en": "Exempt",
             "pt": "Isento"
           }
         },
         {
-          "value": "OUT",
+          "code": "OUT",
           "name": {
             "en": "Other",
             "pt": "Outro"
@@ -99,208 +176,541 @@
         "en": "Tax exemption reason code",
         "pt": "Código do motivo de isenção de imposto"
       },
+      "desc": {
+        "en": "AT's `TaxExemptionCode` (Código do motivo de isenção de imposto) is a code that\nspecifies the reason the VAT tax is exempt in a Portuguese invoice. When the `exempt` tag\nis used in a tax combo, the `ext` map's `pt-exemption-code` property is required.\n\nFor example, you could define an invoice line exempt of tax as follows:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/invoice\",\n\t// ...\n\t\"lines\": [\n\t\t{\n\t\t\t// ...\n\t\t\t\"item\": {\n\t\t\t\t\"name\": \"Some service exempt of tax\",\n\t\t\t\t\"price\": \"25.00\"\n\t\t\t},\n\t\t\t\"tax\": [\n\t\t\t\t{\n\t\t\t\t\t\t\"cat\": \"VAT\",\n\t\t\t\t\t\t\"rate\": \"exempt\",\n\t\t\t\t\t\t\"ext\": {\n\t\t\t\t\t\t\t\"pt-saft-tax-rate\": \"ISE\",\n\t\t\t\t\t\t\t\"pt-saft-exemption\": \"M19\"\n\t\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n}\n```"
+      },
+      "sources": [
+        {
+          "title": {
+            "en": "Códigos de motivo de isenção",
+            "pt": "AT Tax Exemption Codes"
+          },
+          "url": "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Faturacao/Fatcorews/Documents/Tabela_Codigos_Motivo_Isencao.pdf",
+          "content_type": "application/pdf"
+        }
+      ],
       "values": [
         {
-          "value": "M01",
+          "code": "M01",
           "name": {
             "en": "Article 16, No. 6 of the VAT code",
             "pt": "Artigo 16.°, n.° 6 do CIVA"
           }
         },
         {
-          "value": "M02",
+          "code": "M02",
           "name": {
             "en": "Article 6 of the Decree-Law 198/90 of 19th June",
             "pt": "Artigo 6.° do Decreto-Lei n.° 198/90, de 19 de junho"
           }
         },
         {
-          "value": "M04",
+          "code": "M04",
           "name": {
             "en": "Exempt pursuant to article 13 of the VAT code",
             "pt": "Isento artigo 13.° do CIVA"
           }
         },
         {
-          "value": "M05",
+          "code": "M05",
           "name": {
             "en": "Exempt pursuant to article 14 of the VAT code",
             "pt": "Isento artigo 14.° do CIVA"
           }
         },
         {
-          "value": "M06",
+          "code": "M06",
           "name": {
             "en": "Exempt pursuant to article 15 of the VAT code",
             "pt": "Isento artigo 15.° do CIVA"
           }
         },
         {
-          "value": "M07",
+          "code": "M07",
           "name": {
             "en": "Exempt pursuant to article 9 of the VAT code",
             "pt": "Isento artigo 9.° do CIVA"
           }
         },
         {
-          "value": "M09",
+          "code": "M09",
           "name": {
             "en": "VAT - does not confer right to deduct / Article 62 paragraph b) of the VAT code",
             "pt": "IVA - não confere direito a dedução / Artigo 62.° alínea b) do CIVA"
           }
         },
         {
-          "value": "M10",
+          "code": "M10",
           "name": {
             "en": "VAT - exemption scheme / Article 57 of the VAT code",
             "pt": "IVA - regime de isenção / Artigo 57.° do CIVA"
           }
         },
         {
-          "value": "M11",
+          "code": "M11",
           "name": {
             "en": "Special scheme for tobacco / Decree-Law No. 346/85 of 23rd August",
             "pt": "Regime particular do tabaco / Decreto-Lei n.° 346/85, de 23 de agosto"
           }
         },
         {
-          "value": "M12",
+          "code": "M12",
           "name": {
             "en": "Margin scheme - Travel agencies / Decree-Law No. 221/85 of 3rd July",
             "pt": "Regime da margem de lucro - Agências de viagens / Decreto-Lei n.° 221/85, de 3 de julho"
           }
         },
         {
-          "value": "M13",
+          "code": "M13",
           "name": {
             "en": "Margin scheme - Second-hand goods / Decree-Law No. 199/96 of 18th October",
             "pt": "Regime da margem de lucro - Bens em segunda mão / Decreto-Lei n.° 199/96, de 18 de outubro"
           }
         },
         {
-          "value": "M14",
+          "code": "M14",
           "name": {
             "en": "Margin scheme - Works of art / Decree-Law No. 199/96 of 18th October",
             "pt": "Regime da margem de lucro - Objetos de arte / Decreto-Lei n.° 199/96, de 18 de outubro"
           }
         },
         {
-          "value": "M15",
+          "code": "M15",
           "name": {
-            "en": "Margin scheme - Collector’s items and antiques / Decree-Law No. 199/96 of 18th October",
+            "en": "Margin scheme - Collector's items and antiques / Decree-Law No. 199/96 of 18th October",
             "pt": "Regime da margem de lucro - Objetos de coleção e antiguidades / Decreto-Lei n.° 199/96, de 18 de outubro"
           }
         },
         {
-          "value": "M16",
+          "code": "M16",
           "name": {
             "en": "Exempt pursuant to Article 14 of the RITI",
             "pt": "Isento artigo 14.° do RITI"
           }
         },
         {
-          "value": "M19",
+          "code": "M19",
           "name": {
             "en": "Other exemptions - Temporary exemptions determined by specific legislation",
             "pt": "Outras isenções - Isenções temporárias determinadas em diploma próprio"
           }
         },
         {
-          "value": "M20",
+          "code": "M20",
           "name": {
             "en": "VAT - flat-rate scheme / Article 59-D No. 2 of the VAT code",
             "pt": "IVA - regime forfetário / Artigo 59.°-D n.°2 do CIVA"
           }
         },
         {
-          "value": "M21",
+          "code": "M21",
           "name": {
             "en": "VAT - does not confer right to deduct (or similar) - Article 72 No. 4 of the VAT code",
             "pt": "IVA - não confere direito à dedução (ou expressão similar) - Artigo 72.° n.° 4 do CIVA"
           }
         },
         {
-          "value": "M25",
+          "code": "M25",
           "name": {
             "en": "Consignment goods - Article 38 No. 1 paragraph a) of the VAT code",
             "pt": "Mercadorias à consignação - Artigo 38.° n.° 1 alínea a) do CIVA"
           }
         },
         {
-          "value": "M30",
+          "code": "M30",
           "name": {
             "en": "VAT - reverse charge / Article 2 No. 1 paragraph i) of the VAT code",
             "pt": "IVA - autoliquidação / Artigo 2.° n.° 1 alínea i) do CIVA"
           }
         },
         {
-          "value": "M31",
+          "code": "M31",
           "name": {
             "en": "VAT - reverse charge / Article 2 No. 1 paragraph j) of the VAT code",
             "pt": "IVA - autoliquidação / Artigo 2.° n.° 1 alínea j) do CIVA"
           }
         },
         {
-          "value": "M32",
+          "code": "M32",
           "name": {
             "en": "VAT - reverse charge / Article 2 No. 1 paragraph l) of the VAT code",
             "pt": "IVA - autoliquidação / Artigo 2.° n.° 1 alínea I) do CIVA"
           }
         },
         {
-          "value": "M33",
+          "code": "M33",
           "name": {
             "en": "VAT - reverse charge / Article 2 No. 1 paragraph m) of the VAT code",
             "pt": "IVA - autoliquidação / Artigo 2.° n.° 1 alínea m) do CIVA"
           }
         },
         {
-          "value": "M40",
+          "code": "M40",
           "name": {
             "en": "VAT - reverse charge / Article 6 No. 6 paragraph a) of the VAT code, to the contrary",
             "pt": "IVA - autoliquidação / Artigo 6.° n.° 6 alínea a) do CIVA, a contrário"
           }
         },
         {
-          "value": "M41",
+          "code": "M41",
           "name": {
             "en": "VAT - reverse charge / Article 8 No. 3 of the RITI",
             "pt": "IVA - autoliquidação / Artigo 8.° n.° 3 do RITI"
           }
         },
         {
-          "value": "M42",
+          "code": "M42",
           "name": {
             "en": "VAT - reverse charge / Decree-Law No. 21/2007 of 29 January",
             "pt": "IVA - autoliquidação / Decreto-Lei n.° 21/2007, de 29 de janeiro"
           }
         },
         {
-          "value": "M43",
+          "code": "M43",
           "name": {
             "en": "VAT - reverse charge / Decree-Law No. 362/99 of 16th September",
             "pt": "IVA - autoliquidação / Decreto-Lei n.° 362/99, de 16 de setembro"
           }
         },
         {
-          "value": "M99",
+          "code": "M99",
           "name": {
             "en": "Not subject to tax or not taxed",
             "pt": "Não sujeito ou não tributado"
           }
         }
       ]
-    }
-  ],
-  "tags": [
+    },
     {
-      "schema": "bill/invoice",
-      "list": [
+      "key": "pt-saft-product-type",
+      "name": {
+        "en": "Product Type",
+        "pt": "Tipo de Produto"
+      },
+      "desc": {
+        "en": "SAF-T's `ProductType` (Indicador de produto ou serviço) indicates the type of each line\nitem in an invoice. The `pt-saft-product-type` extension used at line item level allows to\nset the product type to one of the allowed values.\n\nExample:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/invoice\",\n\t// ...\n\t\"lines\": [\n\t\t{\n\t\t\t// ...\n\t\t\t\"item\": {\n\t\t\t\t\"name\": \"Some service\",\n\t\t\t\t\"price\": \"25.00\",\n\t\t\t\t\"ext\": {\n\t\t\t\t\t\"pt-saft-product-type\": \"S\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t// ...\n\t\t}\n\t]\n}\n```"
+      },
+      "values": [
         {
-          "key": "invoice-receipt",
+          "code": "P",
           "name": {
-            "en": "Invoice-receipt",
-            "pt": "Fatura-recibo"
+            "en": "Goods",
+            "pt": "Produtos"
+          }
+        },
+        {
+          "code": "S",
+          "name": {
+            "en": "Services",
+            "pt": "Serviços"
+          }
+        },
+        {
+          "code": "O",
+          "name": {
+            "en": "Other",
+            "pt": "Outros"
+          },
+          "desc": {
+            "en": "Other (e.g., debited postage, advances received or disposal of assets)",
+            "pt": "Outros (ex., portes debitados, adiantamentos recebidos ou alienação de ativos)"
+          }
+        },
+        {
+          "code": "E",
+          "name": {
+            "en": "Excise Duties",
+            "pt": "Impostos Especiais"
+          },
+          "desc": {
+            "en": "Excise Duties (e.g., IABA, ISP, IT)",
+            "pt": "Impostos Especiais de Consumo (ex., IABA, ISP, IT)"
+          }
+        },
+        {
+          "code": "I",
+          "name": {
+            "en": "Taxes/Fees",
+            "pt": "Impostos/Taxas"
+          },
+          "desc": {
+            "en": "Taxes, fees and parafiscal charges (except VAT and IS which should be reflected in table 2.5 - TaxTable and Excise Duties, which should be filled in with code 'E')",
+            "pt": "Impostos, taxas e encargos parafiscais – exceto IVA e IS que deverão ser refletidos na tabela 2.5 – Tabela de impostos (TaxTable) e Impostos Especiais de Consumo, que deverão ser preenchidos com o código 'E'."
+          }
+        }
+      ]
+    },
+    {
+      "key": "pt-saft-work-type",
+      "name": {
+        "en": "Document Type",
+        "pt": "Tipo de documento"
+      },
+      "desc": {
+        "en": "SAF-T's `WorkType` (Tipo de documento de conferência) specifies the type of a working\ndocument. In GOBL, this type can be set using the `pt-saft-work-type` extension in either\n`bill.Invoice` or `bill.Order` documents. GOBL will set the extension for you based on the\ndocument type in some cases.\n\nThe table below shows the supported work type codes and their compatibility with GOBL objects:\n\n| Code   | Name                            | GOBL Doc | GOBL Type  |\n| ------ | ------------------------------- | -------- | ---------- |\n| `PF`   | Pró-forma                       | Invoice  | `proforma` |\n| `FC`   | Fatura de consignação           | Invoice  |            |\n| `CC`   | Credito de consignação          | Invoice  |            |\n| `CM`   | Consultas de mesa               | Order    |            |\n| `FO`   | Folhas de obra                  | Order    |            |\n| `NE`   | Nota de Encomenda               | Order    | `purchase` |\n| `OU`   | Outros                          | Order    |            |\n| `OR`   | Orçamentos                      | Order    | `quote`    |\n| `DC`   | Documentos de conferência       | Order    |            |\n| `RP`   | Prémio ou recibo de prémio      | Order    |            |\n| `RE`   | Estorno ou recibo de estorno    | Order    |            |\n| `CS`   | Imputação a co-seguradoras      | Order    |            |\n| `LD`   | Imputação a co-seguradora líder | Order    |            |\n| `RA`   | Resseguro aceite                | Order    |            |\n\nExample for a proforma invoice:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/invoice\",\n\t\"type\": \"proforma\",\n\t// ...\n\t\"tax\": {\n\t\t\"ext\": {\n\t\t\t\"pt-saft-work-type\": \"PF\"\n\t\t}\n\t},\n\t// ...\n```\n\nExample for a purchase order:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/order\",\n\t\"type\": \"purchase\",\n\t// ...\n\t\"tax\": {\n\t\t\"ext\": {\n\t\t\t\"pt-saft-work-type\": \"NE\"\n\t\t}\n\t},\n\t// ...\n```"
+      },
+      "values": [
+        {
+          "code": "CM",
+          "name": {
+            "en": "Table orders",
+            "pt": "Consultas de mesa"
+          }
+        },
+        {
+          "code": "CC",
+          "name": {
+            "en": "Consignment credit note",
+            "pt": "Credito de consignação"
+          }
+        },
+        {
+          "code": "FC",
+          "name": {
+            "en": "VAT-compliant consignment invoice (Article 38)",
+            "pt": "Fatura de consignação nos termos do art.º 38º do código do IVA"
+          }
+        },
+        {
+          "code": "FO",
+          "name": {
+            "en": "Work orders",
+            "pt": "Folhas de obra"
+          }
+        },
+        {
+          "code": "NE",
+          "name": {
+            "en": "Purchase order",
+            "pt": "Nota de Encomenda"
+          }
+        },
+        {
+          "code": "OU",
+          "name": {
+            "en": "Other documents",
+            "pt": "Outros"
+          }
+        },
+        {
+          "code": "OR",
+          "name": {
+            "en": "Quotations",
+            "pt": "Orçamentos"
+          }
+        },
+        {
+          "code": "PF",
+          "name": {
+            "en": "Pro forma invoice",
+            "pt": "Pró-forma"
+          }
+        },
+        {
+          "code": "DC",
+          "name": {
+            "en": "Delivery verification documents",
+            "pt": "Documentos emitidos que sejam suscetíveis de apresentação ao cliente para conferência de mercadorias ou de prestação de serviços"
+          },
+          "desc": {
+            "en": "For data up to 2017-06-30",
+            "pt": "Para dados até 2017-06-30"
+          }
+        },
+        {
+          "code": "RP",
+          "name": {
+            "en": "Premium Receipt",
+            "pt": "Prémio ou recibo de prémio"
+          }
+        },
+        {
+          "code": "RE",
+          "name": {
+            "en": "Chargeback Receipt",
+            "pt": "Estorno ou recibo de estorno"
+          }
+        },
+        {
+          "code": "CS",
+          "name": {
+            "en": "Co-insurers Allocation",
+            "pt": "Imputação a co-seguradoras"
+          }
+        },
+        {
+          "code": "LD",
+          "name": {
+            "en": "Lead Co-insurer Allocation",
+            "pt": "Imputação a co-seguradora líder"
+          }
+        },
+        {
+          "code": "RA",
+          "name": {
+            "en": "Accepted Reinsurance",
+            "pt": "Resseguro aceite"
+          }
+        }
+      ]
+    },
+    {
+      "key": "pt-saft-payment-means",
+      "name": {
+        "en": "Payment Means",
+        "pt": "Meio de Pagamento"
+      },
+      "desc": {
+        "en": "The SAF-T's `PaymentMechanism` (Meios de pagamento) field specifies the payment means in a\nsales invoice or payment. GOBL provides the `pt-saft-payment-means` extension to set this\nvalue in your `bill.Invoice` advances or in you `bill.Payment` method. GOBL maps certain\npayment mean keys automatically to this extension:\n\n| Code | Name                                               | GOBL Payment Means                                    |\n| ---- | -------------------------------------------------- | ----------------------------------------------------- |\n| `CC` | Cartão crédito                                     | `card`                                                |\n| `CD` | Cartão débito                                      | (*)                                                   |\n| `CH` | Cheque bancário                                    | `cheque`                                              |\n| `CI` | Letter of credit                                   | (*)                                                   |\n| `CO` | Cheque ou cartão oferta                            | (*)                                                   |\n| `CS` | Compensação de saldos em conta corrente            | `netting`                                             |\n| `DE` | Dinheiro eletrónico                                | `online`                                              |\n| `LC` | Letra comercial                                    | `promissory-note`                                     |\n| `MB` | Referências de pagamento para Multibanco           | (*)                                                   |\n| `NU` | Numerário                                          | `cash`                                                |\n| `OU` | Outro                                              | `other`                                               |\n| `PR` | Permuta de bens                                    | (*)                                                   |\n| `TB` | Transferência bancária ou débito direto autorizado | `credit-transfer`, `debit-transfer` or `direct-debit` |\n| `TR` | Títulos de compensação extrassalarial              | (*)                                                   |\n\n(*) For codes not mapped from a GOBL Payment Mean, use `other` and explicitly set the\nextension.\n\nFor example, in an GOBL invoice:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/invoice\",\n\t// ...\n\t\"payment\": {\n\t\t\"advances\": [\n\t\t\t{\n\t\t\t\t\"date\": \"2023-01-30\",\n\t\t\t\t\"key\": \"credit-transfer\",\n\t\t\t\t\"description\": \"Adiantamento\",\n\t\t\t\t\"amount\": \"100.00\",\n\t\t\t\t\"ext\": {\n\t\t\t\t\t\"pt-saft-payment-means\": \"TB\"\n\t\t\t\t}\n\t\t\t}\n\t\t]\n\t},\n\t// ...\n}\n```\n\nFor example, in a GOBL receipt:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/receipt\",\n\t// ...\n\t\"method\": {\n\t\t\"key\": \"other\",\n\t\t\"detail\": \"Compensação extrassalarial\",\n\t\t\"ext\": {\n\t\t\t\"pt-saft-payment-means\": \"TR\"\n\t\t}\n\t},\n\t// ...\n}"
+      },
+      "values": [
+        {
+          "code": "CC",
+          "name": {
+            "en": "Credit card",
+            "pt": "Cartão crédito"
+          }
+        },
+        {
+          "code": "CD",
+          "name": {
+            "en": "Debit card",
+            "pt": "Cartão débito"
+          }
+        },
+        {
+          "code": "CH",
+          "name": {
+            "en": "Bank cheque",
+            "pt": "Cheque bancário"
+          }
+        },
+        {
+          "code": "CI",
+          "name": {
+            "en": "International documentary credit",
+            "pt": "Letter of credit"
+          }
+        },
+        {
+          "code": "CO",
+          "name": {
+            "en": "Gift cheque or card",
+            "pt": "Cheque ou cartão oferta"
+          }
+        },
+        {
+          "code": "CS",
+          "name": {
+            "en": "Settlement of balances in current account",
+            "pt": "Compensação de saldos em conta corrente"
+          }
+        },
+        {
+          "code": "DE",
+          "name": {
+            "en": "Electronic money",
+            "pt": "Dinheiro eletrónico"
+          }
+        },
+        {
+          "code": "LC",
+          "name": {
+            "en": "Commercial bill",
+            "pt": "Letra comercial"
+          }
+        },
+        {
+          "code": "MB",
+          "name": {
+            "en": "Multibanco payment references",
+            "pt": "Referências de pagamento para Multibanco"
+          }
+        },
+        {
+          "code": "NU",
+          "name": {
+            "en": "Cash",
+            "pt": "Numerário"
+          }
+        },
+        {
+          "code": "OU",
+          "name": {
+            "en": "Other",
+            "pt": "Outro"
+          }
+        },
+        {
+          "code": "PR",
+          "name": {
+            "en": "Barter",
+            "pt": "Permuta de bens"
+          }
+        },
+        {
+          "code": "TB",
+          "name": {
+            "en": "Bank transfer or direct debit",
+            "pt": "Transferência bancária ou débito direto autorizado"
+          }
+        },
+        {
+          "code": "TR",
+          "name": {
+            "en": "Supplementary compensation",
+            "pt": "Títulos de compensação extrassalarial"
+          }
+        }
+      ]
+    },
+    {
+      "key": "pt-saft-movement-type",
+      "name": {
+        "en": "Movement Type",
+        "pt": "Tipo de documento"
+      },
+      "desc": {
+        "en": "SAF-T's `MovementType` (Tipo de documento de movimentação de mercadorias) specifies the type of\na delivery document. In GOBL,this type can be set using the `pt-saft-movement-type` extension.\nIf not provided explicitly, GOBL will set the extension for you based on the type of your delivery\ndocument.\n\nThe table below shows how this mapping is done:\n\n| Code | Name                | GOBL Type     |\n| ---- | ------------------- | ------------- |\n| `GR` | Delivery note       | `note`        |\n| `GT` | Waybill             | `waybill`     |\n\nExample:\n\n```js\n{\n\t\"$schema\": \"https://gobl.org/draft-0/bill/delivery\",\n\t// ...\n\t\"type\": \"note\",\n\t// ...\n\t\"ext\": {\n\t\t\"pt-saft-movement-type\": \"GR\"\n\t},\n\t// ...\n```"
+      },
+      "values": [
+        {
+          "code": "GR",
+          "name": {
+            "en": "Delivery note",
+            "pt": "Guia de remessa"
+          }
+        },
+        {
+          "code": "GT",
+          "name": {
+            "en": "Waybill",
+            "pt": "Guia de transporte"
+          },
+          "desc": {
+            "en": "Include global waybills here",
+            "pt": "Incluir aqui as guias globais"
+          }
+        },
+        {
+          "code": "GA",
+          "name": {
+            "en": "Guide to the movement own fixed assets",
+            "pt": "Guia de movimentação de ativos fixos próprios"
+          }
+        },
+        {
+          "code": "GC",
+          "name": {
+            "en": "Consignment note",
+            "pt": "Guia de consignação"
+          }
+        },
+        {
+          "code": "GD",
+          "name": {
+            "en": "Returns slip or note",
+            "pt": "Guia ou nota de devolução"
           }
         }
       ]
@@ -354,8 +764,16 @@
           }
         },
         {
+          "type": [
+            "proforma"
+          ],
+          "ext": {
+            "pt-saft-work-type": "PF"
+          }
+        },
+        {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M01",
+          "ext_code": "M01",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -364,7 +782,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M02",
+          "ext_code": "M02",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -373,7 +791,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M04",
+          "ext_code": "M04",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -382,7 +800,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M05",
+          "ext_code": "M05",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -391,7 +809,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M06",
+          "ext_code": "M06",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -400,7 +818,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M07",
+          "ext_code": "M07",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -409,7 +827,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M09",
+          "ext_code": "M09",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -418,7 +836,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M10",
+          "ext_code": "M10",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -427,7 +845,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M11",
+          "ext_code": "M11",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -436,7 +854,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M12",
+          "ext_code": "M12",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -445,7 +863,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M13",
+          "ext_code": "M13",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -454,7 +872,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M14",
+          "ext_code": "M14",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -463,7 +881,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M15",
+          "ext_code": "M15",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -472,7 +890,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M16",
+          "ext_code": "M16",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -481,7 +899,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M19",
+          "ext_code": "M19",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -490,7 +908,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M20",
+          "ext_code": "M20",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -499,7 +917,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M21",
+          "ext_code": "M21",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -508,7 +926,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M25",
+          "ext_code": "M25",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -517,7 +935,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M30",
+          "ext_code": "M30",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -526,7 +944,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M31",
+          "ext_code": "M31",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -535,7 +953,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M32",
+          "ext_code": "M32",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -544,7 +962,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M33",
+          "ext_code": "M33",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -553,7 +971,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M40",
+          "ext_code": "M40",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -562,7 +980,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M41",
+          "ext_code": "M41",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -571,7 +989,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M42",
+          "ext_code": "M42",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -580,7 +998,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M43",
+          "ext_code": "M43",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",
@@ -589,7 +1007,7 @@
         },
         {
           "ext_key": "pt-saft-exemption",
-          "ext_value": "M99",
+          "ext_code": "M99",
           "note": {
             "key": "legal",
             "src": "pt-saft-exemption",

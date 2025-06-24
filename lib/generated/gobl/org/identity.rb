@@ -28,7 +28,7 @@ module GOBL
       property :country, GOBL::L10n::ISOCountryCode
 
       # @!attribute [r] key
-      # Uniquely classify this identity using a key instead of a code.
+      # Uniquely classify this identity using a key instead of a type.
       # @return [GOBL::CBC::Key]
       property :key, GOBL::CBC::Key
 
@@ -47,6 +47,11 @@ module GOBL
       # Description adds details about what the code could mean or imply
       # @return [String]
       property :description, String
+
+      # @!attribute [r] ext
+      # Ext provides a way to add additional information to the identity.
+      # @return [GOBL::Tax::Extensions]
+      property :ext, GOBL::Tax::Extensions
     end
   end
 end
