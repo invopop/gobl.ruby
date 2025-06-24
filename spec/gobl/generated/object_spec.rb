@@ -24,6 +24,7 @@ RSpec.describe 'Generated Object' do
   it 'validates the presence of mandatory and non-calculated fields' do
     invoice = object_class.new
     expect(invoice).not_to be_valid
+    expect(invoice.errors.full_messages).to include("Supplier can't be blank") # `supplier` is mandatory and not calculated
     expect(invoice.errors.full_messages).not_to include("Totals can't be blank") # `totals` is mandatory but calculated
   end
 
