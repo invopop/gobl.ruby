@@ -13,57 +13,6 @@
       "schema": "bill/invoice",
       "list": [
         {
-          "key": "simplified",
-          "name": {
-            "de": "Vereinfachte Rechnung",
-            "en": "Simplified Invoice",
-            "es": "Factura Simplificada",
-            "it": "Fattura Semplificata"
-          },
-          "desc": {
-            "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
-            "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
-            "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
-            "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
-          }
-        },
-        {
-          "key": "reverse-charge",
-          "name": {
-            "de": "Umkehr der Steuerschuld",
-            "en": "Reverse Charge",
-            "es": "Inversión del Sujeto Pasivo",
-            "it": "Inversione del soggetto passivo"
-          }
-        },
-        {
-          "key": "self-billed",
-          "name": {
-            "de": "Rechnung durch den Leistungsempfänger",
-            "en": "Self-billed",
-            "es": "Facturación por el destinatario",
-            "it": "Autofattura"
-          }
-        },
-        {
-          "key": "customer-rates",
-          "name": {
-            "de": "Kundensätze",
-            "en": "Customer rates",
-            "es": "Tarifas aplicables al destinatario",
-            "it": "Aliquote applicabili al destinatario"
-          }
-        },
-        {
-          "key": "partial",
-          "name": {
-            "de": "Teilweise",
-            "en": "Partial",
-            "es": "Parcial",
-            "it": "Parziale"
-          }
-        },
-        {
           "key": "invoice-receipt",
           "name": {
             "en": "Invoice-receipt",
@@ -1616,11 +1565,63 @@
         "en": "Value Added Tax",
         "pt": "Imposto sobre o Valor Acrescentado"
       },
-      "rates": [
+      "keys": [
         {
           "key": "standard",
           "name": {
-            "en": "Standard Rate",
+            "en": "Standard"
+          }
+        },
+        {
+          "key": "zero",
+          "name": {
+            "en": "Zero"
+          }
+        },
+        {
+          "key": "reverse-charge",
+          "name": {
+            "en": "Reverse charge"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "exempt",
+          "name": {
+            "en": "Exempt"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "export",
+          "name": {
+            "en": "Export"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "intra-community",
+          "name": {
+            "en": "Intra-community"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "outside-scope",
+          "name": {
+            "en": "Outside scope"
+          },
+          "no_percent": true
+        }
+      ],
+      "rates": [
+        {
+          "rate": "general",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "General Rate",
             "pt": "Tipo Geral"
           },
           "values": [
@@ -1645,7 +1646,10 @@
           ]
         },
         {
-          "key": "intermediate",
+          "rate": "intermediate",
+          "keys": [
+            "standard"
+          ],
           "name": {
             "en": "Intermediate Rate",
             "pt": "Taxa Intermédia"
@@ -1672,7 +1676,10 @@
           ]
         },
         {
-          "key": "reduced",
+          "rate": "reduced",
+          "keys": [
+            "standard"
+          ],
           "name": {
             "en": "Reduced Rate",
             "pt": "Taxa Reduzida"
@@ -1706,15 +1713,10 @@
           ]
         },
         {
-          "key": "exempt",
-          "name": {
-            "en": "Exempt",
-            "pt": "Isento"
-          },
-          "exempt": true
-        },
-        {
-          "key": "other",
+          "rate": "other",
+          "keys": [
+            "standard"
+          ],
           "name": {
             "en": "Other",
             "pt": "Outro"

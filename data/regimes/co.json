@@ -7,64 +7,6 @@
   "time_zone": "America/Bogota",
   "country": "CO",
   "currency": "COP",
-  "tags": [
-    {
-      "schema": "bill/invoice",
-      "list": [
-        {
-          "key": "simplified",
-          "name": {
-            "de": "Vereinfachte Rechnung",
-            "en": "Simplified Invoice",
-            "es": "Factura Simplificada",
-            "it": "Fattura Semplificata"
-          },
-          "desc": {
-            "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
-            "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
-            "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
-            "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
-          }
-        },
-        {
-          "key": "reverse-charge",
-          "name": {
-            "de": "Umkehr der Steuerschuld",
-            "en": "Reverse Charge",
-            "es": "Inversión del Sujeto Pasivo",
-            "it": "Inversione del soggetto passivo"
-          }
-        },
-        {
-          "key": "self-billed",
-          "name": {
-            "de": "Rechnung durch den Leistungsempfänger",
-            "en": "Self-billed",
-            "es": "Facturación por el destinatario",
-            "it": "Autofattura"
-          }
-        },
-        {
-          "key": "customer-rates",
-          "name": {
-            "de": "Kundensätze",
-            "en": "Customer rates",
-            "es": "Tarifas aplicables al destinatario",
-            "it": "Aliquote applicabili al destinatario"
-          }
-        },
-        {
-          "key": "partial",
-          "name": {
-            "de": "Teilweise",
-            "en": "Partial",
-            "es": "Parcial",
-            "it": "Parziale"
-          }
-        }
-      ]
-    }
-  ],
   "corrections": [
     {
       "schema": "bill/invoice",
@@ -85,24 +27,64 @@
         "en": "Value Added Tax",
         "es": "Impuesto al Valor Agregado"
       },
-      "rates": [
-        {
-          "key": "zero",
-          "name": {
-            "en": "Zero Rate",
-            "es": "Cero"
-          },
-          "values": [
-            {
-              "percent": "0.0%"
-            }
-          ]
-        },
+      "keys": [
         {
           "key": "standard",
           "name": {
-            "en": "Standard Rate",
-            "es": "Estándar"
+            "en": "Standard"
+          }
+        },
+        {
+          "key": "zero",
+          "name": {
+            "en": "Zero"
+          }
+        },
+        {
+          "key": "reverse-charge",
+          "name": {
+            "en": "Reverse charge"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "exempt",
+          "name": {
+            "en": "Exempt"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "export",
+          "name": {
+            "en": "Export"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "intra-community",
+          "name": {
+            "en": "Intra-community"
+          },
+          "no_percent": true
+        },
+        {
+          "key": "outside-scope",
+          "name": {
+            "en": "Outside scope"
+          },
+          "no_percent": true
+        }
+      ],
+      "rates": [
+        {
+          "rate": "general",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "General Rate",
+            "es": "General"
           },
           "values": [
             {
@@ -116,7 +98,10 @@
           ]
         },
         {
-          "key": "reduced",
+          "rate": "reduced",
+          "keys": [
+            "standard"
+          ],
           "name": {
             "en": "Reduced Rate",
             "es": "Reducido"
@@ -148,6 +133,16 @@
       "title": {
         "en": "Industry and Commerce Tax",
         "es": "Impuesto de Industria y Comercio"
+      }
+    },
+    {
+      "code": "INC",
+      "name": {
+        "es": "INC"
+      },
+      "title": {
+        "en": "National Consumption Tax",
+        "es": "Impuesto Nacional al Consumo"
       }
     },
     {

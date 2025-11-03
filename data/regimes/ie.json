@@ -1,11 +1,12 @@
 {
   "$schema": "https://gobl.org/draft-0/tax/regime-def",
   "name": {
-    "en": "Switzerland"
+    "en": "Ireland",
+    "ga": "Éire"
   },
-  "time_zone": "Europe/Zurich",
-  "country": "CH",
-  "currency": "CHF",
+  "time_zone": "Europe/Dublin",
+  "country": "IE",
+  "currency": "EUR",
   "tax_scheme": "VAT",
   "scenarios": [
     {
@@ -24,22 +25,16 @@
       ]
     }
   ],
-  "corrections": [
-    {
-      "schema": "bill/invoice",
-      "types": [
-        "credit-note"
-      ]
-    }
-  ],
   "categories": [
     {
       "code": "VAT",
       "name": {
-        "en": "VAT"
+        "en": "VAT",
+        "ga": "CBL"
       },
       "title": {
-        "en": "Value Added Tax"
+        "en": "Value Added Tax",
+        "ga": "Cáin Bhreisluacha"
       },
       "keys": [
         {
@@ -97,33 +92,13 @@
             "standard"
           ],
           "name": {
-            "en": "General Rate"
-          },
-          "desc": {
-            "en": "Applies to most goods and services."
+            "en": "Standard Rate",
+            "ga": "Ráta Caighdeánach"
           },
           "values": [
             {
-              "since": "2024-01-01",
-              "percent": "8.1%"
-            }
-          ]
-        },
-        {
-          "rate": "intermediate",
-          "keys": [
-            "standard"
-          ],
-          "name": {
-            "en": "Intermediate Rate"
-          },
-          "desc": {
-            "en": "Applies to accommodation services."
-          },
-          "values": [
-            {
-              "since": "2024-01-01",
-              "percent": "3.8%"
+              "since": "2012-01-01",
+              "percent": "23.0%"
             }
           ]
         },
@@ -133,15 +108,45 @@
             "standard"
           ],
           "name": {
-            "en": "Reduced Rate"
-          },
-          "desc": {
-            "en": "Applies to food, books, newspapers, and public transport."
+            "en": "First Reduced Rate",
+            "ga": "An Chéad Ráta Laghdaithe"
           },
           "values": [
             {
-              "since": "2024-01-01",
-              "percent": "2.6%"
+              "since": "2003-01-01",
+              "percent": "13.5%"
+            }
+          ]
+        },
+        {
+          "rate": "super-reduced",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "Second Reduced Rate",
+            "ga": "An Dara Ráta Laghdaithe"
+          },
+          "values": [
+            {
+              "since": "2011-01-01",
+              "percent": "9.0%"
+            }
+          ]
+        },
+        {
+          "rate": "special",
+          "keys": [
+            "standard"
+          ],
+          "name": {
+            "en": "Livestock Rate",
+            "ga": "Ráta Beostoic"
+          },
+          "values": [
+            {
+              "since": "2008-01-01",
+              "percent": "4.8%"
             }
           ]
         }
@@ -149,9 +154,17 @@
       "sources": [
         {
           "title": {
-            "en": "Current Swiss VAT rates | FTA"
+            "en": "Revenue - Current VAT Rates"
           },
-          "url": "https://www.estv.admin.ch/estv/en/home/value-added-tax/vat-rates-switzerland.html"
+          "url": "https://www.revenue.ie/en/vat/vat-rates/search-vat-rates/current-vat-rates.aspx",
+          "at": "2025-01-29T00:00:00"
+        },
+        {
+          "title": {
+            "en": "Citizens Information - Value Added Tax"
+          },
+          "url": "https://www.citizensinformation.ie/en/money-and-tax/tax/duties-and-vat/value-added-tax/",
+          "at": "2025-01-29T00:00:00"
         }
       ]
     }

@@ -4,65 +4,32 @@
     "en": "Brazil",
     "pt": "Brasil"
   },
+  "description": {
+    "en": "Tax identification in Brazil is provided either through a CNPJ for businesses or a CPF for individuals. Both types are valid for the issuance of NFS-e (electronic service invoices)."
+  },
   "time_zone": "America/Sao_Paulo",
   "country": "BR",
   "currency": "BRL",
-  "tags": [
+  "extensions": [
     {
-      "schema": "bill/invoice",
-      "list": [
+      "key": "br-ibge-municipality",
+      "name": {
+        "en": "IBGE Municipality Code",
+        "pt": "Código do Município do IBGE"
+      },
+      "desc": {
+        "en": "The municipality code as defined by the IBGE (Brazilian Institute of Geography and\nStatistics)."
+      },
+      "sources": [
         {
-          "key": "simplified",
-          "name": {
-            "de": "Vereinfachte Rechnung",
-            "en": "Simplified Invoice",
-            "es": "Factura Simplificada",
-            "it": "Fattura Semplificata"
+          "title": {
+            "en": "IBGE - Municipalities Codes",
+            "pt": "IBGE - Códigos dos Municípios"
           },
-          "desc": {
-            "de": "Wird für B2C-Transaktionen verwendet, wenn die Kundendaten nicht verfügbar sind. Bitte wenden Sie sich an die örtlichen Behörden, um die Grenzwerte zu ermitteln.",
-            "en": "Used for B2C transactions when the client details are not available, check with local authorities for limits.",
-            "es": "Usado para transacciones B2C cuando los detalles del cliente no están disponibles, consulte con las autoridades locales para los límites.",
-            "it": "Utilizzato per le transazioni B2C quando i dettagli del cliente non sono disponibili, controllare con le autorità locali per i limiti."
-          }
-        },
-        {
-          "key": "reverse-charge",
-          "name": {
-            "de": "Umkehr der Steuerschuld",
-            "en": "Reverse Charge",
-            "es": "Inversión del Sujeto Pasivo",
-            "it": "Inversione del soggetto passivo"
-          }
-        },
-        {
-          "key": "self-billed",
-          "name": {
-            "de": "Rechnung durch den Leistungsempfänger",
-            "en": "Self-billed",
-            "es": "Facturación por el destinatario",
-            "it": "Autofattura"
-          }
-        },
-        {
-          "key": "customer-rates",
-          "name": {
-            "de": "Kundensätze",
-            "en": "Customer rates",
-            "es": "Tarifas aplicables al destinatario",
-            "it": "Aliquote applicabili al destinatario"
-          }
-        },
-        {
-          "key": "partial",
-          "name": {
-            "de": "Teilweise",
-            "en": "Partial",
-            "es": "Parcial",
-            "it": "Parziale"
-          }
+          "url": "https://www.ibge.gov.br/explica/codigos-dos-municipios.php"
         }
-      ]
+      ],
+      "pattern": "^\\d{7}$"
     }
   ],
   "corrections": [
@@ -83,7 +50,8 @@
       "title": {
         "en": "Municipal Service Tax",
         "pt": "Imposto Sobre Serviços"
-      }
+      },
+      "informative": true
     },
     {
       "code": "ICMS",
@@ -94,7 +62,8 @@
       "title": {
         "en": "State value-added tax",
         "pt": "Imposto sobre Circulação de Mercadorias e Serviços"
-      }
+      },
+      "informative": true
     },
     {
       "code": "IPI",
@@ -117,6 +86,18 @@
         "en": "Social Integration Program",
         "pt": "Programa de Integração Social"
       },
+      "informative": true
+    },
+    {
+      "code": "PISRet",
+      "name": {
+        "en": "PIS (Retained)",
+        "pt": "PIS (Retido)"
+      },
+      "title": {
+        "en": "Social Integration Program Retained",
+        "pt": "Programa de Integração Social Retido"
+      },
       "retained": true
     },
     {
@@ -128,6 +109,54 @@
       "title": {
         "en": "Contribution for the Financing of Social Security",
         "pt": "Contribuição para o Financiamento da Seguridade Social"
+      },
+      "informative": true
+    },
+    {
+      "code": "COFINSRet",
+      "name": {
+        "en": "COFINS (Retained)",
+        "pt": "COFINS (Retido)"
+      },
+      "title": {
+        "en": "Contribution for the Financing of Social Security Retained",
+        "pt": "Contribuição para o Financiamento da Seguridade Social Retido"
+      },
+      "retained": true
+    },
+    {
+      "code": "CSLL",
+      "name": {
+        "en": "CSLL",
+        "pt": "CSLL"
+      },
+      "title": {
+        "en": "Social Contribution on Net Profit",
+        "pt": "Contribuição Social sobre o Lucro Líquido"
+      },
+      "retained": true
+    },
+    {
+      "code": "INSS",
+      "name": {
+        "en": "INSS",
+        "pt": "INSS"
+      },
+      "title": {
+        "en": "National Social Security Institute Withholding",
+        "pt": "Retenção do Instituto Nacional do Seguro Social"
+      },
+      "retained": true
+    },
+    {
+      "code": "IRRF",
+      "name": {
+        "en": "IRRF",
+        "pt": "IRRF"
+      },
+      "title": {
+        "en": "Income Tax Withheld at Source",
+        "pt": "Imposto de Renda Retido na Fonte"
       },
       "retained": true
     }
