@@ -51,4 +51,5 @@ GOBL::Schema::Object.include GOBL::Extensions::Schema::ObjectHelper
 GOBL::Schema::Object.extend GOBL::Extensions::Schema::ObjectHelper::ClassMethods
 GOBL::Envelope.include GOBL::Extensions::EnvelopeHelper
 GOBL::Tax::RegimeDef.extend GOBL::Extensions::Tax::RegimeHelper::ClassMethods
+GOBL::Tax::AddonDef.extend GOBL::Extensions::Tax::AddonHelper::ClassMethods
 GOBL::Bill::Invoice.include GOBL::Extensions::Bill::InvoiceHelper
