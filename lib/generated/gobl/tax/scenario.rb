@@ -17,6 +17,11 @@ module GOBL
       # @return [GOBL::I18n::String]
       property :name, GOBL::I18n::String
 
+      # @!attribute [r] desc
+      # Description of the scenario for documentation purposes.
+      # @return [GOBL::I18n::String]
+      property :desc, GOBL::I18n::String
+
       # @!attribute [r] type
       # Type of document, if present.
       # @return [Array<GOBL::CBC::Key>]

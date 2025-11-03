@@ -42,6 +42,11 @@ module GOBL
       # @return [GOBL::Org::Party]
       property :seller, GOBL::Org::Party
 
+      # @!attribute [r] issuer
+      # Issuer represents a third party responsible for issuing the invoice, but is not responsible for tax. Some tax regimes and formats require this field.
+      # @return [GOBL::Org::Party]
+      property :issuer, GOBL::Org::Party
+
       # @!attribute [r] projects
       # Projects this invoice refers to.
       # @return [Array<GOBL::Org::DocumentRef>]

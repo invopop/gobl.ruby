@@ -89,6 +89,11 @@ module GOBL
       # @return [Array<SubLine>]
       property :substituted, [SubLine]
 
+      # @!attribute [r] seller
+      # Seller of the item if different from the supplier or ordering seller. This can be useful for marketplace or drop-ship scenarios in locations that require the original seller to be indicated.
+      # @return [GOBL::Org::Party]
+      property :seller, GOBL::Org::Party
+
       # @!attribute [r] notes
       # Set of specific notes for this line that may be required for clarification.
       # @return [Array<GOBL::Org::Note>]

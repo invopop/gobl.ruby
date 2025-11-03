@@ -52,11 +52,6 @@ module GOBL
       # MIME type of the attachment.
       # @return [String]
       property :mime, String
-
-      # @!attribute [r] data
-      # Data is the base64 encoded data of the attachment directly embedded inside the GOBL document. This should only be used when the URL cannot be used as it can dramatically increase the size of the JSON document, thus effecting usability and performance.
-      # @return [String]
-      property :data, String
     end
   end
 end

@@ -43,6 +43,11 @@ module GOBL
       # @return [String]
       property :description, String
 
+      # @!attribute [r] images
+      # Images associated with the item.
+      # @return [Array<GOBL::Org::Image>]
+      property :images, [GOBL::Org::Image]
+
       # @!attribute [r] currency
       # Currency used for the item's price.
       # @return [GOBL::Currency::Code]

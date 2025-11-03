@@ -23,18 +23,23 @@ module GOBL
       # @return [GOBL::L10n::TaxCountryCode]
       property :country, GOBL::L10n::TaxCountryCode
 
+      # @!attribute [r] key
+      # Key helps determine the tax situation within the category.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+
       # @!attribute [r] rate
-      # Rate within a category to apply.
+      # Rate within a category and for a given key to apply.
       # @return [GOBL::CBC::Key]
       property :rate, GOBL::CBC::Key
 
       # @!attribute [r] percent
-      # Percent defines the percentage set manually or determined from the rate key (calculated if rate present). A nil percent implies that this tax combo is **exempt** from tax.
+      # Percent defines the percentage set manually or determined from the key. A nil percent implies that this tax combo is either exempt or not-subject.
       # @return [GOBL::Num::Percentage]
       property :percent, GOBL::Num::Percentage
 
       # @!attribute [r] surcharge
-      # Some countries require an additional surcharge (calculated if rate present).
+      # Some countries require an additional surcharge (may be determined if key present).
       # @return [GOBL::Num::Percentage]
       property :surcharge, GOBL::Num::Percentage
 

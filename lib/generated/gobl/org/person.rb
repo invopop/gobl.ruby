@@ -22,16 +22,31 @@ module GOBL
       # @return [String]
       property :label, String
 
+      # @!attribute [r] key
+      # Key used to identify the role of the person inside the context of the object.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
+
       # @!attribute [r] name
-      # Complete details on the name of the person
+      # Complete details on the name of the person.
       # @return [GOBL::Org::Name]
       property :name, GOBL::Org::Name
       validates_presence_of :name
 
       # @!attribute [r] role
-      # What they do within an organization
+      # Role or job title of the responsibilities of the person within an organization.
       # @return [String]
       property :role, String
+
+      # @!attribute [r] identities
+      # Set of codes used to identify the person, such as ID numbers, social security, driving licenses, etc. that can be attributed to the individual.
+      # @return [Array<GOBL::Org::Identity>]
+      property :identities, [GOBL::Org::Identity]
+
+      # @!attribute [r] addresses
+      # Regular post addresses for where information should be sent if needed.
+      # @return [Array<GOBL::Org::Address>]
+      property :addresses, [GOBL::Org::Address]
 
       # @!attribute [r] emails
       # Electronic mail addresses that belong to the person.

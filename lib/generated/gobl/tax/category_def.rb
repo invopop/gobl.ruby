@@ -39,8 +39,18 @@ module GOBL
       # @return [Boolean]
       property :retained, Boolean
 
+      # @!attribute [r] informative
+      # Informative when true implies that the tax amount will be calculated and reported but will not affect the invoice totals. Typically used for taxes that are embedded in the base amount or don't impact the final payable amount.
+      # @return [Boolean]
+      property :informative, Boolean
+
+      # @!attribute [r] keys
+      # Specific tax definitions inside this category.
+      # @return [Array<KeyDef>]
+      property :keys, [KeyDef]
+
       # @!attribute [r] rates
-      # Specific tax definitions inside this category. Order is important.
+      # Rates defines the set of rates that can be used with this category.
       # @return [Array<RateDef>]
       property :rates, [RateDef]
 
