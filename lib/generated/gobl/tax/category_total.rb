@@ -21,6 +21,10 @@ module GOBL
       # @return [Boolean]
       property :retained, Boolean
 
+      # @!attribute [r] informative
+      # @return [Boolean]
+      property :informative, Boolean
+
       # @!attribute [r] rates
       # @return [Array<RateTotal>]
       property :rates, [RateTotal]

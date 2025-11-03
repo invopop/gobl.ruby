@@ -12,15 +12,15 @@ module GOBL
       # The Schema ID of the GOBL RateTotal structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/total#/$defs/RateTotal'
 
-      # @!attribute [r] key
-      # Optional rate key is required when grouping.
-      # @return [GOBL::CBC::Key]
-      property :key, GOBL::CBC::Key
-
       # @!attribute [r] country
       # Country code override when issuing with taxes applied from different countries, it'd be very strange to mix rates from different countries, but in theory this would be possible.
       # @return [GOBL::L10n::TaxCountryCode]
       property :country, GOBL::L10n::TaxCountryCode
+
+      # @!attribute [r] key
+      # Tax key if supported by the category.
+      # @return [GOBL::CBC::Key]
+      property :key, GOBL::CBC::Key
 
       # @!attribute [r] ext
       # If the rate is defined with extensions, they'll be used to group by also.

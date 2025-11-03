@@ -12,13 +12,8 @@ module GOBL
       # The Schema ID of the GOBL RateValueDef structure
       SCHEMA_ID = 'https://gobl.org/draft-0/tax/regime-def#/$defs/RateValueDef'
 
-      # @!attribute [r] tags
-      # Only apply this rate if one of the tags is present in the invoice.
-      # @return [Array<GOBL::CBC::Key>]
-      property :tags, [GOBL::CBC::Key]
-
       # @!attribute [r] ext
-      # Ext map of keys that can be used to filter to determine if the rate applies.
+      # Only apply this rate if one of the tags is present in the invoice. Tags []cbc.Key `json:"tags,omitempty" jsonschema:"title=Tags"` Ext map of keys that can be used to filter to determine if the rate applies.
       # @return [GOBL::Tax::Extensions]
       property :ext, GOBL::Tax::Extensions
 

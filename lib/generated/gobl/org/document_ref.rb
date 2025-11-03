@@ -17,8 +17,13 @@ module GOBL
       # @return [String]
       property :uuid, String
 
+      # @!attribute [r] schema
+      # Schema of the referenced document if different from that of the parent.
+      # @return [String]
+      property :schema, String
+
       # @!attribute [r] type
-      # Type of the document referenced.
+      # Type of the document referenced according to the defined schema or that of the parent document.
       # @return [GOBL::CBC::Key]
       property :type, GOBL::CBC::Key
 

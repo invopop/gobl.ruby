@@ -26,12 +26,15 @@ module GOBL
         'ES' => 'Spain',
         'FR' => 'France',
         'GB' => 'United Kingdom',
+        'IE' => 'Ireland',
         'IN' => 'India',
         'IT' => 'Italy',
         'MX' => 'Mexico',
         'NL' => 'The Netherlands',
         'PL' => 'Poland',
         'PT' => 'Portugal',
+        'SE' => 'Sweden',
+        'SG' => 'Singapore',
         'US' => 'United States of America'
       }.freeze
 
@@ -46,7 +49,7 @@ module GOBL
       property :$addons, [GOBL::CBC::Key]
 
       # @!attribute [r] $tags
-      # Tags are used to help identify specific tax scenarios or requirements that will apply changes to the contents of the invoice. Tags by design should always be optional, it should always be possible to build a valid invoice without any tags.
+      # Tags are used to help identify specific tax scenarios or requirements that may apply changes to the contents of the document or imply a specific meaning. Converters may use tags to help identify specific situations that do not have a specific extension, for example; self-billed or partial invoices may be identified by their respective tags.
       # @return [Array<GOBL::CBC::Key>]
       property :$tags, [GOBL::CBC::Key]
 
